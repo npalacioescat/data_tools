@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>data_tools.strings &#8212; data_tools 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for data_tools.strings</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Data tools - String operations module</span>
+
+<span class="sd">Copyright (C) 2018 Nicolàs Palacio</span>
+
+<span class="sd">Contact: nicolaspalacio91@gmail.com</span>
+
+<span class="sd">GNU-GLPv3:</span>
+<span class="sd">This program is free software: you can redistribute it and/or modify it</span>
+<span class="sd">under the terms of the GNU General Public License as published by the</span>
+<span class="sd">Free Software Foundation.</span>
+
+<span class="sd">This program is distributed in the hope that it will be useful, but</span>
+<span class="sd">WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General</span>
+<span class="sd">Public License for more details.</span>
+
+<span class="sd">A full copy of the GNU General Public License can be found on file</span>
+<span class="sd">&quot;LICENSE.md&quot;. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_numeric&#39;</span><span class="p">,</span> <span class="s1">&#39;join_str_lists&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="is_numeric"><a class="viewcode-back" href="../../index.html#data_tools.strings.is_numeric">[docs]</a><span class="k">def</span> <span class="nf">is_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Determines if a string can be considered a numeric value.</span>
+<span class="sd">    NaN is also considered, since it is float type.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - s [str]: String to be evaluated.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [bool]: True/False depending if the condition is satisfied.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; is_numeric(&#39;4&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; is_numeric(&#39;-3.2&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; is_numeric(&#39;number&#39;)</span>
+<span class="sd">        False</span>
+<span class="sd">        &gt;&gt;&gt; is_numeric(&#39;NaN&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="join_str_lists"><a class="viewcode-back" href="../../index.html#data_tools.strings.join_str_lists">[docs]</a><span class="k">def</span> <span class="nf">join_str_lists</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Joins element-wise two lists (or any 1D iterable) of strings with a</span>
+<span class="sd">    given separator (if provided). Length of the input lists must be</span>
+<span class="sd">    equal.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - a [list]: Contains the first elements [str] of the joint</span>
+<span class="sd">          strings.</span>
+<span class="sd">        - b [list]: Contains the second elements [str] of the joint</span>
+<span class="sd">          strings.</span>
+<span class="sd">        - sep [str]: Optional &#39;&#39; (non separated) by default. Determines</span>
+<span class="sd">          the separator between the joint strings.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [list]: List of the joint strings.</span>
+
+<span class="sd">    * Example:</span>
+<span class="sd">        &gt;&gt;&gt; a = [&#39;a&#39;, &#39;b&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; b = [&#39;1&#39;, &#39;2&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; join_str_lists(a, b, sep=&#39;_&#39;)</span>
+<span class="sd">        [&#39;a_1&#39;, &#39;b_2&#39;]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

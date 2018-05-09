@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sets &#8212; data_tools 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for sets</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Classes to represent arbitrary sets (including sets of sets).</span>
+
+<span class="sd">This module implements sets using dictionaries whose values are</span>
+<span class="sd">ignored.  The usual operations (union, intersection, deletion, etc.)</span>
+<span class="sd">are provided as both methods and operators.</span>
+
+<span class="sd">Important: sets are not sequences!  While they support &#39;x in s&#39;,</span>
+<span class="sd">&#39;len(s)&#39;, and &#39;for x in s&#39;, none of those operations are unique for</span>
+<span class="sd">sequences; for example, mappings support all three as well.  The</span>
+<span class="sd">characteristic operation for sequences is subscripting with small</span>
+<span class="sd">integers: s[i], for i in range(len(s)).  Sets don&#39;t support</span>
+<span class="sd">subscripting at all.  Also, sequences allow multiple occurrences and</span>
+<span class="sd">their elements have a definite order; sets on the other hand don&#39;t</span>
+<span class="sd">record multiple occurrences and don&#39;t remember the order of element</span>
+<span class="sd">insertion (which is why they don&#39;t support s[i]).</span>
+
+<span class="sd">The following classes are provided:</span>
+
+<span class="sd">BaseSet -- All the operations common to both mutable and immutable</span>
+<span class="sd">    sets. This is an abstract class, not meant to be directly</span>
+<span class="sd">    instantiated.</span>
+
+<span class="sd">Set -- Mutable sets, subclass of BaseSet; not hashable.</span>
+
+<span class="sd">ImmutableSet -- Immutable sets, subclass of BaseSet; hashable.</span>
+<span class="sd">    An iterable argument is mandatory to create an ImmutableSet.</span>
+
+<span class="sd">_TemporarilyImmutableSet -- A wrapper around a Set, hashable,</span>
+<span class="sd">    giving the same hash value as the immutable set equivalent</span>
+<span class="sd">    would have.  Do not use this class directly.</span>
+
+<span class="sd">Only hashable objects can be added to a Set. In particular, you cannot</span>
+<span class="sd">really add a Set as an element to another Set; if you try, what is</span>
+<span class="sd">actually added is an ImmutableSet built from it (it compares equal to</span>
+<span class="sd">the one you tried adding).</span>
+
+<span class="sd">When you ask if `x in y&#39; where x is a Set and y is a Set or</span>
+<span class="sd">ImmutableSet, x is wrapped into a _TemporarilyImmutableSet z, and</span>
+<span class="sd">what&#39;s tested is actually `z in y&#39;.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Code history:</span>
+<span class="c1">#</span>
+<span class="c1"># - Greg V. Wilson wrote the first version, using a different approach</span>
+<span class="c1">#   to the mutable/immutable problem, and inheriting from dict.</span>
+<span class="c1">#</span>
+<span class="c1"># - Alex Martelli modified Greg&#39;s version to implement the current</span>
+<span class="c1">#   Set/ImmutableSet approach, and make the data an attribute.</span>
+<span class="c1">#</span>
+<span class="c1"># - Guido van Rossum rewrote much of the code, made some API changes,</span>
+<span class="c1">#   and cleaned up the docstrings.</span>
+<span class="c1">#</span>
+<span class="c1"># - Raymond Hettinger added a number of speedups and other</span>
+<span class="c1">#   improvements.</span>
+
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">ifilter</span><span class="p">,</span> <span class="n">ifilterfalse</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BaseSet&#39;</span><span class="p">,</span> <span class="s1">&#39;Set&#39;</span><span class="p">,</span> <span class="s1">&#39;ImmutableSet&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;the sets module is deprecated&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseSet"><a class="viewcode-back" href="../index.html#sets.BaseSet">[docs]</a><span class="k">class</span> <span class="nc">BaseSet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Common base class for mutable and immutable sets.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_data&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Constructor</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is an abstract class.&quot;&quot;&quot;</span>
+        <span class="c1"># Don&#39;t call this from a concrete subclass!</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">is</span> <span class="n">BaseSet</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;BaseSet is an abstract class.  &quot;</span>
+                              <span class="s2">&quot;Use Set or ImmutableSet.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Standard protocols: __len__, __repr__, __str__, __iter__</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the number of elements of a set.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return string representation of a set.</span>
+
+<span class="sd">        This looks like &#39;Set([&lt;list of elements&gt;])&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span><span class="p">()</span>
+
+    <span class="c1"># __str__ is the same as __repr__</span>
+    <span class="fm">__str__</span> <span class="o">=</span> <span class="fm">__repr__</span>
+
+    <span class="k">def</span> <span class="nf">_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">sorted</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an iterator over the elements or a set.</span>
+
+<span class="sd">        This is the keys iterator for the underlying dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span>
+
+    <span class="c1"># Three-way comparison is not supported.  However, because __eq__ is</span>
+    <span class="c1"># tried before __cmp__, if Set x == Set y, x.__eq__(y) returns True and</span>
+    <span class="c1"># then cmp(x, y) returns 0 (Python doesn&#39;t actually call __cmp__ in this</span>
+    <span class="c1"># case).</span>
+
+    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="s2">&quot;can&#39;t compare sets using cmp()&quot;</span>
+
+    <span class="c1"># Equality comparisons using the underlying dicts.  Mixed-type comparisons</span>
+    <span class="c1"># are allowed here, where Set == z for non-Set z always returns False,</span>
+    <span class="c1"># and Set != z always True.  This allows expressions like &quot;x in y&quot; to</span>
+    <span class="c1"># give the expected result when y is a sequence of mixed types, not</span>
+    <span class="c1"># raising a pointless TypeError just because y contains a Set, or x is</span>
+    <span class="c1"># a Set and y contain&#39;s a non-set (&quot;in&quot; invokes only __eq__).</span>
+    <span class="c1"># Subtle:  it would be nicer if __eq__ and __ne__ could return</span>
+    <span class="c1"># NotImplemented instead of True or False.  Then the other comparand</span>
+    <span class="c1"># would get a chance to determine the result, and if the other comparand</span>
+    <span class="c1"># also returned NotImplemented then it would fall back to object address</span>
+    <span class="c1"># comparison (which would always return False for __eq__ and always</span>
+    <span class="c1"># True for __ne__).  However, that doesn&#39;t work, because this type</span>
+    <span class="c1"># *also* implements __cmp__:  if, e.g., __eq__ returns NotImplemented,</span>
+    <span class="c1"># Python tries __cmp__ next, and the __cmp__ here then raises TypeError.</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># Copying operations</span>
+
+<div class="viewcode-block" id="BaseSet.copy"><a class="viewcode-back" href="../index.html#sets.BaseSet.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a shallow copy of a set.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="n">__copy__</span> <span class="o">=</span> <span class="n">copy</span> <span class="c1"># For the copy module</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a deep copy of a set; used by copy module.&quot;&quot;&quot;</span>
+        <span class="c1"># This pre-creates the result and inserts it in the memo</span>
+        <span class="c1"># early, in case the deep copy recurses into another reference</span>
+        <span class="c1"># to this same set.  A set can&#39;t be an element of itself, but</span>
+        <span class="c1"># it can certainly contain an object that has a reference to</span>
+        <span class="c1"># itself.</span>
+        <span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+        <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span> <span class="o">=</span> <span class="n">result</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">_data</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">elt</span><span class="p">,</span> <span class="n">memo</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="c1"># Standard set operations: union, intersection, both differences.</span>
+    <span class="c1"># Each has an operator version (e.g. __or__, invoked with |) and a</span>
+    <span class="c1"># method version (e.g. union).</span>
+    <span class="c1"># Subtle:  Each pair requires distinct code so that the outcome is</span>
+    <span class="c1"># correct when the type of other isn&#39;t suitable.  For example, if</span>
+    <span class="c1"># we did &quot;union = __or__&quot; instead, then Set().union(3) would return</span>
+    <span class="c1"># NotImplemented instead of raising TypeError (albeit that *why* it</span>
+    <span class="c1"># raises TypeError as-is is also a bit subtle).</span>
+
+    <span class="k">def</span> <span class="nf">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the union of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in either set.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseSet.union"><a class="viewcode-back" href="../index.html#sets.BaseSet.union">[docs]</a>    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the union of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in either set.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="k">def</span> <span class="nf">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the intersection of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in both sets.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseSet.intersection"><a class="viewcode-back" href="../index.html#sets.BaseSet.intersection">[docs]</a>    <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the intersection of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in both sets.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+            <span class="n">little</span><span class="p">,</span> <span class="n">big</span> <span class="o">=</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">little</span><span class="p">,</span> <span class="n">big</span> <span class="o">=</span> <span class="n">other</span><span class="p">,</span> <span class="bp">self</span>
+        <span class="n">common</span> <span class="o">=</span> <span class="n">ifilter</span><span class="p">(</span><span class="n">big</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="n">little</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">common</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the symmetric difference of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in exactly one of the sets.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseSet.symmetric_difference"><a class="viewcode-back" href="../index.html#sets.BaseSet.symmetric_difference">[docs]</a>    <span class="k">def</span> <span class="nf">symmetric_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the symmetric difference of two sets as a new set.</span>
+
+<span class="sd">        (I.e. all elements that are in exactly one of the sets.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">_data</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">selfdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">otherdata</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">otherdata</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">otherdata</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="n">selfdata</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">selfdata</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="n">otherdata</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="k">def</span>  <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the difference of two sets as a new Set.</span>
+
+<span class="sd">        (I.e. all elements that are in this set and not in the other.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseSet.difference"><a class="viewcode-back" href="../index.html#sets.BaseSet.difference">[docs]</a>    <span class="k">def</span> <span class="nf">difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the difference of two sets as a new Set.</span>
+
+<span class="sd">        (I.e. all elements that are in this set and not in the other.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">otherdata</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">otherdata</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">_data</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">otherdata</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="bp">self</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="c1"># Membership test</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report whether an element is a member of a set.</span>
+
+<span class="sd">        (Called in response to the expression `element in self&#39;.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="s2">&quot;__as_temporarily_immutable__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="c1"># re-raise the TypeError exception we caught</span>
+            <span class="k">return</span> <span class="n">transform</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="c1"># Subset and superset test</span>
+
+<div class="viewcode-block" id="BaseSet.issubset"><a class="viewcode-back" href="../index.html#sets.BaseSet.issubset">[docs]</a>    <span class="k">def</span> <span class="nf">issubset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report whether another set contains this set.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>  <span class="c1"># Fast check for obvious cases</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="BaseSet.issuperset"><a class="viewcode-back" href="../index.html#sets.BaseSet.issuperset">[docs]</a>    <span class="k">def</span> <span class="nf">issuperset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report whether this set contains another set.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>  <span class="c1"># Fast check for obvious cases</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilterfalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="c1"># Inequality comparisons using the is-subset relation.</span>
+    <span class="fm">__le__</span> <span class="o">=</span> <span class="n">issubset</span>
+    <span class="fm">__ge__</span> <span class="o">=</span> <span class="n">issuperset</span>
+
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuperset</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="c1"># We inherit object.__hash__, so we must deny this explicitly</span>
+    <span class="fm">__hash__</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Assorted helpers</span>
+
+    <span class="k">def</span> <span class="nf">_binary_sanity_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># Check that the other argument to a binary operation is also</span>
+        <span class="c1"># a set, raising a TypeError otherwise.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="s2">&quot;Binary operation only permitted between sets&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_compute_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Calculate hash code for a set by xor&#39;ing the hash codes of</span>
+        <span class="c1"># the elements.  This ensures that the hash code does not depend</span>
+        <span class="c1"># on the order in which elements are added to the set.  This is</span>
+        <span class="c1"># not called __hash__ because a BaseSet should not be hashable;</span>
+        <span class="c1"># only an ImmutableSet is hashable.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">^=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="c1"># The main loop for update() and the subclass __init__() methods.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+        <span class="c1"># Use the fast update() method when a dictionary is available.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">iterable</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">xrange</span><span class="p">):</span>
+            <span class="c1"># Optimized: we know that __iter__() and next() can&#39;t</span>
+            <span class="c1"># raise TypeError, so we can move &#39;try:&#39; out of the loop.</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">return</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">transform</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="s2">&quot;__as_immutable__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="c1"># re-raise the TypeError exception we caught</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">transform</span><span class="p">()]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Safe: only catch TypeError where intended</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">transform</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="s2">&quot;__as_immutable__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="c1"># re-raise the TypeError exception we caught</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">transform</span><span class="p">()]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="ImmutableSet"><a class="viewcode-back" href="../index.html#sets.ImmutableSet">[docs]</a><span class="k">class</span> <span class="nc">ImmutableSet</span><span class="p">(</span><span class="n">BaseSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Immutable set class.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_hashcode&#39;</span><span class="p">]</span>
+
+    <span class="c1"># BaseSet + hashing</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct an immutable set from an optional iterable.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">iterable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_hash</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span>
+
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashcode</span> <span class="o">=</span> <span class="n">state</span></div>
+
+<div class="viewcode-block" id="Set"><a class="viewcode-back" href="../index.html#sets.Set">[docs]</a><span class="k">class</span> <span class="nc">Set</span><span class="p">(</span><span class="n">BaseSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Mutable set class.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># BaseSet + operations requiring mutability; no hashing</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a set from an optional iterable.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">iterable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># getstate&#39;s results are ignored if it is not</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="c1"># In-place union, intersection, differences.</span>
+    <span class="c1"># Subtle:  The xyz_update() functions deliberately return None,</span>
+    <span class="c1"># as do all mutating operations on built-in container types.</span>
+    <span class="c1"># The __xyz__ spellings have to return self, though.</span>
+
+    <span class="k">def</span> <span class="nf">__ior__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the union of itself and another.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Set.union_update"><a class="viewcode-back" href="../index.html#sets.Set.union_update">[docs]</a>    <span class="k">def</span> <span class="nf">union_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the union of itself and another.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__iand__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the intersection of itself and another.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span> <span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Set.intersection_update"><a class="viewcode-back" href="../index.html#sets.Set.intersection_update">[docs]</a>    <span class="k">def</span> <span class="nf">intersection_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the intersection of itself and another.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="bp">self</span> <span class="o">&amp;=</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">other</span><span class="p">))</span><span class="o">.</span><span class="n">_data</span></div>
+
+    <span class="k">def</span> <span class="nf">__ixor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the symmetric difference of itself and another.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symmetric_difference_update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Set.symmetric_difference_update"><a class="viewcode-back" href="../index.html#sets.Set.symmetric_difference_update">[docs]</a>    <span class="k">def</span> <span class="nf">symmetric_difference_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a set with the symmetric difference of itself and another.&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove all elements of another set from this set.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_binary_sanity_check</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">difference_update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Set.difference_update"><a class="viewcode-back" href="../index.html#sets.Set.difference_update">[docs]</a>    <span class="k">def</span> <span class="nf">difference_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove all elements of another set from this set.&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseSet</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">ifilter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+            <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="n">elt</span><span class="p">]</span></div>
+
+    <span class="c1"># Python dict-like mass mutations: update, clear</span>
+
+<div class="viewcode-block" id="Set.update"><a class="viewcode-back" href="../index.html#sets.Set.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add all values from an iterable (such as a list or file).&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Set.clear"><a class="viewcode-back" href="../index.html#sets.Set.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove all elements from this set.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+
+    <span class="c1"># Single-element mutations: add, remove, discard</span>
+
+<div class="viewcode-block" id="Set.add"><a class="viewcode-back" href="../index.html#sets.Set.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add an element to a set.</span>
+
+<span class="sd">        This has no effect if the element is already present.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="s2">&quot;__as_immutable__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="c1"># re-raise the TypeError exception we caught</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">transform</span><span class="p">()]</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Set.remove"><a class="viewcode-back" href="../index.html#sets.Set.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove an element from a set; it must be a member.</span>
+
+<span class="sd">        If the element is not a member, raise a KeyError.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="s2">&quot;__as_temporarily_immutable__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="c1"># re-raise the TypeError exception we caught</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">transform</span><span class="p">()]</span></div>
+
+<div class="viewcode-block" id="Set.discard"><a class="viewcode-back" href="../index.html#sets.Set.discard">[docs]</a>    <span class="k">def</span> <span class="nf">discard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove an element from a set if it is a member.</span>
+
+<span class="sd">        If the element is not a member, do nothing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Set.pop"><a class="viewcode-back" href="../index.html#sets.Set.pop">[docs]</a>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove and return an arbitrary set element.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">popitem</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">__as_immutable__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Return a copy of self as an immutable set</span>
+        <span class="k">return</span> <span class="n">ImmutableSet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__as_temporarily_immutable__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Return self wrapped in a temporarily immutable set</span>
+        <span class="k">return</span> <span class="n">_TemporarilyImmutableSet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">_TemporarilyImmutableSet</span><span class="p">(</span><span class="n">BaseSet</span><span class="p">):</span>
+    <span class="c1"># Wrap a mutable set as if it was temporarily immutable.</span>
+    <span class="c1"># This only supplies hashing and equality comparisons.</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">_data</span>  <span class="c1"># Needed by ImmutableSet.__eq__()</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set</span><span class="o">.</span><span class="n">_compute_hash</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>data_tools.sets &#8212; data_tools 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for data_tools.sets</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Data tools - Set operations module</span>
+
+<span class="sd">Copyright (C) 2018 Nicolàs Palacio</span>
+
+<span class="sd">Contact: nicolaspalacio91@gmail.com</span>
+
+<span class="sd">GNU-GLPv3:</span>
+<span class="sd">This program is free software: you can redistribute it and/or modify it</span>
+<span class="sd">under the terms of the GNU General Public License as published by the</span>
+<span class="sd">Free Software Foundation.</span>
+
+<span class="sd">This program is distributed in the hope that it will be useful, but</span>
+<span class="sd">WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General</span>
+<span class="sd">Public License for more details.</span>
+
+<span class="sd">A full copy of the GNU General Public License can be found on file</span>
+<span class="sd">&quot;LICENSE.md&quot;. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_union&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="in_all"><a class="viewcode-back" href="../../index.html#data_tools.sets.in_all">[docs]</a><span class="k">def</span> <span class="nf">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Checks if a vector x is present in all sets contained in a list N.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - x [tuple]: Or any hashable type as long as is the same</span>
+<span class="sd">          contained in the sets of N.</span>
+<span class="sd">        - N [list]: Or any iterable type containing [set] objects.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [bool]: True if x is found in all sets of N, False otherwise.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; N = [{(0, 0), (0, 1)}, # &lt;- set A</span>
+<span class="sd">        ...      {(0, 0), (1, 1), (1, 0)}] # &lt;- set B</span>
+<span class="sd">        &gt;&gt;&gt; x = (0, 0)</span>
+<span class="sd">        &gt;&gt;&gt; in_all(x, N)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; y = (0, 1)</span>
+<span class="sd">        &gt;&gt;&gt; in_all(y, N)</span>
+<span class="sd">        False</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">N</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="bit_or"><a class="viewcode-back" href="../../index.html#data_tools.sets.bit_or">[docs]</a><span class="k">def</span> <span class="nf">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Returns the bit operation OR between two bit-strings a and b.</span>
+<span class="sd">    NOTE: a and b must have the same size.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - a [tuple]: Or any iterable type.</span>
+<span class="sd">        - b [tuple]: Or any iterable type.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [tuple]: OR operation between a and b element-wise.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; a, b = (0, 0, 1), (1, 0, 1)</span>
+<span class="sd">        &gt;&gt;&gt; bit_or(a, b)</span>
+<span class="sd">        (1, 0, 1)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">el_a</span> <span class="o">|</span> <span class="n">el_b</span> <span class="k">for</span> <span class="p">(</span><span class="n">el_a</span><span class="p">,</span> <span class="n">el_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="multi_union"><a class="viewcode-back" href="../../index.html#data_tools.sets.multi_union">[docs]</a><span class="k">def</span> <span class="nf">multi_union</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Returns the union set of all sets contained in a list N.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - N [list]: Or any iterable type containing [set] objects.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [set]: The union of all sets contained in N.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; A = {1, 3, 5}</span>
+<span class="sd">        &gt;&gt;&gt; B = {0, 1, 2}</span>
+<span class="sd">        &gt;&gt;&gt; C = {0, 2, 5}</span>
+<span class="sd">        &gt;&gt;&gt; multi_union([A, B, C])</span>
+<span class="sd">        set([0, 1, 2, 3, 5])</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="find_min"><a class="viewcode-back" href="../../index.html#data_tools.sets.find_min">[docs]</a><span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds and returns the subset of vectors whose sum is minimum from a</span>
+<span class="sd">    given set A.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - A [set]: Set of vectors ([tuple] or any iterable).</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [set]: Subset of vectors in A whose sum is minimum.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}</span>
+<span class="sd">        &gt;&gt;&gt; find_min(A)</span>
+<span class="sd">        set([(0, 1, 0), (1, 0, 0)])</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">sums</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">idx_mins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sums</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">sums</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx_mins</span><span class="p">}</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

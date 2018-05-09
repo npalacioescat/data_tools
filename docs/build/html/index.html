@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to data_tools’s documentation! &#8212; data_tools 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-data-tools-s-documentation">
+<h1>Welcome to data_tools&#8217;s documentation!<a class="headerlink" href="#welcome-to-data-tools-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-data_tools.sets"></span><p>Data tools - Set operations module</p>
+<p>Copyright (C) 2018 Nicolàs Palacio</p>
+<p>Contact: <a class="reference external" href="mailto:nicolaspalacio91&#37;&#52;&#48;gmail&#46;com">nicolaspalacio91<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>GNU-GLPv3:
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation.</p>
+<p>This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.</p>
+<p>A full copy of the GNU General Public License can be found on file
+&#8220;LICENSE.md&#8221;. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+<dl class="function">
+<dt id="data_tools.sets.in_all">
+<code class="descclassname">data_tools.sets.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.in_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a vector x is present in all sets contained in a list N.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>x [tuple]: Or any hashable type as long as is the same
+contained in the sets of N.</li>
+<li>N [list]: Or any iterable type containing [set] objects.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[bool]: True if x is found in all sets of N, False otherwise.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)},</span> <span class="c1"># &lt;- set A</span>
+<span class="gp">... </span>     <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}]</span> <span class="c1"># &lt;- set B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.sets.bit_or">
+<code class="descclassname">data_tools.sets.</code><code class="descname">bit_or</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#bit_or"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.bit_or" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bit operation OR between two bit-strings a and b.
+NOTE: a and b must have the same size.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>a [tuple]: Or any iterable type.</li>
+<li>b [tuple]: Or any iterable type.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[tuple]: OR operation between a and b element-wise.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">(1, 0, 1)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.sets.multi_union">
+<code class="descclassname">data_tools.sets.</code><code class="descname">multi_union</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#multi_union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.multi_union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the union set of all sets contained in a list N.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>N [list]: Or any iterable type containing [set] objects.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[set]: The union of all sets contained in N.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_union</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
+<span class="go">set([0, 1, 2, 3, 5])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.sets.find_min">
+<code class="descclassname">data_tools.sets.</code><code class="descname">find_min</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#find_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.find_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds and returns the subset of vectors whose sum is minimum from a
+given set A.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>A [set]: Set of vectors ([tuple] or any iterable).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[set]: Subset of vectors in A whose sum is minimum.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">set([(0, 1, 0), (1, 0, 0)])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<span class="target" id="module-data_tools.strings"></span><p>Data tools - String operations module</p>
+<p>Copyright (C) 2018 Nicolàs Palacio</p>
+<p>Contact: <a class="reference external" href="mailto:nicolaspalacio91&#37;&#52;&#48;gmail&#46;com">nicolaspalacio91<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>GNU-GLPv3:
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation.</p>
+<p>This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.</p>
+<p>A full copy of the GNU General Public License can be found on file
+&#8220;LICENSE.md&#8221;. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+<dl class="function">
+<dt id="data_tools.strings.is_numeric">
+<code class="descclassname">data_tools.strings.</code><code class="descname">is_numeric</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/strings.html#is_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.strings.is_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if a string can be considered a numeric value.
+NaN is also considered, since it is float type.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>s [str]: String to be evaluated.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[bool]: True/False depending if the condition is satisfied.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;-3.2&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.strings.join_str_lists">
+<code class="descclassname">data_tools.strings.</code><code class="descname">join_str_lists</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>sep=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/strings.html#join_str_lists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.strings.join_str_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Joins element-wise two lists (or any 1D iterable) of strings with a
+given separator (if provided). Length of the input lists must be
+equal.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>a [list]: Contains the first elements [str] of the joint
+strings.</li>
+<li>b [list]: Contains the second elements [str] of the joint
+strings.</li>
+<li>sep [str]: Optional &#8216;&#8217; (non separated) by default. Determines
+the separator between the joint strings.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[list]: List of the joint strings.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">join_str_lists</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+<span class="go">[&#39;a_1&#39;, &#39;b_2&#39;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to data_tools&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
