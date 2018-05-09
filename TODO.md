@@ -7,8 +7,8 @@
 ## ASAP:
 
 - README
-- LICENSE
-- Auto-docs (pls)
+- ~~LICENSE~~
+- ~~Auto-docs~~
 
 ## Previous/current projects:
 
