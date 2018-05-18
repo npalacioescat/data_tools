@@ -1,0 +1,29 @@
+\begin{sphinxtheindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter B
+  \item bit\_or() (in module data\_tools.sets), \hyperpage{1}
+
+  \indexspace
+  \bigletter D
+  \item data\_tools.sets (module), \hyperpage{1}
+  \item data\_tools.strings (module), \hyperpage{2}
+
+  \indexspace
+  \bigletter F
+  \item find\_min() (in module data\_tools.sets), \hyperpage{2}
+
+  \indexspace
+  \bigletter I
+  \item in\_all() (in module data\_tools.sets), \hyperpage{1}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{3}
+
+  \indexspace
+  \bigletter J
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{3}
+
+  \indexspace
+  \bigletter M
+  \item multi\_union() (in module data\_tools.sets), \hyperpage{1}
+
+\end{sphinxtheindex}
