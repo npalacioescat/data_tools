@@ -21,6 +21,28 @@ Public License for more details.
 A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 
+## Installation
+
+First download/clone `data_tools` from the repository. From the
+terminal:
+
+```bash
+git clone https://github.com/Nic-Nic/data_tools.git
+cd data_tools
+```
+
+Then you can install it by running `setup.py` as follows:
+
+```bash
+python setup.py sdist
+```
+
+Or using `pip`:
+
+```bash
+pip install .
+```
+
 ## References
 
 You can find a detailed description of the modules and functions within

@@ -1,8 +1,0 @@
-src/data_tools/__init__.py
-src/data_tools/sets.py
-src/data_tools/strings.py
-src/data_tools.egg-info/PKG-INFO
-src/data_tools.egg-info/SOURCES.txt
-src/data_tools.egg-info/dependency_links.txt
-src/data_tools.egg-info/not-zip-safe
-src/data_tools.egg-info/top_level.txt

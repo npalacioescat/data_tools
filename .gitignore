@@ -1,3 +1,7 @@
 # Python compiled sources/cache
 **/*pyc
 **/__pycache__
+
+# Installation files
+/dist
+*.egg-info/
