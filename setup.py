@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='data_tools',
-      version='0.0.1',
+      version='0.0.2',
       description="Collection of Python functions and classes designed to make a Computational Biologist's life easier.",
       url='https://github.com/Nic-Nic/data_tools',
       author='Nicolas Palacio',

@@ -1,4 +1,5 @@
 # data_tools
+![GitHub release](https://img.shields.io/badge/release-v0.0.2-brightgreen.svg)
 
 Collection of Python functions and classes designed to make a
 Computational Biologist's life easier.
@@ -21,10 +22,15 @@ Public License for more details.
 A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 
+## Dependencies
+
+- [NumPy](http://www.numpy.org/)
+- [Matplotlib](https://matplotlib.org/)
+
 ## Installation
 
-First download/clone `data_tools` from the repository. From the
-terminal:
+First download/clone `data_tools` from the [GitHub repository](https://github.com/Nic-Nic/data_tools.git).
+From the terminal:
 
 ```bash
 git clone https://github.com/Nic-Nic/data_tools.git
@@ -43,7 +49,7 @@ Or using `pip`:
 pip install .
 ```
 
-## References
+## Reference
 
 You can find a detailed description of the modules and functions within
 this package in the [reference](/docs/build/latex/data_tools.pdf).

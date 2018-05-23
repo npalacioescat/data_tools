@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-Module plots
-============
+data_tools.plots
+================
 
 Plotting functions module.
 '''
@@ -10,7 +10,7 @@ Plotting functions module.
 __all__ = ['volcano']
 
 import numpy as np
-import matplotlib.pyplot as plt # formatting docs
+import matplotlib.pyplot as plt
 
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             legend=True, title=None, filename=None, figsize=None):
@@ -19,36 +19,36 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     provided.
 
     * Arguments:
-        - logfc [list]: Or any iterable type. Contains the log 
+        - *logfc* [list]: Or any iterable type. Contains the log
           (usually base 2) fold-change values. Must have the same length
-          as logpval.
-        - logpval [list]: Or any iterable type. Contains the -log
+          as *logpval*.
+        - *logpval* [list]: Or any iterable type. Contains the -log
           p-values (usually base 10). Must have the same length as
-          logfc.
-        - thr_pval [float]: Optional, 0.05 by default. Specifies the
-          p-value (non log-transformed) threshold to consider a
+          *logfc*.
+        - *thr_pval* [float]: Optional, ``0.05`` by default. Specifies
+          the p-value (non log-transformed) threshold to consider a
           measurement as significantly differentially expressed.
-        - thr_fc [float]: Optional, 2. by default. Specifies the FC
-          (non log-transformed) threshold to consider a measurement as
-          significantly differentially expressed.
-        - c [tuple]: Optional, ('C0', 'C1') by default (matplotlib
+        - *thr_fc* [float]: Optional, ``2``. by default. Specifies the
+          FC (non log-transformed) threshold to consider a measurement
+          as significantly differentially expressed.
+        - *c* [tuple]: Optional, ``('C0', 'C1')`` by default (matplotlib
           default colors). Any iterable containing two color arguments
-          tolerated by matplotlib (e.g.: ['r', 'b'] for red and blue).
-          First one is used for non-significant points, second for the
-          significant ones.
-        - legend [bool]: Optional, True by default. Indicates wether to
-          show the plot legend or not.
-        - title [str]: Optional, None by default. Defines the plot
+          tolerated by matplotlib (e.g.: ``['r', 'b']`` for red and
+          blue). First one is used for non-significant points, second
+          for the significant ones.
+        - *legend* [bool]: Optional, ``True`` by default. Indicates
+          whether to show the plot legend or not.
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
-        - filename [str]: Optional, None by default. If passed,
+        - *filename* [str]: Optional, ``None`` by default. If passed,
           indicates the file name or path where to store the figure.
           Format must be specified (e.g.: .png, .pdf, etc)
-        - figsize [tuple]: Optional, None by default (default matplotlib
-          size). Any iterable containing two values denoting the figure
-          size (in inches) as [width, height].
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: Figure object containing the
+        - [matplotlib.figure.Figure]: Figure object containing the
           volcano plot.
 
     * Examples:

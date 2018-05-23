@@ -11,15 +11,17 @@ __all__ = ['in_all', 'bit_or', 'multi_union', 'find_min']
 
 def in_all(x, N):
     '''
-    Checks if a vector x is present in all sets contained in a list N.
+    Checks if a vector *x* is present in all sets contained in a list
+    *N*.
 
     * Arguments:
-        - x [tuple]: Or any hashable type as long as is the same
-          contained in the sets of N.
-        - N [list]: Or any iterable type containing [set] objects.
+        - *x* [tuple]: Or any hashable type as long as is the same
+          contained in the sets of *N*.
+        - *N* [list]: Or any iterable type containing [set] objects.
 
     * Returns:
-        - [bool]: True if x is found in all sets of N, False otherwise.
+        - [bool]: ``True`` if *x* is found in all sets of *N*, ``False``
+          otherwise.
 
     * Examples:
         >>> N = [{(0, 0), (0, 1)}, # <- set A
@@ -43,15 +45,15 @@ def in_all(x, N):
 
 def bit_or(a, b):
     '''
-    Returns the bit operation OR between two bit-strings a and b.
-    NOTE: a and b must have the same size.
+    Returns the bit operation OR between two bit-strings *a* and *b*.
+    NOTE: *a* and *b* must have the same size.
 
     * Arguments:
-        - a [tuple]: Or any iterable type.
-        - b [tuple]: Or any iterable type.
+        - *a* [tuple]: Or any iterable type.
+        - *b* [tuple]: Or any iterable type.
 
     * Returns:
-        - [tuple]: OR operation between a and b element-wise.
+        - [tuple]: OR operation between *a* and *b* element-wise.
 
     * Examples:
         >>> a, b = (0, 0, 1), (1, 0, 1)
@@ -67,13 +69,13 @@ def bit_or(a, b):
 
 def multi_union(N):
     '''
-    Returns the union set of all sets contained in a list N.
+    Returns the union set of all sets contained in a list *N*.
 
     * Arguments:
-        - N [list]: Or any iterable type containing [set] objects.
+        - *N* [list]: Or any iterable type containing [set] objects.
 
     * Returns:
-        - [set]: The union of all sets contained in N.
+        - [set]: The union of all sets contained in *N*.
 
     * Examples:
         >>> A = {1, 3, 5}
@@ -88,13 +90,13 @@ def multi_union(N):
 def find_min(A):
     '''
     Finds and returns the subset of vectors whose sum is minimum from a
-    given set A.
+    given set *A*.
 
     * Arguments:
-        - A [set]: Set of vectors ([tuple] or any iterable).
+        - *A* [set]: Set of vectors ([tuple] or any iterable).
 
     * Returns:
-        - [set]: Subset of vectors in A whose sum is minimum.
+        - [set]: Subset of vectors in *A* whose sum is minimum.
 
     * Examples:
         >>> A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}

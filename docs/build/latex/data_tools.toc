@@ -1,7 +1,9 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Module plots}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}data\_tools.sets}{3}{chapter.2}
-\contentsline {chapter}{\numberline {3}data\_tools.strings}{5}{chapter.3}
-\contentsline {chapter}{\numberline {4}Indices and tables}{7}{chapter.4}
-\contentsline {chapter}{Python Module Index}{9}{section*.13}
-\contentsline {chapter}{Index}{11}{section*.14}
+\contentsline {chapter}{\numberline {1}Dependencies}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}Installation}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Reference}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}data\_tools.plots}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}data\_tools.sets}{8}{section.3.2}
+\contentsline {section}{\numberline {3.3}data\_tools.strings}{9}{section.3.3}
+\contentsline {chapter}{Python Module Index}{11}{section*.13}
+\contentsline {chapter}{Index}{13}{section*.14}

@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.plots &#8212; data_tools 0.0.1 documentation</title>
+    <title>data_tools.plots &#8212; data_tools 0.0.2 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -42,8 +42,8 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">Module plots</span>
-<span class="sd">============</span>
+<span class="sd">data_tools.plots</span>
+<span class="sd">================</span>
 
 <span class="sd">Plotting functions module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
@@ -51,45 +51,45 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># formatting docs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<div class="viewcode-block" id="volcano"><a class="viewcode-back" href="../../index.html#data_tools.plots.volcano">[docs]</a><span class="k">def</span> <span class="nf">volcano</span><span class="p">(</span><span class="n">logfc</span><span class="p">,</span> <span class="n">logpval</span><span class="p">,</span> <span class="n">thr_pval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">thr_fc</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">),</span>
+<div class="viewcode-block" id="volcano"><a class="viewcode-back" href="../../plots.html#data_tools.plots.volcano">[docs]</a><span class="k">def</span> <span class="nf">volcano</span><span class="p">(</span><span class="n">logfc</span><span class="p">,</span> <span class="n">logpval</span><span class="p">,</span> <span class="n">thr_pval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">thr_fc</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">),</span>
             <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a volcano plot from the differential expression data</span>
 <span class="sd">    provided.</span>
 
 <span class="sd">    * Arguments:</span>
-<span class="sd">        - logfc [list]: Or any iterable type. Contains the log </span>
+<span class="sd">        - *logfc* [list]: Or any iterable type. Contains the log</span>
 <span class="sd">          (usually base 2) fold-change values. Must have the same length</span>
-<span class="sd">          as logpval.</span>
-<span class="sd">        - logpval [list]: Or any iterable type. Contains the -log</span>
+<span class="sd">          as *logpval*.</span>
+<span class="sd">        - *logpval* [list]: Or any iterable type. Contains the -log</span>
 <span class="sd">          p-values (usually base 10). Must have the same length as</span>
-<span class="sd">          logfc.</span>
-<span class="sd">        - thr_pval [float]: Optional, 0.05 by default. Specifies the</span>
-<span class="sd">          p-value (non log-transformed) threshold to consider a</span>
+<span class="sd">          *logfc*.</span>
+<span class="sd">        - *thr_pval* [float]: Optional, ``0.05`` by default. Specifies</span>
+<span class="sd">          the p-value (non log-transformed) threshold to consider a</span>
 <span class="sd">          measurement as significantly differentially expressed.</span>
-<span class="sd">        - thr_fc [float]: Optional, 2. by default. Specifies the FC</span>
-<span class="sd">          (non log-transformed) threshold to consider a measurement as</span>
-<span class="sd">          significantly differentially expressed.</span>
-<span class="sd">        - c [tuple]: Optional, (&#39;C0&#39;, &#39;C1&#39;) by default (matplotlib</span>
+<span class="sd">        - *thr_fc* [float]: Optional, ``2``. by default. Specifies the</span>
+<span class="sd">          FC (non log-transformed) threshold to consider a measurement</span>
+<span class="sd">          as significantly differentially expressed.</span>
+<span class="sd">        - *c* [tuple]: Optional, ``(&#39;C0&#39;, &#39;C1&#39;)`` by default (matplotlib</span>
 <span class="sd">          default colors). Any iterable containing two color arguments</span>
-<span class="sd">          tolerated by matplotlib (e.g.: [&#39;r&#39;, &#39;b&#39;] for red and blue).</span>
-<span class="sd">          First one is used for non-significant points, second for the</span>
-<span class="sd">          significant ones.</span>
-<span class="sd">        - legend [bool]: Optional, True by default. Indicates wether to</span>
-<span class="sd">          show the plot legend or not.</span>
-<span class="sd">        - title [str]: Optional, None by default. Defines the plot</span>
+<span class="sd">          tolerated by matplotlib (e.g.: ``[&#39;r&#39;, &#39;b&#39;]`` for red and</span>
+<span class="sd">          blue). First one is used for non-significant points, second</span>
+<span class="sd">          for the significant ones.</span>
+<span class="sd">        - *legend* [bool]: Optional, ``True`` by default. Indicates</span>
+<span class="sd">          whether to show the plot legend or not.</span>
+<span class="sd">        - *title* [str]: Optional, ``None`` by default. Defines the plot</span>
 <span class="sd">          title.</span>
-<span class="sd">        - filename [str]: Optional, None by default. If passed,</span>
+<span class="sd">        - *filename* [str]: Optional, ``None`` by default. If passed,</span>
 <span class="sd">          indicates the file name or path where to store the figure.</span>
 <span class="sd">          Format must be specified (e.g.: .png, .pdf, etc)</span>
-<span class="sd">        - figsize [tuple]: Optional, None by default (default matplotlib</span>
-<span class="sd">          size). Any iterable containing two values denoting the figure</span>
-<span class="sd">          size (in inches) as [width, height].</span>
+<span class="sd">        - *figsize* [tuple]: Optional, ``None`` by default (default</span>
+<span class="sd">          matplotlib size). Any iterable containing two values denoting</span>
+<span class="sd">          the figure size (in inches) as [width, height].</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [*matplotlib.figure.Figure*]: Figure object containing the</span>
+<span class="sd">        - [matplotlib.figure.Figure]: Figure object containing the</span>
 <span class="sd">          volcano plot.</span>
 
 <span class="sd">    * Examples:</span>

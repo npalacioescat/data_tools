@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.strings &#8212; data_tools 0.0.1 documentation</title>
+    <title>data_tools.strings &#8212; data_tools 0.0.2 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -50,16 +50,17 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_numeric&#39;</span><span class="p">,</span> <span class="s1">&#39;join_str_lists&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="is_numeric"><a class="viewcode-back" href="../../index.html#data_tools.strings.is_numeric">[docs]</a><span class="k">def</span> <span class="nf">is_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<div class="viewcode-block" id="is_numeric"><a class="viewcode-back" href="../../strings.html#data_tools.strings.is_numeric">[docs]</a><span class="k">def</span> <span class="nf">is_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Determines if a string can be considered a numeric value.</span>
-<span class="sd">    NaN is also considered, since it is float type.</span>
+<span class="sd">    Determines if a string can be considered a numeric value. NaN is</span>
+<span class="sd">    also considered, since it is float type.</span>
 
 <span class="sd">    * Arguments:</span>
-<span class="sd">        - s [str]: String to be evaluated.</span>
+<span class="sd">        - *s* [str]: String to be evaluated.</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [bool]: True/False depending if the condition is satisfied.</span>
+<span class="sd">        - [bool]: ``True``/``False`` depending if the condition is</span>
+<span class="sd">          satisfied.</span>
 
 <span class="sd">    * Examples:</span>
 <span class="sd">        &gt;&gt;&gt; is_numeric(&#39;4&#39;)</span>
@@ -79,19 +80,19 @@
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="join_str_lists"><a class="viewcode-back" href="../../index.html#data_tools.strings.join_str_lists">[docs]</a><span class="k">def</span> <span class="nf">join_str_lists</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="join_str_lists"><a class="viewcode-back" href="../../strings.html#data_tools.strings.join_str_lists">[docs]</a><span class="k">def</span> <span class="nf">join_str_lists</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Joins element-wise two lists (or any 1D iterable) of strings with a</span>
 <span class="sd">    given separator (if provided). Length of the input lists must be</span>
 <span class="sd">    equal.</span>
 
 <span class="sd">    * Arguments:</span>
-<span class="sd">        - a [list]: Contains the first elements [str] of the joint</span>
+<span class="sd">        - *a* [list]: Contains the first elements [str] of the joint</span>
 <span class="sd">          strings.</span>
-<span class="sd">        - b [list]: Contains the second elements [str] of the joint</span>
+<span class="sd">        - *b* [list]: Contains the second elements [str] of the joint</span>
 <span class="sd">          strings.</span>
-<span class="sd">        - sep [str]: Optional &#39;&#39; (non separated) by default. Determines</span>
-<span class="sd">          the separator between the joint strings.</span>
+<span class="sd">        - *sep* [str]: Optional ``&#39;&#39;`` (non separated) by default.</span>
+<span class="sd">          Determines the separator between the joint strings.</span>
 
 <span class="sd">    * Returns:</span>
 <span class="sd">        - [list]: List of the joint strings.</span>

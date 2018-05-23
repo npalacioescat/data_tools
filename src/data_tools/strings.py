@@ -11,14 +11,15 @@ __all__ = ['is_numeric', 'join_str_lists']
 
 def is_numeric(s):
     '''
-    Determines if a string can be considered a numeric value.
-    NaN is also considered, since it is float type.
+    Determines if a string can be considered a numeric value. NaN is
+    also considered, since it is float type.
 
     * Arguments:
-        - s [str]: String to be evaluated.
+        - *s* [str]: String to be evaluated.
 
     * Returns:
-        - [bool]: True/False depending if the condition is satisfied.
+        - [bool]: ``True``/``False`` depending if the condition is
+          satisfied.
 
     * Examples:
         >>> is_numeric('4')
@@ -45,12 +46,12 @@ def join_str_lists(a, b, sep=''):
     equal.
 
     * Arguments:
-        - a [list]: Contains the first elements [str] of the joint
+        - *a* [list]: Contains the first elements [str] of the joint
           strings.
-        - b [list]: Contains the second elements [str] of the joint
+        - *b* [list]: Contains the second elements [str] of the joint
           strings.
-        - sep [str]: Optional '' (non separated) by default. Determines
-          the separator between the joint strings.
+        - *sep* [str]: Optional ``''`` (non separated) by default.
+          Determines the separator between the joint strings.
 
     * Returns:
         - [list]: List of the joint strings.

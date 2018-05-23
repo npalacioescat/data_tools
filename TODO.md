@@ -4,7 +4,7 @@
 
 > Keep in mind the general scope of this project.
 
-- Formatting the reference
+- ~~Formatting the reference~~
 - Add README to the reference docs?
 - ~~README~~
 - ~~LICENSE~~

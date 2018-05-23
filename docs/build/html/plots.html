@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>data_tools.plots &#8212; data_tools 0.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="data_tools.sets" href="sets.html" />
+    <link rel="prev" title="data_tools’s reference" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-data_tools.plots"></span><div class="section" id="data-tools-plots">
+<h1>data_tools.plots<a class="headerlink" href="#data-tools-plots" title="Permalink to this headline">¶</a></h1>
+<p>Plotting functions module.</p>
+<dl class="function">
+<dt id="data_tools.plots.volcano">
+<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a volcano plot from the differential expression data
+provided.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>logfc</em> [list]: Or any iterable type. Contains the log
+(usually base 2) fold-change values. Must have the same length
+as <em>logpval</em>.</li>
+<li><em>logpval</em> [list]: Or any iterable type. Contains the -log
+p-values (usually base 10). Must have the same length as
+<em>logfc</em>.</li>
+<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.05</span></code> by default. Specifies
+the p-value (non log-transformed) threshold to consider a
+measurement as significantly differentially expressed.</li>
+<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal"><span class="pre">2</span></code>. by default. Specifies the
+FC (non log-transformed) threshold to consider a measurement
+as significantly differentially expressed.</li>
+<li><em>c</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
+default colors). Any iterable containing two color arguments
+tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
+blue). First one is used for non-significant points, second
+for the significant ones.</li>
+<li><em>legend</em> [bool]: Optional, <code class="docutils literal"><span class="pre">True</span></code> by default. Indicates
+whether to show the plot legend or not.</li>
+<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[matplotlib.figure.Figure]: Figure object containing the
+volcano plot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/volcano_example.png" class="last" src="_images/volcano_example.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">data_tools’s reference</a></li>
+      <li>Next: <a href="sets.html" title="next chapter">data_tools.sets</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/plots.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/plots.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

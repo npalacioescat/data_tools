@@ -2,33 +2,33 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.sets), \hyperpage{3}
+  \item bit\_or() (in module data\_tools.sets), \hyperpage{8}
 
   \indexspace
   \bigletter D
-  \item data\_tools.plots (module), \hyperpage{1}
-  \item data\_tools.sets (module), \hyperpage{2}
-  \item data\_tools.strings (module), \hyperpage{4}
+  \item data\_tools.plots (module), \hyperpage{7}
+  \item data\_tools.sets (module), \hyperpage{8}
+  \item data\_tools.strings (module), \hyperpage{9}
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{4}
+  \item find\_min() (in module data\_tools.sets), \hyperpage{9}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{3}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{5}
+  \item in\_all() (in module data\_tools.sets), \hyperpage{8}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{9}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{5}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{10}
 
   \indexspace
   \bigletter M
-  \item multi\_union() (in module data\_tools.sets), \hyperpage{3}
+  \item multi\_union() (in module data\_tools.sets), \hyperpage{9}
 
   \indexspace
   \bigletter V
-  \item volcano() (in module data\_tools.plots), \hyperpage{1}
+  \item volcano() (in module data\_tools.plots), \hyperpage{7}
 
 \end{sphinxtheindex}
