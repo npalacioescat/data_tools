@@ -4,9 +4,9 @@
 
 > Keep in mind the general scope of this project.
 
-## ASAP:
-
-- README
+- Formatting the reference
+- Add README to the reference docs?
+- ~~README~~
 - ~~LICENSE~~
 - ~~Auto-docs~~
 

@@ -1,7 +1,7 @@
 # data_tools
 
-Collection of Python functions and classes designed to make
-a Computational Biologist's life easier.
+Collection of Python functions and classes designed to make a
+Computational Biologist's life easier.
 
 
 Copyright (C) 2018 Nicolàs Palacio
