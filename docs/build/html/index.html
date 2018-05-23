@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to data_tools’s documentation! &#8212; data_tools 0.0.1 documentation</title>
+    <title>data_tools’s reference &#8212; data_tools 0.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -38,12 +38,78 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-data-tools-s-documentation">
-<h1>Welcome to data_tools’s documentation!<a class="headerlink" href="#welcome-to-data-tools-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="data-tools-s-reference">
+<h1>data_tools’s reference<a class="headerlink" href="#data-tools-s-reference" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-data_tools.sets"></span><div class="section" id="data-tools-sets-set-operations-module">
-<h2>data_tools.sets - Set operations module<a class="headerlink" href="#data-tools-sets-set-operations-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-data_tools.plots"></span><div class="section" id="module-plots">
+<h2>Module plots<a class="headerlink" href="#module-plots" title="Permalink to this headline">¶</a></h2>
+<p>Plotting functions module.</p>
+<dl class="function">
+<dt id="data_tools.plots.volcano">
+<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a volcano plot from the differential expression data
+provided.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>logfc [list]: Or any iterable type. Contains the log 
+(usually base 2) fold-change values. Must have the same length
+as logpval.</li>
+<li>logpval [list]: Or any iterable type. Contains the -log
+p-values (usually base 10). Must have the same length as
+logfc.</li>
+<li>thr_pval [float]: Optional, 0.05 by default. Specifies the
+p-value (non log-transformed) threshold to consider a
+measurement as significantly differentially expressed.</li>
+<li>thr_fc [float]: Optional, 2. by default. Specifies the FC
+(non log-transformed) threshold to consider a measurement as
+significantly differentially expressed.</li>
+<li>c [tuple]: Optional, (‘C0’, ‘C1’) by default (matplotlib
+default colors). Any iterable containing two color arguments
+tolerated by matplotlib (e.g.: [‘r’, ‘b’] for red and blue).
+First one is used for non-significant points, second for the
+significant ones.</li>
+<li>legend [bool]: Optional, True by default. Indicates wether to
+show the plot legend or not.</li>
+<li>title [str]: Optional, None by default. Defines the plot
+title.</li>
+<li>filename [str]: Optional, None by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li>figsize [tuple]: Optional, None by default (default matplotlib
+size). Any iterable containing two values denoting the figure
+size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[<em>matplotlib.figure.Figure</em>]: Figure object containing the
+volcano plot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/volcano_example.png" class="last" src="_images/volcano_example.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<span class="target" id="module-data_tools.sets"></span><div class="section" id="data-tools-sets">
+<h2>data_tools.sets<a class="headerlink" href="#data-tools-sets" title="Permalink to this headline">¶</a></h2>
+<p>Set operations module.</p>
 <dl class="function">
 <dt id="data_tools.sets.in_all">
 <code class="descclassname">data_tools.sets.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.in_all" title="Permalink to this definition">¶</a></dt>
@@ -193,8 +259,9 @@ given set A.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-data_tools.strings"></span><div class="section" id="data-tools-strings-string-operations-module">
-<h2>data_tools.strings - String operations module<a class="headerlink" href="#data-tools-strings-string-operations-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-data_tools.strings"></span><div class="section" id="data-tools-strings">
+<h2>data_tools.strings<a class="headerlink" href="#data-tools-strings" title="Permalink to this headline">¶</a></h2>
+<p>String operations module.</p>
 <dl class="function">
 <dt id="data_tools.strings.is_numeric">
 <code class="descclassname">data_tools.strings.</code><code class="descname">is_numeric</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/strings.html#is_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.strings.is_numeric" title="Permalink to this definition">¶</a></dt>
@@ -296,9 +363,10 @@ the separator between the joint strings.</li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to data_tools’s documentation!</a><ul>
-<li><a class="reference internal" href="#data-tools-sets-set-operations-module">data_tools.sets - Set operations module</a></li>
-<li><a class="reference internal" href="#data-tools-strings-string-operations-module">data_tools.strings - String operations module</a></li>
+<li><a class="reference internal" href="#">data_tools’s reference</a><ul>
+<li><a class="reference internal" href="#module-plots">Module plots</a></li>
+<li><a class="reference internal" href="#data-tools-sets">data_tools.sets</a></li>
+<li><a class="reference internal" href="#data-tools-strings">data_tools.strings</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>

@@ -4,7 +4,7 @@
 data_tools.sets
 ===============
 
-Set operations module
+Set operations module.
 '''
 
 __all__ = ['in_all', 'bit_or', 'multi_union', 'find_min']

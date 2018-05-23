@@ -3,13 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to data_tools's documentation!
-======================================
+data_tools's reference
+======================
 
 .. toctree::
    :maxdepth: 5
    :caption: Contents:
 
+.. automodule:: data_tools.plots
+   :members:
 .. automodule:: data_tools.sets
     :members:
 .. automodule:: data_tools.strings

@@ -4,7 +4,7 @@
 data_tools.strings
 ==================
 
-String operations module
+String operations module.
 '''
 
 __all__ = ['is_numeric', 'join_str_lists']

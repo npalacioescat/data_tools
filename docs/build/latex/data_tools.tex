@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{May 18, 2018}
+\date{May 23, 2018}
 \release{0.0.1}
 \author{Nicolas Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -68,11 +68,99 @@
 \sphinxtableofcontents
 \phantomsection\label{\detokenize{index::doc}}
 
+\phantomsection\label{\detokenize{index:module-data_tools.plots}}\index{data\_tools.plots (module)}
+
+\chapter{Module plots}
+\label{\detokenize{index:data-tools-s-reference}}\label{\detokenize{index:module-plots}}
+Plotting functions module.
+\index{volcano() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{volcano}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a volcano plot from the differential expression data
+provided.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+logfc {[}list{]}: Or any iterable type. Contains the log 
+(usually base 2) fold-change values. Must have the same length
+as logpval.
+
+\item {} 
+logpval {[}list{]}: Or any iterable type. Contains the -log
+p-values (usually base 10). Must have the same length as
+logfc.
+
+\item {} 
+thr\_pval {[}float{]}: Optional, 0.05 by default. Specifies the
+p-value (non log-transformed) threshold to consider a
+measurement as significantly differentially expressed.
+
+\item {} 
+thr\_fc {[}float{]}: Optional, 2. by default. Specifies the FC
+(non log-transformed) threshold to consider a measurement as
+significantly differentially expressed.
+
+\item {} 
+c {[}tuple{]}: Optional, (‘C0’, ‘C1’) by default (matplotlib
+default colors). Any iterable containing two color arguments
+tolerated by matplotlib (e.g.: {[}‘r’, ‘b’{]} for red and blue).
+First one is used for non-significant points, second for the
+significant ones.
+
+\item {} 
+legend {[}bool{]}: Optional, True by default. Indicates wether to
+show the plot legend or not.
+
+\item {} 
+title {[}str{]}: Optional, None by default. Defines the plot
+title.
+
+\item {} 
+filename {[}str{]}: Optional, None by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+figsize {[}tuple{]}: Optional, None by default (default matplotlib
+size). Any iterable containing two values denoting the figure
+size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: Figure object containing the
+volcano plot.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{volcano}\PYG{p}{(}\PYG{n}{my\PYGZus{}log\PYGZus{}fc}\PYG{p}{,} \PYG{n}{my\PYGZus{}log\PYGZus{}pval}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{volcano_example}.png}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \phantomsection\label{\detokenize{index:module-data_tools.sets}}\index{data\_tools.sets (module)}
 
 \chapter{data\_tools.sets}
-\label{\detokenize{index:data-tools-sets}}\label{\detokenize{index:welcome-to-data-tools-s-documentation}}
-Set operations module
+\label{\detokenize{index:data-tools-sets}}
+Set operations module.
 \index{in\_all() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
@@ -249,7 +337,7 @@ A {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
 
 \chapter{data\_tools.strings}
 \label{\detokenize{index:data-tools-strings}}
-String operations module
+String operations module.
 \index{is\_numeric() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
@@ -366,6 +454,7 @@ the separator between the joint strings.
 \begin{sphinxtheindex}
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 \bigletter{d}
+\item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{index:\detokenize{module-data_tools.plots}}
 \item {\sphinxstyleindexentry{data\_tools.sets}}\sphinxstyleindexpageref{index:\detokenize{module-data_tools.sets}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{index:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}

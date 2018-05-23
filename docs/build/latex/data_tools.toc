@@ -1,6 +1,7 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}data\_tools.sets}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}data\_tools.strings}{3}{chapter.2}
-\contentsline {chapter}{\numberline {3}Indices and tables}{5}{chapter.3}
-\contentsline {chapter}{Python Module Index}{7}{section*.11}
-\contentsline {chapter}{Index}{9}{section*.12}
+\contentsline {chapter}{\numberline {1}Module plots}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}data\_tools.sets}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}data\_tools.strings}{5}{chapter.3}
+\contentsline {chapter}{\numberline {4}Indices and tables}{7}{chapter.4}
+\contentsline {chapter}{Python Module Index}{9}{section*.13}
+\contentsline {chapter}{Index}{11}{section*.14}

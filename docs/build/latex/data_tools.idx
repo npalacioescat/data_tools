@@ -1,8 +1,10 @@
-\indexentry{data\_tools.sets (module)|hyperpage}{1}
-\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{1}
-\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{1}
-\indexentry{multi\_union() (in module data\_tools.sets)|hyperpage}{1}
-\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{2}
-\indexentry{data\_tools.strings (module)|hyperpage}{2}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{3}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{3}
+\indexentry{data\_tools.plots (module)|hyperpage}{1}
+\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{1}
+\indexentry{data\_tools.sets (module)|hyperpage}{2}
+\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{3}
+\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{3}
+\indexentry{multi\_union() (in module data\_tools.sets)|hyperpage}{3}
+\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{4}
+\indexentry{data\_tools.strings (module)|hyperpage}{4}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{5}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{5}
