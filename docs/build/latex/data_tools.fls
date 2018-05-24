@@ -289,6 +289,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/courier/pcrr8c.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/courier/pcrb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm
+INPUT piano_consensus_example.png
+INPUT ./piano_consensus_example.png
+INPUT ./piano_consensus_example.png
+INPUT piano_consensus_example.png
+INPUT ./piano_consensus_example.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrro8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/courier/pcrro8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrro8r.tfm

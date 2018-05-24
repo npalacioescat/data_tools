@@ -54,7 +54,7 @@
 
 
 \title{data\_tools Documentation}
-\date{May 23, 2018}
+\date{May 24, 2018}
 \release{0.0.2}
 \author{Nicolas Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -97,6 +97,9 @@ A full copy of the GNU General Public License can be found on file
 
 \item {} 
 \sphinxhref{https://matplotlib.org/}{Matplotlib}
+
+\item {} 
+\sphinxhref{https://pandas.pydata.org/}{Pandas}
 
 \end{itemize}
 
@@ -210,6 +213,77 @@ volcano plot.
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{volcano_example}.png}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{piano\_consensus() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{piano\_consensus}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a GSEA consensus score plot like R package \sphinxcode{piano}’s
+\sphinxcode{consensusScores} function, but prettier.
+The main input is assumed to be a \sphinxcode{pandas.DataFrame} whose data
+is the same as the \sphinxcode{rankMat} from the result of
+\sphinxcode{consensusScores}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Values contained correspond to the
+scores of the gene-sets (consensus and each individual
+methods). Index must contain the gene-set labels. Columns are
+assumed to be \sphinxcode{ConsRank} (ignored), \sphinxcode{ConsScore} followed
+by the individual methods (e.g.: \sphinxcode{mean}, \sphinxcode{median},
+\sphinxcode{sum}, etc).
+
+\item {} 
+\sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{40} by default. Number of string
+characters of the gene-set labels of the plot.
+
+\item {} 
+\sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{True} by default. Determines
+whether to show the boxplots of the gene-sets or not.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{piano\PYGZus{}consensus}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{piano_consensus_example}.png}
 
 \end{description}
 

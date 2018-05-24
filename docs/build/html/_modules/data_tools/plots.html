@@ -48,9 +48,11 @@
 <span class="sd">Plotting functions module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;volcano&#39;</span><span class="p">,</span> <span class="s1">&#39;piano_consensus&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <div class="viewcode-block" id="volcano"><a class="viewcode-back" href="../../plots.html#data_tools.plots.volcano">[docs]</a><span class="k">def</span> <span class="nf">volcano</span><span class="p">(</span><span class="n">logfc</span><span class="p">,</span> <span class="n">logpval</span><span class="p">,</span> <span class="n">thr_pval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">thr_fc</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">),</span>
@@ -139,6 +141,90 @@
     <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="piano_consensus"><a class="viewcode-back" href="../../plots.html#data_tools.plots.piano_consensus">[docs]</a><span class="k">def</span> <span class="nf">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">nchar</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Generates a GSEA consensus score plot like R package ``piano``&#39;s</span>
+<span class="sd">    ``consensusScores`` function, but prettier.</span>
+<span class="sd">    The main input is assumed to be a ``pandas.DataFrame`` whose data</span>
+<span class="sd">    is the same as the ``rankMat`` from the result of</span>
+<span class="sd">    ``consensusScores``.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *df* [pandas.DataFrame]: Values contained correspond to the</span>
+<span class="sd">          scores of the gene-sets (consensus and each individual</span>
+<span class="sd">          methods). Index must contain the gene-set labels. Columns are</span>
+<span class="sd">          assumed to be ``ConsRank`` (ignored), ``ConsScore`` followed</span>
+<span class="sd">          by the individual methods (e.g.: ``mean``, ``median``,</span>
+<span class="sd">          ``sum``, etc).</span>
+<span class="sd">        - *nchar* [int]: Optional, ``40`` by default. Number of string</span>
+<span class="sd">          characters of the gene-set labels of the plot.</span>
+<span class="sd">        - *boxes* [bool]: Optional, ``True`` by default. Determines</span>
+<span class="sd">          whether to show the boxplots of the gene-sets or not.</span>
+<span class="sd">        - *title* [str]: Optional, ``None`` by default. Defines the plot</span>
+<span class="sd">          title.</span>
+<span class="sd">        - *filename* [str]: Optional, ``None`` by default. If passed,</span>
+<span class="sd">          indicates the file name or path where to store the figure.</span>
+<span class="sd">          Format must be specified (e.g.: .png, .pdf, etc)</span>
+<span class="sd">        - *figsize* [tuple]: Optional, ``None`` by default (default</span>
+<span class="sd">          matplotlib size). Any iterable containing two values denoting</span>
+<span class="sd">          the figure size (in inches) as [width, height].</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [*matplotlib.figure.Figure*]: the figure object containing a</span>
+<span class="sd">          combination of box and scatter plots of the gene-set scores.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; piano_consensus(df, figsize=[7, 8])</span>
+
+<span class="sd">        .. image:: ../figures/piano_consensus_example.png</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># List of equidistant colors according to a colormap</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;rainbow&#39;</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:])))</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+    <span class="c1"># Gene-set scores for each individual method</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+
+    <span class="c1"># Box plot of the gene-sets</span>
+    <span class="k">if</span> <span class="n">boxes</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">positions</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">widths</span><span class="o">=.</span><span class="mi">75</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                   <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">medianprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>
+                   <span class="n">flierprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;markersize&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">})</span>
+
+    <span class="c1"># Consensus score across methods (substitutes the median of the</span>
+    <span class="c1"># boxplot for visibility)</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;ConsScore&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">94</span><span class="p">,</span>
+               <span class="n">marker</span><span class="o">=</span><span class="p">[(</span><span class="o">-.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                       <span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-.</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+
+    <span class="c1"># Gene-set labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="n">s</span><span class="p">[:</span><span class="n">nchar</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+
+    <span class="c1"># Axes properties</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Gene-set&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>

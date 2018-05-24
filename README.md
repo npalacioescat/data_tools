@@ -26,6 +26,7 @@ A full copy of the GNU General Public License can be found on file
 
 - [NumPy](http://www.numpy.org/)
 - [Matplotlib](https://matplotlib.org/)
+- [Pandas](https://pandas.pydata.org/)
 
 ## Installation
 

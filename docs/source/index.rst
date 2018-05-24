@@ -34,6 +34,7 @@ Dependencies
 
 - `NumPy <http://www.numpy.org/>`_
 - `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
 
 Installation
 ============
