@@ -32,6 +32,8 @@ http://www.gnu.org/licenses/.
 Dependencies
 ============
 
+In module **data_tools.plots**:
+
 - `NumPy <http://www.numpy.org/>`_
 - `Matplotlib <https://matplotlib.org/>`_
 - `Pandas <https://pandas.pydata.org/>`_

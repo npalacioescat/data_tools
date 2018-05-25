@@ -20,9 +20,11 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
-"LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
+[LICENSE.md](LICENSE.md). If not, see <http://www.gnu.org/licenses/>.
 
 ## Dependencies
+
+In module **data_tools.plots**:
 
 - [NumPy](http://www.numpy.org/)
 - [Matplotlib](https://matplotlib.org/)
