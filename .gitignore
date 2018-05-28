@@ -5,3 +5,4 @@
 # Installation files
 /dist
 *.egg-info/
+/build

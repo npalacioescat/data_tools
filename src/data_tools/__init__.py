@@ -30,3 +30,4 @@ __author__ = 'Nicolàs Palacio'
 import data_tools.strings as strings
 import data_tools.sets as sets
 import data_tools.plots as plots
+from data_tools.Lasso import Lasso

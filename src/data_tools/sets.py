@@ -9,6 +9,7 @@ Set operations module.
 
 __all__ = ['in_all', 'bit_or', 'multi_union', 'find_min']
 
+
 def in_all(x, N):
     '''
     Checks if a vector *x* is present in all sets contained in a list
@@ -43,6 +44,7 @@ def in_all(x, N):
 
     return True
 
+
 def bit_or(a, b):
     '''
     Returns the bit operation OR between two bit-strings *a* and *b*.
@@ -67,6 +69,7 @@ def bit_or(a, b):
     else:
         return tuple([el_a | el_b for (el_a, el_b) in zip(a, b)])
 
+
 def multi_union(N):
     '''
     Returns the union set of all sets contained in a list *N*.
@@ -86,6 +89,7 @@ def multi_union(N):
     '''
 
     return reduce(set.union, N)
+
 
 def find_min(A):
     '''

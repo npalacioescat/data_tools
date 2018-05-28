@@ -9,6 +9,7 @@ String operations module.
 
 __all__ = ['is_numeric', 'join_str_lists']
 
+
 def is_numeric(s):
     '''
     Determines if a string can be considered a numeric value. NaN is
@@ -38,6 +39,7 @@ def is_numeric(s):
 
     except ValueError:
         return False
+
 
 def join_str_lists(a, b, sep=''):
     '''

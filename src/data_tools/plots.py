@@ -14,6 +14,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 
+
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             legend=True, title=None, filename=None, figsize=None):
     '''
@@ -106,6 +107,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         fig.savefig(filename)
 
     return fig
+
 
 def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
                     figsize=None):
