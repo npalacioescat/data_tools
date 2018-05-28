@@ -1,11 +1,18 @@
-\indexentry{data\_tools.plots (module)|hyperpage}{7}
-\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{7}
-\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{8}
-\indexentry{data\_tools.sets (module)|hyperpage}{9}
-\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{9}
-\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{10}
-\indexentry{multi\_union() (in module data\_tools.sets)|hyperpage}{10}
-\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{10}
-\indexentry{data\_tools.strings (module)|hyperpage}{11}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{11}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{11}
+\indexentry{data\_tools.Lasso (module)|hyperpage}{7}
+\indexentry{Lasso (class in data\_tools.Lasso)|hyperpage}{7}
+\indexentry{compute\_second\_line() (data\_tools.Lasso.Lasso method)|hyperpage}{9}
+\indexentry{fit\_data() (data\_tools.Lasso.Lasso method)|hyperpage}{9}
+\indexentry{plot\_coef() (data\_tools.Lasso.Lasso method)|hyperpage}{9}
+\indexentry{plot\_sample\_probs() (data\_tools.Lasso.Lasso method)|hyperpage}{9}
+\indexentry{plot\_score() (data\_tools.Lasso.Lasso method)|hyperpage}{9}
+\indexentry{data\_tools.plots (module)|hyperpage}{9}
+\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{9}
+\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{10}
+\indexentry{data\_tools.sets (module)|hyperpage}{11}
+\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{11}
+\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{12}
+\indexentry{multi\_union() (in module data\_tools.sets)|hyperpage}{12}
+\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{12}
+\indexentry{data\_tools.strings (module)|hyperpage}{13}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{13}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{13}

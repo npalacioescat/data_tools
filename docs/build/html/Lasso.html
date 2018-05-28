@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>data_tools.Lasso &#8212; data_tools 0.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-data_tools.Lasso"></span><div class="section" id="data-tools-lasso">
+<h1>data_tools.Lasso<a class="headerlink" href="#data-tools-lasso" title="Permalink to this headline">¶</a></h1>
+<p>Class for logistic regression models with L1 regularization.</p>
+<dl class="class">
+<dt id="data_tools.Lasso.Lasso">
+<em class="property">class </em><code class="descclassname">data_tools.Lasso.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>Cs=array([ 0.01</em>, <em>0.01009272</em>, <em>0.01018629</em>, <em>0.01028073</em>, <em>0.01037605</em>, <em>0.01047225</em>, <em>0.01056935</em>, <em>0.01066734</em>, <em>0.01076624</em>, <em>0.01086606</em>, <em>0.01096681</em>, <em>0.01106848</em>, <em>0.01117111</em>, <em>0.01127468</em>, <em>0.01137921</em>, <em>0.01148472</em>, <em>0.0115912</em>, <em>0.01169866</em>, <em>0.01180713</em>, <em>0.0119166</em>, <em>0.01202708</em>, <em>0.01213859</em>, <em>0.01225114</em>, <em>0.01236472</em>, <em>0.01247936</em>, <em>0.01259506</em>, <em>0.01271184</em>, <em>0.0128297</em>, <em>0.01294865</em>, <em>0.0130687</em>, <em>0.01318987</em>, <em>0.01331216</em>, <em>0.01343558</em>, <em>0.01356015</em>, <em>0.01368587</em>, <em>0.01381276</em>, <em>0.01394083</em>, <em>0.01407008</em>, <em>0.01420053</em>, <em>0.01433219</em>, <em>0.01446507</em>, <em>0.01459919</em>, <em>0.01473454</em>, <em>0.01487115</em>, <em>0.01500903</em>, <em>0.01514819</em>, <em>0.01528864</em>, <em>0.01543038</em>, <em>0.01557345</em>, <em>0.01571784</em>, <em>0.01586357</em>, <em>0.01601064</em>, <em>0.01615909</em>, <em>0.01630891</em>, <em>0.01646012</em>, <em>0.01661273</em>, <em>0.01676675</em>, <em>0.0169222</em>, <em>0.0170791</em>, <em>0.01723745</em>, <em>0.01739726</em>, <em>0.01755856</em>, <em>0.01772136</em>, <em>0.01788566</em>, <em>0.01805149</em>, <em>0.01821885</em>, <em>0.01838777</em>, <em>0.01855825</em>, <em>0.01873032</em>, <em>0.01890397</em>, <em>0.01907924</em>, <em>0.01925614</em>, <em>0.01943467</em>, <em>0.01961486</em>, <em>0.01979672</em>, <em>0.01998026</em>, <em>0.02016551</em>, <em>0.02035248</em>, <em>0.02054117</em>, <em>0.02073162</em>, <em>0.02092383</em>, <em>0.02111783</em>, <em>0.02131362</em>, <em>0.02151123</em>, <em>0.02171068</em>, <em>0.02191197</em>, <em>0.02211512</em>, <em>0.02232016</em>, <em>0.02252711</em>, <em>0.02273597</em>, <em>0.02294676</em>, <em>0.02315951</em>, <em>0.02337424</em>, <em>0.02359095</em>, <em>0.02380968</em>, <em>0.02403043</em>, <em>0.02425323</em>, <em>0.02447809</em>, <em>0.02470504</em>, <em>0.02493409</em>, <em>0.02516527</em>, <em>0.02539859</em>, <em>0.02563407</em>, <em>0.02587174</em>, <em>0.02611161</em>, <em>0.02635371</em>, <em>0.02659804</em>, <em>0.02684465</em>, <em>0.02709354</em>, <em>0.02734474</em>, <em>0.02759826</em>, <em>0.02785414</em>, <em>0.02811239</em>, <em>0.02837304</em>, <em>0.0286361</em>, <em>0.0289016</em>, <em>0.02916956</em>, <em>0.02944</em>, <em>0.02971296</em>, <em>0.02998844</em>, <em>0.03026648</em>, <em>0.0305471</em>, <em>0.03083031</em>, <em>0.03111616</em>, <em>0.03140465</em>, <em>0.03169582</em>, <em>0.03198969</em>, <em>0.03228628</em>, <em>0.03258562</em>, <em>0.03288774</em>, <em>0.03319266</em>, <em>0.03350041</em>, <em>0.03381101</em>, <em>0.03412449</em>, <em>0.03444087</em>, <em>0.03476019</em>, <em>0.03508247</em>, <em>0.03540774</em>, <em>0.03573602</em>, <em>0.03606735</em>, <em>0.03640175</em>, <em>0.03673925</em>, <em>0.03707988</em>, <em>0.03742366</em>, <em>0.03777064</em>, <em>0.03812083</em>, <em>0.03847427</em>, <em>0.03883098</em>, <em>0.039191</em>, <em>0.03955436</em>, <em>0.03992109</em>, <em>0.04029122</em>, <em>0.04066478</em>, <em>0.04104181</em>, <em>0.04142232</em>, <em>0.04180637</em>, <em>0.04219398</em>, <em>0.04258518</em>, <em>0.04298001</em>, <em>0.0433785</em>, <em>0.04378069</em>, <em>0.0441866</em>, <em>0.04459628</em>, <em>0.04500975</em>, <em>0.04542706</em>, <em>0.04584824</em>, <em>0.04627332</em>, <em>0.04670234</em>, <em>0.04713535</em>, <em>0.04757236</em>, <em>0.04801343</em>, <em>0.04845859</em>, <em>0.04890787</em>, <em>0.04936132</em>, <em>0.04981898</em>, <em>0.05028087</em>, <em>0.05074705</em>, <em>0.05121755</em>, <em>0.05169242</em>, <em>0.05217169</em>, <em>0.0526554</em>, <em>0.05314359</em>, <em>0.05363631</em>, <em>0.0541336</em>, <em>0.0546355</em>, <em>0.05514206</em>, <em>0.05565331</em>, <em>0.0561693</em>, <em>0.05669007</em>, <em>0.05721568</em>, <em>0.05774615</em>, <em>0.05828155</em>, <em>0.0588219</em>, <em>0.05936727</em>, <em>0.0599177</em>, <em>0.06047322</em>, <em>0.0610339</em>, <em>0.06159978</em>, <em>0.0621709</em>, <em>0.06274732</em>, <em>0.06332908</em>, <em>0.06391624</em>, <em>0.06450884</em>, <em>0.06510694</em>, <em>0.06571058</em>, <em>0.06631981</em>, <em>0.0669347</em>, <em>0.06755528</em>, <em>0.06818162</em>, <em>0.06881377</em>, <em>0.06945178</em>, <em>0.0700957</em>, <em>0.07074559</em>, <em>0.07140151</em>, <em>0.07206351</em>, <em>0.07273165</em>, <em>0.07340598</em>, <em>0.07408657</em>, <em>0.07477346</em>, <em>0.07546673</em>, <em>0.07616642</em>, <em>0.0768726</em>, <em>0.07758532</em>, <em>0.07830465</em>, <em>0.07903066</em>, <em>0.07976339</em>, <em>0.08050292</em>, <em>0.0812493</em>, <em>0.08200261</em>, <em>0.08276289</em>, <em>0.08353023</em>, <em>0.08430468</em>, <em>0.08508632</em>, <em>0.08587519</em>, <em>0.08667139</em>, <em>0.08747496</em>, <em>0.08828599</em>, <em>0.08910453</em>, <em>0.08993067</em>, <em>0.09076446</em>, <em>0.09160598</em>, <em>0.09245531</em>, <em>0.09331251</em>, <em>0.09417766</em>, <em>0.09505083</em>, <em>0.09593209</em>, <em>0.09682153</em>, <em>0.09771921</em>, <em>0.09862522</em>, <em>0.09953962</em>, <em>0.10046251</em>, <em>0.10139395</em>, <em>0.10233402</em>, <em>0.10328281</em>, <em>0.1042404</em>, <em>0.10520687</em>, <em>0.10618229</em>, <em>0.10716676</em>, <em>0.10816036</em>, <em>0.10916317</em>, <em>0.11017528</em>, <em>0.11119677</em>, <em>0.11222774</em>, <em>0.11326826</em>, <em>0.11431843</em>, <em>0.11537833</em>, <em>0.11644806</em>, <em>0.11752771</em>, <em>0.11861737</em>, <em>0.11971713</em>, <em>0.12082709</em>, <em>0.12194734</em>, <em>0.12307798</em>, <em>0.1242191</em>, <em>0.1253708</em>, <em>0.12653318</em>, <em>0.12770633</em>, <em>0.12889036</em>, <em>0.13008537</em>, <em>0.13129146</em>, <em>0.13250873</em>, <em>0.13373729</em>, <em>0.13497723</em>, <em>0.13622868</em>, <em>0.13749172</em>, <em>0.13876648</em>, <em>0.14005305</em>, <em>0.14135156</em>, <em>0.1426621</em>, <em>0.1439848</em>, <em>0.14531975</em>, <em>0.14666709</em>, <em>0.14802691</em>, <em>0.14939935</em>, <em>0.1507845</em>, <em>0.15218251</em>, <em>0.15359347</em>, <em>0.15501751</em>, <em>0.15645476</em>, <em>0.15790533</em>, <em>0.15936935</em>, <em>0.16084695</em>, <em>0.16233824</em>, <em>0.16384336</em>, <em>0.16536244</em>, <em>0.1668956</em>, <em>0.16844298</em>, <em>0.1700047</em>, <em>0.1715809</em>, <em>0.17317171</em>, <em>0.17477728</em>, <em>0.17639773</em>, <em>0.1780332</em>, <em>0.17968384</em>, <em>0.18134978</em>, <em>0.18303117</em>, <em>0.18472814</em>, <em>0.18644085</em>, <em>0.18816944</em>, <em>0.18991406</em>, <em>0.19167485</em>, <em>0.19345197</em>, <em>0.19524556</em>, <em>0.19705578</em>, <em>0.19888279</em>, <em>0.20072673</em>, <em>0.20258777</em>, <em>0.20446607</em>, <em>0.20636178</em>, <em>0.20827506</em>, <em>0.21020609</em>, <em>0.21215502</em>, <em>0.21412202</em>, <em>0.21610725</em>, <em>0.21811089</em>, <em>0.22013311</em>, <em>0.22217408</em>, <em>0.22423397</em>, <em>0.22631296</em>, <em>0.22841122</em>, <em>0.23052894</em>, <em>0.23266629</em>, <em>0.23482346</em>, <em>0.23700063</em>, <em>0.23919798</em>, <em>0.24141571</em>, <em>0.243654</em>, <em>0.24591304</em>, <em>0.24819303</em>, <em>0.25049415</em>, <em>0.25281661</em>, <em>0.25516061</em>, <em>0.25752633</em>, <em>0.25991399</em>, <em>0.26232379</em>, <em>0.26475593</em>, <em>0.26721062</em>, <em>0.26968806</em>, <em>0.27218848</em>, <em>0.27471208</em>, <em>0.27725908</em>, <em>0.27982969</em>, <em>0.28242413</em>, <em>0.28504263</em>, <em>0.28768541</em>, <em>0.29035269</em>, <em>0.2930447</em>, <em>0.29576167</em>, <em>0.29850382</em>, <em>0.30127141</em>, <em>0.30406465</em>, <em>0.30688379</em>, <em>0.30972907</em>, <em>0.31260072</em>, <em>0.31549901</em>, <em>0.31842416</em>, <em>0.32137643</em>, <em>0.32435608</em>, <em>0.32736335</em>, <em>0.33039851</em>, <em>0.3334618</em>, <em>0.3365535</em>, <em>0.33967386</em>, <em>0.34282315</em>, <em>0.34600164</em>, <em>0.3492096</em>, <em>0.3524473</em>, <em>0.35571502</em>, <em>0.35901304</em>, <em>0.36234163</em>, <em>0.36570109</em>, <em>0.36909169</em>, <em>0.37251373</em>, <em>0.3759675</em>, <em>0.37945328</em>, <em>0.38297139</em>, <em>0.38652212</em>, <em>0.39010576</em>, <em>0.39372263</em>, <em>0.39737304</em>, <em>0.40105729</em>, <em>0.4047757</em>, <em>0.40852858</em>, <em>0.41231626</em>, <em>0.41613906</em>, <em>0.41999729</em>, <em>0.42389131</em>, <em>0.42782142</em>, <em>0.43178797</em>, <em>0.4357913</em>, <em>0.43983175</em>, <em>0.44390965</em>, <em>0.44802537</em>, <em>0.45217924</em>, <em>0.45637163</em>, <em>0.46060288</em>, <em>0.46487337</em>, <em>0.46918345</em>, <em>0.47353349</em>, <em>0.47792386</em>, <em>0.48235494</em>, <em>0.4868271</em>, <em>0.49134073</em>, <em>0.4958962</em>, <em>0.50049391</em>, <em>0.50513425</em>, <em>0.50981761</em>, <em>0.51454439</em>, <em>0.51931499</em>, <em>0.52412983</em>, <em>0.52898931</em>, <em>0.53389384</em>, <em>0.53884384</em>, <em>0.54383974</em>, <em>0.54888196</em>, <em>0.55397093</em>, <em>0.55910708</em>, <em>0.56429085</em>, <em>0.56952268</em>, <em>0.57480302</em>, <em>0.58013231</em>, <em>0.58551102</em>, <em>0.59093959</em>, <em>0.59641849</em>, <em>0.6019482</em>, <em>0.60752917</em>, <em>0.61316188</em>, <em>0.61884682</em>, <em>0.62458447</em>, <em>0.63037532</em>, <em>0.63621985</em>, <em>0.64211857</em>, <em>0.64807198</em>, <em>0.65408059</em>, <em>0.66014491</em>, <em>0.66626545</em>, <em>0.67244274</em>, <em>0.67867731</em>, <em>0.68496967</em>, <em>0.69132038</em>, <em>0.69772996</em>, <em>0.70419898</em>, <em>0.71072797</em>, <em>0.71731749</em>, <em>0.72396811</em>, <em>0.7306804</em>, <em>0.73745491</em>, <em>0.74429223</em>, <em>0.75119295</em>, <em>0.75815765</em>, <em>0.76518692</em>, <em>0.77228136</em>, <em>0.77944158</em>, <em>0.78666818</em>, <em>0.79396178</em>, <em>0.80132301</em>, <em>0.80875249</em>, <em>0.81625085</em>, <em>0.82381873</em>, <em>0.83145678</em>, <em>0.83916564</em>, <em>0.84694598</em>, <em>0.85479845</em>, <em>0.86272373</em>, <em>0.87072248</em>, <em>0.8787954</em>, <em>0.88694317</em>, <em>0.89516647</em>, <em>0.90346602</em>, <em>0.91184252</em>, <em>0.92029668</em>, <em>0.92882923</em>, <em>0.93744088</em>, <em>0.94613238</em>, <em>0.95490446</em>, <em>0.96375787</em>, <em>0.97269336</em>, <em>0.9817117</em>, <em>0.99081366</em>, <em>1.        ])</em>, <em>cv=10</em>, <em>sampler='skf'</em>, <em>cores=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso" title="Permalink to this definition">¶</a></dt>
+<dd><p>Statistical model developer. Uses LASSO Logistic regression with cross
+validation (CV) for penalty parameter “C”. Inherits from
+sklearn.linear_model.LogisticRegressionCV.</p>
+<dl class="method">
+<dt id="data_tools.Lasso.Lasso.compute_second_line">
+<code class="descname">compute_second_line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso.compute_second_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso.compute_second_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that computes second-line predictors. This is, initially
+selected predictors’ data is dropped out, and another model is trained
+with the remaining data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.Lasso.Lasso.fit_data">
+<code class="descname">fit_data</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>silent=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso.fit_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso.fit_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the passed data, assumed to follow pandas data structures
+[pandas.DataFrame] or [pandas.Series]. Where x is the normalized MS
+intensity [float] and y the disease status category [int].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.Lasso.Lasso.plot_coef">
+<code class="descname">plot_coef</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the non-zero coefficients for the fitted predictors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.Lasso.Lasso.plot_sample_probs">
+<code class="descname">plot_sample_probs</code><span class="sig-paren">(</span><em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso.plot_sample_probs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso.plot_sample_probs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="data_tools.Lasso.Lasso.plot_score">
+<code class="descname">plot_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/Lasso.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.Lasso.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the mean score across all folds obtained during CV. Highlights
+the optimum C parameter chosen (NOTE: Since C represents the inverse
+regularization parameter, it’s chosen so that maximizes the score).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Lasso.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/Lasso.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

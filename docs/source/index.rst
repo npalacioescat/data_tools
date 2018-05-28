@@ -38,6 +38,14 @@ In module **data_tools.plots**:
 - `Matplotlib <https://matplotlib.org/>`_
 - `Pandas <https://pandas.pydata.org/>`_
 
+In module **data_tools.Lasso**:
+
+- `NumPy <http://www.numpy.org/>`_
+- `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
+- `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
+
+
 Installation
 ============
 
@@ -68,6 +76,7 @@ Reference
 .. toctree::
    :maxdepth: 5
 
+   Lasso
    plots
    sets
    strings

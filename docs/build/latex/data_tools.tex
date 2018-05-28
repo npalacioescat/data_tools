@@ -54,7 +54,7 @@
 
 
 \title{data\_tools Documentation}
-\date{May 25, 2018}
+\date{May 28, 2018}
 \release{0.0.2}
 \author{Nicolas Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -105,6 +105,22 @@ In module \sphinxstylestrong{data\_tools.plots}:
 
 \end{itemize}
 
+In module \sphinxstylestrong{data\_tools.Lasso}:
+\begin{itemize}
+\item {} 
+\sphinxhref{http://www.numpy.org/}{NumPy}
+
+\item {} 
+\sphinxhref{https://matplotlib.org/}{Matplotlib}
+
+\item {} 
+\sphinxhref{https://pandas.pydata.org/}{Pandas}
+
+\item {} 
+\sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
+
+\end{itemize}
+
 
 \chapter{Installation}
 \label{\detokenize{index:installation}}
@@ -134,7 +150,66 @@ pip install .
 
 
 \chapter{Reference}
-\label{\detokenize{index:reference}}\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)}
+\label{\detokenize{index:reference}}\phantomsection\label{\detokenize{Lasso:module-data_tools.Lasso}}\index{data\_tools.Lasso (module)}
+
+\section{data\_tools.Lasso}
+\label{\detokenize{Lasso::doc}}\label{\detokenize{Lasso:data-tools-lasso}}
+Class for logistic regression models with L1 regularization.
+\index{Lasso (class in data\_tools.Lasso)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{data\_tools.Lasso.}\sphinxbfcode{Lasso}}{\emph{Cs=array({[} 0.01}, \emph{0.01009272}, \emph{0.01018629}, \emph{0.01028073}, \emph{0.01037605}, \emph{0.01047225}, \emph{0.01056935}, \emph{0.01066734}, \emph{0.01076624}, \emph{0.01086606}, \emph{0.01096681}, \emph{0.01106848}, \emph{0.01117111}, \emph{0.01127468}, \emph{0.01137921}, \emph{0.01148472}, \emph{0.0115912}, \emph{0.01169866}, \emph{0.01180713}, \emph{0.0119166}, \emph{0.01202708}, \emph{0.01213859}, \emph{0.01225114}, \emph{0.01236472}, \emph{0.01247936}, \emph{0.01259506}, \emph{0.01271184}, \emph{0.0128297}, \emph{0.01294865}, \emph{0.0130687}, \emph{0.01318987}, \emph{0.01331216}, \emph{0.01343558}, \emph{0.01356015}, \emph{0.01368587}, \emph{0.01381276}, \emph{0.01394083}, \emph{0.01407008}, \emph{0.01420053}, \emph{0.01433219}, \emph{0.01446507}, \emph{0.01459919}, \emph{0.01473454}, \emph{0.01487115}, \emph{0.01500903}, \emph{0.01514819}, \emph{0.01528864}, \emph{0.01543038}, \emph{0.01557345}, \emph{0.01571784}, \emph{0.01586357}, \emph{0.01601064}, \emph{0.01615909}, \emph{0.01630891}, \emph{0.01646012}, \emph{0.01661273}, \emph{0.01676675}, \emph{0.0169222}, \emph{0.0170791}, \emph{0.01723745}, \emph{0.01739726}, \emph{0.01755856}, \emph{0.01772136}, \emph{0.01788566}, \emph{0.01805149}, \emph{0.01821885}, \emph{0.01838777}, \emph{0.01855825}, \emph{0.01873032}, \emph{0.01890397}, \emph{0.01907924}, \emph{0.01925614}, \emph{0.01943467}, \emph{0.01961486}, \emph{0.01979672}, \emph{0.01998026}, \emph{0.02016551}, \emph{0.02035248}, \emph{0.02054117}, \emph{0.02073162}, \emph{0.02092383}, \emph{0.02111783}, \emph{0.02131362}, \emph{0.02151123}, \emph{0.02171068}, \emph{0.02191197}, \emph{0.02211512}, \emph{0.02232016}, \emph{0.02252711}, \emph{0.02273597}, \emph{0.02294676}, \emph{0.02315951}, \emph{0.02337424}, \emph{0.02359095}, \emph{0.02380968}, \emph{0.02403043}, \emph{0.02425323}, \emph{0.02447809}, \emph{0.02470504}, \emph{0.02493409}, \emph{0.02516527}, \emph{0.02539859}, \emph{0.02563407}, \emph{0.02587174}, \emph{0.02611161}, \emph{0.02635371}, \emph{0.02659804}, \emph{0.02684465}, \emph{0.02709354}, \emph{0.02734474}, \emph{0.02759826}, \emph{0.02785414}, \emph{0.02811239}, \emph{0.02837304}, \emph{0.0286361}, \emph{0.0289016}, \emph{0.02916956}, \emph{0.02944}, \emph{0.02971296}, \emph{0.02998844}, \emph{0.03026648}, \emph{0.0305471}, \emph{0.03083031}, \emph{0.03111616}, \emph{0.03140465}, \emph{0.03169582}, \emph{0.03198969}, \emph{0.03228628}, \emph{0.03258562}, \emph{0.03288774}, \emph{0.03319266}, \emph{0.03350041}, \emph{0.03381101}, \emph{0.03412449}, \emph{0.03444087}, \emph{0.03476019}, \emph{0.03508247}, \emph{0.03540774}, \emph{0.03573602}, \emph{0.03606735}, \emph{0.03640175}, \emph{0.03673925}, \emph{0.03707988}, \emph{0.03742366}, \emph{0.03777064}, \emph{0.03812083}, \emph{0.03847427}, \emph{0.03883098}, \emph{0.039191}, \emph{0.03955436}, \emph{0.03992109}, \emph{0.04029122}, \emph{0.04066478}, \emph{0.04104181}, \emph{0.04142232}, \emph{0.04180637}, \emph{0.04219398}, \emph{0.04258518}, \emph{0.04298001}, \emph{0.0433785}, \emph{0.04378069}, \emph{0.0441866}, \emph{0.04459628}, \emph{0.04500975}, \emph{0.04542706}, \emph{0.04584824}, \emph{0.04627332}, \emph{0.04670234}, \emph{0.04713535}, \emph{0.04757236}, \emph{0.04801343}, \emph{0.04845859}, \emph{0.04890787}, \emph{0.04936132}, \emph{0.04981898}, \emph{0.05028087}, \emph{0.05074705}, \emph{0.05121755}, \emph{0.05169242}, \emph{0.05217169}, \emph{0.0526554}, \emph{0.05314359}, \emph{0.05363631}, \emph{0.0541336}, \emph{0.0546355}, \emph{0.05514206}, \emph{0.05565331}, \emph{0.0561693}, \emph{0.05669007}, \emph{0.05721568}, \emph{0.05774615}, \emph{0.05828155}, \emph{0.0588219}, \emph{0.05936727}, \emph{0.0599177}, \emph{0.06047322}, \emph{0.0610339}, \emph{0.06159978}, \emph{0.0621709}, \emph{0.06274732}, \emph{0.06332908}, \emph{0.06391624}, \emph{0.06450884}, \emph{0.06510694}, \emph{0.06571058}, \emph{0.06631981}, \emph{0.0669347}, \emph{0.06755528}, \emph{0.06818162}, \emph{0.06881377}, \emph{0.06945178}, \emph{0.0700957}, \emph{0.07074559}, \emph{0.07140151}, \emph{0.07206351}, \emph{0.07273165}, \emph{0.07340598}, \emph{0.07408657}, \emph{0.07477346}, \emph{0.07546673}, \emph{0.07616642}, \emph{0.0768726}, \emph{0.07758532}, \emph{0.07830465}, \emph{0.07903066}, \emph{0.07976339}, \emph{0.08050292}, \emph{0.0812493}, \emph{0.08200261}, \emph{0.08276289}, \emph{0.08353023}, \emph{0.08430468}, \emph{0.08508632}, \emph{0.08587519}, \emph{0.08667139}, \emph{0.08747496}, \emph{0.08828599}, \emph{0.08910453}, \emph{0.08993067}, \emph{0.09076446}, \emph{0.09160598}, \emph{0.09245531}, \emph{0.09331251}, \emph{0.09417766}, \emph{0.09505083}, \emph{0.09593209}, \emph{0.09682153}, \emph{0.09771921}, \emph{0.09862522}, \emph{0.09953962}, \emph{0.10046251}, \emph{0.10139395}, \emph{0.10233402}, \emph{0.10328281}, \emph{0.1042404}, \emph{0.10520687}, \emph{0.10618229}, \emph{0.10716676}, \emph{0.10816036}, \emph{0.10916317}, \emph{0.11017528}, \emph{0.11119677}, \emph{0.11222774}, \emph{0.11326826}, \emph{0.11431843}, \emph{0.11537833}, \emph{0.11644806}, \emph{0.11752771}, \emph{0.11861737}, \emph{0.11971713}, \emph{0.12082709}, \emph{0.12194734}, \emph{0.12307798}, \emph{0.1242191}, \emph{0.1253708}, \emph{0.12653318}, \emph{0.12770633}, \emph{0.12889036}, \emph{0.13008537}, \emph{0.13129146}, \emph{0.13250873}, \emph{0.13373729}, \emph{0.13497723}, \emph{0.13622868}, \emph{0.13749172}, \emph{0.13876648}, \emph{0.14005305}, \emph{0.14135156}, \emph{0.1426621}, \emph{0.1439848}, \emph{0.14531975}, \emph{0.14666709}, \emph{0.14802691}, \emph{0.14939935}, \emph{0.1507845}, \emph{0.15218251}, \emph{0.15359347}, \emph{0.15501751}, \emph{0.15645476}, \emph{0.15790533}, \emph{0.15936935}, \emph{0.16084695}, \emph{0.16233824}, \emph{0.16384336}, \emph{0.16536244}, \emph{0.1668956}, \emph{0.16844298}, \emph{0.1700047}, \emph{0.1715809}, \emph{0.17317171}, \emph{0.17477728}, \emph{0.17639773}, \emph{0.1780332}, \emph{0.17968384}, \emph{0.18134978}, \emph{0.18303117}, \emph{0.18472814}, \emph{0.18644085}, \emph{0.18816944}, \emph{0.18991406}, \emph{0.19167485}, \emph{0.19345197}, \emph{0.19524556}, \emph{0.19705578}, \emph{0.19888279}, \emph{0.20072673}, \emph{0.20258777}, \emph{0.20446607}, \emph{0.20636178}, \emph{0.20827506}, \emph{0.21020609}, \emph{0.21215502}, \emph{0.21412202}, \emph{0.21610725}, \emph{0.21811089}, \emph{0.22013311}, \emph{0.22217408}, \emph{0.22423397}, \emph{0.22631296}, \emph{0.22841122}, \emph{0.23052894}, \emph{0.23266629}, \emph{0.23482346}, \emph{0.23700063}, \emph{0.23919798}, \emph{0.24141571}, \emph{0.243654}, \emph{0.24591304}, \emph{0.24819303}, \emph{0.25049415}, \emph{0.25281661}, \emph{0.25516061}, \emph{0.25752633}, \emph{0.25991399}, \emph{0.26232379}, \emph{0.26475593}, \emph{0.26721062}, \emph{0.26968806}, \emph{0.27218848}, \emph{0.27471208}, \emph{0.27725908}, \emph{0.27982969}, \emph{0.28242413}, \emph{0.28504263}, \emph{0.28768541}, \emph{0.29035269}, \emph{0.2930447}, \emph{0.29576167}, \emph{0.29850382}, \emph{0.30127141}, \emph{0.30406465}, \emph{0.30688379}, \emph{0.30972907}, \emph{0.31260072}, \emph{0.31549901}, \emph{0.31842416}, \emph{0.32137643}, \emph{0.32435608}, \emph{0.32736335}, \emph{0.33039851}, \emph{0.3334618}, \emph{0.3365535}, \emph{0.33967386}, \emph{0.34282315}, \emph{0.34600164}, \emph{0.3492096}, \emph{0.3524473}, \emph{0.35571502}, \emph{0.35901304}, \emph{0.36234163}, \emph{0.36570109}, \emph{0.36909169}, \emph{0.37251373}, \emph{0.3759675}, \emph{0.37945328}, \emph{0.38297139}, \emph{0.38652212}, \emph{0.39010576}, \emph{0.39372263}, \emph{0.39737304}, \emph{0.40105729}, \emph{0.4047757}, \emph{0.40852858}, \emph{0.41231626}, \emph{0.41613906}, \emph{0.41999729}, \emph{0.42389131}, \emph{0.42782142}, \emph{0.43178797}, \emph{0.4357913}, \emph{0.43983175}, \emph{0.44390965}, \emph{0.44802537}, \emph{0.45217924}, \emph{0.45637163}, \emph{0.46060288}, \emph{0.46487337}, \emph{0.46918345}, \emph{0.47353349}, \emph{0.47792386}, \emph{0.48235494}, \emph{0.4868271}, \emph{0.49134073}, \emph{0.4958962}, \emph{0.50049391}, \emph{0.50513425}, \emph{0.50981761}, \emph{0.51454439}, \emph{0.51931499}, \emph{0.52412983}, \emph{0.52898931}, \emph{0.53389384}, \emph{0.53884384}, \emph{0.54383974}, \emph{0.54888196}, \emph{0.55397093}, \emph{0.55910708}, \emph{0.56429085}, \emph{0.56952268}, \emph{0.57480302}, \emph{0.58013231}, \emph{0.58551102}, \emph{0.59093959}, \emph{0.59641849}, \emph{0.6019482}, \emph{0.60752917}, \emph{0.61316188}, \emph{0.61884682}, \emph{0.62458447}, \emph{0.63037532}, \emph{0.63621985}, \emph{0.64211857}, \emph{0.64807198}, \emph{0.65408059}, \emph{0.66014491}, \emph{0.66626545}, \emph{0.67244274}, \emph{0.67867731}, \emph{0.68496967}, \emph{0.69132038}, \emph{0.69772996}, \emph{0.70419898}, \emph{0.71072797}, \emph{0.71731749}, \emph{0.72396811}, \emph{0.7306804}, \emph{0.73745491}, \emph{0.74429223}, \emph{0.75119295}, \emph{0.75815765}, \emph{0.76518692}, \emph{0.77228136}, \emph{0.77944158}, \emph{0.78666818}, \emph{0.79396178}, \emph{0.80132301}, \emph{0.80875249}, \emph{0.81625085}, \emph{0.82381873}, \emph{0.83145678}, \emph{0.83916564}, \emph{0.84694598}, \emph{0.85479845}, \emph{0.86272373}, \emph{0.87072248}, \emph{0.8787954}, \emph{0.88694317}, \emph{0.89516647}, \emph{0.90346602}, \emph{0.91184252}, \emph{0.92029668}, \emph{0.92882923}, \emph{0.93744088}, \emph{0.94613238}, \emph{0.95490446}, \emph{0.96375787}, \emph{0.97269336}, \emph{0.9817117}, \emph{0.99081366}, \emph{1.        {]})}, \emph{cv=10}, \emph{sampler='skf'}, \emph{cores=1}}{}
+Statistical model developer. Uses LASSO Logistic regression with cross
+validation (CV) for penalty parameter “C”. Inherits from
+sklearn.linear\_model.LogisticRegressionCV.
+\index{compute\_second\_line() (data\_tools.Lasso.Lasso method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso.compute_second_line}}\pysiglinewithargsret{\sphinxbfcode{compute\_second\_line}}{}{}
+Method that computes second-line predictors. This is, initially
+selected predictors’ data is dropped out, and another model is trained
+with the remaining data.
+
+\end{fulllineitems}
+
+\index{fit\_data() (data\_tools.Lasso.Lasso method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{fit\_data}}{\emph{x}, \emph{y}, \emph{silent=False}}{}
+Fits the passed data, assumed to follow pandas data structures
+{[}pandas.DataFrame{]} or {[}pandas.Series{]}. Where x is the normalized MS
+intensity {[}float{]} and y the disease status category {[}int{]}.
+
+\end{fulllineitems}
+
+\index{plot\_coef() (data\_tools.Lasso.Lasso method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{plot\_coef}}{}{}
+Plots the non-zero coefficients for the fitted predictors.
+
+\end{fulllineitems}
+
+\index{plot\_sample\_probs() (data\_tools.Lasso.Lasso method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso.plot_sample_probs}}\pysiglinewithargsret{\sphinxbfcode{plot\_sample\_probs}}{\emph{x=None}, \emph{y=None}}{}
+\end{fulllineitems}
+
+\index{plot\_score() (data\_tools.Lasso.Lasso method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{Lasso:data_tools.Lasso.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{plot\_score}}{}{}
+Plots the mean score across all folds obtained during CV. Highlights
+the optimum C parameter chosen (NOTE: Since C represents the inverse
+regularization parameter, it’s chosen so that maximizes the score).
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)}
 
 \section{data\_tools.plots}
 \label{\detokenize{plots::doc}}\label{\detokenize{plots:data-tools-plots}}
@@ -580,6 +655,7 @@ Determines the separator between the joint strings.
 \begin{sphinxtheindex}
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 \bigletter{d}
+\item {\sphinxstyleindexentry{data\_tools.Lasso}}\sphinxstyleindexpageref{Lasso:\detokenize{module-data_tools.Lasso}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
 \item {\sphinxstyleindexentry{data\_tools.sets}}\sphinxstyleindexpageref{sets:\detokenize{module-data_tools.sets}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}

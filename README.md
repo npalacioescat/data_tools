@@ -30,6 +30,13 @@ In module **data_tools.plots**:
 - [Matplotlib](https://matplotlib.org/)
 - [Pandas](https://pandas.pydata.org/)
 
+In module **data_tools.Lasso**:
+
+- [NumPy](http://www.numpy.org/)
+- [Matplotlib](https://matplotlib.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [Scikit-learn](http://scikit-learn.org/stable/index.html)
+
 ## Installation
 
 First download/clone `data_tools` from the [GitHub repository](https://github.com/Nic-Nic/data_tools.git).
