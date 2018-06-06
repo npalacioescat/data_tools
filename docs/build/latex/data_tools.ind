@@ -10,6 +10,7 @@
   \item data\_tools.plots (module), \hyperpage{8}
   \item data\_tools.sets (module), \hyperpage{10}
   \item data\_tools.strings (module), \hyperpage{11}
+  \item density() (in module data\_tools.plots), \hyperpage{10}
 
   \indexspace
   \bigletter F

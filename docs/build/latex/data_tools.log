@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  6 JUN 2018 10:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  6 JUN 2018 11:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1173,54 +1173,58 @@ LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
-Underfull \hbox (badness 5741) in paragraph at lines 195--197
+Underfull \hbox (badness 5741) in paragraph at lines 198--200
 []\T1/ptm/m/it/10 **kwargs\T1/ptm/m/n/10 : Op-tional. Any other key-word ar-gu-
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
 [7]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 359.
-<volcano_example.png, id=124, 462.528pt x 346.896pt>
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 362.
+<volcano_example.png, id=125, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 362.
+Package pdftex.def Info: volcano_example.png  used on input line 365.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
  [8]
-<piano_consensus_example.png, id=133, 505.89pt x 578.16pt>
+<piano_consensus_example.png, id=134, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 433.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 436.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [9 <./volcano_example.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 480.
- [10 <./piano_consensus_example.png>]
-[11] [12] [13
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 489.
+
+Overfull \vbox (0.92603pt too high) detected at line 497
+ []
+
+[10 <./piano_consensus_example.png>] [11] [12] [13
 
 
 
 ] (./data_tools.ind [14
 
 
-] [15
+]
+[15
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 736.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 736.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 745.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 745.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 736.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 736.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 745.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 745.
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: DAB6E3750880BEEF71085BCA2A3BB983;1068.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 736.
+(rerunfilecheck)             Checksum: 4593CFAFDBC9B0E7BE395D4B32B94FB3;1068.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 745.
  ) 
 Here is how much of TeX's memory you used:
- 13636 strings out of 494923
- 188409 string characters out of 6180743
- 288799 words of memory out of 5000000
- 16596 multiletter control sequences out of 15000+600000
+ 13638 strings out of 494923
+ 188452 string characters out of 6180743
+ 288843 words of memory out of 5000000
+ 16597 multiletter control sequences out of 15000+600000
  48125 words of font info for 73 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,11n,45p,513b,667s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1233,10 +1237,10 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (19 pages, 305811 bytes).
+Output written on data_tools.pdf (19 pages, 306266 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 46 named destinations out of 1000 (max. 500000)
  103 words of extra memory for PDF output out of 10000 (max. 10000000)
 

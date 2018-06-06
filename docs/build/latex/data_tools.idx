@@ -6,6 +6,7 @@
 \indexentry{data\_tools.plots (module)|hyperpage}{8}
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{8}
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{9}
+\indexentry{density() (in module data\_tools.plots)|hyperpage}{10}
 \indexentry{data\_tools.sets (module)|hyperpage}{10}
 \indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{10}
 \indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{11}

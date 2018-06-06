@@ -37,6 +37,7 @@ In module **data_tools.plots**:
 - `NumPy <http://www.numpy.org/>`_
 - `Matplotlib <https://matplotlib.org/>`_
 - `Pandas <https://pandas.pydata.org/>`_
+- `SciPy <https://www.scipy.org/>`_
 
 In module **data_tools.models**:
 

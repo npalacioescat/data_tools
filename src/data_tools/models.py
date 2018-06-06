@@ -20,6 +20,7 @@ from sklearn.model_selection import ShuffleSplit as ss
 from sklearn.model_selection import StratifiedKFold as skf
 from sklearn.model_selection import StratifiedShuffleSplit as sss
 
+
 class Lasso(LogisticRegressionCV):
     '''
     Wrapper class inheriting from

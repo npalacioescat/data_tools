@@ -4,7 +4,7 @@
 
 > Keep in mind the general scope of this project.
 
-- Density plots
+- Density plot docstrings
 - ~~Update docstrings of Lasso~~
 - ~~Fix Cs input (prints whole array in docs)~~
 - ~~Formatting the reference~~

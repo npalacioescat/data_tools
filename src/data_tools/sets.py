@@ -7,7 +7,56 @@ data_tools.sets
 Set operations module.
 '''
 
-__all__ = ['in_all', 'bit_or', 'multi_union', 'find_min']
+__all__ = ['bit_or', 'find_min', 'in_all', 'multi_union']
+
+
+def bit_or(a, b):
+    '''
+    Returns the bit operation OR between two bit-strings *a* and *b*.
+    NOTE: *a* and *b* must have the same size.
+
+    * Arguments:
+        - *a* [tuple]: Or any iterable type.
+        - *b* [tuple]: Or any iterable type.
+
+    * Returns:
+        - [tuple]: OR operation between *a* and *b* element-wise.
+
+    * Examples:
+        >>> a, b = (0, 0, 1), (1, 0, 1)
+        >>> bit_or(a, b)
+        (1, 0, 1)
+    '''
+
+    if a == b:
+        return a
+
+    else:
+        return tuple([el_a | el_b for (el_a, el_b) in zip(a, b)])
+
+
+def find_min(A):
+    '''
+    Finds and returns the subset of vectors whose sum is minimum from a
+    given set *A*.
+
+    * Arguments:
+        - *A* [set]: Set of vectors ([tuple] or any iterable).
+
+    * Returns:
+        - [set]: Subset of vectors in *A* whose sum is minimum.
+
+    * Examples:
+        >>> A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}
+        >>> find_min(A)
+        set([(0, 1, 0), (1, 0, 0)])
+    '''
+
+    A = list(A)
+    sums = map(sum, A)
+    idx_mins = np.where(sums == min(sums))[0]
+
+    return {A[i] for i in idx_mins}
 
 
 def in_all(x, N):
@@ -45,31 +94,6 @@ def in_all(x, N):
     return True
 
 
-def bit_or(a, b):
-    '''
-    Returns the bit operation OR between two bit-strings *a* and *b*.
-    NOTE: *a* and *b* must have the same size.
-
-    * Arguments:
-        - *a* [tuple]: Or any iterable type.
-        - *b* [tuple]: Or any iterable type.
-
-    * Returns:
-        - [tuple]: OR operation between *a* and *b* element-wise.
-
-    * Examples:
-        >>> a, b = (0, 0, 1), (1, 0, 1)
-        >>> bit_or(a, b)
-        (1, 0, 1)
-    '''
-
-    if a == b:
-        return a
-
-    else:
-        return tuple([el_a | el_b for (el_a, el_b) in zip(a, b)])
-
-
 def multi_union(N):
     '''
     Returns the union set of all sets contained in a list *N*.
@@ -89,27 +113,3 @@ def multi_union(N):
     '''
 
     return reduce(set.union, N)
-
-
-def find_min(A):
-    '''
-    Finds and returns the subset of vectors whose sum is minimum from a
-    given set *A*.
-
-    * Arguments:
-        - *A* [set]: Set of vectors ([tuple] or any iterable).
-
-    * Returns:
-        - [set]: Subset of vectors in *A* whose sum is minimum.
-
-    * Examples:
-        >>> A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}
-        >>> find_min(A)
-        set([(0, 1, 0), (1, 0, 0)])
-    '''
-
-    A = list(A)
-    sums = map(sum, A)
-    idx_mins = np.where(sums == min(sums))[0]
-
-    return {A[i] for i in idx_mins}
