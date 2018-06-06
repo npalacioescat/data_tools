@@ -58,6 +58,8 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         >>> volcano(my_log_fc, my_log_pval)
 
         .. image:: ../figures/volcano_example.png
+           :align: center
+           :scale: 60
     '''
 
     thr_logpval = - np.log10(thr_pval)
@@ -146,6 +148,8 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
         >>> piano_consensus(df, figsize=[7, 8])
 
         .. image:: ../figures/piano_consensus_example.png
+           :align: center
+           :scale: 60
     '''
 
     # List of equidistant colors according to a colormap

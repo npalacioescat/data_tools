@@ -1,5 +1,5 @@
 # data_tools
-![GitHub release](https://img.shields.io/badge/release-v0.0.2-brightgreen.svg)
+![GitHub release](https://img.shields.io/badge/release-v0.0.3-brightgreen.svg)
 
 Collection of Python functions and classes designed to make a
 Computational Biologist's life easier.
@@ -30,7 +30,7 @@ In module **data_tools.plots**:
 - [Matplotlib](https://matplotlib.org/)
 - [Pandas](https://pandas.pydata.org/)
 
-In module **data_tools.Lasso**:
+In module **data_tools.models**:
 
 - [NumPy](http://www.numpy.org/)
 - [Matplotlib](https://matplotlib.org/)

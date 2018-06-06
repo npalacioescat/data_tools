@@ -38,7 +38,7 @@ In module **data_tools.plots**:
 - `Matplotlib <https://matplotlib.org/>`_
 - `Pandas <https://pandas.pydata.org/>`_
 
-In module **data_tools.Lasso**:
+In module **data_tools.models**:
 
 - `NumPy <http://www.numpy.org/>`_
 - `Matplotlib <https://matplotlib.org/>`_
@@ -76,7 +76,7 @@ Reference
 .. toctree::
    :maxdepth: 5
 
-   Lasso
+   models
    plots
    sets
    strings

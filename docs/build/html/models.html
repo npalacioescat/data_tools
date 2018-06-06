@@ -1,0 +1,198 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>data_tools.models &#8212; data_tools 0.0.3 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="data_tools.plots" href="plots.html" />
+    <link rel="prev" title="data_tools’s reference" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-data_tools.models"></span><div class="section" id="data-tools-models">
+<h1>data_tools.models<a class="headerlink" href="#data-tools-models" title="Permalink to this headline">¶</a></h1>
+<p>Model classes module.</p>
+<dl class="class">
+<dt id="data_tools.models.Lasso">
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>Cs=500</em>, <em>cv=10</em>, <em>sampler='skf'</em>, <em>solver='liblinear'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper class inheriting from
+<code class="docutils literal"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> with L1
+regularization.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first simple">
+<li><em>Cs</em> [int]: Optional, <code class="docutils literal"><span class="pre">500</span></code> by default. Integer or list of
+float values of regularization parameters to test. If an
+integer is passed, it will determine the number of values
+taken from a logarithmic scale between <code class="docutils literal"><span class="pre">1e-4</span></code> and <code class="docutils literal"><span class="pre">1e4</span></code>.
+Note that the value of the parameter is defined as the inverse
+of the regularization strength.</li>
+<li><em>cv</em> [int]: Optional, <code class="docutils literal"><span class="pre">10</span></code> by default. Denotes the number of
+cross validation (CV) folds.</li>
+<li><em>sampler</em> [str]: Optional, <code class="docutils literal"><span class="pre">'skf'</span></code> by default. Determines
+which sampling method is used to generate the test and
+training sets for CV. Methods available are K-Fold (<code class="docutils literal"><span class="pre">'kf'</span></code>),
+Shuffle Split (<code class="docutils literal"><span class="pre">'ss'</span></code>) and their stratified variants
+(<code class="docutils literal"><span class="pre">'skf'</span></code> and <code class="docutils literal"><span class="pre">'sss'</span></code> respectively).</li>
+<li><em>solver</em> [str]: Optional, <code class="docutils literal"><span class="pre">'liblinear'</span></code> by default.
+Determines which solver algorithm to use. Note that L1
+regularization can only be handled by <code class="docutils literal"><span class="pre">'liblinear'</span></code> and
+<code class="docutils literal"><span class="pre">'saga'</span></code>. Additionally if the classification is multinomial,
+only the latter option is available.</li>
+<li><em>**kwargs</em>: Optional. Any other keyword argument accepted by
+the <code class="docutils literal"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> class.</li>
+</ul>
+<p class="last">Other keyword arguments and functions available from the parent
+class <code class="docutils literal"><span class="pre">LogisticRegressionCV</span></code> can be fount in <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegressionCV.html">Scikit-Learn’s
+reference</a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="data_tools.models.Lasso.fit_data">
+<code class="descname">fit_data</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>silent=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.fit_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.fit_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the data to the logistic model.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>x</em> [pandas.DataFrame]: Contains the values/measurements
+[float] of the features (columns) for each
+sample/replicate (rows).</li>
+<li><em>y</em> [pandas.Series]: List or any iterable containing the
+observed class of each sample (must have the same order as
+in <em>x</em>).</li>
+<li><em>silent</em> [bool]: Optional, <code class="docutils literal"><span class="pre">False</span></code> by default.
+Determines whether messages are printed or not.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.models.Lasso.plot_coef">
+<code class="descname">plot_coef</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the non-zero coefficients for the fitted predictor
+features.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[matplotlib.figure.Figure]: Figure object containing the
+bar plot of the non-zero coefficients.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.models.Lasso.plot_score">
+<code class="descname">plot_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the mean score across all folds obtained during CV.
+The optimum C parameter chosen and its score are highlighted.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[matplotlib.figure.Figure]: Figure object containing the
+score plot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">data_tools’s reference</a></li>
+      <li>Next: <a href="plots.html" title="next chapter">data_tools.plots</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/models.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicolas Palacio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

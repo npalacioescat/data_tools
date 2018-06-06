@@ -24,10 +24,10 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 __author__ = 'Nicolàs Palacio'
 
 import data_tools.strings as strings
 import data_tools.sets as sets
 import data_tools.plots as plots
-from data_tools.Lasso import Lasso
+import data_tools.models as models

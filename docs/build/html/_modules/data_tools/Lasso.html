@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.Lasso &#8212; data_tools 0.0.2 documentation</title>
+    <title>data_tools.Lasso &#8212; data_tools 0.0.3 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.0.2',
+        VERSION:     '0.0.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,7 +45,7 @@
 <span class="sd">data_tools.Lasso</span>
 <span class="sd">================</span>
 
-<span class="sd">Class for logistic regression models with L1 regularization.</span>
+<span class="sd">Class for logistic regression model with L1 regularization.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Lasso&#39;</span><span class="p">]</span>
@@ -63,12 +63,11 @@
 
 <div class="viewcode-block" id="Lasso"><a class="viewcode-back" href="../../Lasso.html#data_tools.Lasso.Lasso">[docs]</a><span class="k">class</span> <span class="nc">Lasso</span><span class="p">(</span><span class="n">LogisticRegressionCV</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Statistical model developer. Uses LASSO Logistic regression with cross</span>
-<span class="sd">    validation (CV) for penalty parameter &quot;C&quot;. Inherits from</span>
-<span class="sd">    sklearn.linear_model.LogisticRegressionCV.</span>
+<span class="sd">    Wrapper class for ``sklearn.linear_model.LogisticRegressionCV`` with</span>
+<span class="sd">    L1 regularization.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Cs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="s1">&#39;skf&#39;</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Cs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="s1">&#39;skf&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">,</span>
                  <span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Initializes the Model instance. Keyword argument Cs specifies the</span>
@@ -106,7 +105,7 @@
                             <span class="s1">&#39;the respective non-stratified methods.&#39;</span><span class="p">))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">penalty</span> <span class="o">=</span> <span class="s1">&#39;l1&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;saga&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="n">solver</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">cores</span>
 
 <div class="viewcode-block" id="Lasso.fit_data"><a class="viewcode-back" href="../../Lasso.html#data_tools.Lasso.Lasso.fit_data">[docs]</a>    <span class="k">def</span> <span class="nf">fit_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -123,8 +122,9 @@
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">multi_class</span> <span class="o">=</span> <span class="s1">&#39;multinomial&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;saga&#39;</span>
 
-<span class="c1">#        else:</span>
+<span class="c1">#        else: # Not needed, default value</span>
 <span class="c1">#            self.multi_class = &#39;ovr&#39;</span>
 
 <span class="c1">#        if len(np.unique(self.Y))&gt;2:</span>
@@ -242,6 +242,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predictors</span><span class="p">))</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span></div>
 
+    <span class="c1"># NOTE: Deprecate? otherwise, fix colnames to absolute values</span>
 <div class="viewcode-block" id="Lasso.plot_sample_probs"><a class="viewcode-back" href="../../Lasso.html#data_tools.Lasso.Lasso.plot_sample_probs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_sample_probs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 

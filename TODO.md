@@ -4,8 +4,9 @@
 
 > Keep in mind the general scope of this project.
 
-- Update docstrings of Lasso
-- Fix Cs input (prints whole array in docs)
+- Density plots
+- ~~Update docstrings of Lasso~~
+- ~~Fix Cs input (prints whole array in docs)~~
 - ~~Formatting the reference~~
 - ~~Add README to the reference docs?~~
 - ~~README~~
