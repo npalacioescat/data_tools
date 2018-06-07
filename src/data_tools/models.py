@@ -130,55 +130,80 @@ class Lasso(LogisticRegressionCV):
             print 'Optimum C = %.6f.\n' %self.C_[0]
 
     # TODO: add example figure
-    def plot_score(self):
+    def plot_score(self, filename=None, figsize=None):
         '''
         Plots the mean score across all folds obtained during CV.
         The optimum C parameter chosen and its score are highlighted.
+
+        * Arguments:
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
 
         * Returns:
             - [matplotlib.figure.Figure]: Figure object containing the
               score plot.
         '''
 
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=figsize)
 
         mean = np.mean(self.scores_[self.key], axis=0)
 
         ax.plot(self.Cs_, mean, c='k')
-        ax.set_ylabel('Score'); ax.set_xlabel(r'$C$')
-        ax.set_title(r'$C$ score (Mean over %dx CV)' %self.cv_folds)
-        ax.set_xlim(self.Cs_[0], self.Cs_[-1])
-        ax.set_xscale('log')
 
         # Highlighting parameter choice
         arg = mean.argmax()
         x_, y_ = self.Cs_[arg], mean[arg]
         ax.scatter(x_, y_, c='r', s=75)
-        ax.text(x_ * 1.01, y_ * 1.01, '(%.4f, %.4f)' %(x_, y_))
+        ax.text(x_ * 1.01, y_ * -1.01, '(%.4f, %.4f)' %(x_, y_))
+
+        ax.set_ylabel('Score'); ax.set_xlabel(r'$C$')
+        ax.set_title(r'$C$ score (Mean over %dx CV)' %self.cv_folds)
+        ax.set_xlim(self.Cs_[0], self.Cs_[-1])
+        ax.set_xscale('log')
+
         fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
 
         return fig
 
     # TODO: add example figure
-    def plot_coef(self):
+    def plot_coef(self, filename=None, figsize=None):
         '''
         Plots the non-zero coefficients for the fitted predictor
         features.
 
+        * Arguments:
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
         * Returns:
             - [matplotlib.figure.Figure]: Figure object containing the
               bar plot of the non-zero coefficients.
         '''
 
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=figsize)
 
         ax.bar(range(len(self.predictors)), self.predictors.values,
                color='k', align='center')
+
         ax.set_xticks(range(len(self.predictors)))
         ax.set_xticklabels(self.predictors.index, rotation='vertical',
                            va='top')
         ax.set_title('Non-zero coefficient values')
         ax.set_xlim(-1, len(self.predictors))
+
         fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
 
         return fig
