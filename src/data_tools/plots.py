@@ -15,10 +15,30 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy import stats
 
-# TODO: write docstrings
+
 def density(df, cvf=0.25, title=None, filename=None, figsize=None):
     '''
+    Generates a density plot of the values on a data frame (row-wise).
 
+    * Arguments:
+        - *df* [pandas.DataFrame]: Contains the values to generate the
+          plot. Each row is considered as an individual sample while
+          each column contains a measured value.
+        - *cvf* [float]: Optional, ``0.25`` by default. Co-variance
+          factor used in the gaussian kernel estimation. A higher value
+          increases the smoothness.
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    * Returns:
+        - [*matplotlib.figure.Figure*]: the figure object containing the
+          density plot.
     '''
 
     cmap = matplotlib.cm.get_cmap('rainbow')
