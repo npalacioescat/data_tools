@@ -4,7 +4,8 @@
 
 > Keep in mind the general scope of this project.
 
-- Density plot docstrings
+- Examples
+- ~~Density plot docstrings~~
 - ~~Update docstrings of Lasso~~
 - ~~Fix Cs input (prints whole array in docs)~~
 - ~~Formatting the reference~~
@@ -19,8 +20,8 @@ Check all code you made up to now and add all functions and classes that might
 be useful in the context of this package/collection. Some places to find
 interesting stuff which may be worth recycling.:
 
-- LASSO-MS
-- EMPA (newer implementation of LASSO-MS)
+- ~~LASSO-MS~~
+- ~~EMPA (newer implementation of LASSO-MS)~~
 - FRETfit
 - DIRECTOR
 - CisPt-AKI

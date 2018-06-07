@@ -44,33 +44,19 @@
 <h1>data_tools.plots<a class="headerlink" href="#data-tools-plots" title="Permalink to this headline">¶</a></h1>
 <p>Plotting functions module.</p>
 <dl class="function">
-<dt id="data_tools.plots.volcano">
-<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a volcano plot from the differential expression data
-provided.</p>
-<ul>
+<dt id="data_tools.plots.density">
+<code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a density plot of the values on a data frame (row-wise).</p>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>logfc</em> [list]: Or any iterable type. Contains the log
-(usually base 2) fold-change values. Must have the same length
-as <em>logpval</em>.</li>
-<li><em>logpval</em> [list]: Or any iterable type. Contains the -log
-p-values (usually base 10). Must have the same length as
-<em>logfc</em>.</li>
-<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.05</span></code> by default. Specifies
-the p-value (non log-transformed) threshold to consider a
-measurement as significantly differentially expressed.</li>
-<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal"><span class="pre">2</span></code>. by default. Specifies the
-FC (non log-transformed) threshold to consider a measurement
-as significantly differentially expressed.</li>
-<li><em>c</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
-default colors). Any iterable containing two color arguments
-tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
-blue). First one is used for non-significant points, second
-for the significant ones.</li>
-<li><em>legend</em> [bool]: Optional, <code class="docutils literal"><span class="pre">True</span></code> by default. Indicates
-whether to show the plot legend or not.</li>
+<dd><ul class="first last">
+<li><em>df</em> [pandas.DataFrame]: Contains the values to generate the
+plot. Each row is considered as an individual sample while
+each column contains a measured value.</li>
+<li><em>cvf</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.25</span></code> by default. Co-variance
+factor used in the gaussian kernel estimation. A higher value
+increases the smoothness.</li>
 <li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
 <li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
@@ -85,19 +71,10 @@ the figure size (in inches) as [width, height].</li>
 </li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: Figure object containing the
-volcano plot.</li>
+<dd><ul class="first last">
+<li>[<em>matplotlib.figure.Figure</em>]: the figure object containing the
+density plot.</li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Examples:</dt>
-<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
-</pre></div>
-</div>
-<a class="last reference internal image-reference" href="_images/volcano_example.png"><img alt="_images/volcano_example.png" class="align-center" src="_images/volcano_example.png" style="width: 384.0px; height: 288.0px;" /></a>
 </dd>
 </dl>
 </li>
@@ -160,9 +137,65 @@ combination of box and scatter plots of the gene-set scores.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.plots.density">
-<code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="data_tools.plots.volcano">
+<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a volcano plot from the differential expression data
+provided.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>logfc</em> [list]: Or any iterable type. Contains the log
+(usually base 2) fold-change values. Must have the same length
+as <em>logpval</em>.</li>
+<li><em>logpval</em> [list]: Or any iterable type. Contains the -log
+p-values (usually base 10). Must have the same length as
+<em>logfc</em>.</li>
+<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.05</span></code> by default. Specifies
+the p-value (non log-transformed) threshold to consider a
+measurement as significantly differentially expressed.</li>
+<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal"><span class="pre">2</span></code>. by default. Specifies the
+FC (non log-transformed) threshold to consider a measurement
+as significantly differentially expressed.</li>
+<li><em>c</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
+default colors). Any iterable containing two color arguments
+tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
+blue). First one is used for non-significant points, second
+for the significant ones.</li>
+<li><em>legend</em> [bool]: Optional, <code class="docutils literal"><span class="pre">True</span></code> by default. Indicates
+whether to show the plot legend or not.</li>
+<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[matplotlib.figure.Figure]: Figure object containing the
+volcano plot.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="last reference internal image-reference" href="_images/volcano_example.png"><img alt="_images/volcano_example.png" class="align-center" src="_images/volcano_example.png" style="width: 384.0px; height: 288.0px;" /></a>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
 
 </div>
 

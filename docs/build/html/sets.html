@@ -44,6 +44,77 @@
 <h1>data_tools.sets<a class="headerlink" href="#data-tools-sets" title="Permalink to this headline">¶</a></h1>
 <p>Set operations module.</p>
 <dl class="function">
+<dt id="data_tools.sets.bit_or">
+<code class="descclassname">data_tools.sets.</code><code class="descname">bit_or</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#bit_or"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.bit_or" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bit operation OR between two bit-strings <em>a</em> and <em>b</em>.
+NOTE: <em>a</em> and <em>b</em> must have the same size.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>a</em> [tuple]: Or any iterable type.</li>
+<li><em>b</em> [tuple]: Or any iterable type.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[tuple]: OR operation between <em>a</em> and <em>b</em> element-wise.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">(1, 0, 1)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.sets.find_min">
+<code class="descclassname">data_tools.sets.</code><code class="descname">find_min</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#find_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.find_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds and returns the subset of vectors whose sum is minimum from a
+given set <em>A</em>.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>A</em> [set]: Set of vectors ([tuple] or any iterable).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[set]: Subset of vectors in <em>A</em> whose sum is minimum.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">set([(0, 1, 0), (1, 0, 0)])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.sets.in_all">
 <code class="descclassname">data_tools.sets.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.in_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if a vector <em>x</em> is present in all sets contained in a list
@@ -87,42 +158,6 @@ otherwise.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.bit_or">
-<code class="descclassname">data_tools.sets.</code><code class="descname">bit_or</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#bit_or"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.bit_or" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the bit operation OR between two bit-strings <em>a</em> and <em>b</em>.
-NOTE: <em>a</em> and <em>b</em> must have the same size.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>a</em> [tuple]: Or any iterable type.</li>
-<li><em>b</em> [tuple]: Or any iterable type.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[tuple]: OR operation between <em>a</em> and <em>b</em> element-wise.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="go">(1, 0, 1)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
 <dt id="data_tools.sets.multi_union">
 <code class="descclassname">data_tools.sets.</code><code class="descname">multi_union</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#multi_union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.multi_union" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the union set of all sets contained in a list <em>N</em>.</p>
@@ -150,41 +185,6 @@ NOTE: <em>a</em> and <em>b</em> must have the same size.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">multi_union</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
 <span class="go">set([0, 1, 2, 3, 5])</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
-<dt id="data_tools.sets.find_min">
-<code class="descclassname">data_tools.sets.</code><code class="descname">find_min</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#find_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.find_min" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds and returns the subset of vectors whose sum is minimum from a
-given set <em>A</em>.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>A</em> [set]: Set of vectors ([tuple] or any iterable).</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[set]: Subset of vectors in <em>A</em> whose sum is minimum.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">set([(0, 1, 0), (1, 0, 0)])</span>
 </pre></div>
 </div>
 </dd>

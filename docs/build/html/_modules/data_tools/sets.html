@@ -48,7 +48,56 @@
 <span class="sd">Set operations module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_union&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_union&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="bit_or"><a class="viewcode-back" href="../../sets.html#data_tools.sets.bit_or">[docs]</a><span class="k">def</span> <span class="nf">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Returns the bit operation OR between two bit-strings *a* and *b*.</span>
+<span class="sd">    NOTE: *a* and *b* must have the same size.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *a* [tuple]: Or any iterable type.</span>
+<span class="sd">        - *b* [tuple]: Or any iterable type.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [tuple]: OR operation between *a* and *b* element-wise.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; a, b = (0, 0, 1), (1, 0, 1)</span>
+<span class="sd">        &gt;&gt;&gt; bit_or(a, b)</span>
+<span class="sd">        (1, 0, 1)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">el_a</span> <span class="o">|</span> <span class="n">el_b</span> <span class="k">for</span> <span class="p">(</span><span class="n">el_a</span><span class="p">,</span> <span class="n">el_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span></div>
+
+
+<div class="viewcode-block" id="find_min"><a class="viewcode-back" href="../../sets.html#data_tools.sets.find_min">[docs]</a><span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds and returns the subset of vectors whose sum is minimum from a</span>
+<span class="sd">    given set *A*.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *A* [set]: Set of vectors ([tuple] or any iterable).</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [set]: Subset of vectors in *A* whose sum is minimum.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}</span>
+<span class="sd">        &gt;&gt;&gt; find_min(A)</span>
+<span class="sd">        set([(0, 1, 0), (1, 0, 0)])</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">sums</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">idx_mins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sums</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">sums</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx_mins</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="in_all"><a class="viewcode-back" href="../../sets.html#data_tools.sets.in_all">[docs]</a><span class="k">def</span> <span class="nf">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
@@ -86,31 +135,6 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="bit_or"><a class="viewcode-back" href="../../sets.html#data_tools.sets.bit_or">[docs]</a><span class="k">def</span> <span class="nf">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Returns the bit operation OR between two bit-strings *a* and *b*.</span>
-<span class="sd">    NOTE: *a* and *b* must have the same size.</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *a* [tuple]: Or any iterable type.</span>
-<span class="sd">        - *b* [tuple]: Or any iterable type.</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [tuple]: OR operation between *a* and *b* element-wise.</span>
-
-<span class="sd">    * Examples:</span>
-<span class="sd">        &gt;&gt;&gt; a, b = (0, 0, 1), (1, 0, 1)</span>
-<span class="sd">        &gt;&gt;&gt; bit_or(a, b)</span>
-<span class="sd">        (1, 0, 1)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">a</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">el_a</span> <span class="o">|</span> <span class="n">el_b</span> <span class="k">for</span> <span class="p">(</span><span class="n">el_a</span><span class="p">,</span> <span class="n">el_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span></div>
-
-
 <div class="viewcode-block" id="multi_union"><a class="viewcode-back" href="../../sets.html#data_tools.sets.multi_union">[docs]</a><span class="k">def</span> <span class="nf">multi_union</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Returns the union set of all sets contained in a list *N*.</span>
@@ -130,30 +154,6 @@
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="find_min"><a class="viewcode-back" href="../../sets.html#data_tools.sets.find_min">[docs]</a><span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Finds and returns the subset of vectors whose sum is minimum from a</span>
-<span class="sd">    given set *A*.</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *A* [set]: Set of vectors ([tuple] or any iterable).</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [set]: Subset of vectors in *A* whose sum is minimum.</span>
-
-<span class="sd">    * Examples:</span>
-<span class="sd">        &gt;&gt;&gt; A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}</span>
-<span class="sd">        &gt;&gt;&gt; find_min(A)</span>
-<span class="sd">        set([(0, 1, 0), (1, 0, 0)])</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="n">sums</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
-    <span class="n">idx_mins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sums</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">sums</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="p">{</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx_mins</span><span class="p">}</span></div>
 </pre></div>
 
           </div>

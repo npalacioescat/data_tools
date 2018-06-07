@@ -106,10 +106,23 @@ Determines whether messages are printed or not.</li>
 
 <dl class="method">
 <dt id="data_tools.models.Lasso.plot_coef">
-<code class="descname">plot_coef</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_coef</code><span class="sig-paren">(</span><em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the non-zero coefficients for the fitted predictor
 features.</p>
 <ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last">
@@ -124,10 +137,23 @@ bar plot of the non-zero coefficients.</li>
 
 <dl class="method">
 <dt id="data_tools.models.Lasso.plot_score">
-<code class="descname">plot_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_score</code><span class="sig-paren">(</span><em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.</p>
 <ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last">

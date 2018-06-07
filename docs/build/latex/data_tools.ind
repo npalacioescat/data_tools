@@ -9,8 +9,8 @@
   \item data\_tools.models (module), \hyperpage{7}
   \item data\_tools.plots (module), \hyperpage{8}
   \item data\_tools.sets (module), \hyperpage{10}
-  \item data\_tools.strings (module), \hyperpage{11}
-  \item density() (in module data\_tools.plots), \hyperpage{10}
+  \item data\_tools.strings (module), \hyperpage{12}
+  \item density() (in module data\_tools.plots), \hyperpage{8}
 
   \indexspace
   \bigletter F
@@ -19,8 +19,8 @@
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{10}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{11}
+  \item in\_all() (in module data\_tools.sets), \hyperpage{11}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{12}
 
   \indexspace
   \bigletter J
@@ -36,12 +36,12 @@
 
   \indexspace
   \bigletter P
-  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{9}
+  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{8}
   \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{7}
   \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{8}
 
   \indexspace
   \bigletter V
-  \item volcano() (in module data\_tools.plots), \hyperpage{8}
+  \item volcano() (in module data\_tools.plots), \hyperpage{9}
 
 \end{sphinxtheindex}

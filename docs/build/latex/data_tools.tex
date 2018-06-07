@@ -54,7 +54,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jun 06, 2018}
+\date{Jun 07, 2018}
 \release{0.0.3}
 \author{Nicolas Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -240,10 +240,26 @@ Determines whether messages are printed or not.
 \index{plot\_coef() (data\_tools.models.Lasso method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{plot\_coef}}{}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{plot\_coef}}{\emph{filename=None}, \emph{figsize=None}}{}
 Plots the non-zero coefficients for the fitted predictor
 features.
 \begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
@@ -261,10 +277,26 @@ bar plot of the non-zero coefficients.
 \index{plot\_score() (data\_tools.models.Lasso method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{plot\_score}}{}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{plot\_score}}{\emph{filename=None}, \emph{figsize=None}}{}
 Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.
 \begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
@@ -287,6 +319,127 @@ score plot.
 \section{data\_tools.plots}
 \label{\detokenize{plots::doc}}\label{\detokenize{plots:data-tools-plots}}
 Plotting functions module.
+\index{density() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{density}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a density plot of the values on a data frame (row-wise).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Contains the values to generate the
+plot. Each row is considered as an individual sample while
+each column contains a measured value.
+
+\item {} 
+\sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{0.25} by default. Co-variance
+factor used in the gaussian kernel estimation. A higher value
+increases the smoothness.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing the
+density plot.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{piano\_consensus() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{piano\_consensus}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a GSEA consensus score plot like R package \sphinxcode{piano}’s
+\sphinxcode{consensusScores} function, but prettier.
+The main input is assumed to be a \sphinxcode{pandas.DataFrame} whose data
+is the same as the \sphinxcode{rankMat} from the result of
+\sphinxcode{consensusScores}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Values contained correspond to the
+scores of the gene-sets (consensus and each individual
+methods). Index must contain the gene-set labels. Columns are
+assumed to be \sphinxcode{ConsRank} (ignored), \sphinxcode{ConsScore} followed
+by the individual methods (e.g.: \sphinxcode{mean}, \sphinxcode{median},
+\sphinxcode{sum}, etc).
+
+\item {} 
+\sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{40} by default. Number of string
+characters of the gene-set labels of the plot.
+
+\item {} 
+\sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{True} by default. Determines
+whether to show the boxplots of the gene-sets or not.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{piano\PYGZus{}consensus}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.6]{{piano_consensus_example}.png}\hspace*{\fill}}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \index{volcano() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
@@ -370,47 +523,25 @@ volcano plot.
 
 \end{fulllineitems}
 
-\index{piano\_consensus() (in module data\_tools.plots)}
+\phantomsection\label{\detokenize{sets:module-data_tools.sets}}\index{data\_tools.sets (module)}
+
+\section{data\_tools.sets}
+\label{\detokenize{sets:data-tools-sets}}\label{\detokenize{sets::doc}}
+Set operations module.
+\index{bit\_or() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{piano\_consensus}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
-Generates a GSEA consensus score plot like R package \sphinxcode{piano}’s
-\sphinxcode{consensusScores} function, but prettier.
-The main input is assumed to be a \sphinxcode{pandas.DataFrame} whose data
-is the same as the \sphinxcode{rankMat} from the result of
-\sphinxcode{consensusScores}.
+\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{bit\_or}}{\emph{a}, \emph{b}}{}
+Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
+NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Values contained correspond to the
-scores of the gene-sets (consensus and each individual
-methods). Index must contain the gene-set labels. Columns are
-assumed to be \sphinxcode{ConsRank} (ignored), \sphinxcode{ConsScore} followed
-by the individual methods (e.g.: \sphinxcode{mean}, \sphinxcode{median},
-\sphinxcode{sum}, etc).
+\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
 
 \item {} 
-\sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{40} by default. Number of string
-characters of the gene-set labels of the plot.
-
-\item {} 
-\sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{True} by default. Determines
-whether to show the boxplots of the gene-sets or not.
-
-\item {} 
-\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
-title.
-
-\item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
-indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)
-
-\item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
-matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as {[}width, height{]}.
+\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
 
 \end{itemize}
 
@@ -419,8 +550,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
-combination of box and scatter plots of the gene-set scores.
+{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
 
 \end{itemize}
 
@@ -430,10 +560,10 @@ combination of box and scatter plots of the gene-set scores.
 \item[{Examples:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{piano\PYGZus{}consensus}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+\PYG{g+go}{(1, 0, 1)}
 \end{sphinxVerbatim}
-
-\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.6]{{piano_consensus_example}.png}\hspace*{\fill}}
 
 \end{description}
 
@@ -441,17 +571,46 @@ combination of box and scatter plots of the gene-set scores.
 
 \end{fulllineitems}
 
-\index{density() (in module data\_tools.plots)}
+\index{find\_min() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{density}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{find\_min}}{\emph{A}}{}
+Finds and returns the subset of vectors whose sum is minimum from a
+given set \sphinxstyleemphasis{A}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{sets:module-data_tools.sets}}\index{data\_tools.sets (module)}
-
-\section{data\_tools.sets}
-\label{\detokenize{sets:data-tools-sets}}\label{\detokenize{sets::doc}}
-Set operations module.
 \index{in\_all() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
@@ -502,49 +661,6 @@ otherwise.
 
 \end{fulllineitems}
 
-\index{bit\_or() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{bit\_or}}{\emph{a}, \emph{b}}{}
-Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
-NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
-
-\item {} 
-\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
-\PYG{g+go}{(1, 0, 1)}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
 \index{multi\_union() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
@@ -578,46 +694,6 @@ Returns the union set of all sets contained in a list \sphinxstyleemphasis{N}.
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{C} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{multi\PYGZus{}union}\PYG{p}{(}\PYG{p}{[}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{C}\PYG{p}{]}\PYG{p}{)}
 \PYG{g+go}{set([0, 1, 2, 3, 5])}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{find\_min() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{find\_min}}{\emph{A}}{}
-Finds and returns the subset of vectors whose sum is minimum from a
-given set \sphinxstyleemphasis{A}.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
-\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
 \end{sphinxVerbatim}
 
 \end{description}
