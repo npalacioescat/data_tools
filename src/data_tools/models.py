@@ -114,7 +114,7 @@ class Lasso(LogisticRegressionCV):
             self.multi_class = 'multinomial'
 
         # FIXME: Multinomial models may have problems here
-        self.fit(self.x, self.y)
+        self.fit(self.x.values, self.y.values)
         self.key = self.scores_.keys()[0]
 
         self.accuracy = self.score(self.x, self.y)
