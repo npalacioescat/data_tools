@@ -4,6 +4,8 @@
 
 > Keep in mind the general scope of this project.
 
+- Filters
+- Diffusion methods
 - Examples
 - ~~Density plot docstrings~~
 - ~~Update docstrings of Lasso~~
@@ -26,6 +28,7 @@ interesting stuff which may be worth recycling.:
 - DIRECTOR
 - CisPt-AKI
 - MAGED2
+- MSc
 
 ## Other ideas:
 

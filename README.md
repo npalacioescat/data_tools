@@ -24,12 +24,9 @@ A full copy of the GNU General Public License can be found on file
 
 ## Dependencies
 
-In module **data_tools.plots**:
+In module **data_tools.diffusion**:
 
 - [NumPy](http://www.numpy.org/)
-- [Matplotlib](https://matplotlib.org/)
-- [Pandas](https://pandas.pydata.org/)
-- [SciPy](https://www.scipy.org/)
 
 In module **data_tools.models**:
 
@@ -37,6 +34,13 @@ In module **data_tools.models**:
 - [Matplotlib](https://matplotlib.org/)
 - [Pandas](https://pandas.pydata.org/)
 - [Scikit-learn](http://scikit-learn.org/stable/index.html)
+
+In module **data_tools.plots**:
+
+- [NumPy](http://www.numpy.org/)
+- [Matplotlib](https://matplotlib.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [SciPy](https://www.scipy.org/)
 
 ## Installation
 
