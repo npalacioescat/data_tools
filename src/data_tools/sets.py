@@ -7,7 +7,7 @@ data_tools.sets
 Set operations module.
 '''
 
-__all__ = ['bit_or', 'find_min', 'in_all', 'multi_union']
+__all__ = ['bit_or', 'find_min', 'in_all']
 
 
 def bit_or(a, b):
