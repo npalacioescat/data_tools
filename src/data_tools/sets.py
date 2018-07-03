@@ -7,7 +7,9 @@ data_tools.sets
 Set operations module.
 '''
 
-__all__ = ['bit_or', 'find_min', 'in_all', 'multi_union']
+__all__ = ['bit_or', 'find_min', 'in_all', 'subsets']
+
+import itertools
 
 
 def bit_or(a, b):
@@ -92,3 +94,24 @@ def in_all(x, N):
             return False
 
     return True
+
+
+def subsets(N):
+    '''
+
+    '''
+
+    combinations = list(itertools.product(['0', '1'], repeat=len(N)))[1:]
+
+    result = dict()
+
+    for c in combinations:
+        intersect = [N[n] for n in [i for i, v in enumerate(c) if v == '1']]
+        unite = [N[n] for n in [i for i, v in enumerate(c) if v == '0']]
+
+        lhs = reduce(set.intersection, intersect)
+        rhs = reduce(set.union, unite) if unite else set()
+
+        result[''.join(c)] = lhs.difference(rhs)
+
+    return result
