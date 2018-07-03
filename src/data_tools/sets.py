@@ -92,24 +92,3 @@ def in_all(x, N):
             return False
 
     return True
-
-
-def multi_union(N):
-    '''
-    Returns the union set of all sets contained in a list *N*.
-
-    * Arguments:
-        - *N* [list]: Or any iterable type containing [set] objects.
-
-    * Returns:
-        - [set]: The union of all sets contained in *N*.
-
-    * Examples:
-        >>> A = {1, 3, 5}
-        >>> B = {0, 1, 2}
-        >>> C = {0, 2, 5}
-        >>> multi_union([A, B, C])
-        set([0, 1, 2, 3, 5])
-    '''
-
-    return reduce(set.union, N)
