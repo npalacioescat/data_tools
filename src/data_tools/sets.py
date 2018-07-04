@@ -98,7 +98,26 @@ def in_all(x, N):
 
 def subsets(N):
     '''
+    Function that computes all possible logical relations between all
+    sets on a list *N* and returns all subsets. This is, the subsets
+    that would represent each intersecting area on a Venn diagram.
 
+    * Arguments:
+        - *N* [list]: Or any iterable type containing [set] objects.
+
+    * Returns:
+        - [dict]: Collection of subsets according to the logical
+          relations between the sets in *N*. The keys are binary codes
+          that denote the logical relation (see examples below).
+
+    * Examples:
+        >>> N = [{0, 1, 2}, {2, 3, 4}]
+        >>> subsets(N)
+        {'11': set([2]), '10': set([0, 1]), '01': set([3, 4])}
+        >>> N = [{0, 1}, {2, 3}, {1, 3, 4}]
+        >>> subsets(N)
+        {'010': set([2]), '011': set([3]), '001': set([4]), '111': set([
+        ]), '110': set([]), '100': set([0]), '101': set([1])}
     '''
 
     combinations = list(itertools.product(['0', '1'], repeat=len(N)))[1:]

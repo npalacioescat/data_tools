@@ -54,7 +54,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jun 07, 2018}
+\date{Jul 04, 2018}
 \release{0.0.3}
 \author{Nicolas Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -661,11 +661,13 @@ otherwise.
 
 \end{fulllineitems}
 
-\index{multi\_union() (in module data\_tools.sets)}
+\index{subsets() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.multi_union}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{multi\_union}}{\emph{N}}{}
-Returns the union set of all sets contained in a list \sphinxstyleemphasis{N}.
+\phantomsection\label{\detokenize{sets:data_tools.sets.subsets}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{subsets}}{\emph{N}}{}
+Function that computes all possible logical relations between all
+sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
+that would represent each intersecting area on a Venn diagram.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -679,7 +681,9 @@ Returns the union set of all sets contained in a list \sphinxstyleemphasis{N}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}set{]}: The union of all sets contained in \sphinxstyleemphasis{N}.
+{[}dict{]}: Collection of subsets according to the logical
+relations between the sets in \sphinxstyleemphasis{N}. The keys are binary codes
+that denote the logical relation (see examples below).
 
 \end{itemize}
 
@@ -689,11 +693,13 @@ Returns the union set of all sets contained in a list \sphinxstyleemphasis{N}.
 \item[{Examples:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{B} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{C} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{multi\PYGZus{}union}\PYG{p}{(}\PYG{p}{[}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{C}\PYG{p}{]}\PYG{p}{)}
-\PYG{g+go}{set([0, 1, 2, 3, 5])}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}11\PYGZsq{}: set([2]), \PYGZsq{}10\PYGZsq{}: set([0, 1]), \PYGZsq{}01\PYGZsq{}: set([3, 4])\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}010\PYGZsq{}: set([2]), \PYGZsq{}011\PYGZsq{}: set([3]), \PYGZsq{}001\PYGZsq{}: set([4]), \PYGZsq{}111\PYGZsq{}: set([}
+\PYG{g+go}{]), \PYGZsq{}110\PYGZsq{}: set([]), \PYGZsq{}100\PYGZsq{}: set([0]), \PYGZsq{}101\PYGZsq{}: set([1])\PYGZcb{}}
 \end{sphinxVerbatim}
 
 \end{description}
