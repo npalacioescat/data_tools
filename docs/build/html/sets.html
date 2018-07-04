@@ -170,9 +170,11 @@ otherwise.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.multi_union">
-<code class="descclassname">data_tools.sets.</code><code class="descname">multi_union</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#multi_union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.multi_union" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the union set of all sets contained in a list <em>N</em>.</p>
+<dt id="data_tools.sets.subsets">
+<code class="descclassname">data_tools.sets.</code><code class="descname">subsets</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#subsets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.subsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that computes all possible logical relations between all
+sets on a list <em>N</em> and returns all subsets. This is, the subsets
+that would represent each intersecting area on a Venn diagram.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
@@ -185,18 +187,22 @@ otherwise.</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
-<li>[set]: The union of all sets contained in <em>N</em>.</li>
+<li>[dict]: Collection of subsets according to the logical
+relations between the sets in <em>N</em>. The keys are binary codes
+that denote the logical relation (see examples below).</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">multi_union</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">])</span>
-<span class="go">set([0, 1, 2, 3, 5])</span>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subsets</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="go">{&#39;11&#39;: set([2]), &#39;10&#39;: set([0, 1]), &#39;01&#39;: set([3, 4])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subsets</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="go">{&#39;010&#39;: set([2]), &#39;011&#39;: set([3]), &#39;001&#39;: set([4]), &#39;111&#39;: set([</span>
+<span class="go">]), &#39;110&#39;: set([]), &#39;100&#39;: set([0]), &#39;101&#39;: set([1])}</span>
 </pre></div>
 </div>
 </dd>

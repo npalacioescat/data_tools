@@ -55,7 +55,9 @@
 <span class="sd">Set operations module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_union&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;subsets&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
 
 
 <div class="viewcode-block" id="bit_or"><a class="viewcode-back" href="../../sets.html#data_tools.sets.bit_or">[docs]</a><span class="k">def</span> <span class="nf">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -142,25 +144,44 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="multi_union"><a class="viewcode-back" href="../../sets.html#data_tools.sets.multi_union">[docs]</a><span class="k">def</span> <span class="nf">multi_union</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<div class="viewcode-block" id="subsets"><a class="viewcode-back" href="../../sets.html#data_tools.sets.subsets">[docs]</a><span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Returns the union set of all sets contained in a list *N*.</span>
+<span class="sd">    Function that computes all possible logical relations between all</span>
+<span class="sd">    sets on a list *N* and returns all subsets. This is, the subsets</span>
+<span class="sd">    that would represent each intersecting area on a Venn diagram.</span>
 
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *N* [list]: Or any iterable type containing [set] objects.</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [set]: The union of all sets contained in *N*.</span>
+<span class="sd">        - [dict]: Collection of subsets according to the logical</span>
+<span class="sd">          relations between the sets in *N*. The keys are binary codes</span>
+<span class="sd">          that denote the logical relation (see examples below).</span>
 
 <span class="sd">    * Examples:</span>
-<span class="sd">        &gt;&gt;&gt; A = {1, 3, 5}</span>
-<span class="sd">        &gt;&gt;&gt; B = {0, 1, 2}</span>
-<span class="sd">        &gt;&gt;&gt; C = {0, 2, 5}</span>
-<span class="sd">        &gt;&gt;&gt; multi_union([A, B, C])</span>
-<span class="sd">        set([0, 1, 2, 3, 5])</span>
+<span class="sd">        &gt;&gt;&gt; N = [{0, 1, 2}, {2, 3, 4}]</span>
+<span class="sd">        &gt;&gt;&gt; subsets(N)</span>
+<span class="sd">        {&#39;11&#39;: set([2]), &#39;10&#39;: set([0, 1]), &#39;01&#39;: set([3, 4])}</span>
+<span class="sd">        &gt;&gt;&gt; N = [{0, 1}, {2, 3}, {1, 3, 4}]</span>
+<span class="sd">        &gt;&gt;&gt; subsets(N)</span>
+<span class="sd">        {&#39;010&#39;: set([2]), &#39;011&#39;: set([3]), &#39;001&#39;: set([4]), &#39;111&#39;: set([</span>
+<span class="sd">        ]), &#39;110&#39;: set([]), &#39;100&#39;: set([0]), &#39;101&#39;: set([1])}</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span></div>
+    <span class="n">combinations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">],</span> <span class="n">repeat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)))[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+        <span class="n">intersect</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">]]</span>
+        <span class="n">unite</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">]]</span>
+
+        <span class="n">lhs</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">intersect</span><span class="p">)</span>
+        <span class="n">rhs</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="n">unite</span><span class="p">)</span> <span class="k">if</span> <span class="n">unite</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">result</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
 </pre></div>
 
           </div>

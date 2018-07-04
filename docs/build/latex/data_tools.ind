@@ -31,14 +31,14 @@
   \item Lasso (class in data\_tools.models), \hyperpage{7}
 
   \indexspace
-  \bigletter M
-  \item multi\_union() (in module data\_tools.sets), \hyperpage{11}
-
-  \indexspace
   \bigletter P
   \item piano\_consensus() (in module data\_tools.plots), \hyperpage{8}
   \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{7}
   \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{8}
+
+  \indexspace
+  \bigletter S
+  \item subsets() (in module data\_tools.sets), \hyperpage{11}
 
   \indexspace
   \bigletter V
