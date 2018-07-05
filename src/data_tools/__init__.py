@@ -3,7 +3,7 @@
 
 '''
 Data tools: a collection of Python functions and classes designed to
-make a Computational Biologist's life easier.
+make data scientists' life easier.
 
 
 Copyright (C) 2018 Nicolàs Palacio
@@ -24,7 +24,7 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 __author__ = 'Nicolàs Palacio'
 
 import data_tools.strings as strings

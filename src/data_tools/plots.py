@@ -7,7 +7,7 @@ data_tools.plots
 Plotting functions module.
 '''
 
-__all__ = ['density', 'piano_consensus', 'volcano']
+__all__ = ['density', 'piano_consensus', 'venn', 'volcano']
 
 import numpy as np
 import pandas as pd
@@ -15,7 +15,10 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy import stats
 
+from data_tools.sets import subsets
 
+
+# TODO: Add example figure
 def density(df, cvf=0.25, title=None, filename=None, figsize=None):
     '''
     Generates a density plot of the values on a data frame (row-wise).
@@ -102,7 +105,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
         - [*matplotlib.figure.Figure*]: the figure object containing a
           combination of box and scatter plots of the gene-set scores.
 
-    * Examples:
+    * Example:
         >>> piano_consensus(df, figsize=[7, 8])
 
         .. image:: ../figures/piano_consensus_example.png
@@ -156,6 +159,114 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     return fig
 
 
+def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
+         title=None, filename=None, figsize=None):
+    '''
+    Plots a Venn diagram from a list of sets *N*. Number of sets must be
+    between 2 and 4 (inclusive).
+
+    * Arguments:
+        - *N* [list]: Or any iterable type containing [set] objects.
+        - *labels* [list]: Optional, ``['A', 'B', 'C', 'D']`` by
+          default. Labels for the sets following the same order as
+          provided in *N*.
+        - *c* [list]: Optional, ``['C0', 'C1' 'C2', 'C3']`` by default
+          (matplotlib default colors). Any iterable containing color
+          arguments tolerated by matplotlib (e.g.: ``['r', 'b']`` for
+          red and blue). Must contain at least the same number of
+          elements as *N* (if more are provided, they will be ignored).
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    * Returns:
+        - [*matplotlib.figure.Figure*]: the figure object containing a
+          combination of box and scatter plots of the gene-set scores.
+
+    * Example:
+        >>> N = [{0, 1}, {2, 3}, {1, 3, 4}] # Sets A, B, C
+        >>> venn(N)
+
+        .. image:: ../figures/venn_example.png
+           :align: center
+           :scale: 60
+    '''
+
+    ssets = subsets(N)
+    counts = dict(zip(ssets.keys(), map(len, ssets.values())))
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    if len(N) == 2:
+        # Ellipse parameters
+        x = [-.25, .25]
+        y = [0, 0]
+        w = [1, 1]
+        h = [1.5, 1.5]
+        a = [0, 0]
+
+        # Text (counts) parameters
+        xt = [-.5, .5, 0]
+        yt = [0, 0, 0]
+        keys = ['10', '01', '11']
+
+    elif len(N) == 3:
+        # Ellipse parameters
+        x = [0, -.25, .25]
+        y = [.33, -.33, -.33]
+        w = [1, 1, 1]
+        h = [1.5, 1.5, 1.5]
+        a = [0, 0, 0]
+
+        # Text (counts) parameters
+        xt = [0, -.5, .5, -.33, .33, 0, 0]
+        yt = [.6, -.5, -.5, .15, .15, -.6, -.1]
+        keys = ['100', '010', '001', '110', '101', '011', '111']
+
+    elif len(N) == 4:
+        # Ellipse parameters
+        x = [-.15, -.35, .15, .35]
+        y = [.15, -.25, .15, -.25]
+        w = [2, 2, 2, 2]
+        h = [1, 1, 1, 1]
+        a = [-60, -60, 60, 60]
+
+        # Text (counts) parameters
+        xt = [-.5, -.8, .5, .8, -.6, 0, .4, -.4, 0, .6, -.3, .2, .3, -.2, 0]
+        yt = [.8, -.1, .8, -.1, .33, .4, -.55, -.55, -.9, .33, 0, -.68, 0,
+              -.68, -.33]
+        keys = ['1000', '0100', '0010', '0001', '1100', '1010', '1001', '0110',
+                '0011', '1110', '1101', '1011', '0111', '1111']
+
+    else:
+        return 'The number of sets supported are 2, 3 and 4.'
+
+    for i in range(len(N)):
+        ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],
+                label=labels[i])
+
+    for i in range(len(counts)):
+        ax.text(xt[i], yt[i], counts[keys[i]], fontdict={'ha':'center'})
+
+    ax.set_xlim(-1.5, 1.5)
+    ax.set_ylim(-1.5, 1.5)
+
+    ax.legend()
+
+    ax.axis('off')
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    return fig
+
+
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             legend=True, title=None, filename=None, figsize=None):
     '''
@@ -195,7 +306,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         - [matplotlib.figure.Figure]: Figure object containing the
           volcano plot.
 
-    * Examples:
+    * Example:
         >>> volcano(my_log_fc, my_log_pval)
 
         .. image:: ../figures/volcano_example.png
@@ -250,3 +361,12 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         fig.savefig(filename)
 
     return fig
+
+
+###############################################################################
+
+def ellipse(ax, x, y, w, h, a, color, alpha=1, label=None):
+    e = matplotlib.patches.Ellipse(xy=(x, y), width=w, height=h, angle=a,
+                                   color=color, alpha=alpha, label=label)
+
+    ax.add_patch(e)

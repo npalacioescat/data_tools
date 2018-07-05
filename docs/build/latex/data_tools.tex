@@ -54,9 +54,9 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 04, 2018}
-\release{0.0.3}
-\author{Nicolas Palacio}
+\date{Jul 05, 2018}
+\release{0.0.4}
+\author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
@@ -68,8 +68,8 @@
 \phantomsection\label{\detokenize{index::doc}}
 
 
-Collection of Python functions and classes designed to make a
-Computational Biologist’s life easier.
+Data tools: a collection of Python functions and classes designed to
+make data scientists’ life easier.
 
 Copyright (C) 2018 Nicolàs Palacio
 
@@ -426,13 +426,81 @@ combination of box and scatter plots of the gene-set scores.
 \end{description}
 
 \item {} \begin{description}
-\item[{Examples:}] \leavevmode
+\item[{Example:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{piano\PYGZus{}consensus}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.6]{{piano_consensus_example}.png}\hspace*{\fill}}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{venn() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{venn}}{\emph{N, labels={[}'A', 'B', 'C', 'D'{]}, c={[}'C0', 'C1', 'C2', 'C3'{]}, title=None, filename=None, figsize=None}}{}
+Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
+between 2 and 4 (inclusive).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
+
+\item {} 
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{{[}'A', 'B', 'C', 'D'{]}} by
+default. Labels for the sets following the same order as
+provided in \sphinxstyleemphasis{N}.
+
+\item {} 
+\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{{[}'C0', 'C1' 'C2', 'C3'{]}} by default
+(matplotlib default colors). Any iterable containing color
+arguments tolerated by matplotlib (e.g.: \sphinxcode{{[}'r', 'b'{]}} for
+red and blue). Must contain at least the same number of
+elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} Sets A, B, C}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{venn}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.6]{{venn_example}.png}\hspace*{\fill}}
 
 \end{description}
 
@@ -509,7 +577,7 @@ volcano plot.
 \end{description}
 
 \item {} \begin{description}
-\item[{Examples:}] \leavevmode
+\item[{Example:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{volcano}\PYG{p}{(}\PYG{n}{my\PYGZus{}log\PYGZus{}fc}\PYG{p}{,} \PYG{n}{my\PYGZus{}log\PYGZus{}pval}\PYG{p}{)}

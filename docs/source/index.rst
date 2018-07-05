@@ -7,13 +7,13 @@
 data_tools's reference
 ######################
 
-Collection of Python functions and classes designed to make a
-Computational Biologist's life easier.
+Data tools: a collection of Python functions and classes designed to
+make data scientists' life easier.
 
 
 Copyright (C) 2018 Nicolàs Palacio
 
-Contact: nicolaspalacio91@gmail.com
+Contact: `nicolaspalacio91@gmail.com <mailto:nicolaspalacio91@gmail.com>`_
 
 GNU-GLPv3:
 This program is free software: you can redistribute it and/or modify it

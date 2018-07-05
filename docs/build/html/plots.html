@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.plots &#8212; data_tools 0.0.3 documentation</title>
+    <title>data_tools.plots &#8212; data_tools 0.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.3',
+        VERSION:     '0.0.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -137,11 +137,63 @@ combination of box and scatter plots of the gene-set scores.</li>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Examples:</dt>
+<dt>Example:</dt>
 <dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </pre></div>
 </div>
 <a class="last reference internal image-reference" href="_images/piano_consensus_example.png"><img alt="_images/piano_consensus_example.png" class="align-center" src="_images/piano_consensus_example.png" style="width: 420.0px; height: 480.0px;" /></a>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.plots.venn">
+<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'], title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a Venn diagram from a list of sets <em>N</em>. Number of sets must be
+between 2 and 4 (inclusive).</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
+<li><em>labels</em> [list]: Optional, <code class="docutils literal"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D']</span></code> by
+default. Labels for the sets following the same order as
+provided in <em>N</em>.</li>
+<li><em>c</em> [list]: Optional, <code class="docutils literal"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3']</span></code> by default
+(matplotlib default colors). Any iterable containing color
+arguments tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for
+red and blue). Must contain at least the same number of
+elements as <em>N</em> (if more are provided, they will be ignored).</li>
+<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[<em>matplotlib.figure.Figure</em>]: the figure object containing a
+combination of box and scatter plots of the gene-set scores.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span> <span class="c1"># Sets A, B, C</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">venn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="last reference internal image-reference" href="_images/venn_example.png"><img alt="_images/venn_example.png" class="align-center" src="_images/venn_example.png" style="width: 259.2px; height: 172.8px;" /></a>
 </dd>
 </dl>
 </li>
@@ -198,7 +250,7 @@ volcano plot.</li>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Examples:</dt>
+<dt>Example:</dt>
 <dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -259,11 +311,11 @@ volcano plot.</li>
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Nicolas Palacio.
+        &#169; Copyright 2018, Nicolàs Palacio.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>

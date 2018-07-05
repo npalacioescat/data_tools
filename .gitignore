@@ -6,3 +6,7 @@
 /dist
 *.egg-info/
 /build
+
+# Other
+TODO.md
+
