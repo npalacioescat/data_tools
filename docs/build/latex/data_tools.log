@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  4 JUL 2018 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  5 JUL 2018 14:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1187,16 +1187,20 @@ File: piano_consensus_example.png Graphic file (type png)
 Package pdftex.def Info: piano_consensus_example.png  used on input line 435.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [9 <./piano_consensus_example.png>]
-<volcano_example.png, id=142, 462.528pt x 346.896pt>
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 499.
+<venn_example.png, id=142, 433.62pt x 289.08pt>
+File: venn_example.png Graphic file (type png)
+<use venn_example.png>
+Package pdftex.def Info: venn_example.png  used on input line 503.
+(pdftex.def)             Requested size: 260.17401pt x 173.44933pt.
+ [10 <./venn_example.png>]
+<volcano_example.png, id=151, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 518.
+Package pdftex.def Info: volcano_example.png  used on input line 586.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
- [10 <./volcano_example.png>]
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 648.
-
-[11] [12] [13] [14
+ [11 <./volcano_example.png>] [12] [13] [14
 
 ] [15
 
@@ -1208,23 +1212,24 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 827.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 827.
- (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 827.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 827.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 895.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 895.
+
+(./data_tools.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 895.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 895.
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 4593CFAFDBC9B0E7BE395D4B32B94FB3;1068.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 827.
+(rerunfilecheck)             Checksum: 353E0B3349D60EE74AE724CB33781FDD;1068.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 895.
  ) 
 Here is how much of TeX's memory you used:
- 13640 strings out of 494923
- 188462 string characters out of 6180743
- 293842 words of memory out of 5000000
- 16597 multiletter control sequences out of 15000+600000
+ 13647 strings out of 494923
+ 188601 string characters out of 6180743
+ 292887 words of memory out of 5000000
+ 16602 multiletter control sequences out of 15000+600000
  48125 words of font info for 73 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 37i,11n,45p,513b,633s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,45p,513b,648s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
@@ -1234,10 +1239,10 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (21 pages, 308177 bytes).
+Output written on data_tools.pdf (21 pages, 320458 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 103 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 259 PDF objects out of 1000 (max. 8388607)
+ 213 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 108 words of extra memory for PDF output out of 10000 (max. 10000000)
 

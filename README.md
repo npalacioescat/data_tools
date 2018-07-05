@@ -1,8 +1,8 @@
 # data_tools
-![GitHub release](https://img.shields.io/badge/release-v0.0.3-brightgreen.svg)
+![GitHub release](https://img.shields.io/badge/release-v0.0.4-brightgreen.svg)
 
-Collection of Python functions and classes designed to make a
-Computational Biologist's life easier.
+Data tools: a collection of Python functions and classes designed to
+make data scientists' life easier.
 
 
 Copyright (C) 2018 Nicolàs Palacio

@@ -8,23 +8,23 @@
   \bigletter D
   \item data\_tools.models (module), \hyperpage{7}
   \item data\_tools.plots (module), \hyperpage{8}
-  \item data\_tools.sets (module), \hyperpage{10}
-  \item data\_tools.strings (module), \hyperpage{12}
+  \item data\_tools.sets (module), \hyperpage{11}
+  \item data\_tools.strings (module), \hyperpage{13}
   \item density() (in module data\_tools.plots), \hyperpage{8}
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{11}
+  \item find\_min() (in module data\_tools.sets), \hyperpage{12}
   \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{7}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{11}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{12}
+  \item in\_all() (in module data\_tools.sets), \hyperpage{12}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{13}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{12}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{13}
 
   \indexspace
   \bigletter L
@@ -38,10 +38,11 @@
 
   \indexspace
   \bigletter S
-  \item subsets() (in module data\_tools.sets), \hyperpage{11}
+  \item subsets() (in module data\_tools.sets), \hyperpage{12}
 
   \indexspace
   \bigletter V
-  \item volcano() (in module data\_tools.plots), \hyperpage{9}
+  \item venn() (in module data\_tools.plots), \hyperpage{9}
+  \item volcano() (in module data\_tools.plots), \hyperpage{10}
 
 \end{sphinxtheindex}
