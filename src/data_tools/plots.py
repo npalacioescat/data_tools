@@ -5,6 +5,17 @@ data_tools.plots
 ================
 
 Plotting functions module.
+
+Dependencies
+------------
+
+- `NumPy <http://www.numpy.org/>`_
+- `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
+- `SciPy <https://www.scipy.org/>`_
+
+Reference
+---------
 '''
 
 __all__ = ['density', 'piano_consensus', 'venn', 'volcano']
@@ -194,7 +205,7 @@ def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
 
         .. image:: ../figures/venn_example.png
            :align: center
-           :scale: 60
+           :scale: 100
     '''
 
     ssets = subsets(N)

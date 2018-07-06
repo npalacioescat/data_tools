@@ -24,18 +24,10 @@ A full copy of the GNU General Public License can be found on file
 
 ## Dependencies
 
-In module **data_tools.plots**:
-
 - [NumPy](http://www.numpy.org/)
 - [Matplotlib](https://matplotlib.org/)
 - [Pandas](https://pandas.pydata.org/)
 - [SciPy](https://www.scipy.org/)
-
-In module **data_tools.models**:
-
-- [NumPy](http://www.numpy.org/)
-- [Matplotlib](https://matplotlib.org/)
-- [Pandas](https://pandas.pydata.org/)
 - [Scikit-learn](http://scikit-learn.org/stable/index.html)
 
 ## Installation
@@ -63,4 +55,5 @@ pip install .
 ## Reference
 
 You can find a detailed description of the modules and functions within
-this package in the [reference](/docs/build/latex/data_tools.pdf).
+this package in the [webpage](https://nic-nic.github.io/data_tools/),
+also available as a [PDF](/docs/latex/data_tools.pdf).

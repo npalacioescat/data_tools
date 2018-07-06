@@ -5,6 +5,9 @@ data_tools.strings
 ==================
 
 String operations module.
+
+Reference
+---------
 '''
 
 __all__ = ['is_numeric', 'join_str_lists']

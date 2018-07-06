@@ -5,6 +5,9 @@ data_tools.sets
 ===============
 
 Set operations module.
+
+Reference
+---------
 '''
 
 __all__ = ['bit_or', 'find_min', 'in_all', 'subsets']

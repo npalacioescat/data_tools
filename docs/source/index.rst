@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 ######################
-data_tools's reference
+data_tools' reference
 ######################
 
 Data tools: a collection of Python functions and classes designed to
@@ -28,23 +28,6 @@ Public License for more details.
 A full copy of the GNU General Public License can be found on file
 `LICENSE.md <../../../LICENSE.md>`_. If not, see
 http://www.gnu.org/licenses/.
-
-Dependencies
-============
-
-In module **data_tools.plots**:
-
-- `NumPy <http://www.numpy.org/>`_
-- `Matplotlib <https://matplotlib.org/>`_
-- `Pandas <https://pandas.pydata.org/>`_
-- `SciPy <https://www.scipy.org/>`_
-
-In module **data_tools.models**:
-
-- `NumPy <http://www.numpy.org/>`_
-- `Matplotlib <https://matplotlib.org/>`_
-- `Pandas <https://pandas.pydata.org/>`_
-- `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
 
 
 Installation
@@ -71,8 +54,9 @@ Or using ``pip``:
 
    pip install .
 
-Reference
-=========
+
+Module reference
+================
 
 .. toctree::
    :maxdepth: 5
