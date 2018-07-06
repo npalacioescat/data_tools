@@ -5,6 +5,17 @@ data_tools.plots
 ================
 
 Plotting functions module.
+
+Dependencies
+------------
+
+- `NumPy <http://www.numpy.org/>`_
+- `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
+- `SciPy <https://www.scipy.org/>`_
+
+Reference
+---------
 '''
 
 __all__ = ['density', 'piano_consensus', 'venn', 'volcano']
@@ -194,7 +205,7 @@ def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
 
         .. image:: ../figures/venn_example.png
            :align: center
-           :scale: 60
+           :scale: 100
     '''
 
     ssets = subsets(N)
@@ -241,7 +252,7 @@ def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
         yt = [.8, -.1, .8, -.1, .33, .4, -.55, -.55, -.9, .33, 0, -.68, 0,
               -.68, -.33]
         keys = ['1000', '0100', '0010', '0001', '1100', '1010', '1001', '0110',
-                '0011', '1110', '1101', '1011', '0111', '1111']
+                '0101', '0011', '1110', '1101', '1011', '0111', '1111']
 
     else:
         return 'The number of sets supported are 2, 3 and 4.'

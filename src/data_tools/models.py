@@ -5,6 +5,17 @@ data_tools.models
 =================
 
 Model classes module.
+
+Dependencies
+------------
+
+- `NumPy <http://www.numpy.org/>`_
+- `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
+- `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
+
+Reference
+---------
 '''
 
 __all__ = ['Lasso']

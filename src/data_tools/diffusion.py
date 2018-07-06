@@ -5,6 +5,9 @@ data_tools.diffusion
 ====================
 
 Diffusion solvers module.
+
+Reference
+---------
 '''
 
 import numpy as np

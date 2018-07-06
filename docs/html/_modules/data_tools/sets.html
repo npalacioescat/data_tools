@@ -1,0 +1,227 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>data_tools.sets &#8212; data_tools 0.0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">data_tools 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for data_tools.sets</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">data_tools.sets</span>
+<span class="sd">===============</span>
+
+<span class="sd">Set operations module.</span>
+
+<span class="sd">Reference</span>
+<span class="sd">---------</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;subsets&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<div class="viewcode-block" id="bit_or"><a class="viewcode-back" href="../../sets.html#data_tools.sets.bit_or">[docs]</a><span class="k">def</span> <span class="nf">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Returns the bit operation OR between two bit-strings *a* and *b*.</span>
+<span class="sd">    NOTE: *a* and *b* must have the same size.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *a* [tuple]: Or any iterable type.</span>
+<span class="sd">        - *b* [tuple]: Or any iterable type.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [tuple]: OR operation between *a* and *b* element-wise.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; a, b = (0, 0, 1), (1, 0, 1)</span>
+<span class="sd">        &gt;&gt;&gt; bit_or(a, b)</span>
+<span class="sd">        (1, 0, 1)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">el_a</span> <span class="o">|</span> <span class="n">el_b</span> <span class="k">for</span> <span class="p">(</span><span class="n">el_a</span><span class="p">,</span> <span class="n">el_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span></div>
+
+
+<div class="viewcode-block" id="find_min"><a class="viewcode-back" href="../../sets.html#data_tools.sets.find_min">[docs]</a><span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Finds and returns the subset of vectors whose sum is minimum from a</span>
+<span class="sd">    given set *A*.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *A* [set]: Set of vectors ([tuple] or any iterable).</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [set]: Subset of vectors in *A* whose sum is minimum.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; A = {(0, 1, 1), (0, 1, 0), (1, 0, 0), (1, 1, 1)}</span>
+<span class="sd">        &gt;&gt;&gt; find_min(A)</span>
+<span class="sd">        set([(0, 1, 0), (1, 0, 0)])</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">sums</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">idx_mins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sums</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">sums</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx_mins</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="in_all"><a class="viewcode-back" href="../../sets.html#data_tools.sets.in_all">[docs]</a><span class="k">def</span> <span class="nf">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Checks if a vector *x* is present in all sets contained in a list</span>
+<span class="sd">    *N*.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *x* [tuple]: Or any hashable type as long as is the same</span>
+<span class="sd">          contained in the sets of *N*.</span>
+<span class="sd">        - *N* [list]: Or any iterable type containing [set] objects.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [bool]: ``True`` if *x* is found in all sets of *N*, ``False``</span>
+<span class="sd">          otherwise.</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; N = [{(0, 0), (0, 1)}, # &lt;- set A</span>
+<span class="sd">        ...      {(0, 0), (1, 1), (1, 0)}] # &lt;- set B</span>
+<span class="sd">        &gt;&gt;&gt; x = (0, 0)</span>
+<span class="sd">        &gt;&gt;&gt; in_all(x, N)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; y = (0, 1)</span>
+<span class="sd">        &gt;&gt;&gt; in_all(y, N)</span>
+<span class="sd">        False</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">N</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="subsets"><a class="viewcode-back" href="../../sets.html#data_tools.sets.subsets">[docs]</a><span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Function that computes all possible logical relations between all</span>
+<span class="sd">    sets on a list *N* and returns all subsets. This is, the subsets</span>
+<span class="sd">    that would represent each intersecting area on a Venn diagram.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *N* [list]: Or any iterable type containing [set] objects.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [dict]: Collection of subsets according to the logical</span>
+<span class="sd">          relations between the sets in *N*. The keys are binary codes</span>
+<span class="sd">          that denote the logical relation (see examples below).</span>
+
+<span class="sd">    * Examples:</span>
+<span class="sd">        &gt;&gt;&gt; N = [{0, 1, 2}, {2, 3, 4}]</span>
+<span class="sd">        &gt;&gt;&gt; subsets(N)</span>
+<span class="sd">        {&#39;11&#39;: set([2]), &#39;10&#39;: set([0, 1]), &#39;01&#39;: set([3, 4])}</span>
+<span class="sd">        &gt;&gt;&gt; N = [{0, 1}, {2, 3}, {1, 3, 4}]</span>
+<span class="sd">        &gt;&gt;&gt; subsets(N)</span>
+<span class="sd">        {&#39;010&#39;: set([2]), &#39;011&#39;: set([3]), &#39;001&#39;: set([4]), &#39;111&#39;: set([</span>
+<span class="sd">        ]), &#39;110&#39;: set([]), &#39;100&#39;: set([0]), &#39;101&#39;: set([1])}</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">combinations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">],</span> <span class="n">repeat</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)))[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+        <span class="n">intersect</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">]]</span>
+        <span class="n">unite</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">]]</span>
+
+        <span class="n">lhs</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">intersect</span><span class="p">)</span>
+        <span class="n">rhs</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="n">unite</span><span class="p">)</span> <span class="k">if</span> <span class="n">unite</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">result</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">data_tools 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Nicolàs Palacio.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>
