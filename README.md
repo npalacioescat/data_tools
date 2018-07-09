@@ -1,4 +1,5 @@
 # data_tools
+
 ![GitHub release](https://img.shields.io/badge/release-v0.0.4-brightgreen.svg)
 
 Data tools: a collection of Python functions and classes designed to
@@ -21,6 +22,31 @@ Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
 [LICENSE.md](LICENSE.md). If not, see <http://www.gnu.org/licenses/>.
+
+## Disclaimer
+
+This package is still under development and will be periodically updated
+with new features. Contributions are very welcome (fork + pull request).
+If you find any bug or suggestion for upgrades, please use the [issue
+system](https://github.com/Nic-Nic/data_tools/issues).
+
+## Contents
+
+- [models](https://nic-nic.github.io/data_tools/html/models.html)
+    - [Lasso](https://nic-nic.github.io/data_tools/html/models.html#data_tools.models.Lasso)
+- [plots](https://nic-nic.github.io/data_tools/html/plots.html)
+    - [density](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.density)
+    - [piano_consensus](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.piano_consensus)
+    - [venn](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.venn)
+    - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
+- [sets](https://nic-nic.github.io/data_tools/html/sets.html)
+    - [bit_or](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.bit_or)
+    - [find_min](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.find_min)
+    - [in_all](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.in_all)
+    - [subsets](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.subsets)
+- [strings](https://nic-nic.github.io/data_tools/html/strings.html)
+    - [is_numeric](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.is_numeric)
+    - [join_str_lists](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.join_str_lists)
 
 ## Dependencies
 
