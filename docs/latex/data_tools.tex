@@ -54,7 +54,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 06, 2018}
+\date{Jul 09, 2018}
 \release{0.0.4}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -70,6 +70,14 @@
 
 Data tools: a collection of Python functions and classes designed to
 make data scientists’ life easier.
+
+
+\chapter{Disclaimer}
+\label{\detokenize{index:data-tools-reference}}\label{\detokenize{index:disclaimer}}
+This package is still under development and will be periodically updated
+with new features. Contributions are very welcome (fork + pull request).
+If you find any bug or suggestion for upgrades, please use the
+\sphinxhref{https://github.com/Nic-Nic/data\_tools/issues}{issue system}.
 
 Copyright (C) 2018 Nicolàs Palacio
 
@@ -90,8 +98,28 @@ A full copy of the GNU General Public License can be found on file
 \sphinxurl{http://www.gnu.org/licenses/}.
 
 
+\chapter{Dependencies}
+\label{\detokenize{index:dependencies}}\begin{itemize}
+\item {} 
+\sphinxhref{http://www.numpy.org/}{NumPy}
+
+\item {} 
+\sphinxhref{https://matplotlib.org/}{Matplotlib}
+
+\item {} 
+\sphinxhref{https://pandas.pydata.org/}{Pandas}
+
+\item {} 
+\sphinxhref{https://www.scipy.org/}{SciPy}
+
+\item {} 
+\sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
+
+\end{itemize}
+
+
 \chapter{Installation}
-\label{\detokenize{index:installation}}\label{\detokenize{index:data-tools-reference}}
+\label{\detokenize{index:installation}}
 First download/clone \sphinxcode{data\_tools} from the
 \sphinxhref{https://github.com/Nic-Nic/data\_tools.git}{GitHub repository}.
 From the terminal:
@@ -117,33 +145,13 @@ pip install .
 \end{sphinxVerbatim}
 
 
-\chapter{Module reference}
-\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)}
+\chapter{Modules}
+\label{\detokenize{index:modules}}\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)}
 
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
 Model classes module.
-
-
-\subsection{Dependencies}
-\label{\detokenize{models:dependencies}}\begin{itemize}
-\item {} 
-\sphinxhref{http://www.numpy.org/}{NumPy}
-
-\item {} 
-\sphinxhref{https://matplotlib.org/}{Matplotlib}
-
-\item {} 
-\sphinxhref{https://pandas.pydata.org/}{Pandas}
-
-\item {} 
-\sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
-
-\end{itemize}
-
-
-\subsection{Reference}
-\label{\detokenize{models:reference}}\index{Lasso (class in data\_tools.models)}
+\index{Lasso (class in data\_tools.models)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{data\_tools.models.}\sphinxbfcode{Lasso}}{\emph{Cs=500}, \emph{cv=10}, \emph{sampler='skf'}, \emph{solver='liblinear'}, \emph{**kwargs}}{}
@@ -304,27 +312,7 @@ score plot.
 \section{data\_tools.plots}
 \label{\detokenize{plots::doc}}\label{\detokenize{plots:data-tools-plots}}
 Plotting functions module.
-
-
-\subsection{Dependencies}
-\label{\detokenize{plots:dependencies}}\begin{itemize}
-\item {} 
-\sphinxhref{http://www.numpy.org/}{NumPy}
-
-\item {} 
-\sphinxhref{https://matplotlib.org/}{Matplotlib}
-
-\item {} 
-\sphinxhref{https://pandas.pydata.org/}{Pandas}
-
-\item {} 
-\sphinxhref{https://www.scipy.org/}{SciPy}
-
-\end{itemize}
-
-
-\subsection{Reference}
-\label{\detokenize{plots:reference}}\index{density() (in module data\_tools.plots)}
+\index{density() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{density}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -601,10 +589,7 @@ volcano plot.
 \section{data\_tools.sets}
 \label{\detokenize{sets:data-tools-sets}}\label{\detokenize{sets::doc}}
 Set operations module.
-
-
-\subsection{Reference}
-\label{\detokenize{sets:reference}}\index{bit\_or() (in module data\_tools.sets)}
+\index{bit\_or() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{bit\_or}}{\emph{a}, \emph{b}}{}
@@ -789,10 +774,7 @@ that denote the logical relation (see examples below).
 \section{data\_tools.strings}
 \label{\detokenize{strings::doc}}\label{\detokenize{strings:data-tools-strings}}
 String operations module.
-
-
-\subsection{Reference}
-\label{\detokenize{strings:reference}}\index{is\_numeric() (in module data\_tools.strings)}
+\index{is\_numeric() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{data\_tools.strings.}\sphinxbfcode{is\_numeric}}{\emph{s}}{}

@@ -10,6 +10,14 @@ data_tools' reference
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
+Disclaimer
+==========
+
+This package is still under development and will be periodically updated
+with new features. Contributions are very welcome (fork + pull request).
+If you find any bug or suggestion for upgrades, please use the
+`issue system <https://github.com/Nic-Nic/data_tools/issues>`_.
+
 
 Copyright (C) 2018 Nicolàs Palacio
 
@@ -29,6 +37,36 @@ A full copy of the GNU General Public License can be found on file
 `LICENSE.md <../../../LICENSE.md>`_. If not, see
 http://www.gnu.org/licenses/.
 
+.. only:: html
+
+   Contents
+   ========
+
+   - :meth:`data_tools.models`
+      - :meth:`data_tools.models.Lasso`
+   - :meth:`data_tools.plots`
+      - :meth:`data_tools.plots.density`
+      - :meth:`data_tools.plots.density`
+      - :meth:`data_tools.plots.piano_consensus`
+      - :meth:`data_tools.plots.venn`
+      - :meth:`data_tools.plots.volcano`
+   - :meth:`data_tools.sets`
+      - :meth:`data_tools.sets.bit_or`
+      - :meth:`data_tools.sets.find_min`
+      - :meth:`data_tools.sets.in_all`
+      - :meth:`data_tools.sets.subsets`
+   - :meth:`data_tools.strings`
+      - :meth:`data_tools.strings.is_numeric`
+      - :meth:`data_tools.strings.join_str_lists`
+
+Dependencies
+============
+
+- `NumPy <http://www.numpy.org/>`_
+- `Matplotlib <https://matplotlib.org/>`_
+- `Pandas <https://pandas.pydata.org/>`_
+- `SciPy <https://www.scipy.org/>`_
+- `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
 
 Installation
 ============
@@ -54,9 +92,20 @@ Or using ``pip``:
 
    pip install .
 
+.. only:: html
 
-Module reference
-================
+   Documentation
+   =============
+
+   You can find a detailed description of the modules and functions
+   within this package in this webpage, also available as a
+   :download:`PDF <../latex/data_tools.pdf>`.
+
+   You can also find the version history in the
+   `changelog <https://github.com/Nic-Nic/data_tools/blob/master/changelog.md>`_.
+
+Modules
+=======
 
 .. toctree::
    :maxdepth: 5

@@ -5,6 +5,13 @@
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
+## Disclaimer
+
+This package is still under development and will be periodically updated
+with new features. Contributions are very welcome (fork + pull request).
+If you find any bug or suggestion for upgrades, please use the [issue
+system](https://github.com/Nic-Nic/data_tools/issues).
+
 
 Copyright (C) 2018 Nicolàs Palacio
 
@@ -22,13 +29,6 @@ Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
 [LICENSE.md](LICENSE.md). If not, see <http://www.gnu.org/licenses/>.
-
-## Disclaimer
-
-This package is still under development and will be periodically updated
-with new features. Contributions are very welcome (fork + pull request).
-If you find any bug or suggestion for upgrades, please use the [issue
-system](https://github.com/Nic-Nic/data_tools/issues).
 
 ## Contents
 
@@ -78,8 +78,10 @@ Or using `pip`:
 pip install .
 ```
 
-## Reference
+## Documentation
 
 You can find a detailed description of the modules and functions within
 this package in the [webpage](https://nic-nic.github.io/data_tools/),
 also available as a [PDF](/docs/latex/data_tools.pdf).
+
+You can also find the version history in the [changelog](changelog.md).
