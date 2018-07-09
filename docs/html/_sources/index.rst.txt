@@ -34,7 +34,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
-`LICENSE.md <../../../LICENSE.md>`_. If not, see
+`LICENSE.md <../../LICENSE.md>`_. If not, see
 http://www.gnu.org/licenses/.
 
 .. only:: html
