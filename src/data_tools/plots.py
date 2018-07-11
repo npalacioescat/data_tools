@@ -5,17 +5,6 @@ data_tools.plots
 ================
 
 Plotting functions module.
-
-Dependencies
-------------
-
-- `NumPy <http://www.numpy.org/>`_
-- `Matplotlib <https://matplotlib.org/>`_
-- `Pandas <https://pandas.pydata.org/>`_
-- `SciPy <https://www.scipy.org/>`_
-
-Reference
----------
 '''
 
 __all__ = ['density', 'piano_consensus', 'venn', 'volcano']

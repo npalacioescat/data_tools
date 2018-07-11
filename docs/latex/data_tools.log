@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  6 JUL 2018 17:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  11 JUL 2018 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -467,7 +467,7 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \c@AlphaCnt=\count102
 \c@AlphaDecCnt=\count103
 ) (./sphinx.sty
-Package: sphinx 2017/12/12 v1.6.6 LaTeX package (Sphinx markup)
+Package: sphinx 2018/03/11 v1.7.2 LaTeX package (Sphinx markup)
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
@@ -764,7 +764,7 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \FV@StepNumber=\count113
 \FV@OutFile=\write3
 ) (./footnotehyper-sphinx.sty
-Package: footnotehyper-sphinx 2017/03/07 v1.6 hyperref aware footnote.sty for s
+Package: footnotehyper-sphinx 2017/10/27 v1.7 hyperref aware footnote.sty for s
 phinx (JFB)
 \FNH@notes=\box35
 \FNH@width=\dimen134
@@ -801,6 +801,7 @@ Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
+(/usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty)
 (./sphinxhighlight.sty
 Package: sphinxhighlight 2016/05/29 stylesheet for highlighting with pygments
 )
@@ -833,9 +834,9 @@ Package etexcmds Info: Could not find \expanded.
 \spx@notice@border=\dimen142
 \spx@image@box=\box39
 \c@literalblock=\count116
-\spx@Verbatim@TitleBox=\box40
-\sphinxcontinuationbox=\box41
-\sphinxvisiblespacebox=\box42
+\sphinxcontinuationbox=\box40
+\sphinxvisiblespacebox=\box41
+\sphinxVerbatim@TitleBox=\box42
 \py@argswidth=\skip71
 \lineblockindentation=\skip72
 \DUlineblockindent=\skip73
@@ -989,29 +990,29 @@ Writing index file data_tools.idx
 (./data_tools.aux)
 \openout1 = `data_tools.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 65.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 64.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 65.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -1081,7 +1082,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring ON on input line 64.
+Package hyperref Info: Link coloring ON on input line 65.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1090,54 +1091,54 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count136
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 65.
+LaTeX Info: Redefining \pageref on input line 65.
+LaTeX Info: Redefining \nameref on input line 65.
 
 (./data_tools.out) (./data_tools.out)
 \@outlinefile=\write5
 \openout5 = `data_tools.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 67.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 67.
+Package hyperref Info: Option `pageanchor' set `false' on input line 68.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 68.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
 <<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Try loading font information for U+msa on input line 67.
+LaTeX Font Info:    Try loading font information for U+msa on input line 68.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 67.
+LaTeX Font Info:    Try loading font information for U+msb on input line 68.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
  (./data_tools.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
@@ -1153,82 +1154,88 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 
 ]
 Chapter 1.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 1.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [3] [4
+[3] [4
 
 ]
 Chapter 2.
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 1.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 136.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 104.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [5]
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1.
+) [5] [6
 
+]
+Chapter 3.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 124.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [7] [8
+
+]
+Chapter 4.
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 158.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
-Underfull \hbox (badness 5741) in paragraph at lines 232--234
+) [9]
+Underfull \hbox (badness 5741) in paragraph at lines 238--240
 []\T1/ptm/m/it/10 **kwargs\T1/ptm/m/n/10 : Op-tional. Any other key-word ar-gu-
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
-[6] [7]
+[10]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 486.
-<piano_consensus_example.png, id=167, 505.89pt x 578.16pt>
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 472.
+<piano_consensus_example.png, id=152, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 489.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 475.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
- [8 <./piano_consensus_example.png>]
+ [11] [12 <./piano_consensus_example.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 553.
-<venn_example.png, id=175, 433.62pt x 289.08pt>
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 539.
+<venn_example.png, id=165, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 557.
+Package pdftex.def Info: venn_example.png  used on input line 543.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
- [9 <./venn_example.png>]
-<volcano_example.png, id=184, 462.528pt x 346.896pt>
+ [13 <./venn_example.png>]
+<volcano_example.png, id=173, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 640.
+Package pdftex.def Info: volcano_example.png  used on input line 626.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
- [10 <./volcano_example.png>] [11] [12] [13] [14
 
-] [15
-
-
-] (./data_tools.ind [16
+[14 <./volcano_example.png>] [15] [16] [17
 
 
-] [17
+
+] (./data_tools.ind [18
+
+
+] [19
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 956.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 956.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 936.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 936.
 
 (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 956.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 956.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 936.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 936.
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 13F045BF50B8045787E52F0AEB0E9E61;1939.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 956.
+(rerunfilecheck)             Checksum: 521FD0FCFA32DFBBC5CE77D8D12C9FE9;1310.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 936.
  ) 
 Here is how much of TeX's memory you used:
- 13683 strings out of 494923
- 189276 string characters out of 6180743
- 294255 words of memory out of 5000000
- 16627 multiletter control sequences out of 15000+600000
- 51505 words of font info for 75 fonts, out of 8000000 for 9000
+ 13692 strings out of 494923
+ 189688 string characters out of 6180743
+ 298730 words of memory out of 5000000
+ 16637 multiletter control sequences out of 15000+600000
+ 48125 words of font info for 73 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 37i,11n,45p,513b,633s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,45p,513b,638s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
@@ -1238,10 +1245,10 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (21 pages, 323566 bytes).
+Output written on data_tools.pdf (23 pages, 323049 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
- 254 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
- 164 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 233 compressed objects within 3 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 124 words of extra memory for PDF output out of 10000 (max. 10000000)
 

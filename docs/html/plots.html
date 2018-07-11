@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>data_tools.plots &#8212; data_tools 0.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -26,8 +18,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.sets" href="sets.html" />
     <link rel="prev" title="data_tools.models" href="models.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -55,17 +46,6 @@
   <span class="target" id="module-data_tools.plots"></span><div class="section" id="data-tools-plots">
 <h1>data_tools.plots<a class="headerlink" href="#data-tools-plots" title="Permalink to this headline">¶</a></h1>
 <p>Plotting functions module.</p>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.numpy.org/">NumPy</a></li>
-<li><a class="reference external" href="https://matplotlib.org/">Matplotlib</a></li>
-<li><a class="reference external" href="https://pandas.pydata.org/">Pandas</a></li>
-<li><a class="reference external" href="https://www.scipy.org/">SciPy</a></li>
-</ul>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.plots.density">
 <code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
@@ -77,15 +57,15 @@
 <li><em>df</em> [pandas.DataFrame]: Contains the values to generate the
 plot. Each row is considered as an individual sample while
 each column contains a measured value.</li>
-<li><em>cvf</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.25</span></code> by default. Co-variance
+<li><em>cvf</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.25</span></code> by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</li>
 </ul>
@@ -107,11 +87,11 @@ density plot.</li>
 <dl class="function">
 <dt id="data_tools.plots.piano_consensus">
 <code class="descclassname">data_tools.plots.</code><code class="descname">piano_consensus</code><span class="sig-paren">(</span><em>df</em>, <em>nchar=40</em>, <em>boxes=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#piano_consensus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.piano_consensus" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates a GSEA consensus score plot like R package <code class="docutils literal"><span class="pre">piano</span></code>’s
-<code class="docutils literal"><span class="pre">consensusScores</span></code> function, but prettier.
-The main input is assumed to be a <code class="docutils literal"><span class="pre">pandas.DataFrame</span></code> whose data
-is the same as the <code class="docutils literal"><span class="pre">rankMat</span></code> from the result of
-<code class="docutils literal"><span class="pre">consensusScores</span></code>.</p>
+<dd><p>Generates a GSEA consensus score plot like R package <code class="docutils literal notranslate"><span class="pre">piano</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">consensusScores</span></code> function, but prettier.
+The main input is assumed to be a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> whose data
+is the same as the <code class="docutils literal notranslate"><span class="pre">rankMat</span></code> from the result of
+<code class="docutils literal notranslate"><span class="pre">consensusScores</span></code>.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
@@ -119,19 +99,19 @@ is the same as the <code class="docutils literal"><span class="pre">rankMat</spa
 <li><em>df</em> [pandas.DataFrame]: Values contained correspond to the
 scores of the gene-sets (consensus and each individual
 methods). Index must contain the gene-set labels. Columns are
-assumed to be <code class="docutils literal"><span class="pre">ConsRank</span></code> (ignored), <code class="docutils literal"><span class="pre">ConsScore</span></code> followed
-by the individual methods (e.g.: <code class="docutils literal"><span class="pre">mean</span></code>, <code class="docutils literal"><span class="pre">median</span></code>,
-<code class="docutils literal"><span class="pre">sum</span></code>, etc).</li>
-<li><em>nchar</em> [int]: Optional, <code class="docutils literal"><span class="pre">40</span></code> by default. Number of string
+assumed to be <code class="docutils literal notranslate"><span class="pre">ConsRank</span></code> (ignored), <code class="docutils literal notranslate"><span class="pre">ConsScore</span></code> followed
+by the individual methods (e.g.: <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sum</span></code>, etc).</li>
+<li><em>nchar</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">40</span></code> by default. Number of string
 characters of the gene-set labels of the plot.</li>
-<li><em>boxes</em> [bool]: Optional, <code class="docutils literal"><span class="pre">True</span></code> by default. Determines
+<li><em>boxes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Determines
 whether to show the boxplots of the gene-sets or not.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</li>
 </ul>
@@ -149,7 +129,7 @@ combination of box and scatter plots of the gene-set scores.</li>
 </li>
 <li><dl class="first docutils">
 <dt>Example:</dt>
-<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </pre></div>
 </div>
 <a class="last reference internal image-reference" href="_images/piano_consensus_example.png"><img alt="_images/piano_consensus_example.png" class="align-center" src="_images/piano_consensus_example.png" style="width: 420.0px; height: 480.0px;" /></a>
@@ -169,20 +149,20 @@ between 2 and 4 (inclusive).</p>
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D']</span></code> by
+<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D']</span></code> by
 default. Labels for the sets following the same order as
 provided in <em>N</em>.</li>
-<li><em>c</em> [list]: Optional, <code class="docutils literal"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3']</span></code> by default
+<li><em>c</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3']</span></code> by default
 (matplotlib default colors). Any iterable containing color
-arguments tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for
+arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for
 red and blue). Must contain at least the same number of
 elements as <em>N</em> (if more are provided, they will be ignored).</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</li>
 </ul>
@@ -200,7 +180,7 @@ combination of box and scatter plots of the gene-set scores.</li>
 </li>
 <li><dl class="first docutils">
 <dt>Example:</dt>
-<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span> <span class="c1"># Sets A, B, C</span>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span> <span class="c1"># Sets A, B, C</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">venn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -226,25 +206,25 @@ as <em>logpval</em>.</li>
 <li><em>logpval</em> [list]: Or any iterable type. Contains the -log
 p-values (usually base 10). Must have the same length as
 <em>logfc</em>.</li>
-<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal"><span class="pre">0.05</span></code> by default. Specifies
+<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.05</span></code> by default. Specifies
 the p-value (non log-transformed) threshold to consider a
 measurement as significantly differentially expressed.</li>
-<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal"><span class="pre">2</span></code>. by default. Specifies the
+<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code>. by default. Specifies the
 FC (non log-transformed) threshold to consider a measurement
 as significantly differentially expressed.</li>
-<li><em>c</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
+<li><em>c</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
 default colors). Any iterable containing two color arguments
-tolerated by matplotlib (e.g.: <code class="docutils literal"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
+tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
 blue). First one is used for non-significant points, second
 for the significant ones.</li>
-<li><em>legend</em> [bool]: Optional, <code class="docutils literal"><span class="pre">True</span></code> by default. Indicates
+<li><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
 whether to show the plot legend or not.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. Defines the plot
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default. If passed,
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal"><span class="pre">None</span></code> by default (default
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</li>
 </ul>
@@ -262,7 +242,7 @@ volcano plot.</li>
 </li>
 <li><dl class="first docutils">
 <dt>Example:</dt>
-<dd><div class="first highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="last reference internal image-reference" href="_images/volcano_example.png"><img alt="_images/volcano_example.png" class="align-center" src="_images/volcano_example.png" style="width: 384.0px; height: 288.0px;" /></a>
@@ -273,7 +253,6 @@ volcano plot.</li>
 </dd></dl>
 
 </div>
-</div>
 
 
           </div>
@@ -281,15 +260,6 @@ volcano plot.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">data_tools.plots</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li><a class="reference internal" href="#reference">Reference</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="models.html"
                         title="previous chapter">data_tools.models</a></p>
@@ -305,12 +275,14 @@ volcano plot.</li>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -337,7 +309,7 @@ volcano plot.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

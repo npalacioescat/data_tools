@@ -25,10 +25,10 @@ A full copy of the GNU General Public License can be found on file
 '''
 
 __version__ = '0.0.4'
-__author__ = 'Nicolàs Palacio'
+__author__ = u'Nicolàs Palacio'
 
-import data_tools.strings as strings
-import data_tools.sets as sets
-import data_tools.plots as plots
-import data_tools.models as models
 import data_tools.diffusion as diffusion
+import data_tools.models as models
+import data_tools.plots as plots
+import data_tools.sets as sets
+import data_tools.strings as strings

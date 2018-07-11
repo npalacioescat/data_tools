@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>data_tools.strings &#8212; data_tools 0.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -25,8 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="data_tools.sets" href="sets.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -51,8 +42,6 @@
   <span class="target" id="module-data_tools.strings"></span><div class="section" id="data-tools-strings">
 <h1>data_tools.strings<a class="headerlink" href="#data-tools-strings" title="Permalink to this headline">¶</a></h1>
 <p>String operations module.</p>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.strings.is_numeric">
 <code class="descclassname">data_tools.strings.</code><code class="descname">is_numeric</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/strings.html#is_numeric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.strings.is_numeric" title="Permalink to this definition">¶</a></dt>
@@ -70,7 +59,7 @@ also considered, since it is float type.</p>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
-<li>[bool]: <code class="docutils literal"><span class="pre">True</span></code>/<code class="docutils literal"><span class="pre">False</span></code> depending if the condition is
+<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code> depending if the condition is
 satisfied.</li>
 </ul>
 </dd>
@@ -78,7 +67,7 @@ satisfied.</li>
 </li>
 <li><dl class="first docutils">
 <dt>Examples:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">is_numeric</span><span class="p">(</span><span class="s1">&#39;-3.2&#39;</span><span class="p">)</span>
 <span class="go">True</span>
@@ -108,7 +97,7 @@ equal.</p>
 strings.</li>
 <li><em>b</em> [list]: Contains the second elements [str] of the joint
 strings.</li>
-<li><em>sep</em> [str]: Optional <code class="docutils literal"><span class="pre">''</span></code> (non separated) by default.
+<li><em>sep</em> [str]: Optional <code class="docutils literal notranslate"><span class="pre">''</span></code> (non separated) by default.
 Determines the separator between the joint strings.</li>
 </ul>
 </dd>
@@ -124,7 +113,7 @@ Determines the separator between the joint strings.</li>
 </li>
 <li><dl class="first docutils">
 <dt>Example:</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">join_str_lists</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
 <span class="go">[&#39;a_1&#39;, &#39;b_2&#39;]</span>
@@ -137,7 +126,6 @@ Determines the separator between the joint strings.</li>
 </dd></dl>
 
 </div>
-</div>
 
 
           </div>
@@ -145,14 +133,6 @@ Determines the separator between the joint strings.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">data_tools.strings</a><ul>
-<li><a class="reference internal" href="#reference">Reference</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="sets.html"
                         title="previous chapter">data_tools.sets</a></p>
@@ -165,12 +145,14 @@ Determines the separator between the joint strings.</li>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -194,7 +176,7 @@ Determines the separator between the joint strings.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
