@@ -5,6 +5,7 @@
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
 
+\PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
 \ifdefined\DeclareUnicodeCharacter
  \ifdefined\DeclareUnicodeCharacterAsOptional
@@ -29,7 +30,7 @@
 \usepackage{babel}
 \usepackage{times}
 \usepackage[Bjarne]{fncychap}
-\usepackage[dontkeepoldnames]{sphinx}
+\usepackage{sphinx}
 
 \usepackage{geometry}
 
@@ -54,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 09, 2018}
+\date{Jul 11, 2018}
 \release{0.0.4}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -71,17 +72,17 @@
 Data tools: a collection of Python functions and classes designed to
 make data scientists’ life easier.
 
+Copyright (C) 2018 Nicolàs Palacio
+
+Contact: \sphinxhref{mailto:nicolaspalacio91@gmail.com}{nicolaspalacio91@gmail.com}
+
 
 \chapter{Disclaimer}
-\label{\detokenize{index:data-tools-reference}}\label{\detokenize{index:disclaimer}}
+\label{\detokenize{index:disclaimer}}
 This package is still under development and will be periodically updated
 with new features. Contributions are very welcome (fork + pull request).
 If you find any bug or suggestion for upgrades, please use the
 \sphinxhref{https://github.com/Nic-Nic/data\_tools/issues}{issue system}.
-
-Copyright (C) 2018 Nicolàs Palacio
-
-Contact: \sphinxhref{mailto:nicolaspalacio91@gmail.com}{nicolaspalacio91@gmail.com}
 
 GNU-GLPv3:
 This program is free software: you can redistribute it and/or modify it
@@ -120,7 +121,7 @@ A full copy of the GNU General Public License can be found on file
 
 \chapter{Installation}
 \label{\detokenize{index:installation}}
-First download/clone \sphinxcode{data\_tools} from the
+First download/clone \sphinxcode{\sphinxupquote{data\_tools}} from the
 \sphinxhref{https://github.com/Nic-Nic/data\_tools.git}{GitHub repository}.
 From the terminal:
 
@@ -130,14 +131,14 @@ git clone https://github.com/Nic\PYGZhy{}Nic/data\PYGZus{}tools.git
 \PYG{n+nb}{cd} data\PYGZus{}tools
 \end{sphinxVerbatim}
 
-Then you can install it by running \sphinxcode{setup.py} as follows:
+Then you can install it by running \sphinxcode{\sphinxupquote{setup.py}} as follows:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 python setup.py sdist
 \end{sphinxVerbatim}
 
-Or using \sphinxcode{pip}:
+Or using \sphinxcode{\sphinxupquote{pip}}:
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -154,47 +155,47 @@ Model classes module.
 \index{Lasso (class in data\_tools.models)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{class }\sphinxcode{data\_tools.models.}\sphinxbfcode{Lasso}}{\emph{Cs=500}, \emph{cv=10}, \emph{sampler='skf'}, \emph{solver='liblinear'}, \emph{**kwargs}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Lasso}}}{\emph{Cs=500}, \emph{cv=10}, \emph{sampler='skf'}, \emph{solver='liblinear'}, \emph{**kwargs}}{}
 Wrapper class inheriting from
-\sphinxcode{sklearn.linear\_model.LogisticRegressionCV} with L1
+\sphinxcode{\sphinxupquote{sklearn.linear\_model.LogisticRegressionCV}} with L1
 regularization.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{Cs} {[}int{]}: Optional, \sphinxcode{500} by default. Integer or list of
+\sphinxstyleemphasis{Cs} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{500}} by default. Integer or list of
 float values of regularization parameters to test. If an
 integer is passed, it will determine the number of values
-taken from a logarithmic scale between \sphinxcode{1e-4} and \sphinxcode{1e4}.
+taken from a logarithmic scale between \sphinxcode{\sphinxupquote{1e-4}} and \sphinxcode{\sphinxupquote{1e4}}.
 Note that the value of the parameter is defined as the inverse
 of the regularization strength.
 
 \item {} 
-\sphinxstyleemphasis{cv} {[}int{]}: Optional, \sphinxcode{10} by default. Denotes the number of
+\sphinxstyleemphasis{cv} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{10}} by default. Denotes the number of
 cross validation (CV) folds.
 
 \item {} 
-\sphinxstyleemphasis{sampler} {[}str{]}: Optional, \sphinxcode{'skf'} by default. Determines
+\sphinxstyleemphasis{sampler} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'skf'}} by default. Determines
 which sampling method is used to generate the test and
-training sets for CV. Methods available are K-Fold (\sphinxcode{'kf'}),
-Shuffle Split (\sphinxcode{'ss'}) and their stratified variants
-(\sphinxcode{'skf'} and \sphinxcode{'sss'} respectively).
+training sets for CV. Methods available are K-Fold (\sphinxcode{\sphinxupquote{'kf'}}),
+Shuffle Split (\sphinxcode{\sphinxupquote{'ss'}}) and their stratified variants
+(\sphinxcode{\sphinxupquote{'skf'}} and \sphinxcode{\sphinxupquote{'sss'}} respectively).
 
 \item {} 
-\sphinxstyleemphasis{solver} {[}str{]}: Optional, \sphinxcode{'liblinear'} by default.
+\sphinxstyleemphasis{solver} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'liblinear'}} by default.
 Determines which solver algorithm to use. Note that L1
-regularization can only be handled by \sphinxcode{'liblinear'} and
-\sphinxcode{'saga'}. Additionally if the classification is multinomial,
+regularization can only be handled by \sphinxcode{\sphinxupquote{'liblinear'}} and
+\sphinxcode{\sphinxupquote{'saga'}}. Additionally if the classification is multinomial,
 only the latter option is available.
 
 \item {} 
 \sphinxstyleemphasis{**kwargs}: Optional. Any other keyword argument accepted by
-the \sphinxcode{sklearn.linear\_model.LogisticRegressionCV} class.
+the \sphinxcode{\sphinxupquote{sklearn.linear\_model.LogisticRegressionCV}} class.
 
 \end{itemize}
 
 Other keyword arguments and functions available from the parent
-class \sphinxcode{LogisticRegressionCV} can be fount in \sphinxhref{http://scikit-learn.org/stable/modules/generated/sklearn.linear\_model.LogisticRegressionCV.html}{Scikit-Learn’s
+class \sphinxcode{\sphinxupquote{LogisticRegressionCV}} can be fount in \sphinxhref{http://scikit-learn.org/stable/modules/generated/sklearn.linear\_model.LogisticRegressionCV.html}{Scikit-Learn’s
 reference}.
 
 \end{description}
@@ -203,7 +204,7 @@ reference}.
 \index{fit\_data() (data\_tools.models.Lasso method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{fit\_data}}{\emph{x}, \emph{y}, \emph{silent=False}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit\_data}}}{\emph{x}, \emph{y}, \emph{silent=False}}{}
 Fits the data to the logistic model.
 \begin{itemize}
 \item {} \begin{description}
@@ -219,7 +220,7 @@ observed class of each sample (must have the same order as
 in \sphinxstyleemphasis{x}).
 
 \item {} 
-\sphinxstyleemphasis{silent} {[}bool{]}: Optional, \sphinxcode{False} by default.
+\sphinxstyleemphasis{silent} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default.
 Determines whether messages are printed or not.
 
 \end{itemize}
@@ -233,19 +234,19 @@ Determines whether messages are printed or not.
 \index{plot\_coef() (data\_tools.models.Lasso method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{plot\_coef}}{\emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_coef}}}{\emph{filename=None}, \emph{figsize=None}}{}
 Plots the non-zero coefficients for the fitted predictor
 features.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If
 passed, indicates the file name or path where to store the
 figure. Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values
 denoting the figure size (in inches) as {[}width, height{]}.
 
@@ -270,19 +271,19 @@ bar plot of the non-zero coefficients.
 \index{plot\_score() (data\_tools.models.Lasso method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{plot\_score}}{\emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_score}}}{\emph{filename=None}, \emph{figsize=None}}{}
 Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If
 passed, indicates the file name or path where to store the
 figure. Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values
 denoting the figure size (in inches) as {[}width, height{]}.
 
@@ -310,12 +311,12 @@ score plot.
 \phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)}
 
 \section{data\_tools.plots}
-\label{\detokenize{plots::doc}}\label{\detokenize{plots:data-tools-plots}}
+\label{\detokenize{plots:data-tools-plots}}\label{\detokenize{plots::doc}}
 Plotting functions module.
 \index{density() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{density}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a density plot of the values on a data frame (row-wise).
 \begin{itemize}
 \item {} \begin{description}
@@ -326,21 +327,21 @@ plot. Each row is considered as an individual sample while
 each column contains a measured value.
 
 \item {} 
-\sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{0.25} by default. Co-variance
+\sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.25}} by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.
 
 \item {} 
-\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
 title.
 
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
@@ -365,12 +366,12 @@ density plot.
 \index{piano\_consensus() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{piano\_consensus}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
-Generates a GSEA consensus score plot like R package \sphinxcode{piano}’s
-\sphinxcode{consensusScores} function, but prettier.
-The main input is assumed to be a \sphinxcode{pandas.DataFrame} whose data
-is the same as the \sphinxcode{rankMat} from the result of
-\sphinxcode{consensusScores}.
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a GSEA consensus score plot like R package \sphinxcode{\sphinxupquote{piano}}’s
+\sphinxcode{\sphinxupquote{consensusScores}} function, but prettier.
+The main input is assumed to be a \sphinxcode{\sphinxupquote{pandas.DataFrame}} whose data
+is the same as the \sphinxcode{\sphinxupquote{rankMat}} from the result of
+\sphinxcode{\sphinxupquote{consensusScores}}.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -378,29 +379,29 @@ is the same as the \sphinxcode{rankMat} from the result of
 \sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Values contained correspond to the
 scores of the gene-sets (consensus and each individual
 methods). Index must contain the gene-set labels. Columns are
-assumed to be \sphinxcode{ConsRank} (ignored), \sphinxcode{ConsScore} followed
-by the individual methods (e.g.: \sphinxcode{mean}, \sphinxcode{median},
-\sphinxcode{sum}, etc).
+assumed to be \sphinxcode{\sphinxupquote{ConsRank}} (ignored), \sphinxcode{\sphinxupquote{ConsScore}} followed
+by the individual methods (e.g.: \sphinxcode{\sphinxupquote{mean}}, \sphinxcode{\sphinxupquote{median}},
+\sphinxcode{\sphinxupquote{sum}}, etc).
 
 \item {} 
-\sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{40} by default. Number of string
+\sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{40}} by default. Number of string
 characters of the gene-set labels of the plot.
 
 \item {} 
-\sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{True} by default. Determines
+\sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Determines
 whether to show the boxplots of the gene-sets or not.
 
 \item {} 
-\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
 title.
 
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
@@ -436,7 +437,7 @@ combination of box and scatter plots of the gene-set scores.
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{venn}}{\emph{N, labels={[}'A', 'B', 'C', 'D'{]}, c={[}'C0', 'C1', 'C2', 'C3'{]}, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D'{]}, c={[}'C0', 'C1', 'C2', 'C3'{]}, title=None, filename=None, figsize=None}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
 between 2 and 4 (inclusive).
 \begin{itemize}
@@ -446,28 +447,28 @@ between 2 and 4 (inclusive).
 \sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
 
 \item {} 
-\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{{[}'A', 'B', 'C', 'D'{]}} by
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'A', 'B', 'C', 'D'{]}}} by
 default. Labels for the sets following the same order as
 provided in \sphinxstyleemphasis{N}.
 
 \item {} 
-\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{{[}'C0', 'C1' 'C2', 'C3'{]}} by default
+\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'C0', 'C1' 'C2', 'C3'{]}}} by default
 (matplotlib default colors). Any iterable containing color
-arguments tolerated by matplotlib (e.g.: \sphinxcode{{[}'r', 'b'{]}} for
+arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for
 red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
 
 \item {} 
-\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
 title.
 
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
@@ -504,7 +505,7 @@ combination of box and scatter plots of the gene-set scores.
 \index{volcano() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{data\_tools.plots.}\sphinxbfcode{volcano}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
@@ -521,37 +522,37 @@ p-values (usually base 10). Must have the same length as
 \sphinxstyleemphasis{logfc}.
 
 \item {} 
-\sphinxstyleemphasis{thr\_pval} {[}float{]}: Optional, \sphinxcode{0.05} by default. Specifies
+\sphinxstyleemphasis{thr\_pval} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.05}} by default. Specifies
 the p-value (non log-transformed) threshold to consider a
 measurement as significantly differentially expressed.
 
 \item {} 
-\sphinxstyleemphasis{thr\_fc} {[}float{]}: Optional, \sphinxcode{2}. by default. Specifies the
+\sphinxstyleemphasis{thr\_fc} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{2}}. by default. Specifies the
 FC (non log-transformed) threshold to consider a measurement
 as significantly differentially expressed.
 
 \item {} 
-\sphinxstyleemphasis{c} {[}tuple{]}: Optional, \sphinxcode{('C0', 'C1')} by default (matplotlib
+\sphinxstyleemphasis{c} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{('C0', 'C1')}} by default (matplotlib
 default colors). Any iterable containing two color arguments
-tolerated by matplotlib (e.g.: \sphinxcode{{[}'r', 'b'{]}} for red and
+tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for red and
 blue). First one is used for non-significant points, second
 for the significant ones.
 
 \item {} 
-\sphinxstyleemphasis{legend} {[}bool{]}: Optional, \sphinxcode{True} by default. Indicates
+\sphinxstyleemphasis{legend} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Indicates
 whether to show the plot legend or not.
 
 \item {} 
-\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{None} by default. Defines the plot
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
 title.
 
 \item {} 
-\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{None} by default. If passed,
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
 indicates the file name or path where to store the figure.
 Format must be specified (e.g.: .png, .pdf, etc)
 
 \item {} 
-\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{None} by default (default
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
@@ -592,7 +593,7 @@ Set operations module.
 \index{bit\_or() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{bit\_or}}{\emph{a}, \emph{b}}{}
+\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
 Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
 NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
 \begin{itemize}
@@ -635,7 +636,7 @@ NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same siz
 \index{find\_min() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{find\_min}}{\emph{A}}{}
+\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
 Finds and returns the subset of vectors whose sum is minimum from a
 given set \sphinxstyleemphasis{A}.
 \begin{itemize}
@@ -675,7 +676,7 @@ given set \sphinxstyleemphasis{A}.
 \index{in\_all() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.in_all}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{in\_all}}{\emph{x}, \emph{N}}{}
+\phantomsection\label{\detokenize{sets:data_tools.sets.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
 Checks if a vector \sphinxstyleemphasis{x} is present in all sets contained in a list
 \sphinxstyleemphasis{N}.
 \begin{itemize}
@@ -695,7 +696,7 @@ contained in the sets of \sphinxstyleemphasis{N}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}bool{]}: \sphinxcode{True} if \sphinxstyleemphasis{x} is found in all sets of \sphinxstyleemphasis{N}, \sphinxcode{False}
+{[}bool{]}: \sphinxcode{\sphinxupquote{True}} if \sphinxstyleemphasis{x} is found in all sets of \sphinxstyleemphasis{N}, \sphinxcode{\sphinxupquote{False}}
 otherwise.
 
 \end{itemize}
@@ -725,7 +726,7 @@ otherwise.
 \index{subsets() (in module data\_tools.sets)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.subsets}}\pysiglinewithargsret{\sphinxcode{data\_tools.sets.}\sphinxbfcode{subsets}}{\emph{N}}{}
+\phantomsection\label{\detokenize{sets:data_tools.sets.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
 Function that computes all possible logical relations between all
 sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
 that would represent each intersecting area on a Venn diagram.
@@ -772,12 +773,12 @@ that denote the logical relation (see examples below).
 \phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)}
 
 \section{data\_tools.strings}
-\label{\detokenize{strings::doc}}\label{\detokenize{strings:data-tools-strings}}
+\label{\detokenize{strings:data-tools-strings}}\label{\detokenize{strings::doc}}
 String operations module.
 \index{is\_numeric() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{data\_tools.strings.}\sphinxbfcode{is\_numeric}}{\emph{s}}{}
+\phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{s}}{}
 Determines if a string can be considered a numeric value. NaN is
 also considered, since it is float type.
 \begin{itemize}
@@ -793,7 +794,7 @@ also considered, since it is float type.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}bool{]}: \sphinxcode{True}/\sphinxcode{False} depending if the condition is
+{[}bool{]}: \sphinxcode{\sphinxupquote{True}}/\sphinxcode{\sphinxupquote{False}} depending if the condition is
 satisfied.
 
 \end{itemize}
@@ -823,7 +824,7 @@ satisfied.
 \index{join\_str\_lists() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{strings:data_tools.strings.join_str_lists}}\pysiglinewithargsret{\sphinxcode{data\_tools.strings.}\sphinxbfcode{join\_str\_lists}}{\emph{a}, \emph{b}, \emph{sep=''}}{}
+\phantomsection\label{\detokenize{strings:data_tools.strings.join_str_lists}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{join\_str\_lists}}}{\emph{a}, \emph{b}, \emph{sep=''}}{}
 Joins element-wise two lists (or any 1D iterable) of strings with a
 given separator (if provided). Length of the input lists must be
 equal.
@@ -839,7 +840,7 @@ strings.
 strings.
 
 \item {} 
-\sphinxstyleemphasis{sep} {[}str{]}: Optional \sphinxcode{'{'}} (non separated) by default.
+\sphinxstyleemphasis{sep} {[}str{]}: Optional \sphinxcode{\sphinxupquote{'{'}}} (non separated) by default.
 Determines the separator between the joint strings.
 
 \end{itemize}

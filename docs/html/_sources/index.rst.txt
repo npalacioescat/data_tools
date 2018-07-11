@@ -10,6 +10,10 @@ data_tools' reference
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
+Copyright (C) 2018 Nicolàs Palacio
+
+Contact: `nicolaspalacio91@gmail.com <mailto:nicolaspalacio91@gmail.com>`_
+
 Disclaimer
 ==========
 
@@ -18,10 +22,6 @@ with new features. Contributions are very welcome (fork + pull request).
 If you find any bug or suggestion for upgrades, please use the
 `issue system <https://github.com/Nic-Nic/data_tools/issues>`_.
 
-
-Copyright (C) 2018 Nicolàs Palacio
-
-Contact: `nicolaspalacio91@gmail.com <mailto:nicolaspalacio91@gmail.com>`_
 
 GNU-GLPv3:
 This program is free software: you can redistribute it and/or modify it
@@ -102,7 +102,7 @@ Or using ``pip``:
    :download:`PDF <../latex/data_tools.pdf>`.
 
    You can also find the version history in the
-   `changelog <https://github.com/Nic-Nic/data_tools/blob/master/changelog.md>`_.
+   `changelog <https://github.com/Nic-Nic/data_tools/blob/master/CHANGELOG.md>`_.
 
 Modules
 =======

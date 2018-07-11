@@ -121,6 +121,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/capt-of/capt-of.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty
 INPUT sphinxhighlight.sty
 INPUT sphinxhighlight.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
