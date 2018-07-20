@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 11, 2018}
+\date{Jul 20, 2018}
 \release{0.0.4}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -144,6 +144,17 @@ Or using \sphinxcode{\sphinxupquote{pip}}:
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 pip install .
 \end{sphinxVerbatim}
+
+Along with \sphinxcode{\sphinxupquote{data\_tools}}, all dependencies will be installed as well as
+the testing suite. In order to run the tests, type on the terminal:
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+python \PYGZhy{}m test\PYGZus{}data\PYGZus{}tools
+\end{sphinxVerbatim}
+
+\sphinxstylestrong{NOTE:} \sphinxcode{\sphinxupquote{data\_tools.plots}} module does not have any tests
+implemented.
 
 
 \chapter{Modules}

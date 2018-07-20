@@ -1,6 +1,7 @@
 # data_tools
 
-![GitHub release](https://img.shields.io/badge/release-v0.0.4-brightgreen.svg)
+![GitHub release](https://img.shields.io/badge/release-v0.0.4-blue.svg)
+![Tests output](https://img.shields.io/badge/tests-100%25_passed-brightgreen.svg)
 
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
@@ -77,6 +78,15 @@ Or using `pip`:
 ```bash
 pip install .
 ```
+
+Along with `data_tools`, all dependencies will be installed as well as
+the testing suite. In order to run the tests, type on the terminal:
+
+```bash
+python -m test_data_tools
+```
+
+**NOTE:** `data_tools.plots` module does not have any tests implemented.
 
 ## Documentation
 

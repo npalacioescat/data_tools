@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  11 JUL 2018 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.9)  20 JUL 2018 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1174,37 +1174,37 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ]
 Chapter 4.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 158.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 169.
 LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
-Underfull \hbox (badness 5741) in paragraph at lines 192--194
+Underfull \hbox (badness 5741) in paragraph at lines 203--205
 []\T1/ptm/m/it/10 **kwargs\T1/ptm/m/n/10 : Op-tional. Any other key-word ar-gu-
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
 [9] [10]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 426.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 437.
 <piano_consensus_example.png, id=145, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 429.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 440.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [11 <./piano_consensus_example.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 493.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 504.
 <venn_example.png, id=154, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 497.
+Package pdftex.def Info: venn_example.png  used on input line 508.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
  [12 <./venn_example.png>]
 <volcano_example.png, id=162, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 580.
+Package pdftex.def Info: volcano_example.png  used on input line 591.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 
 [13 <./volcano_example.png>] [14] [15] [16] [17
@@ -1219,14 +1219,14 @@ Package pdftex.def Info: volcano_example.png  used on input line 580.
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 889.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 889.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 900.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 900.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 889.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 889.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 900.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 900.
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
 (rerunfilecheck)             Checksum: 6F8965528BFBF982BBD5413122BE3856;1152.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 889.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 900.
  ) 
 Here is how much of TeX's memory you used:
  13684 strings out of 494923
@@ -1245,7 +1245,7 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (23 pages, 321676 bytes).
+Output written on data_tools.pdf (23 pages, 322317 bytes).
 PDF statistics:
  270 PDF objects out of 1000 (max. 8388607)
  222 compressed objects within 3 object streams

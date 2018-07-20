@@ -3,6 +3,7 @@
 ## v0.0.5 (WIP):
 - Linked GH-pages to HTML documentation.
 - Added changelog.
+- Implemented unit test.
 
 ## v0.0.4
 - In `plots` module:
