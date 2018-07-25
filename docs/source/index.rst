@@ -106,7 +106,6 @@ the testing suite. In order to run the tests, type on the terminal:
 
    python -m test_data_tools
 
-
 **NOTE:** ``data_tools.plots`` module does not have any tests
 implemented.
 
