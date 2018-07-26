@@ -42,6 +42,8 @@ http://www.gnu.org/licenses/.
    Contents
    ========
 
+   - :meth:`data_tools.databases`
+      - :meth:`data_tools.databases.up_query`
    - :meth:`data_tools.diffusion`
       - :meth:`data_tools.diffusion.euler_explicit1D`
    - :meth:`data_tools.models`
@@ -112,6 +114,7 @@ Modules
 .. toctree::
    :maxdepth: 5
 
+   databases
    diffusion
    models
    plots

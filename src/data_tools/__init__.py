@@ -27,6 +27,7 @@ A full copy of the GNU General Public License can be found on file
 __version__ = '0.0.4'
 __author__ = u'Nicolàs Palacio'
 
+import data_tools.databases as databases
 import data_tools.diffusion as diffusion
 import data_tools.models as models
 import data_tools.plots as plots

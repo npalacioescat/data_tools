@@ -6,12 +6,13 @@
 
   \indexspace
   \bigletter D
+  \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{9}
-  \item data\_tools.models (module), \hyperpage{9}
-  \item data\_tools.plots (module), \hyperpage{10}
+  \item data\_tools.models (module), \hyperpage{10}
+  \item data\_tools.plots (module), \hyperpage{11}
   \item data\_tools.sets (module), \hyperpage{14}
-  \item data\_tools.strings (module), \hyperpage{15}
-  \item density() (in module data\_tools.plots), \hyperpage{10}
+  \item data\_tools.strings (module), \hyperpage{16}
+  \item density() (in module data\_tools.plots), \hyperpage{11}
 
   \indexspace
   \bigletter E
@@ -19,13 +20,13 @@
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{14}
+  \item find\_min() (in module data\_tools.sets), \hyperpage{15}
   \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{10}
 
   \indexspace
   \bigletter I
   \item in\_all() (in module data\_tools.sets), \hyperpage{15}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{15}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{16}
 
   \indexspace
   \bigletter J
@@ -33,17 +34,21 @@
 
   \indexspace
   \bigletter L
-  \item Lasso (class in data\_tools.models), \hyperpage{9}
+  \item Lasso (class in data\_tools.models), \hyperpage{10}
 
   \indexspace
   \bigletter P
   \item piano\_consensus() (in module data\_tools.plots), \hyperpage{11}
   \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{10}
-  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{10}
+  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{11}
 
   \indexspace
   \bigletter S
   \item subsets() (in module data\_tools.sets), \hyperpage{15}
+
+  \indexspace
+  \bigletter U
+  \item up\_query() (in module data\_tools.databases), \hyperpage{9}
 
   \indexspace
   \bigletter V

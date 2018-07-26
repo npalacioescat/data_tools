@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.diffusion &#8212; data_tools 0.0.4 documentation</title>
+    <title>data_tools.databases &#8212; data_tools 0.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="data_tools.models" href="models.html" />
-    <link rel="prev" title="data_tools.databases" href="databases.html" /> 
+    <link rel="next" title="data_tools.diffusion" href="diffusion.html" />
+    <link rel="prev" title="data_tools’ reference" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,10 +29,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.html" title="data_tools.models"
+          <a href="diffusion.html" title="data_tools.diffusion"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="databases.html" title="data_tools.databases"
+          <a href="index.html" title="data_tools’ reference"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.4 documentation</a> &#187;</li> 
       </ul>
@@ -43,32 +43,49 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="module-data_tools.diffusion"></span><div class="section" id="data-tools-diffusion">
-<h1>data_tools.diffusion<a class="headerlink" href="#data-tools-diffusion" title="Permalink to this headline">¶</a></h1>
-<p>Diffusion solvers module.</p>
+  <span class="target" id="module-data_tools.databases"></span><div class="section" id="data-tools-databases">
+<h1>data_tools.databases<a class="headerlink" href="#data-tools-databases" title="Permalink to this headline">¶</a></h1>
+<p>Databases functions module.</p>
 <dl class="function">
-<dt id="data_tools.diffusion.euler_explicit1D">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">euler_explicit1D</code><span class="sig-paren">(</span><em>x0</em>, <em>dt</em>, <em>dx2</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#euler_explicit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.euler_explicit1D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes diffusion on a 1D space over a time-step using Euler
-explicit method</p>
-<ul class="simple">
+<dt id="data_tools.databases.up_query">
+<code class="descclassname">data_tools.databases.</code><code class="descname">up_query</code><span class="sig-paren">(</span><em>query</em>, <em>in_mode='ACC'</em>, <em>out_mode='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries a request to UniProt.org in order to map a given list of
+identifiers. You can check the options available of input/output
+identifiers at <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a>.</p>
+<ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>x0</em> []: .</li>
-<li><em>dt</em> []: .</li>
-<li><em>dx2</em> []: .</li>
-<li><em>d</em> []: .</li>
-<li><em>bcs</em> []: .</li>
+<dd><ul class="first last simple">
+<li><em>query</em> [list]: Or any iterable type containing the
+identifiers to be queried as [str].</li>
+<li><em>in_mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'ACC'</span></code> by default. This is,
+UniProt accesion number. You can check other options available
+in the URL above.</li>
+<li><em>out_mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'GENENAME'</span></code> by default. You can
+check other options available in the URL above.</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[]: .</li>
+<dd><ul class="first last simple">
+<li>[pandas.DataFrame]: Two-column table containing both the
+inputed identifiers and the mapping result of these.</li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P00533&#39;</span><span class="p">,</span> <span class="s1">&#39;P31749&#39;</span><span class="p">,</span> <span class="s1">&#39;P16220&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">up_query</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
+<span class="go">      ACC GENENAME</span>
+<span class="go">0  P00533     EGFR</span>
+<span class="go">1  P31749     AKT1</span>
+<span class="go">2  P16220    CREB1</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
@@ -84,15 +101,15 @@ explicit method</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="databases.html"
-                        title="previous chapter">data_tools.databases</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">data_tools’ reference</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="models.html"
-                        title="next chapter">data_tools.models</a></p>
+  <p class="topless"><a href="diffusion.html"
+                        title="next chapter">data_tools.diffusion</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/diffusion.rst.txt"
+      <li><a href="_sources/databases.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -122,10 +139,10 @@ explicit method</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="models.html" title="data_tools.models"
+          <a href="diffusion.html" title="data_tools.diffusion"
              >next</a> |</li>
         <li class="right" >
-          <a href="databases.html" title="data_tools.databases"
+          <a href="index.html" title="data_tools’ reference"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.4 documentation</a> &#187;</li> 
       </ul>

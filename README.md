@@ -32,6 +32,10 @@ A full copy of the GNU General Public License can be found on file
 
 ## Contents
 
+- [databases](https://nic-nic.github.io/data_tools/html/databases.html)
+    - [up_query](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.up_query)
+- [diffusion](https://nic-nic.github.io/data_tools/html/diffusion.html)
+    - [euler_explicit1D](https://nic-nic.github.io/data_tools/html/models.html#data_tools.diffusion.euler_explicit1D)
 - [models](https://nic-nic.github.io/data_tools/html/models.html)
     - [Lasso](https://nic-nic.github.io/data_tools/html/models.html#data_tools.models.Lasso)
 - [plots](https://nic-nic.github.io/data_tools/html/plots.html)
