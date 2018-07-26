@@ -1,6 +1,9 @@
 # data_tools version history
 
-## v0.0.5 (WIP):
+## v0.0.5:
+- Added `databases` module:
+    - Function `up_query`: Queries a request to UniProt.org in order to
+      map a given list of identifiers.
 - Linked GH-pages to HTML documentation.
 - Added changelog.
 - Implemented unit test.

@@ -2,29 +2,30 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.sets), \hyperpage{13}
+  \item bit\_or() (in module data\_tools.sets), \hyperpage{14}
 
   \indexspace
   \bigletter D
+  \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.models (module), \hyperpage{9}
   \item data\_tools.plots (module), \hyperpage{10}
-  \item data\_tools.sets (module), \hyperpage{13}
+  \item data\_tools.sets (module), \hyperpage{14}
   \item data\_tools.strings (module), \hyperpage{15}
-  \item density() (in module data\_tools.plots), \hyperpage{10}
+  \item density() (in module data\_tools.plots), \hyperpage{11}
 
   \indexspace
   \bigletter F
   \item find\_min() (in module data\_tools.sets), \hyperpage{14}
-  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{9}
+  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{10}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{14}
+  \item in\_all() (in module data\_tools.sets), \hyperpage{15}
   \item is\_numeric() (in module data\_tools.strings), \hyperpage{15}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{15}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{16}
 
   \indexspace
   \bigletter L
@@ -32,17 +33,21 @@
 
   \indexspace
   \bigletter P
-  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{10}
-  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{9}
+  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{11}
+  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{10}
   \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{10}
 
   \indexspace
   \bigletter S
-  \item subsets() (in module data\_tools.sets), \hyperpage{14}
+  \item subsets() (in module data\_tools.sets), \hyperpage{15}
+
+  \indexspace
+  \bigletter U
+  \item up\_query() (in module data\_tools.databases), \hyperpage{9}
 
   \indexspace
   \bigletter V
-  \item venn() (in module data\_tools.plots), \hyperpage{11}
-  \item volcano() (in module data\_tools.plots), \hyperpage{12}
+  \item venn() (in module data\_tools.plots), \hyperpage{12}
+  \item volcano() (in module data\_tools.plots), \hyperpage{13}
 
 \end{sphinxtheindex}

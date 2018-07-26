@@ -1,6 +1,6 @@
 # data_tools
 
-![GitHub release](https://img.shields.io/badge/release-v0.0.4-blue.svg)
+![GitHub release](https://img.shields.io/badge/release-v0.0.5-blue.svg)
 ![Tests output](https://img.shields.io/badge/tests-100%25_passed-brightgreen.svg)
 
 Data tools: a collection of Python functions and classes designed to
@@ -33,6 +33,8 @@ A full copy of the GNU General Public License can be found on file
 
 ## Contents
 
+- [databases](https://nic-nic.github.io/data_tools/html/databases.html)
+    - [up_query](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.up_query)
 - [models](https://nic-nic.github.io/data_tools/html/models.html)
     - [Lasso](https://nic-nic.github.io/data_tools/html/models.html#data_tools.models.Lasso)
 - [plots](https://nic-nic.github.io/data_tools/html/plots.html)

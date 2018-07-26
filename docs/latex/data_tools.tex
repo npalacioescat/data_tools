@@ -55,8 +55,8 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 25, 2018}
-\release{0.0.4}
+\date{Jul 26, 2018}
+\release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -158,7 +158,67 @@ implemented.
 
 
 \chapter{Modules}
-\label{\detokenize{index:modules}}\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)}
+\label{\detokenize{index:modules}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
+
+\section{data\_tools.databases}
+\label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
+Databases functions module.
+\index{up\_query() (in module data\_tools.databases)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{databases:data_tools.databases.up_query}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_query}}}{\emph{query}, \emph{in\_mode='ACC'}, \emph{out\_mode='GENENAME'}}{}
+Queries a request to UniProt.org in order to map a given list of
+identifiers. You can check the options available of input/output
+identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{query} {[}list{]}: Or any iterable type containing the
+identifiers to be queried as {[}str{]}.
+
+\item {} 
+\sphinxstyleemphasis{in\_mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'ACC'}} by default. This is,
+UniProt accesion number. You can check other options available
+in the URL above.
+
+\item {} 
+\sphinxstyleemphasis{out\_mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'GENENAME'}} by default. You can
+check other options available in the URL above.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}pandas.DataFrame{]}: Two-column table containing both the
+inputed identifiers and the mapping result of these.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P00533}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P31749}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P16220}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{up\PYGZus{}query}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
+\PYG{g+go}{      ACC GENENAME}
+\PYG{g+go}{0  P00533     EGFR}
+\PYG{g+go}{1  P31749     AKT1}
+\PYG{g+go}{2  P16220    CREB1}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)}
 
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
@@ -889,6 +949,7 @@ Determines the separator between the joint strings.
 \begin{sphinxtheindex}
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 \bigletter{d}
+\item {\sphinxstyleindexentry{data\_tools.databases}}\sphinxstyleindexpageref{databases:\detokenize{module-data_tools.databases}}
 \item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
 \item {\sphinxstyleindexentry{data\_tools.sets}}\sphinxstyleindexpageref{sets:\detokenize{module-data_tools.sets}}

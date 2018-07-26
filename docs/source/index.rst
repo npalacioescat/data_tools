@@ -9,7 +9,7 @@ data_tools' reference
 
 .. only:: html
 
-   .. image:: https://img.shields.io/badge/release-v0.0.4-blue.svg
+   .. image:: https://img.shields.io/badge/release-v0.0.5-blue.svg
       :alt: GitHub release
    .. image:: https://img.shields.io/badge/tests-100%25_passed-brightgreen.svg
       :alt: Tests output
@@ -49,6 +49,8 @@ http://www.gnu.org/licenses/.
    Contents
    ========
 
+   - :meth:`data_tools.databases`
+      - :meth:`data_tools.databases.up_query`
    - :meth:`data_tools.models`
       - :meth:`data_tools.models.Lasso`
    - :meth:`data_tools.plots`
@@ -127,6 +129,7 @@ Modules
 .. toctree::
    :maxdepth: 5
 
+   databases
    models
    plots
    sets
