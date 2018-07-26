@@ -1,5 +1,10 @@
 # data_tools version history
 
+## v0.0.6 (WIP):
+- Added `diffusion` module:
+    - Function `euler_explicit1D`: Computes diffusion on a 1D space over
+      a time-step using Euler explicit method.
+
 ## v0.0.5:
 - Added `databases` module:
     - Function `up_query`: Queries a request to UniProt.org in order to
