@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup #, find_packages
+from setuptools import setup,  find_packages
 
 from data_tools import __version__, __author__
 
@@ -12,7 +12,7 @@ setup(name='data_tools',
       author_email='nicolaspalacio91@gmail.com',
       license='GNU-GLPv3',
       package_dir = {'':'src'},
-      packages=['data_tools'], #find_packages('src'),
+      packages=find_packages('src'),
       install_requires=['numpy',
                         'matplotlib',
                         'pandas',

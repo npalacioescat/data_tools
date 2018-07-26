@@ -24,7 +24,7 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __author__ = u'Nicolàs Palacio'
 
 import data_tools.databases as databases

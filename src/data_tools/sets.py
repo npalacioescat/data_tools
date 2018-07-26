@@ -11,6 +11,8 @@ __all__ = ['bit_or', 'find_min', 'in_all', 'subsets']
 
 import itertools
 
+import numpy as np
+
 
 def bit_or(a, b):
     '''
@@ -55,7 +57,7 @@ def find_min(A):
     '''
 
     A = list(A)
-    sums = map(sum, A)
+    sums = np.array(map(sum, A))
     idx_mins = np.where(sums == min(sums))[0]
 
     return {A[i] for i in idx_mins}
