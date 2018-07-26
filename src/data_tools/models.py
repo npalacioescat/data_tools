@@ -185,6 +185,7 @@ class Lasso(LogisticRegressionCV):
             - *figsize* [tuple]: Optional, ``None`` by default (default
               matplotlib size). Any iterable containing two values
               denoting the figure size (in inches) as [width, height].
+
         * Returns:
             - [matplotlib.figure.Figure]: Figure object containing the
               bar plot of the non-zero coefficients.
