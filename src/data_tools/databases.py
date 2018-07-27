@@ -52,9 +52,11 @@ def kegg_link(query, target='pathway'):
     page = response.read(200000)
 
     df = to_df(page, header=False)
-    df.columns = ['query', target]
 
-    return df
+    if df.iloc[0, 0] != '':
+        df.columns = ['query', target]
+
+    return df.sort_values(by=df.columns[0])
 
 
 def up_map(query, source='ACC', target='GENENAME'):
@@ -101,7 +103,7 @@ def up_map(query, source='ACC', target='GENENAME'):
     df = to_df(page, header=True)
     df.columns = [source, target]
 
-    return df
+    return df.sort_values(by=df.columns[0])
 
 
 ###############################################################################

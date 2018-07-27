@@ -15,6 +15,7 @@ class KeggLinkTestCase(unittest.TestCase):
                                       ['hsa:10458', 'path:hsa04810'],
                                       ['ece:Z5100', 'path:ece05130']],
                                      columns=['query', 'pathway'])
+        self.expected.sort_values(by='query', inplace=True)
 
     def test_instance(self):
         self.assertIsInstance(self.result, pd.DataFrame)
@@ -29,6 +30,7 @@ class UpQueryTestCase(unittest.TestCase):
                                       ['P31749', 'AKT1'],
                                       ['P16220', 'CREB1']],
                                      columns=['ACC', 'GENENAME'])
+        self.expected.sort_values(by='ACC', inplace=True)
 
     def test_instance(self):
         self.assertIsInstance(self.result, pd.DataFrame)
