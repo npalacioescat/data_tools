@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 26, 2018}
+\date{Jul 27, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -228,24 +228,27 @@ Diffusion solvers module.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_explicit1D}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_explicit1D}}}{\emph{x0}, \emph{dt}, \emph{dx2}, \emph{d=1}, \emph{bcs='periodic'}}{}
 Computes diffusion on a 1D space over a time-step using Euler
-explicit method
+explicit method.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{x0} {[}{]}: .
+\sphinxstyleemphasis{x0} {[}numpy.ndarray{]}: Initial state of a 1D array from which
+the difusion is to be computed.
 
 \item {} 
-\sphinxstyleemphasis{dt} {[}{]}: .
+\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
 
 \item {} 
-\sphinxstyleemphasis{dx2} {[}{]}: .
+\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared).
 
 \item {} 
-\sphinxstyleemphasis{d} {[}{]}: .
+\sphinxstyleemphasis{d} {[}float{]}: Diffusion coefficient.
 
 \item {} 
-\sphinxstyleemphasis{bcs} {[}{]}: .
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}.
 
 \end{itemize}
 
@@ -254,7 +257,8 @@ explicit method
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}{]}: .
+{[}numpy.ndarray{]}: Computed state array (1D) after one time-step
+according to the parameters and conditions selected.
 
 \end{itemize}
 

@@ -9,5 +9,5 @@
 \contentsline {section}{\numberline {4.4}data\_tools.plots}{11}{section.4.4}
 \contentsline {section}{\numberline {4.5}data\_tools.sets}{14}{section.4.5}
 \contentsline {section}{\numberline {4.6}data\_tools.strings}{16}{section.4.6}
-\contentsline {chapter}{Python Module Index}{17}{section*.25}
-\contentsline {chapter}{Index}{19}{section*.26}
+\contentsline {chapter}{Python Module Index}{19}{section*.25}
+\contentsline {chapter}{Index}{21}{section*.26}
