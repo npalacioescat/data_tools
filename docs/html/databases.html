@@ -47,8 +47,54 @@
 <h1>data_tools.databases<a class="headerlink" href="#data-tools-databases" title="Permalink to this headline">¶</a></h1>
 <p>Databases functions module.</p>
 <dl class="function">
+<dt id="data_tools.databases.kegg_link">
+<code class="descclassname">data_tools.databases.</code><code class="descname">kegg_link</code><span class="sig-paren">(</span><em>query</em>, <em>target='pathway'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries a request to the KEGG database to find related entries using
+cross-references. A list of available database(s) and query examples
+can be found in <a class="reference external" href="https://www.kegg.jp/kegg/rest/keggapi.html#link">https://www.kegg.jp/kegg/rest/keggapi.html#link</a>.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>query</em> [list]: Or any iterable type containing the
+identifier(s) to be queried as [str]. These can be either
+valid database identifiers or databases <em>per se</em> (see the link
+above).</li>
+<li><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'pathway'</span></code> by default. Targeted
+database to which the query should be linked to. You can check
+other options available in the URL above.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[pandas.DataFrame]: Two-column table containing both the
+input query identifiers and their linked ones.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hsa:10458&#39;</span><span class="p">,</span> <span class="s1">&#39;ece:Z5100&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kegg_link</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
+<span class="go">   query        pathway</span>
+<span class="go">0  hsa:10458  path:hsa04520</span>
+<span class="go">1  hsa:10458  path:hsa04810</span>
+<span class="go">2  ece:Z5100  path:ece05130</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.databases.up_map">
-<code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>in_mode='ACC'</em>, <em>out_mode='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>source='ACC'</em>, <em>target='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a>.</p>
@@ -58,10 +104,10 @@ identifiers at <a class="reference external" href="https://www.uniprot.org/help/
 <dd><ul class="first last simple">
 <li><em>query</em> [list]: Or any iterable type containing the
 identifiers to be queried as [str].</li>
-<li><em>in_mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'ACC'</span></code> by default. This is,
+<li><em>source</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'ACC'</span></code> by default. This is,
 UniProt accesion number. You can check other options available
 in the URL above.</li>
-<li><em>out_mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'GENENAME'</span></code> by default. You can
+<li><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'GENENAME'</span></code> by default. You can
 check other options available in the URL above.</li>
 </ul>
 </dd>

@@ -7,7 +7,7 @@ data_tools.databases
 Databases functions module.
 '''
 
-__all__ = ['up_map']
+__all__ = ['kegg_link', 'up_map']
 
 import urllib
 import urllib2
@@ -15,7 +15,49 @@ import urllib2
 import pandas as pd
 
 
-def up_map(query, in_mode='ACC', out_mode='GENENAME'):
+def kegg_link(query, target='pathway'):
+    '''
+    Queries a request to the KEGG database to find related entries using
+    cross-references. A list of available database(s) and query examples
+    can be found in https://www.kegg.jp/kegg/rest/keggapi.html#link.
+
+    * Arguments:
+        - *query* [list]: Or any iterable type containing the
+          identifier(s) to be queried as [str]. These can be either
+          valid database identifiers or databases *per se* (see the link
+          above).
+        - *target* [str]: Optional, ``'pathway'`` by default. Targeted
+          database to which the query should be linked to. You can check
+          other options available in the URL above.
+
+    * Returns:
+        - [pandas.DataFrame]: Two-column table containing both the
+          input query identifiers and their linked ones.
+
+    * Example:
+        >>> my_query = ['hsa:10458', 'ece:Z5100']
+        >>> kegg_link(my_query)
+           query        pathway
+        0  hsa:10458  path:hsa04520
+        1  hsa:10458  path:hsa04810
+        2  ece:Z5100  path:ece05130
+    '''
+
+    url = 'http://rest.kegg.jp/link'
+
+    data = '+'.join(query)
+    request = urllib2.Request('/'.join([url, target, data]))
+
+    response = urllib2.urlopen(request)
+    page = response.read(200000)
+
+    df = to_df(page, header=False)
+    df.columns = ['query', target]
+
+    return df
+
+
+def up_map(query, source='ACC', target='GENENAME'):
     '''
     Queries a request to UniProt.org in order to map a given list of
     identifiers. You can check the options available of input/output
@@ -24,10 +66,10 @@ def up_map(query, in_mode='ACC', out_mode='GENENAME'):
     * Arguments:
         - *query* [list]: Or any iterable type containing the
           identifiers to be queried as [str].
-        - *in_mode* [str]: Optional, ``'ACC'`` by default. This is,
+        - *source* [str]: Optional, ``'ACC'`` by default. This is,
           UniProt accesion number. You can check other options available
           in the URL above.
-        - *out_mode* [str]: Optional, ``'GENENAME'`` by default. You can
+        - *target* [str]: Optional, ``'GENENAME'`` by default. You can
           check other options available in the URL above.
 
     * Returns:
@@ -45,8 +87,8 @@ def up_map(query, in_mode='ACC', out_mode='GENENAME'):
 
     url = 'https://www.uniprot.org/uploadlists/'
 
-    params = {'from':in_mode,
-              'to':out_mode,
+    params = {'from':source,
+              'to':target,
               'format':'tab',
               'query':' '.join(query)}
 
@@ -57,7 +99,7 @@ def up_map(query, in_mode='ACC', out_mode='GENENAME'):
     page = response.read(200000)
 
     df = to_df(page, header=True)
-    df.columns = [in_mode, out_mode]
+    df.columns = [source, target]
 
     return df
 

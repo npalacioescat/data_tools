@@ -163,10 +163,63 @@ implemented.
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
 Databases functions module.
+\index{kegg\_link() (in module data\_tools.databases)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{query}, \emph{target='pathway'}}{}
+Queries a request to the KEGG database to find related entries using
+cross-references. A list of available database(s) and query examples
+can be found in \sphinxurl{https://www.kegg.jp/kegg/rest/keggapi.html\#link}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{query} {[}list{]}: Or any iterable type containing the
+identifier(s) to be queried as {[}str{]}. These can be either
+valid database identifiers or databases \sphinxstyleemphasis{per se} (see the link
+above).
+
+\item {} 
+\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'pathway'}} by default. Targeted
+database to which the query should be linked to. You can check
+other options available in the URL above.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}pandas.DataFrame{]}: Two-column table containing both the
+input query identifiers and their linked ones.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hsa:10458}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ece:Z5100}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{kegg\PYGZus{}link}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
+\PYG{g+go}{   query        pathway}
+\PYG{g+go}{0  hsa:10458  path:hsa04520}
+\PYG{g+go}{1  hsa:10458  path:hsa04810}
+\PYG{g+go}{2  ece:Z5100  path:ece05130}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \index{up\_map() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{query}, \emph{in\_mode='ACC'}, \emph{out\_mode='GENENAME'}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{query}, \emph{source='ACC'}, \emph{target='GENENAME'}}{}
 Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
@@ -178,12 +231,12 @@ identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
 identifiers to be queried as {[}str{]}.
 
 \item {} 
-\sphinxstyleemphasis{in\_mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'ACC'}} by default. This is,
+\sphinxstyleemphasis{source} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'ACC'}} by default. This is,
 UniProt accesion number. You can check other options available
 in the URL above.
 
 \item {} 
-\sphinxstyleemphasis{out\_mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'GENENAME'}} by default. You can
+\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'GENENAME'}} by default. You can
 check other options available in the URL above.
 
 \end{itemize}

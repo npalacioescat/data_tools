@@ -46,7 +46,7 @@
 <span class="sd">Databases functions module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;up_map&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kegg_link&#39;</span><span class="p">,</span> <span class="s1">&#39;up_map&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
@@ -54,7 +54,49 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
-<div class="viewcode-block" id="up_map"><a class="viewcode-back" href="../../databases.html#data_tools.databases.up_map">[docs]</a><span class="k">def</span> <span class="nf">up_map</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">in_mode</span><span class="o">=</span><span class="s1">&#39;ACC&#39;</span><span class="p">,</span> <span class="n">out_mode</span><span class="o">=</span><span class="s1">&#39;GENENAME&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="kegg_link"><a class="viewcode-back" href="../../databases.html#data_tools.databases.kegg_link">[docs]</a><span class="k">def</span> <span class="nf">kegg_link</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;pathway&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Queries a request to the KEGG database to find related entries using</span>
+<span class="sd">    cross-references. A list of available database(s) and query examples</span>
+<span class="sd">    can be found in https://www.kegg.jp/kegg/rest/keggapi.html#link.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *query* [list]: Or any iterable type containing the</span>
+<span class="sd">          identifier(s) to be queried as [str]. These can be either</span>
+<span class="sd">          valid database identifiers or databases *per se* (see the link</span>
+<span class="sd">          above).</span>
+<span class="sd">        - *target* [str]: Optional, ``&#39;pathway&#39;`` by default. Targeted</span>
+<span class="sd">          database to which the query should be linked to. You can check</span>
+<span class="sd">          other options available in the URL above.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [pandas.DataFrame]: Two-column table containing both the</span>
+<span class="sd">          input query identifiers and their linked ones.</span>
+
+<span class="sd">    * Example:</span>
+<span class="sd">        &gt;&gt;&gt; my_query = [&#39;hsa:10458&#39;, &#39;ece:Z5100&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; kegg_link(my_query)</span>
+<span class="sd">           query        pathway</span>
+<span class="sd">        0  hsa:10458  path:hsa04520</span>
+<span class="sd">        1  hsa:10458  path:hsa04810</span>
+<span class="sd">        2  ece:Z5100  path:ece05130</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://rest.kegg.jp/link&#39;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">]))</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">200000</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="up_map"><a class="viewcode-back" href="../../databases.html#data_tools.databases.up_map">[docs]</a><span class="k">def</span> <span class="nf">up_map</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;ACC&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;GENENAME&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Queries a request to UniProt.org in order to map a given list of</span>
 <span class="sd">    identifiers. You can check the options available of input/output</span>
@@ -63,10 +105,10 @@
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *query* [list]: Or any iterable type containing the</span>
 <span class="sd">          identifiers to be queried as [str].</span>
-<span class="sd">        - *in_mode* [str]: Optional, ``&#39;ACC&#39;`` by default. This is,</span>
+<span class="sd">        - *source* [str]: Optional, ``&#39;ACC&#39;`` by default. This is,</span>
 <span class="sd">          UniProt accesion number. You can check other options available</span>
 <span class="sd">          in the URL above.</span>
-<span class="sd">        - *out_mode* [str]: Optional, ``&#39;GENENAME&#39;`` by default. You can</span>
+<span class="sd">        - *target* [str]: Optional, ``&#39;GENENAME&#39;`` by default. You can</span>
 <span class="sd">          check other options available in the URL above.</span>
 
 <span class="sd">    * Returns:</span>
@@ -84,8 +126,8 @@
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.uniprot.org/uploadlists/&#39;</span>
 
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;from&#39;</span><span class="p">:</span><span class="n">in_mode</span><span class="p">,</span>
-              <span class="s1">&#39;to&#39;</span><span class="p">:</span><span class="n">out_mode</span><span class="p">,</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;from&#39;</span><span class="p">:</span><span class="n">source</span><span class="p">,</span>
+              <span class="s1">&#39;to&#39;</span><span class="p">:</span><span class="n">target</span><span class="p">,</span>
               <span class="s1">&#39;format&#39;</span><span class="p">:</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span>
               <span class="s1">&#39;query&#39;</span><span class="p">:</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">)}</span>
 
@@ -96,7 +138,7 @@
     <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">200000</span><span class="p">)</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">in_mode</span><span class="p">,</span> <span class="n">out_mode</span><span class="p">]</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">df</span></div>
 

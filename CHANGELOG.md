@@ -1,6 +1,9 @@
 # data_tools version history
 
 ## v0.0.6 (WIP):
+- In `databases` module:
+    - Function `kegg_link`: Queries a request to the KEGG database to
+      find related entries using cross-references.
 - Added `diffusion` module:
     - Function `euler_explicit1D`: Computes diffusion on a 1D space over
       a time-step using Euler explicit method.
