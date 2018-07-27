@@ -163,10 +163,10 @@ implemented.
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
 Databases functions module.
-\index{up\_query() (in module data\_tools.databases)}
+\index{up\_map() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.up_query}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_query}}}{\emph{query}, \emph{in\_mode='ACC'}, \emph{out\_mode='GENENAME'}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{query}, \emph{in\_mode='ACC'}, \emph{out\_mode='GENENAME'}}{}
 Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
@@ -205,7 +205,7 @@ inputed identifiers and the mapping result of these.
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P00533}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P31749}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P16220}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{up\PYGZus{}query}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{up\PYGZus{}map}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
 \PYG{g+go}{      ACC GENENAME}
 \PYG{g+go}{0  P00533     EGFR}
 \PYG{g+go}{1  P31749     AKT1}

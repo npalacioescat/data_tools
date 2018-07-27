@@ -365,6 +365,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 
 ###############################################################################
 
+
 def ellipse(ax, x, y, w, h, a, color, alpha=1, label=None):
     e = matplotlib.patches.Ellipse(xy=(x, y), width=w, height=h, angle=a,
                                    color=color, alpha=alpha, label=label)

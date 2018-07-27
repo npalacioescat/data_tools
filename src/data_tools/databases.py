@@ -7,7 +7,7 @@ data_tools.databases
 Databases functions module.
 '''
 
-__all__ = ['up_query']
+__all__ = ['up_map']
 
 import urllib
 import urllib2
@@ -15,7 +15,7 @@ import urllib2
 import pandas as pd
 
 
-def up_query(query, in_mode='ACC', out_mode='GENENAME'):
+def up_map(query, in_mode='ACC', out_mode='GENENAME'):
     '''
     Queries a request to UniProt.org in order to map a given list of
     identifiers. You can check the options available of input/output
@@ -36,7 +36,7 @@ def up_query(query, in_mode='ACC', out_mode='GENENAME'):
 
     * Example:
         >>> my_query = ['P00533', 'P31749', 'P16220']
-        >>> up_query(my_query)
+        >>> up_map(my_query)
               ACC GENENAME
         0  P00533     EGFR
         1  P31749     AKT1
@@ -56,6 +56,19 @@ def up_query(query, in_mode='ACC', out_mode='GENENAME'):
     response = urllib2.urlopen(request)
     page = response.read(200000)
 
-    result = [i.split('\t') for i in page.split('\n')[1:-1]]
+    df = to_df(page, header=True)
+    df.columns = [in_mode, out_mode]
 
-    return pd.DataFrame(result, columns=[in_mode, out_mode])
+    return df
+
+
+###############################################################################
+
+
+def to_df(page, header=False):
+    if header:
+        aux = [i.split('\t') for i in page.split('\n')[:-1]]
+        return pd.DataFrame(aux[1:], columns=aux[0])
+
+    else:
+        return pd.DataFrame([i.split('\t') for i in page.split('\n')[:-1]])

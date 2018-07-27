@@ -10,7 +10,7 @@ from data_tools import databases
 
 class UpQueryTestCase(unittest.TestCase):
     def setUp(self):
-        self.result = databases.up_query(['P00533', 'P31749', 'P16220'])
+        self.result = databases.up_map(['P00533', 'P31749', 'P16220'])
         self.expected = pd.DataFrame([['P00533', 'EGFR'],
                                       ['P31749', 'AKT1'],
                                       ['P16220', 'CREB1']],

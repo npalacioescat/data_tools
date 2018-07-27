@@ -47,8 +47,8 @@
 <h1>data_tools.databases<a class="headerlink" href="#data-tools-databases" title="Permalink to this headline">¶</a></h1>
 <p>Databases functions module.</p>
 <dl class="function">
-<dt id="data_tools.databases.up_query">
-<code class="descclassname">data_tools.databases.</code><code class="descname">up_query</code><span class="sig-paren">(</span><em>query</em>, <em>in_mode='ACC'</em>, <em>out_mode='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_query" title="Permalink to this definition">¶</a></dt>
+<dt id="data_tools.databases.up_map">
+<code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>in_mode='ACC'</em>, <em>out_mode='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a>.</p>
@@ -79,7 +79,7 @@ inputed identifiers and the mapping result of these.</li>
 <li><dl class="first docutils">
 <dt>Example:</dt>
 <dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P00533&#39;</span><span class="p">,</span> <span class="s1">&#39;P31749&#39;</span><span class="p">,</span> <span class="s1">&#39;P16220&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">up_query</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">up_map</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
 <span class="go">      ACC GENENAME</span>
 <span class="go">0  P00533     EGFR</span>
 <span class="go">1  P31749     AKT1</span>
@@ -149,7 +149,7 @@ inputed identifiers and the mapping result of these.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
