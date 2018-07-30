@@ -148,6 +148,11 @@ def up_map(query, source='ACC', target='GENENAME'):
         0  P00533     EGFR
         1  P31749     AKT1
         2  P16220    CREB1
+        >>> up_map(my_query, target='KEGG_ID')
+              ACC   KEGG_ID
+        0  P00533  hsa:1956
+        2  P16220  hsa:1385
+        1  P31749   hsa:207
     '''
 
     url = 'https://www.uniprot.org/uploadlists/'
