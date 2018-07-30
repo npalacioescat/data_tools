@@ -4,6 +4,10 @@
 - In `databases` module:
     - Function `kegg_link`: Queries a request to the KEGG database to
       find related entries using cross-references.
+    - Function `kegg_pathway_mapping`: Makes a request to KEGG pathway
+      mapping tool according to a given pathway ID. The user must
+      provide a query of IDs to be mapped with their corresponding
+      background colors (and optionally also foreground colors).
 - Added `diffusion` module:
     - Function `euler_explicit1D`: Computes diffusion on a 1D space over
       a time-step using Euler explicit method.

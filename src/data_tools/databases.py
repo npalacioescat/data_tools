@@ -7,7 +7,7 @@ data_tools.databases
 Databases functions module.
 '''
 
-__all__ = ['kegg_link', 'up_map']
+__all__ = ['kegg_link', 'kegg_pathway_mapping', 'up_map']
 
 import urllib
 import urllib2
@@ -57,6 +57,69 @@ def kegg_link(query, target='pathway'):
         df.columns = ['query', target]
 
     return df.sort_values(by=df.columns[0])
+
+
+def kegg_pathway_mapping(df, mapid, filename=None):
+    '''
+    Makes a request to KEGG pathway mapping tool according to a given
+    pathway ID (see https://www.kegg.jp/kegg/tool/map_pathway2.html for
+    more information). The user must provide a query of IDs to be mapped
+    with their corresponding background colors (and optionally also
+    foreground colors). The result is downloaded in the current
+    directory or a user-specified path.
+
+    * Arguments:
+        - *df* [pandas.DataFrame]: Dataframe containing KEGG valid IDs
+          in the first column and corresponding background colors (e.g.:
+          red, blue, ...). Optionally, a third column with the
+          foreground (font) colors can also be provided (black by
+          default). **NOTE:** hexadecimal codes for colors is also
+          supported. Index and column names of dataframe are ignored.
+        - *mapid* [str]: A valid KEGG pathway ID. It can be a general
+          (e.g.: "mapXXXXX") or organism-specific ID (e.g.: "hsaXXXXX").
+        - *filename* [str]: Optional, ``None`` by default. This is, the
+          image will be stored in the current directory with the *mapid*
+          provided as file name. If provided, the image will be stored
+          within the specified path/file name.
+
+    * Example:
+        >>> my_query = pandas.DataFrame([['1956', 'red', '#f1f1f1'],
+        ...                              ['3845', 'blue', '#f1f1f1'],
+        ...                              ['5594', 'green', 'black']])
+        >>> kegg_pathway_mapping(my_query, 'hsa04010')
+
+        .. image:: ../figures/hsa04010.png
+           :align: center
+    '''
+
+    url = 'https://www.kegg.jp'
+
+    # If fgcolor is not provided set black as default
+    if df.shape[1] == 2:
+        df['fgcolor'] = ['black'] * len(df)
+
+    query = '%0d%0a'.join(['%s+%s,%s' %(dbentry,
+                                        bgc.replace('#', '%23'),
+                                        fgc.replace('#', '%23'))
+                           for i, (dbentry, bgc, fgc) in df.iterrows()])
+
+    params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' %(mapid, query)
+    request = urllib2.Request(url + params)
+
+    response = urllib2.urlopen(request)
+    page = response.read(200000)
+
+    # Now extract the image from the HTML page
+    # There must be a cleaner way to parse the HTML file, but...
+    end = page.find('" name="pathwayimage"')
+    start = 10 + page.find('<img src="')
+
+    params = page[start:end]
+
+    if not filename:
+        filename = '%s.png' %mapid
+
+    urllib.urlretrieve(url + params, filename)
 
 
 def up_map(query, source='ACC', target='GENENAME'):

@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 27, 2018}
+\date{Jul 30, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -209,6 +209,59 @@ input query identifiers and their linked ones.
 \PYG{g+go}{1  hsa:10458  path:hsa04810}
 \PYG{g+go}{2  ece:Z5100  path:ece05130}
 \end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{kegg\_pathway\_mapping() (in module data\_tools.databases)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_pathway_mapping}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_pathway\_mapping}}}{\emph{df}, \emph{mapid}, \emph{filename=None}}{}
+Makes a request to KEGG pathway mapping tool according to a given
+pathway ID (see \sphinxurl{https://www.kegg.jp/kegg/tool/map\_pathway2.html} for
+more information). The user must provide a query of IDs to be mapped
+with their corresponding background colors (and optionally also
+foreground colors). The result is downloaded in the current
+directory or a user-specified path.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Dataframe containing KEGG valid IDs
+in the first column and corresponding background colors (e.g.:
+red, blue, …). Optionally, a third column with the
+foreground (font) colors can also be provided (black by
+default). \sphinxstylestrong{NOTE:} hexadecimal codes for colors is also
+supported. Index and column names of dataframe are ignored.
+
+\item {} 
+\sphinxstyleemphasis{mapid} {[}str{]}: A valid KEGG pathway ID. It can be a general
+(e.g.: “mapXXXXX”) or organism-specific ID (e.g.: “hsaXXXXX”).
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. This is, the
+image will be stored in the current directory with the \sphinxstyleemphasis{mapid}
+provided as file name. If provided, the image will be stored
+within the specified path/file name.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{n}{pandas}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1956}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}f1f1f1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }                             \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{3845}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}f1f1f1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }                             \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{5594}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{kegg\PYGZus{}pathway\PYGZus{}mapping}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hsa04010}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics{{hsa04010}.png}\hspace*{\fill}}
 
 \end{description}
 

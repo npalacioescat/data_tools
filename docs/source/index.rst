@@ -51,6 +51,7 @@ http://www.gnu.org/licenses/.
 
    - :meth:`data_tools.databases`
       - :meth:`data_tools.databases.kegg_link`
+      - :meth:`data_tools.databases.kegg_pathway_mapping`
       - :meth:`data_tools.databases.up_map`
    - :meth:`data_tools.diffusion`
       - :meth:`data_tools.diffusion.euler_explicit1D`

@@ -2,61 +2,62 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.sets), \hyperpage{15}
+  \item bit\_or() (in module data\_tools.sets), \hyperpage{16}
 
   \indexspace
   \bigletter D
   \item data\_tools.databases (module), \hyperpage{9}
-  \item data\_tools.diffusion (module), \hyperpage{10}
-  \item data\_tools.models (module), \hyperpage{10}
-  \item data\_tools.plots (module), \hyperpage{11}
-  \item data\_tools.sets (module), \hyperpage{15}
-  \item data\_tools.strings (module), \hyperpage{16}
-  \item density() (in module data\_tools.plots), \hyperpage{11}
+  \item data\_tools.diffusion (module), \hyperpage{11}
+  \item data\_tools.models (module), \hyperpage{11}
+  \item data\_tools.plots (module), \hyperpage{12}
+  \item data\_tools.sets (module), \hyperpage{16}
+  \item data\_tools.strings (module), \hyperpage{17}
+  \item density() (in module data\_tools.plots), \hyperpage{12}
 
   \indexspace
   \bigletter E
-  \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{10}
+  \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{11}
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{15}
-  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{11}
+  \item find\_min() (in module data\_tools.sets), \hyperpage{16}
+  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{12}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{16}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{16}
+  \item in\_all() (in module data\_tools.sets), \hyperpage{17}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{17}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{17}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{18}
 
   \indexspace
   \bigletter K
   \item kegg\_link() (in module data\_tools.databases), \hyperpage{9}
+  \item kegg\_pathway\_mapping() (in module data\_tools.databases), \hyperpage{9}
 
   \indexspace
   \bigletter L
-  \item Lasso (class in data\_tools.models), \hyperpage{10}
+  \item Lasso (class in data\_tools.models), \hyperpage{11}
 
   \indexspace
   \bigletter P
-  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{12}
-  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{11}
-  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{11}
+  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{13}
+  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{12}
+  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{12}
 
   \indexspace
   \bigletter S
-  \item subsets() (in module data\_tools.sets), \hyperpage{16}
+  \item subsets() (in module data\_tools.sets), \hyperpage{17}
 
   \indexspace
   \bigletter U
-  \item up\_map() (in module data\_tools.databases), \hyperpage{9}
+  \item up\_map() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace
   \bigletter V
-  \item venn() (in module data\_tools.plots), \hyperpage{13}
-  \item volcano() (in module data\_tools.plots), \hyperpage{14}
+  \item venn() (in module data\_tools.plots), \hyperpage{14}
+  \item volcano() (in module data\_tools.plots), \hyperpage{15}
 
 \end{sphinxtheindex}

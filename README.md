@@ -35,6 +35,7 @@ A full copy of the GNU General Public License can be found on file
 
 - [databases](https://nic-nic.github.io/data_tools/html/databases.html)
     - [kegg_link](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.kegg_link)
+    - [kegg_pathway_mapping](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.kegg_pathway_mapping)
     - [up_map](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.up_map)
 - [diffusion](https://nic-nic.github.io/data_tools/html/diffusion.html)
     - [euler_explicit1D](https://nic-nic.github.io/data_tools/html/models.html#data_tools.diffusion.euler_explicit1D)

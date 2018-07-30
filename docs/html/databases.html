@@ -93,6 +93,50 @@ input query identifiers and their linked ones.</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="data_tools.databases.kegg_pathway_mapping">
+<code class="descclassname">data_tools.databases.</code><code class="descname">kegg_pathway_mapping</code><span class="sig-paren">(</span><em>df</em>, <em>mapid</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_pathway_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_pathway_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a request to KEGG pathway mapping tool according to a given
+pathway ID (see <a class="reference external" href="https://www.kegg.jp/kegg/tool/map_pathway2.html">https://www.kegg.jp/kegg/tool/map_pathway2.html</a> for
+more information). The user must provide a query of IDs to be mapped
+with their corresponding background colors (and optionally also
+foreground colors). The result is downloaded in the current
+directory or a user-specified path.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>df</em> [pandas.DataFrame]: Dataframe containing KEGG valid IDs
+in the first column and corresponding background colors (e.g.:
+red, blue, …). Optionally, a third column with the
+foreground (font) colors can also be provided (black by
+default). <strong>NOTE:</strong> hexadecimal codes for colors is also
+supported. Index and column names of dataframe are ignored.</li>
+<li><em>mapid</em> [str]: A valid KEGG pathway ID. It can be a general
+(e.g.: “mapXXXXX”) or organism-specific ID (e.g.: “hsaXXXXX”).</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. This is, the
+image will be stored in the current directory with the <em>mapid</em>
+provided as file name. If provided, the image will be stored
+within the specified path/file name.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;1956&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;#f1f1f1&#39;</span><span class="p">],</span>
+<span class="gp">... </span>                             <span class="p">[</span><span class="s1">&#39;3845&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;#f1f1f1&#39;</span><span class="p">],</span>
+<span class="gp">... </span>                             <span class="p">[</span><span class="s1">&#39;5594&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kegg_pathway_mapping</span><span class="p">(</span><span class="n">my_query</span><span class="p">,</span> <span class="s1">&#39;hsa04010&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/hsa04010.png" class="last align-center" src="_images/hsa04010.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.databases.up_map">
 <code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>source='ACC'</em>, <em>target='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to UniProt.org in order to map a given list of

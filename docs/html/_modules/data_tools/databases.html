@@ -46,7 +46,7 @@
 <span class="sd">Databases functions module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kegg_link&#39;</span><span class="p">,</span> <span class="s1">&#39;up_map&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kegg_link&#39;</span><span class="p">,</span> <span class="s1">&#39;kegg_pathway_mapping&#39;</span><span class="p">,</span> <span class="s1">&#39;up_map&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">urllib</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
@@ -96,6 +96,69 @@
         <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="kegg_pathway_mapping"><a class="viewcode-back" href="../../databases.html#data_tools.databases.kegg_pathway_mapping">[docs]</a><span class="k">def</span> <span class="nf">kegg_pathway_mapping</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">mapid</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Makes a request to KEGG pathway mapping tool according to a given</span>
+<span class="sd">    pathway ID (see https://www.kegg.jp/kegg/tool/map_pathway2.html for</span>
+<span class="sd">    more information). The user must provide a query of IDs to be mapped</span>
+<span class="sd">    with their corresponding background colors (and optionally also</span>
+<span class="sd">    foreground colors). The result is downloaded in the current</span>
+<span class="sd">    directory or a user-specified path.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *df* [pandas.DataFrame]: Dataframe containing KEGG valid IDs</span>
+<span class="sd">          in the first column and corresponding background colors (e.g.:</span>
+<span class="sd">          red, blue, ...). Optionally, a third column with the</span>
+<span class="sd">          foreground (font) colors can also be provided (black by</span>
+<span class="sd">          default). **NOTE:** hexadecimal codes for colors is also</span>
+<span class="sd">          supported. Index and column names of dataframe are ignored.</span>
+<span class="sd">        - *mapid* [str]: A valid KEGG pathway ID. It can be a general</span>
+<span class="sd">          (e.g.: &quot;mapXXXXX&quot;) or organism-specific ID (e.g.: &quot;hsaXXXXX&quot;).</span>
+<span class="sd">        - *filename* [str]: Optional, ``None`` by default. This is, the</span>
+<span class="sd">          image will be stored in the current directory with the *mapid*</span>
+<span class="sd">          provided as file name. If provided, the image will be stored</span>
+<span class="sd">          within the specified path/file name.</span>
+
+<span class="sd">    * Example:</span>
+<span class="sd">        &gt;&gt;&gt; my_query = pandas.DataFrame([[&#39;1956&#39;, &#39;red&#39;, &#39;#f1f1f1&#39;],</span>
+<span class="sd">        ...                              [&#39;3845&#39;, &#39;blue&#39;, &#39;#f1f1f1&#39;],</span>
+<span class="sd">        ...                              [&#39;5594&#39;, &#39;green&#39;, &#39;black&#39;]])</span>
+<span class="sd">        &gt;&gt;&gt; kegg_pathway_mapping(my_query, &#39;hsa04010&#39;)</span>
+
+<span class="sd">        .. image:: ../figures/hsa04010.png</span>
+<span class="sd">           :align: center</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.kegg.jp&#39;</span>
+
+    <span class="c1"># If fgcolor is not provided set black as default</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;fgcolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%0d</span><span class="s1">%0a&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">+</span><span class="si">%s</span><span class="s1">,</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">dbentry</span><span class="p">,</span>
+                                        <span class="n">bgc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;%23&#39;</span><span class="p">),</span>
+                                        <span class="n">fgc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;%23&#39;</span><span class="p">))</span>
+                           <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">dbentry</span><span class="p">,</span> <span class="n">bgc</span><span class="p">,</span> <span class="n">fgc</span><span class="p">)</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()])</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="s1">&#39;/kegg-bin/show_pathway?map=</span><span class="si">%s</span><span class="s1">&amp;multi_query=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">mapid</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">200000</span><span class="p">)</span>
+
+    <span class="c1"># Now extract the image from the HTML page</span>
+    <span class="c1"># There must be a cleaner way to parse the HTML file, but...</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&quot; name=&quot;pathwayimage&quot;&#39;</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">page</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&quot;&#39;</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="n">page</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span><span class="n">mapid</span>
+
+    <span class="n">urllib</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="up_map"><a class="viewcode-back" href="../../databases.html#data_tools.databases.up_map">[docs]</a><span class="k">def</span> <span class="nf">up_map</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;ACC&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;GENENAME&#39;</span><span class="p">):</span>
