@@ -143,6 +143,12 @@
                            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">dbentry</span><span class="p">,</span> <span class="n">bgc</span><span class="p">,</span> <span class="n">fgc</span><span class="p">)</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()])</span>
 
     <span class="n">params</span> <span class="o">=</span> <span class="s1">&#39;/kegg-bin/show_pathway?map=</span><span class="si">%s</span><span class="s1">&amp;multi_query=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">mapid</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mapid</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;01100&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;Skipping the query for </span><span class="si">%s</span><span class="s1">: Metabolic Pathways.</span><span class="se">\n</span><span class="s1">Too &#39;</span> <span class="o">%</span><span class="n">mapid</span> <span class="o">+</span>
+                <span class="s1">&#39;much abstraction to show any relevant information.</span><span class="se">\n</span><span class="s1">You &#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;can explore your query here:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
+
     <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
 
     <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -180,7 +186,7 @@
 <span class="sd">        - [pandas.DataFrame]: Two-column table containing both the</span>
 <span class="sd">          inputed identifiers and the mapping result of these.</span>
 
-<span class="sd">    * Example:</span>
+<span class="sd">    * Examples:</span>
 <span class="sd">        &gt;&gt;&gt; my_query = [&#39;P00533&#39;, &#39;P31749&#39;, &#39;P16220&#39;]</span>
 <span class="sd">        &gt;&gt;&gt; up_map(my_query)</span>
 <span class="sd">              ACC GENENAME</span>

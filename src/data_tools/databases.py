@@ -104,6 +104,12 @@ def kegg_pathway_mapping(df, mapid, filename=None):
                            for i, (dbentry, bgc, fgc) in df.iterrows()])
 
     params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' %(mapid, query)
+
+    if mapid.endswith('01100'):
+        return ('Skipping the query for %s: Metabolic Pathways.\nToo ' %mapid +
+                'much abstraction to show any relevant information.\nYou ' +
+                'can explore your query here:\n' + url + params)
+
     request = urllib2.Request(url + params)
 
     response = urllib2.urlopen(request)
@@ -141,7 +147,7 @@ def up_map(query, source='ACC', target='GENENAME'):
         - [pandas.DataFrame]: Two-column table containing both the
           inputed identifiers and the mapping result of these.
 
-    * Example:
+    * Examples:
         >>> my_query = ['P00533', 'P31749', 'P16220']
         >>> up_map(my_query)
               ACC GENENAME
