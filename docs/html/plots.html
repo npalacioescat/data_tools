@@ -141,21 +141,21 @@ combination of box and scatter plots of the gene-set scores.</li>
 
 <dl class="function">
 <dt id="data_tools.plots.venn">
-<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'], title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'], title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a Venn diagram from a list of sets <em>N</em>. Number of sets must be
-between 2 and 4 (inclusive).</p>
+between 2 and 5 (inclusive).</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D']</span></code> by
+<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D',</span> <span class="pre">'E']</span></code> by
 default. Labels for the sets following the same order as
 provided in <em>N</em>.</li>
-<li><em>c</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3']</span></code> by default
-(matplotlib default colors). Any iterable containing color
-arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for
-red and blue). Must contain at least the same number of
+<li><em>c</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3',</span> <span class="pre">'C4']</span></code> by
+default (matplotlib default colors). Any iterable containing
+color arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code>
+for red and blue). Must contain at least the same number of
 elements as <em>N</em> (if more are provided, they will be ignored).</li>
 <li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>

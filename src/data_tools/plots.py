@@ -161,21 +161,21 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     return fig
 
 
-def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
+def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
          title=None, filename=None, figsize=None):
     '''
     Plots a Venn diagram from a list of sets *N*. Number of sets must be
-    between 2 and 4 (inclusive).
+    between 2 and 5 (inclusive).
 
     * Arguments:
         - *N* [list]: Or any iterable type containing [set] objects.
-        - *labels* [list]: Optional, ``['A', 'B', 'C', 'D']`` by
+        - *labels* [list]: Optional, ``['A', 'B', 'C', 'D', 'E']`` by
           default. Labels for the sets following the same order as
           provided in *N*.
-        - *c* [list]: Optional, ``['C0', 'C1' 'C2', 'C3']`` by default
-          (matplotlib default colors). Any iterable containing color
-          arguments tolerated by matplotlib (e.g.: ``['r', 'b']`` for
-          red and blue). Must contain at least the same number of
+        - *c* [list]: Optional, ``['C0', 'C1' 'C2', 'C3', 'C4']`` by
+          default (matplotlib default colors). Any iterable containing
+          color arguments tolerated by matplotlib (e.g.: ``['r', 'b']``
+          for red and blue). Must contain at least the same number of
           elements as *N* (if more are provided, they will be ignored).
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
@@ -245,8 +245,29 @@ def venn(N, labels=['A', 'B', 'C', 'D'], c=['C0', 'C1', 'C2', 'C3'],
         keys = ['1000', '0100', '0010', '0001', '1100', '1010', '1001', '0110',
                 '0101', '0011', '1110', '1101', '1011', '0111', '1111']
 
+    elif len(N) == 5:
+        # Ellipse parameters
+        x = [0, -.2125, -.2375, -.03125, .125]
+        y = [0, -.05, -.275, -.35, -.1875]
+        w = [1.25, 1.25, 1.25, 1.25, 1.25]
+        h = [2, 2, 2, 2, 2]
+        a = [0, 71, 154, 37, 108]
+
+        # Text (counts) parameters
+        xt = [0, -1, -.7, .5, .9, -.41, .1, .2, .51, -.87, -.67, .69, -.25,
+              -.69, .6, -.1, -.51, .54, -.06, .33, .3, -.72, -.79, .63, -.48,
+              -.38, .3, .49, -.13, -.69, -.1]
+        yt = [.8, .1, -1, -1, .05, .55, .55, -.91, .3, -.3, .3, -.25, -1, -.65,
+              -.65, .5, .43, 0, -.95, .4, -.78, 0, -.41, -.47, -.76, .33, .27,
+              -.4, -.82, -.25, -.2]
+        keys = ['10000', '01000', '00100', '00010', '00001', '11000', '10100',
+                '10010', '10001', '01100', '01010', '01001', '00110', '00101',
+                '00011', '11100', '11010', '11001', '10110', '10101', '10011',
+                '01110', '01101', '01011', '00111', '11110', '11101', '11011',
+                '10111', '01111', '11111']
+
     else:
-        return 'The number of sets supported are 2, 3 and 4.'
+        return 'The maximum number of sets supported is 5.'
 
     for i in range(len(N)):
         ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],

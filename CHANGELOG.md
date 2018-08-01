@@ -1,6 +1,8 @@
 # data_tools version history
 
 ## v0.0.6 (WIP):
+- In `plots` module:
+    - Function `venn` now accepts up to 5 sets.
 - In `databases` module:
     - Function `kegg_link`: Queries a request to the KEGG database to
       find related entries using cross-references.
