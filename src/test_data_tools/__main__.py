@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import unittest
 
 import test_data_tools
@@ -12,4 +14,4 @@ if __name__ == '__main__':
 
     unittest.TextTestRunner(verbosity=2).run(test_suite)
 
-    print 'NOTE: data_tools.plots module has not been tested'
+    print('NOTE: data_tools.plots module has not been tested')

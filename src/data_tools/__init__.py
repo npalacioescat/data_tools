@@ -24,12 +24,14 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
+from __future__ import absolute_import
+
 __version__ = '0.0.5'
 __author__ = u'Nicolàs Palacio'
 
-import data_tools.databases as databases
-import data_tools.diffusion as diffusion
-import data_tools.models as models
-import data_tools.plots as plots
-import data_tools.sets as sets
-import data_tools.strings as strings
+from data_tools import databases
+from data_tools import diffusion
+from data_tools import models
+from data_tools import plots
+from data_tools import sets
+from data_tools import strings

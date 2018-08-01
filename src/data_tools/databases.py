@@ -9,8 +9,19 @@ Databases functions module.
 
 __all__ = ['kegg_link', 'kegg_pathway_mapping', 'up_map']
 
+import sys
 import urllib
-import urllib2
+
+try:
+    from urllib.request import urlopen
+    from urllib.request import Request as request
+
+except ImportError:
+    from urllib2 import urlopen
+    from urllib2 import Request as request
+
+#if sys.version.startswith('2.'):
+#    import urllib2
 
 import pandas as pd
 
@@ -46,9 +57,16 @@ def kegg_link(query, target='pathway'):
     url = 'http://rest.kegg.jp/link'
 
     data = '+'.join(query)
-    request = urllib2.Request('/'.join([url, target, data]))
+    url_full = '/'.join([url, target, data])
 
-    response = urllib2.urlopen(request)
+#    if sys.version.startswith('2.'):
+#        request = urllib2.Request(url_full)
+#        response = urllib2.urlopen(request)
+
+#    else:
+    req = request(url_full)
+    response = urlopen(req)
+
     page = response.read(200000)
 
     df = to_df(page, header=False)
@@ -104,15 +122,21 @@ def kegg_pathway_mapping(df, mapid, filename=None):
                            for i, (dbentry, bgc, fgc) in df.iterrows()])
 
     params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' %(mapid, query)
+    full_url = url + params
 
     if mapid.endswith('01100'):
         return ('Skipping the query for %s: Metabolic Pathways.\nToo ' %mapid +
                 'much abstraction to show any relevant information.\nYou ' +
-                'can explore your query here:\n' + url + params)
+                'can explore your query here:\n' + full_url)
 
-    request = urllib2.Request(url + params)
+#    if sys.version.startswith('2.'):
+#        request = urllib2.Request(full_url)
+#        response = urllib2.urlopen(request)
 
-    response = urllib2.urlopen(request)
+#    else:
+    req = request(full_url)
+    response = urlopen(req)
+
     page = response.read(200000)
 
     # Now extract the image from the HTML page
@@ -169,9 +193,16 @@ def up_map(query, source='ACC', target='GENENAME'):
               'query':' '.join(query)}
 
     data = urllib.urlencode(params)
-    request = urllib2.Request(url, data)
 
-    response = urllib2.urlopen(request)
+
+#    if sys.version.startswith('2.'):
+#        request = urllib2.Request(url, data)
+#        response = urllib2.urlopen(request)
+
+#    else:
+    req = request(url, data)
+    response = urlopen(req)
+
     page = response.read(200000)
 
     df = to_df(page, header=True)

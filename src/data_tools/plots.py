@@ -7,12 +7,14 @@ data_tools.plots
 Plotting functions module.
 '''
 
+from __future__ import absolute_import
+
 __all__ = ['density', 'piano_consensus', 'venn', 'volcano']
 
 import numpy as np
 import pandas as pd
 import matplotlib
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from scipy import stats
 
 from data_tools.sets import subsets
