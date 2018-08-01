@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 31, 2018}
+\date{Aug 01, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -669,9 +669,9 @@ combination of box and scatter plots of the gene-set scores.
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D'{]}, c={[}'C0', 'C1', 'C2', 'C3'{]}, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, title=None, filename=None, figsize=None}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
-between 2 and 4 (inclusive).
+between 2 and 5 (inclusive).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -679,15 +679,15 @@ between 2 and 4 (inclusive).
 \sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
 
 \item {} 
-\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'A', 'B', 'C', 'D'{]}}} by
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'A', 'B', 'C', 'D', 'E'{]}}} by
 default. Labels for the sets following the same order as
 provided in \sphinxstyleemphasis{N}.
 
 \item {} 
-\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'C0', 'C1' 'C2', 'C3'{]}}} by default
-(matplotlib default colors). Any iterable containing color
-arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for
-red and blue). Must contain at least the same number of
+\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'C0', 'C1' 'C2', 'C3', 'C4'{]}}} by
+default (matplotlib default colors). Any iterable containing
+color arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}}
+for red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
 
 \item {} 
