@@ -137,7 +137,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     req = request(full_url)
     response = urlopen(req)
 
-    page = response.read(200000)
+    page = response.read(500000)
 
     # Now extract the image from the HTML page
     # There must be a cleaner way to parse the HTML file, but...

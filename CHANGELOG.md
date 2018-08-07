@@ -14,6 +14,7 @@
     - Function `euler_explicit1D`: Computes diffusion on a 1D space over
       a time-step using Euler explicit method.
 - Renamed `databases.up_query` to `databases.up_map`
+- Python 3 compatibility
 
 ## v0.0.5:
 - Added `databases` module:
