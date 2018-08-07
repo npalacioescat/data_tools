@@ -8,6 +8,6 @@
 \contentsline {section}{\numberline {4.3}data\_tools.models}{11}{section.4.3}
 \contentsline {section}{\numberline {4.4}data\_tools.plots}{12}{section.4.4}
 \contentsline {section}{\numberline {4.5}data\_tools.sets}{16}{section.4.5}
-\contentsline {section}{\numberline {4.6}data\_tools.strings}{17}{section.4.6}
-\contentsline {chapter}{Python Module Index}{19}{section*.27}
-\contentsline {chapter}{Index}{21}{section*.28}
+\contentsline {section}{\numberline {4.6}data\_tools.strings}{18}{section.4.6}
+\contentsline {chapter}{Python Module Index}{19}{section*.28}
+\contentsline {chapter}{Index}{21}{section*.29}

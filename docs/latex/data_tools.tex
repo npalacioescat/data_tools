@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 01, 2018}
+\date{Aug 07, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -827,7 +827,7 @@ Set operations module.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
 Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
-NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
+\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -857,6 +857,52 @@ NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same siz
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
 \PYG{g+go}{(1, 0, 1)}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{chunk\_this() (in module data\_tools.sets)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{sets:data_tools.sets.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
+For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
+it (in the same order).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
+definded size.
+
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
+number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
+element returned will have an inferior size.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
 \end{sphinxVerbatim}
 
 \end{description}

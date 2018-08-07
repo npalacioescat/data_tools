@@ -5,13 +5,17 @@
   \item bit\_or() (in module data\_tools.sets), \hyperpage{16}
 
   \indexspace
+  \bigletter C
+  \item chunk\_this() (in module data\_tools.sets), \hyperpage{16}
+
+  \indexspace
   \bigletter D
   \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{11}
   \item data\_tools.models (module), \hyperpage{11}
   \item data\_tools.plots (module), \hyperpage{12}
   \item data\_tools.sets (module), \hyperpage{16}
-  \item data\_tools.strings (module), \hyperpage{17}
+  \item data\_tools.strings (module), \hyperpage{18}
   \item density() (in module data\_tools.plots), \hyperpage{12}
 
   \indexspace
@@ -20,13 +24,13 @@
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{16}
+  \item find\_min() (in module data\_tools.sets), \hyperpage{17}
   \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{12}
 
   \indexspace
   \bigletter I
   \item in\_all() (in module data\_tools.sets), \hyperpage{17}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{17}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{18}
 
   \indexspace
   \bigletter J

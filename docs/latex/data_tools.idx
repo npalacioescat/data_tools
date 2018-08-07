@@ -16,9 +16,10 @@
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{15}
 \indexentry{data\_tools.sets (module)|hyperpage}{16}
 \indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{16}
-\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{16}
+\indexentry{chunk\_this() (in module data\_tools.sets)|hyperpage}{16}
+\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{17}
 \indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{17}
 \indexentry{subsets() (in module data\_tools.sets)|hyperpage}{17}
-\indexentry{data\_tools.strings (module)|hyperpage}{17}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{17}
+\indexentry{data\_tools.strings (module)|hyperpage}{18}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{18}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{18}

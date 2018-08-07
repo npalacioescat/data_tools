@@ -48,6 +48,7 @@ A full copy of the GNU General Public License can be found on file
     - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
 - [sets](https://nic-nic.github.io/data_tools/html/sets.html)
     - [bit_or](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.bit_or)
+    -[chunk_this](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.chunk_this)
     - [find_min](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.find_min)
     - [in_all](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.in_all)
     - [subsets](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.subsets)

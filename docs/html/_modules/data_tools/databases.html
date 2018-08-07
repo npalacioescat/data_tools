@@ -152,7 +152,7 @@
     <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
 
     <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">200000</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">500000</span><span class="p">)</span>
 
     <span class="c1"># Now extract the image from the HTML page</span>
     <span class="c1"># There must be a cleaner way to parse the HTML file, but...</span>

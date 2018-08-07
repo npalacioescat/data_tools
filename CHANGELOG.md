@@ -1,6 +1,9 @@
 # data_tools version history
 
 ## v0.0.6 (WIP):
+- In `sets` module:
+    - Function `chunk_this`: For a given list *L*, returns another list
+      of *n*-sized chunks from it (in the same order).
 - In `plots` module:
     - Function `venn` now accepts up to 5 sets.
 - In `databases` module:
