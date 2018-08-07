@@ -113,7 +113,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     request = urllib2.Request(url + params)
 
     response = urllib2.urlopen(request)
-    page = response.read(200000)
+    page = response.read(500000)
 
     # Now extract the image from the HTML page
     # There must be a cleaner way to parse the HTML file, but...
