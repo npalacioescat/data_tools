@@ -14,6 +14,7 @@ import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.optimize import least_squares
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import KFold as kf
 from sklearn.model_selection import ShuffleSplit as ss
