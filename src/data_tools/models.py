@@ -21,6 +21,73 @@ from sklearn.model_selection import StratifiedKFold as skf
 from sklearn.model_selection import StratifiedShuffleSplit as sss
 
 
+class DoseResponse:
+    '''
+
+    '''# TODO
+
+    def __init_(self, xdata, ydata, x0=[1, 1, 1], x_scale=[1, 1, 1],
+                bounds=([0, 0, -np.inf], [np.inf, np.inf, np.inf])):
+
+        def residuals(p, x, y):
+            return self.hill(x, *p) - y
+
+        self.xdata = xdata
+        self.ydata = ydata
+
+        ftol = 1e-15
+        max_nfev = 1e15
+        diff_step = 1e-15
+
+        model = least_squares(residuals, x0, args=(self.xdata, self.ydata),
+                              tr_solver='exact', bounds=bounds, ftol=ftol,
+                              diff_step=diff_step, max_nfev=max_nfev,
+                              x_scale=x_scale)
+
+        self.params = model.x
+
+    def hill(self, x, k, m, n):
+        '''
+
+        '''# TODO
+
+        return m * x ** n / (k ** n + x ** n)
+
+    def ec50(self):
+        '''
+
+        '''# TODO
+
+        k, m, n = self.params
+
+        return (k ** n / (2 * m - 1)) ** (1 / n)
+
+    def plot(self, title=None, filename=None, figsize=None, legend=True):
+        '''
+
+        '''# TODO
+
+        rng = np.linspace(min(xdata), max(xdata), 1000)
+
+        fig, ax = plt.subplots(figsize=figsize)
+
+        ax.scatter(self.xdata, self.ydata, label='Data')
+        ax.plot(rng, self.hill(rng, *self.params), 'k', label='Fit')
+
+        if title:
+            ax.set_title(title)
+
+        if legend:
+            ax.legend(loc=0)
+
+        fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
+
+        return fig
+
+
 class Lasso(LogisticRegressionCV):
     '''
     Wrapper class inheriting from
