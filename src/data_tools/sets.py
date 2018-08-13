@@ -57,10 +57,12 @@ def chunk_this(L, n):
           number of items in *L* is not divisible by *n*, the last
           element returned will have an inferior size.
 
-    * Example:
+    * Examples:
         >>> L = range(6)
         >>> chunk_this(L, 2)
         [[0, 1], [2, 3], [4, 5]]
+        >>> chunk_this(L, 4)
+        [[0, 1, 2, 3], [4, 5]]
     '''
 
     return [L[i:i + n] for i in xrange(0, len(L), n)]

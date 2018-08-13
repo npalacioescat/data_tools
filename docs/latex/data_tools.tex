@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 07, 2018}
+\date{Aug 08, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -897,12 +897,14 @@ element returned will have an inferior size.
 \end{description}
 
 \item {} \begin{description}
-\item[{Example:}] \leavevmode
+\item[{Examples:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
 \PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
 \end{sphinxVerbatim}
 
 \end{description}
