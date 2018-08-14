@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 01, 2018}
+\date{Aug 14, 2018}
 \release{0.0.5}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -384,6 +384,149 @@ according to the parameters and conditions selected.
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
 Model classes module.
+\index{DoseResponse (class in data\_tools.models)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0={[}1, 1, 1{]}, x\_scale={[}1, 1, 1{]}, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
+Wrapper class for \sphinxcode{\sphinxupquote{scipy.optimize.least\_squares}} to fit
+dose-response curves on a pre-defined Hill function with the
+following form:
+\begin{equation*}
+\begin{split}R=\frac{mD^n}{k^n+D^n}\end{split}
+\end{equation*}
+Where \(D\) is the dose, \(k\), \(m\) and \(n\) are
+the parameters to be fitted.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{d\_data} {[}numpy.ndarray{]}: Or any iterable (1D). Contains the
+training data corresponding to the dose.
+
+\item {} 
+\sphinxstyleemphasis{r\_data} {[}numpy.ndarray{]}: Or any iterable (1D). Contains the
+training data corresponding to the response.
+
+\item {} 
+\sphinxstyleemphasis{x0} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+iterable of three elements. Contains the initial guess for the
+parameters. Parameters are considered to be in alphabetical
+order. This is, first element corresponds to \(k\), second
+is \(m\) and last is \(n\).
+
+\item {} 
+\sphinxstyleemphasis{x\_scale} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+iterable of three elements. Scale of each parameter. May
+improve the fitting if the scaled parameters have similar
+effect on the cost function.
+
+\item {} 
+\sphinxstyleemphasis{bounds} {[}tuple{]}: Optional \sphinxcode{\sphinxupquote{({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}
+by default. Two-element tuple containing the lower and upper
+boundaries for the parameters (elements of the tuple are
+iterables of three elements each).
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\begin{itemize}
+\item {} \begin{description}
+\item[{Attributes:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{model} {[}scipy.optimize.OptimizeResult{]}: Contains the result
+of the optimized model. See \sphinxhref{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html\#scipy.optimize.OptimizeResult}{SciPy’s reference} for more
+information.
+
+\item {} 
+\sphinxstyleemphasis{params} {[}numpy.ndarray{]}: Three-element array containing the
+fitted parameters \(k\), \(m\) and \(n\).
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\index{ec() (data\_tools.models.DoseResponse method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.ec}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{ec}}}{\emph{p=50}}{}
+Computes the effective concentration for the specified
+percentage of maximal concentration (\(EC_{p}\)).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{p} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{50}} by default (\(EC_{50}\)).
+Defines the percentage of the maximal from which the
+effective concentration is to be computed.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns}] \leavevmode\begin{itemize}
+\item {} 
+{[}float{]}: Value of the \(EC_{p}\) computed according
+to the model parameters.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{plot() (data\_tools.models.DoseResponse method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{legend=True}}{}
+Plots the data points and the fitted function together.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the
+plot title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as {[}width, height{]}.
+
+\item {} 
+\sphinxstyleemphasis{legend} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Indicates
+whether to show the plot legend or not.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}matplotlib.figure.Figure{]}: Figure object showing the data
+points and the fitted model function.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 \index{Lasso (class in data\_tools.models)}
 
 \begin{fulllineitems}
@@ -827,7 +970,7 @@ Set operations module.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
 Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
-NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
+\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -857,6 +1000,54 @@ NOTE: \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same siz
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
 \PYG{g+go}{(1, 0, 1)}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{chunk\_this() (in module data\_tools.sets)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{sets:data_tools.sets.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
+For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
+it (in the same order).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
+definded size.
+
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
+number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
+element returned will have an inferior size.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
 \end{sphinxVerbatim}
 
 \end{description}

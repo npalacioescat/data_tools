@@ -360,11 +360,11 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 
     # Dashed lines denoting thresholds
     ax.plot([min_x - 1, max_x + 1], [thr_logpval, thr_logpval],
-            'k--', alpha=0.2) # -log(p-val) threshold line
+            'k--', alpha=0.3) # -log(p-val) threshold line
     ax.plot([-thr_logfc, -thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.2) # log(fc) threshold line (left)
+            'k--', alpha=0.3) # log(fc) threshold line (left)
     ax.plot([thr_logfc, thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.2) # log(fc) threshold line (right)
+            'k--', alpha=0.3) # log(fc) threshold line (right)
 
     ax.set_xlim(1.2 * min_x, 1.2 * max_x)
     ax.set_ylim(-0.25, 1.1 * max_y)

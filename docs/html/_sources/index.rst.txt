@@ -57,6 +57,7 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.diffusion.euler_explicit1D`
    - :meth:`data_tools.models`
       - :meth:`data_tools.models.Lasso`
+      - :meth:`data_tools.models.DoseResponse`
    - :meth:`data_tools.plots`
       - :meth:`data_tools.plots.density`
       - :meth:`data_tools.plots.piano_consensus`
@@ -64,6 +65,7 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.plots.volcano`
    - :meth:`data_tools.sets`
       - :meth:`data_tools.sets.bit_or`
+      - :meth:`data_tools.sets.chunk_this`
       - :meth:`data_tools.sets.find_min`
       - :meth:`data_tools.sets.in_all`
       - :meth:`data_tools.sets.subsets`

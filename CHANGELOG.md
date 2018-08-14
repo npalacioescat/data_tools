@@ -1,6 +1,13 @@
 # data_tools version history
 
 ## v0.0.6 (WIP):
+- In `models` module:
+    - Class `DoseResponse`: Wrapper class for
+      ``scipy.optimize.least_squares`` to fit dose-response curves on a
+      pre-defined Hill function.
+- In `sets` module:
+    - Function `chunk_this`: For a given list *L*, returns another list
+      of *n*-sized chunks from it (in the same order).
 - In `plots` module:
     - Function `venn` now accepts up to 5 sets.
 - In `databases` module:

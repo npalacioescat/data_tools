@@ -7,7 +7,10 @@ data_tools.sets
 Set operations module.
 '''
 
-__all__ = ['bit_or', 'find_min', 'in_all', 'subsets']
+# XXX: Should the module be renamed to something more general?
+#      eg: collections, sequences...
+
+__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets']
 
 import itertools
 
@@ -17,7 +20,7 @@ import numpy as np
 def bit_or(a, b):
     '''
     Returns the bit operation OR between two bit-strings *a* and *b*.
-    NOTE: *a* and *b* must have the same size.
+    **NOTE:** *a* and *b* must have the same size.
 
     * Arguments:
         - *a* [tuple]: Or any iterable type.
@@ -37,6 +40,32 @@ def bit_or(a, b):
 
     else:
         return tuple([el_a | el_b for (el_a, el_b) in zip(a, b)])
+
+
+def chunk_this(L, n):
+    '''
+    For a given list *L*, returns another list of *n*-sized chunks from
+    it (in the same order).
+
+    * Arguments:
+        - *L* [list]: The list to be sliced into sublists of the
+          definded size.
+        - *n* [int]: The size of the chunks.
+
+    * Returns:
+        - [list]: List of *n*-sized chunks from *L*. **NOTE:** If the
+          number of items in *L* is not divisible by *n*, the last
+          element returned will have an inferior size.
+
+    * Examples:
+        >>> L = range(6)
+        >>> chunk_this(L, 2)
+        [[0, 1], [2, 3], [4, 5]]
+        >>> chunk_this(L, 4)
+        [[0, 1, 2, 3], [4, 5]]
+    '''
+
+    return [L[i:i + n] for i in xrange(0, len(L), n)]
 
 
 def find_min(A):

@@ -5,20 +5,24 @@
 \indexentry{data\_tools.diffusion (module)|hyperpage}{11}
 \indexentry{euler\_explicit1D() (in module data\_tools.diffusion)|hyperpage}{11}
 \indexentry{data\_tools.models (module)|hyperpage}{11}
-\indexentry{Lasso (class in data\_tools.models)|hyperpage}{11}
-\indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{12}
-\indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{12}
-\indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{12}
-\indexentry{data\_tools.plots (module)|hyperpage}{12}
-\indexentry{density() (in module data\_tools.plots)|hyperpage}{12}
-\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{13}
-\indexentry{venn() (in module data\_tools.plots)|hyperpage}{14}
-\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{15}
-\indexentry{data\_tools.sets (module)|hyperpage}{16}
-\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{16}
-\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{16}
-\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{17}
-\indexentry{subsets() (in module data\_tools.sets)|hyperpage}{17}
-\indexentry{data\_tools.strings (module)|hyperpage}{17}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{17}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{18}
+\indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{11}
+\indexentry{ec() (data\_tools.models.DoseResponse method)|hyperpage}{12}
+\indexentry{plot() (data\_tools.models.DoseResponse method)|hyperpage}{12}
+\indexentry{Lasso (class in data\_tools.models)|hyperpage}{12}
+\indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{13}
+\indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{13}
+\indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{13}
+\indexentry{data\_tools.plots (module)|hyperpage}{13}
+\indexentry{density() (in module data\_tools.plots)|hyperpage}{13}
+\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{14}
+\indexentry{venn() (in module data\_tools.plots)|hyperpage}{15}
+\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{16}
+\indexentry{data\_tools.sets (module)|hyperpage}{17}
+\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{17}
+\indexentry{chunk\_this() (in module data\_tools.sets)|hyperpage}{17}
+\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{18}
+\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{18}
+\indexentry{subsets() (in module data\_tools.sets)|hyperpage}{18}
+\indexentry{data\_tools.strings (module)|hyperpage}{19}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{19}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{19}
