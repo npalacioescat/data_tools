@@ -40,6 +40,7 @@ A full copy of the GNU General Public License can be found on file
 - [diffusion](https://nic-nic.github.io/data_tools/html/diffusion.html)
     - [euler_explicit1D](https://nic-nic.github.io/data_tools/html/models.html#data_tools.diffusion.euler_explicit1D)
 - [models](https://nic-nic.github.io/data_tools/html/models.html)
+    - [DoseResponse](https://nic-nic.github.io/data_tools/html/models.html#data_tools.models.DoseResponse)
     - [Lasso](https://nic-nic.github.io/data_tools/html/models.html#data_tools.models.Lasso)
 - [plots](https://nic-nic.github.io/data_tools/html/plots.html)
     - [density](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.density)

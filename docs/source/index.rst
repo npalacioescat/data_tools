@@ -57,6 +57,7 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.diffusion.euler_explicit1D`
    - :meth:`data_tools.models`
       - :meth:`data_tools.models.Lasso`
+      - :meth:`data_tools.models.DoseResponse`
    - :meth:`data_tools.plots`
       - :meth:`data_tools.plots.density`
       - :meth:`data_tools.plots.piano_consensus`

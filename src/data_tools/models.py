@@ -7,7 +7,7 @@ data_tools.models
 Model classes module.
 '''
 
-__all__ = ['Lasso']
+__all__ = ['DoseResponse', 'Lasso']
 
 import time
 
@@ -22,58 +22,117 @@ from sklearn.model_selection import StratifiedKFold as skf
 from sklearn.model_selection import StratifiedShuffleSplit as sss
 
 
-class DoseResponse:
+class DoseResponse(object):
+    '''
+    Wrapper class for ``scipy.optimize.least_squares`` to fit
+    dose-response curves on a pre-defined Hill function with the
+    following form:
+
+    .. math::
+       R=\\frac{mD^n}{k^n+D^n}
+
+    Where :math:`D` is the dose, :math:`k`, :math:`m` and :math:`n` are
+    the parameters to be fitted.
+
+    * Arguments:
+        - *d_data* [numpy.ndarray]: Or any iterable (1D). Contains the
+          training data corresponding to the dose.
+        - *r_data* [numpy.ndarray]: Or any iterable (1D). Contains the
+          training data corresponding to the response.
+        - *x0* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+          iterable of three elements. Contains the initial guess for the
+          parameters. Parameters are considered to be in alphabetical
+          order. This is, first element corresponds to :math:`k`, second
+          is :math:`m` and last is :math:`n`.
+        - *x_scale* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+          iterable of three elements. Scale of each parameter. May
+          improve the fitting if the scaled parameters have similar
+          effect on the cost function.
+        - *bounds* [tuple]: Optional ``([0, 0, -inf], [inf, inf, inf])``
+          by default. Two-element tuple containing the lower and upper
+          boundaries for the parameters (elements of the tuple are
+          iterables of three elements each).
+
+    - Attributes:
+        - *model* [scipy.optimize.OptimizeResult]: Contains the result
+          of the optimized model. See `SciPy's reference <https://docs.\
+          scipy.org/doc/scipy/reference/generated/scipy.optimize.Optimi\
+          zeResult.html#scipy.optimize.OptimizeResult>`_ for more
+          information.
+        - *params* [numpy.ndarray]: Three-element array containing the
+          fitted parameters :math:`k`, :math:`m` and :math:`n`.
     '''
 
-    '''# TODO
-
-    def __init_(self, xdata, ydata, x0=[1, 1, 1], x_scale=[1, 1, 1],
-                bounds=([0, 0, -np.inf], [np.inf, np.inf, np.inf])):
+    def __init__(self, d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1],
+                 bounds=([0, 0, -np.inf], [np.inf, np.inf, np.inf])):
 
         def residuals(p, x, y):
-            return self.hill(x, *p) - y
+            return self.__hill(x, *p) - y
 
-        self.xdata = xdata
-        self.ydata = ydata
+        self.__xdata = d_data
+        self.__ydata = r_data
 
         ftol = 1e-15
         max_nfev = 1e15
         diff_step = 1e-15
 
-        model = least_squares(residuals, x0, args=(self.xdata, self.ydata),
-                              tr_solver='exact', bounds=bounds, ftol=ftol,
-                              diff_step=diff_step, max_nfev=max_nfev,
-                              x_scale=x_scale)
+        self.model = least_squares(residuals, x0, x_scale=x_scale,
+                                   args=(self.__xdata, self.__ydata),
+                                   tr_solver='exact', bounds=bounds, ftol=ftol,
+                                   diff_step=diff_step, max_nfev=max_nfev)
 
-        self.params = model.x
+        self.params = self.model.x
 
-    def hill(self, x, k, m, n):
-        '''
-
-        '''# TODO
+    def __hill(self, x, k, m, n):
 
         return m * x ** n / (k ** n + x ** n)
 
-    def ec50(self):
+    def ec(self, p=50):
         '''
+        Computes the effective concentration for the specified
+        percentage of maximal concentration (:math:`EC_{p}`).
 
-        '''# TODO
+        * Arguments:
+            - *p* [int]: Optional, ``50`` by default (:math:`EC_{50}`).
+              Defines the percentage of the maximal from which the
+              effective concentration is to be computed.
+
+        * Returns
+            - [float]: Value of the :math:`EC_{p}` computed according
+              to the model parameters.
+        '''
 
         k, m, n = self.params
 
-        return (k ** n / (2 * m - 1)) ** (1 / n)
+        return (p * k ** n / (p * m - p)) ** (1 / n)
 
     def plot(self, title=None, filename=None, figsize=None, legend=True):
         '''
+        Plots the data points and the fitted function together.
 
-        '''# TODO
+        * Arguments:
+            - *title* [str]: Optional, ``None`` by default. Defines the
+              plot title.
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
+            - *legend* [bool]: Optional, ``True`` by default. Indicates
+              whether to show the plot legend or not.
 
-        rng = np.linspace(min(xdata), max(xdata), 1000)
+        * Returns:
+            - [matplotlib.figure.Figure]: Figure object showing the data
+              points and the fitted model function.
+        '''
+
+        rng = np.linspace(min(self.__xdata), max(self.__xdata), 1000)
 
         fig, ax = plt.subplots(figsize=figsize)
 
-        ax.scatter(self.xdata, self.ydata, label='Data')
-        ax.plot(rng, self.hill(rng, *self.params), 'k', label='Fit')
+        ax.scatter(self.__xdata, self.__ydata, label='Data')
+        ax.plot(rng, self.__hill(rng, *self.params), 'k', label='Fit')
 
         if title:
             ax.set_title(title)

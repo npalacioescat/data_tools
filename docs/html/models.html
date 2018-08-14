@@ -47,6 +47,120 @@
 <h1>data_tools.models<a class="headerlink" href="#data-tools-models" title="Permalink to this headline">¶</a></h1>
 <p>Model classes module.</p>
 <dl class="class">
+<dt id="data_tools.models.DoseResponse">
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1], bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper class for <code class="docutils literal notranslate"><span class="pre">scipy.optimize.least_squares</span></code> to fit
+dose-response curves on a pre-defined Hill function with the
+following form:</p>
+<div class="math notranslate nohighlight">
+\[R=\frac{mD^n}{k^n+D^n}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(D\)</span> is the dose, <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are
+the parameters to be fitted.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>d_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
+training data corresponding to the dose.</li>
+<li><em>r_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
+training data corresponding to the response.</li>
+<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+iterable of three elements. Contains the initial guess for the
+parameters. Parameters are considered to be in alphabetical
+order. This is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second
+is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</li>
+<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+iterable of three elements. Scale of each parameter. May
+improve the fitting if the scaled parameters have similar
+effect on the cost function.</li>
+<li><em>bounds</em> [tuple]: Optional <code class="docutils literal notranslate"><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">-inf],</span> <span class="pre">[inf,</span> <span class="pre">inf,</span> <span class="pre">inf])</span></code>
+by default. Two-element tuple containing the lower and upper
+boundaries for the parameters (elements of the tuple are
+iterables of three elements each).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Attributes:</dt>
+<dd><ul class="first last">
+<li><em>model</em> [scipy.optimize.OptimizeResult]: Contains the result
+of the optimized model. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult">SciPy’s reference</a> for more
+information.</li>
+<li><em>params</em> [numpy.ndarray]: Three-element array containing the
+fitted parameters <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="data_tools.models.DoseResponse.ec">
+<code class="descname">ec</code><span class="sig-paren">(</span><em>p=50</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.ec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.ec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the effective concentration for the specified
+percentage of maximal concentration (<span class="math notranslate nohighlight">\(EC_{p}\)</span>).</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>p</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">50</span></code> by default (<span class="math notranslate nohighlight">\(EC_{50}\)</span>).
+Defines the percentage of the maximal from which the
+effective concentration is to be computed.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns</dt>
+<dd><ul class="first last">
+<li>[float]: Value of the <span class="math notranslate nohighlight">\(EC_{p}\)</span> computed according
+to the model parameters.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_tools.models.DoseResponse.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>legend=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the data points and the fitted function together.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the
+plot title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as [width, height].</li>
+<li><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
+whether to show the plot legend or not.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[matplotlib.figure.Figure]: Figure object showing the data
+points and the fitted model function.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="data_tools.models.Lasso">
 <em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>Cs=500</em>, <em>cv=10</em>, <em>sampler='skf'</em>, <em>solver='liblinear'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper class inheriting from
