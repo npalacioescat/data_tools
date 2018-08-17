@@ -48,6 +48,10 @@
   \item Lasso (class in data\_tools.models), \hyperpage{12}
 
   \indexspace
+  \bigletter O
+  \item op\_kinase\_substrate() (in module data\_tools.databases), \hyperpage{10}
+
+  \indexspace
   \bigletter P
   \item piano\_consensus() (in module data\_tools.plots), \hyperpage{14}
   \item plot() (data\_tools.models.DoseResponse method), \hyperpage{12}

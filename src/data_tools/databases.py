@@ -7,7 +7,8 @@ data_tools.databases
 Databases functions module.
 '''
 
-__all__ = ['kegg_link', 'kegg_pathway_mapping', 'up_map']
+__all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',
+           'up_map']
 
 import urllib
 import urllib2
@@ -49,7 +50,7 @@ def kegg_link(query, target='pathway'):
     request = urllib2.Request('/'.join([url, target, data]))
 
     response = urllib2.urlopen(request)
-    page = response.read(200000)
+    page = response.read()
 
     df = to_df(page, header=False)
 
@@ -113,7 +114,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     request = urllib2.Request(url + params)
 
     response = urllib2.urlopen(request)
-    page = response.read(500000)
+    page = response.read()
 
     # Now extract the image from the HTML page
     # There must be a cleaner way to parse the HTML file, but...
@@ -126,6 +127,28 @@ def kegg_pathway_mapping(df, mapid, filename=None):
         filename = '%s.png' %mapid
 
     urllib.urlretrieve(url + params, filename)
+
+
+def op_kinase_substrate(organism='9606'):
+    '''
+
+    ''' # TODO
+
+    url = 'http://omnipathdb.org/ptms'
+
+    params = {'types':'phosphorylation',
+              'organisms':organism}
+
+    data = urllib.urlencode(params)
+
+    request = urllib2.Request('?&'.join([url, data]))
+
+    response = urllib2.urlopen(request)
+    page = response.read()
+
+    df = to_df(page, header=True)
+
+    return df.iloc[:, :-1]
 
 
 def up_map(query, source='ACC', target='GENENAME'):
@@ -172,7 +195,7 @@ def up_map(query, source='ACC', target='GENENAME'):
     request = urllib2.Request(url, data)
 
     response = urllib2.urlopen(request)
-    page = response.read(200000)
+    page = response.read()
 
     df = to_df(page, header=True)
     df.columns = [source, target]
