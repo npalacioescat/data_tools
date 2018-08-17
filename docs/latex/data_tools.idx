@@ -13,8 +13,8 @@
 \indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{13}
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{13}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{13}
-\indexentry{data\_tools.plots (module)|hyperpage}{13}
-\indexentry{density() (in module data\_tools.plots)|hyperpage}{13}
+\indexentry{data\_tools.plots (module)|hyperpage}{14}
+\indexentry{density() (in module data\_tools.plots)|hyperpage}{14}
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{14}
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{15}
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{16}

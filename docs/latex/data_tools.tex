@@ -273,6 +273,31 @@ within the specified path/file name.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}}{}
+Queries OmniPath to retrieve the kinase-substrate interactions.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'9606'}} by default (Homo
+sapiens). NCBI taxonomic identifier for the organism of
+interest.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}pandas.DataFrame{]}: Table containing the enzyme-substrate
+(kinase/phosphatase-target) network of each phospho-site.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
 \end{fulllineitems}
 
 \index{up\_map() (in module data\_tools.databases)}

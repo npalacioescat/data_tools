@@ -13,10 +13,10 @@
   \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{11}
   \item data\_tools.models (module), \hyperpage{11}
-  \item data\_tools.plots (module), \hyperpage{13}
+  \item data\_tools.plots (module), \hyperpage{14}
   \item data\_tools.sets (module), \hyperpage{17}
   \item data\_tools.strings (module), \hyperpage{19}
-  \item density() (in module data\_tools.plots), \hyperpage{13}
+  \item density() (in module data\_tools.plots), \hyperpage{14}
   \item DoseResponse (class in data\_tools.models), \hyperpage{11}
 
   \indexspace

@@ -131,7 +131,16 @@ def kegg_pathway_mapping(df, mapid, filename=None):
 
 def op_kinase_substrate(organism='9606'):
     '''
+    Queries OmniPath to retrieve the kinase-substrate interactions.
 
+    * Arguments:
+        - *organism* [str]: Optional, ``'9606'`` by default (Homo
+          sapiens). NCBI taxonomic identifier for the organism of
+          interest.
+
+    * Returns:
+        - [pandas.DataFrame]: Table containing the enzyme-substrate
+          (kinase/phosphatase-target) network of each phospho-site.
     ''' # TODO
 
     url = 'http://omnipathdb.org/ptms'
