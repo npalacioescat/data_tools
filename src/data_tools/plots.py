@@ -277,6 +277,9 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
 
+    if title:
+        ax.set_title(title)
+
     ax.legend()
 
     ax.axis('off')
