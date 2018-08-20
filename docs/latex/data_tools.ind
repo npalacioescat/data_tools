@@ -36,7 +36,7 @@
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{19}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{20}
 
   \indexspace
   \bigletter K
@@ -64,6 +64,7 @@
 
   \indexspace
   \bigletter U
+  \item unzip\_dicts() (in module data\_tools.sets), \hyperpage{19}
   \item up\_map() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace

@@ -70,6 +70,7 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.sets.find_min`
       - :meth:`data_tools.sets.in_all`
       - :meth:`data_tools.sets.subsets`
+      - :meth:`data_tools.sets.unzip_dicts`
    - :meth:`data_tools.strings`
       - :meth:`data_tools.strings.is_numeric`
       - :meth:`data_tools.strings.join_str_lists`

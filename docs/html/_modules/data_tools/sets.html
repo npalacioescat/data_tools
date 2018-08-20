@@ -49,7 +49,8 @@
 <span class="c1"># XXX: Should the module be renamed to something more general?</span>
 <span class="c1">#      eg: collections, sequences...</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_this&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;subsets&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bit_or&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk_this&#39;</span><span class="p">,</span> <span class="s1">&#39;find_min&#39;</span><span class="p">,</span> <span class="s1">&#39;in_all&#39;</span><span class="p">,</span> <span class="s1">&#39;subsets&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;unzip_dicts&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">itertools</span>
 
@@ -204,6 +205,29 @@
         <span class="n">result</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="unzip_dicts"><a class="viewcode-back" href="../../sets.html#data_tools.sets.unzip_dicts">[docs]</a><span class="k">def</span> <span class="nf">unzip_dicts</span><span class="p">(</span><span class="o">*</span><span class="n">dicts</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Unzips the keys and values for any number of dictionaries passed as</span>
+<span class="sd">    arguments (see below for examples).</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *\*dicts* [dict]: Dictionaries from which key/value pairs are</span>
+<span class="sd">          to be unzipped.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [list]: Two-element list contianing all keys and all values</span>
+<span class="sd">          respectively from the dictionaries in *\*dicts*.</span>
+
+<span class="sd">    * Example:</span>
+<span class="sd">        &gt;&gt;&gt; a = dict([(&#39;x_a&#39;, 2), (&#39;y_a&#39;, 3)])</span>
+<span class="sd">        &gt;&gt;&gt; b = dict([(&#39;x_b&#39;, 1), (&#39;y_b&#39;, -1)])</span>
+<span class="sd">        &gt;&gt;&gt; unzip(a, b)</span>
+<span class="sd">        [(&#39;y_a&#39;, &#39;x_a&#39;, &#39;x_b&#39;, &#39;y_b&#39;), (3, 2, 1, -1)]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dicts</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span></div>
 </pre></div>
 
           </div>

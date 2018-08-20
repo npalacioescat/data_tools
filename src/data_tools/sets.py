@@ -10,7 +10,8 @@ Set operations module.
 # XXX: Should the module be renamed to something more general?
 #      eg: collections, sequences...
 
-__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets']
+__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets',
+           'unzip_dicts']
 
 import itertools
 
@@ -165,3 +166,26 @@ def subsets(N):
         result[''.join(c)] = lhs.difference(rhs)
 
     return result
+
+
+def unzip_dicts(*dicts):
+    '''
+    Unzips the keys and values for any number of dictionaries passed as
+    arguments (see below for examples).
+
+    * Arguments:
+        - *\*dicts* [dict]: Dictionaries from which key/value pairs are
+          to be unzipped.
+
+    * Returns:
+        - [list]: Two-element list contianing all keys and all values
+          respectively from the dictionaries in *\*dicts*.
+
+    * Example:
+        >>> a = dict([('x_a', 2), ('y_a', 3)])
+        >>> b = dict([('x_b', 1), ('y_b', -1)])
+        >>> unzip(a, b)
+        [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)]
+    '''
+
+    return zip(*[(k, v) for d in dicts for (k, v) in d.items()])

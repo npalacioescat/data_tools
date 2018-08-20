@@ -24,6 +24,7 @@
 \indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{18}
 \indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{18}
 \indexentry{subsets() (in module data\_tools.sets)|hyperpage}{18}
+\indexentry{unzip\_dicts() (in module data\_tools.sets)|hyperpage}{19}
 \indexentry{data\_tools.strings (module)|hyperpage}{19}
 \indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{19}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{19}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{20}

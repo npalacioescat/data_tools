@@ -6,6 +6,8 @@
       ``scipy.optimize.least_squares`` to fit dose-response curves on a
       pre-defined Hill function.
 - In `sets` module:
+    - Function `unzip_dicts`: Unzips the keys and values for any number
+      of dictionaries passed as arguments (see below for examples).
     - Function `chunk_this`: For a given list *L*, returns another list
       of *n*-sized chunks from it (in the same order).
 - In `plots` module:

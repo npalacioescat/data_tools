@@ -54,6 +54,7 @@ A full copy of the GNU General Public License can be found on file
     - [find_min](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.find_min)
     - [in_all](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.in_all)
     - [subsets](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.subsets)
+    - [unzip_dicts](https://nic-nic.github.io/data_tools/html/sets.html#data_tools.sets.unzip_dicts)
 - [strings](https://nic-nic.github.io/data_tools/html/strings.html)
     - [is_numeric](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.is_numeric)
     - [join_str_lists](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.join_str_lists)
