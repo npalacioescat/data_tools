@@ -11,7 +11,8 @@
 - In `plots` module:
     - Function `venn` now accepts up to 5 sets.
 - In `databases` module:
-    - Function `op_kinase_substrate`:
+    - Function `op_kinase_substrate`: Queries OmniPath to retrieve the
+      kinase-substrate interactions for a given organism.
     - Function `kegg_link`: Queries a request to the KEGG database to
       find related entries using cross-references.
     - Function `kegg_pathway_mapping`: Makes a request to KEGG pathway

@@ -139,7 +139,30 @@ within the specified path/file name.</li>
 <dl class="function">
 <dt id="data_tools.databases.op_kinase_substrate">
 <code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
+given organism.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
+sapiens). NCBI taxonomic identifier for the organism of
+interest.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[pandas.DataFrame]: Table containing the enzyme-substrate
+(kinase/phosphatase-target) network of each phospho-site.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
 
 <dl class="function">
 <dt id="data_tools.databases.up_map">

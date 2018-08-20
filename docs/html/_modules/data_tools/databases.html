@@ -170,7 +170,8 @@
 
 <div class="viewcode-block" id="op_kinase_substrate"><a class="viewcode-back" href="../../databases.html#data_tools.databases.op_kinase_substrate">[docs]</a><span class="k">def</span> <span class="nf">op_kinase_substrate</span><span class="p">(</span><span class="n">organism</span><span class="o">=</span><span class="s1">&#39;9606&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Queries OmniPath to retrieve the kinase-substrate interactions.</span>
+<span class="sd">    Queries OmniPath to retrieve the kinase-substrate interactions for a</span>
+<span class="sd">    given organism.</span>
 
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *organism* [str]: Optional, ``&#39;9606&#39;`` by default (Homo</span>
@@ -180,7 +181,7 @@
 <span class="sd">    * Returns:</span>
 <span class="sd">        - [pandas.DataFrame]: Table containing the enzyme-substrate</span>
 <span class="sd">          (kinase/phosphatase-target) network of each phospho-site.</span>
-<span class="sd">    &#39;&#39;&#39;</span> <span class="c1"># TODO</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://omnipathdb.org/ptms&#39;</span>
 
