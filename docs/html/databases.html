@@ -189,7 +189,10 @@ check other options available in the URL above.</li>
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
 <li>[pandas.DataFrame]: Two-column table containing both the
-inputed identifiers and the mapping result of these.</li>
+inputed identifiers and the mapping result of these. <strong>NOTE:</strong>
+The returned table may not have the same order as in
+<code class="docutils literal notranslate"><span class="pre">query</span></code>. Also, if some ID could not be mapped, the size of
+the returned table will differ from the length of <code class="docutils literal notranslate"><span class="pre">query</span></code>.</li>
 </ul>
 </dd>
 </dl>

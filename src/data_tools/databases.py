@@ -178,7 +178,10 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     * Returns:
         - [pandas.DataFrame]: Two-column table containing both the
-          inputed identifiers and the mapping result of these.
+          inputed identifiers and the mapping result of these. **NOTE:**
+          The returned table may not have the same order as in
+          ``query``. Also, if some ID could not be mapped, the size of
+          the returned table will differ from the length of ``query``.
 
     * Examples:
         >>> my_query = ['P00533', 'P31749', 'P16220']

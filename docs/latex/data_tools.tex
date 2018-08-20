@@ -332,7 +332,10 @@ check other options available in the URL above.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}pandas.DataFrame{]}: Two-column table containing both the
-inputed identifiers and the mapping result of these.
+inputed identifiers and the mapping result of these. \sphinxstylestrong{NOTE:}
+The returned table may not have the same order as in
+\sphinxcode{\sphinxupquote{query}}. Also, if some ID could not be mapped, the size of
+the returned table will differ from the length of \sphinxcode{\sphinxupquote{query}}.
 
 \end{itemize}
 

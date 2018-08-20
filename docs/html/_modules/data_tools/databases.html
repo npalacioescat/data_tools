@@ -217,7 +217,10 @@
 
 <span class="sd">    * Returns:</span>
 <span class="sd">        - [pandas.DataFrame]: Two-column table containing both the</span>
-<span class="sd">          inputed identifiers and the mapping result of these.</span>
+<span class="sd">          inputed identifiers and the mapping result of these. **NOTE:**</span>
+<span class="sd">          The returned table may not have the same order as in</span>
+<span class="sd">          ``query``. Also, if some ID could not be mapped, the size of</span>
+<span class="sd">          the returned table will differ from the length of ``query``.</span>
 
 <span class="sd">    * Examples:</span>
 <span class="sd">        &gt;&gt;&gt; my_query = [&#39;P00533&#39;, &#39;P31749&#39;, &#39;P16220&#39;]</span>
