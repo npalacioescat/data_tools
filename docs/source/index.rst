@@ -9,7 +9,7 @@ data_tools' reference
 
 .. only:: html
 
-   .. image:: https://img.shields.io/badge/release-v0.0.5-blue.svg
+   .. image:: https://img.shields.io/badge/release-v0.0.6-blue.svg
       :alt: GitHub release
    .. image:: https://img.shields.io/badge/tests-100%25_passed-brightgreen.svg
       :alt: Tests output
@@ -56,6 +56,13 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.databases.up_map`
    - :meth:`data_tools.diffusion`
       - :meth:`data_tools.diffusion.euler_explicit1D`
+   - :meth:`data_tools.iterables`
+      - :meth:`data_tools.iterables.bit_or`
+      - :meth:`data_tools.iterables.chunk_this`
+      - :meth:`data_tools.iterables.find_min`
+      - :meth:`data_tools.iterables.in_all`
+      - :meth:`data_tools.iterables.subsets`
+      - :meth:`data_tools.iterables.unzip_dicts`
    - :meth:`data_tools.models`
       - :meth:`data_tools.models.Lasso`
       - :meth:`data_tools.models.DoseResponse`
@@ -64,13 +71,6 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.plots.piano_consensus`
       - :meth:`data_tools.plots.venn`
       - :meth:`data_tools.plots.volcano`
-   - :meth:`data_tools.sets`
-      - :meth:`data_tools.sets.bit_or`
-      - :meth:`data_tools.sets.chunk_this`
-      - :meth:`data_tools.sets.find_min`
-      - :meth:`data_tools.sets.in_all`
-      - :meth:`data_tools.sets.subsets`
-      - :meth:`data_tools.sets.unzip_dicts`
    - :meth:`data_tools.strings`
       - :meth:`data_tools.strings.is_numeric`
       - :meth:`data_tools.strings.join_str_lists`
@@ -138,7 +138,7 @@ Modules
 
    databases
    diffusion
+   iterables
    models
    plots
-   sets
    strings

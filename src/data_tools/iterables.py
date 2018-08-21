@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 
 '''
-data_tools.sets
-===============
+data_tools.iterables
+====================
 
-Set operations module.
+Iterable-type operations module.
 '''
-
-# XXX: Should the module be renamed to something more general?
-#      eg: collections, sequences...
 
 __all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets',
            'unzip_dicts']

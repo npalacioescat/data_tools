@@ -55,8 +55,8 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 20, 2018}
-\release{0.0.5}
+\date{Aug 21, 2018}
+\release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -407,6 +407,282 @@ the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'perio
 according to the parameters and conditions selected.
 
 \end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{data\_tools.iterables (module)}
+
+\section{data\_tools.iterables}
+\label{\detokenize{iterables:data-tools-iterables}}\label{\detokenize{iterables::doc}}
+Iterable-type operations module.
+\index{bit\_or() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
+Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
+\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
+
+\item {} 
+\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+\PYG{g+go}{(1, 0, 1)}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{chunk\_this() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
+For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
+it (in the same order).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
+definded size.
+
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
+number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
+element returned will have an inferior size.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{find\_min() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
+Finds and returns the subset of vectors whose sum is minimum from a
+given set \sphinxstyleemphasis{A}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{in\_all() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
+Checks if a vector \sphinxstyleemphasis{x} is present in all sets contained in a list
+\sphinxstyleemphasis{N}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x} {[}tuple{]}: Or any hashable type as long as is the same
+contained in the sets of \sphinxstyleemphasis{N}.
+
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}bool{]}: \sphinxcode{\sphinxupquote{True}} if \sphinxstyleemphasis{x} is found in all sets of \sphinxstyleemphasis{N}, \sphinxcode{\sphinxupquote{False}}
+otherwise.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set A}
+\PYG{g+gp}{... }     \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set B}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{True}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{False}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{subsets() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
+Function that computes all possible logical relations between all
+sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
+that would represent each intersecting area on a Venn diagram.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}dict{]}: Collection of subsets according to the logical
+relations between the sets in \sphinxstyleemphasis{N}. The keys are binary codes
+that denote the logical relation (see examples below).
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}11\PYGZsq{}: set([2]), \PYGZsq{}10\PYGZsq{}: set([0, 1]), \PYGZsq{}01\PYGZsq{}: set([3, 4])\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}010\PYGZsq{}: set([2]), \PYGZsq{}011\PYGZsq{}: set([3]), \PYGZsq{}001\PYGZsq{}: set([4]), \PYGZsq{}111\PYGZsq{}: set([}
+\PYG{g+go}{]), \PYGZsq{}110\PYGZsq{}: set([]), \PYGZsq{}100\PYGZsq{}: set([0]), \PYGZsq{}101\PYGZsq{}: set([1])\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{unzip\_dicts() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{*dicts}}{}
+Unzips the keys and values for any number of dictionaries passed as
+arguments (see below for examples).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{*dicts} {[}dict{]}: Dictionaries from which key/value pairs are
+to be unzipped.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: Two-element list contianing all keys and all values
+respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{b} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{unzip}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+\PYG{g+go}{[(\PYGZsq{}y\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}b\PYGZsq{}, \PYGZsq{}y\PYGZus{}b\PYGZsq{}), (3, 2, 1, \PYGZhy{}1)]}
+\end{sphinxVerbatim}
 
 \end{description}
 
@@ -995,282 +1271,6 @@ volcano plot.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{sets:module-data_tools.sets}}\index{data\_tools.sets (module)}
-
-\section{data\_tools.sets}
-\label{\detokenize{sets:data-tools-sets}}\label{\detokenize{sets::doc}}
-Set operations module.
-\index{bit\_or() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
-Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
-\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
-
-\item {} 
-\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
-\PYG{g+go}{(1, 0, 1)}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{chunk\_this() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
-For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
-it (in the same order).
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
-definded size.
-
-\item {} 
-\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
-number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
-element returned will have an inferior size.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
-\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{find\_min() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
-Finds and returns the subset of vectors whose sum is minimum from a
-given set \sphinxstyleemphasis{A}.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
-\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{in\_all() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
-Checks if a vector \sphinxstyleemphasis{x} is present in all sets contained in a list
-\sphinxstyleemphasis{N}.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{x} {[}tuple{]}: Or any hashable type as long as is the same
-contained in the sets of \sphinxstyleemphasis{N}.
-
-\item {} 
-\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}bool{]}: \sphinxcode{\sphinxupquote{True}} if \sphinxstyleemphasis{x} is found in all sets of \sphinxstyleemphasis{N}, \sphinxcode{\sphinxupquote{False}}
-otherwise.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set A}
-\PYG{g+gp}{... }     \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set B}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{True}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{False}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{subsets() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
-Function that computes all possible logical relations between all
-sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
-that would represent each intersecting area on a Venn diagram.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}dict{]}: Collection of subsets according to the logical
-relations between the sets in \sphinxstyleemphasis{N}. The keys are binary codes
-that denote the logical relation (see examples below).
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{\PYGZob{}\PYGZsq{}11\PYGZsq{}: set([2]), \PYGZsq{}10\PYGZsq{}: set([0, 1]), \PYGZsq{}01\PYGZsq{}: set([3, 4])\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{\PYGZob{}\PYGZsq{}010\PYGZsq{}: set([2]), \PYGZsq{}011\PYGZsq{}: set([3]), \PYGZsq{}001\PYGZsq{}: set([4]), \PYGZsq{}111\PYGZsq{}: set([}
-\PYG{g+go}{]), \PYGZsq{}110\PYGZsq{}: set([]), \PYGZsq{}100\PYGZsq{}: set([0]), \PYGZsq{}101\PYGZsq{}: set([1])\PYGZcb{}}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{unzip\_dicts() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{*dicts}}{}
-Unzips the keys and values for any number of dictionaries passed as
-arguments (see below for examples).
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{*dicts} {[}dict{]}: Dictionaries from which key/value pairs are
-to be unzipped.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}list{]}: Two-element list contianing all keys and all values
-respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{b} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{unzip}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
-\PYG{g+go}{[(\PYGZsq{}y\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}b\PYGZsq{}, \PYGZsq{}y\PYGZus{}b\PYGZsq{}), (3, 2, 1, \PYGZhy{}1)]}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
 \phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)}
 
 \section{data\_tools.strings}
@@ -1381,9 +1381,9 @@ Determines the separator between the joint strings.
 \bigletter{d}
 \item {\sphinxstyleindexentry{data\_tools.databases}}\sphinxstyleindexpageref{databases:\detokenize{module-data_tools.databases}}
 \item {\sphinxstyleindexentry{data\_tools.diffusion}}\sphinxstyleindexpageref{diffusion:\detokenize{module-data_tools.diffusion}}
+\item {\sphinxstyleindexentry{data\_tools.iterables}}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
 \item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
-\item {\sphinxstyleindexentry{data\_tools.sets}}\sphinxstyleindexpageref{sets:\detokenize{module-data_tools.sets}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}
 

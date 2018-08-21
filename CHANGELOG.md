@@ -1,6 +1,9 @@
 # data_tools version history
 
-## v0.0.6 (WIP):
+## v0.0.7:
+
+## v0.0.6:
+- Renamed `sets` to `iterables`.
 - In `models` module:
     - Class `DoseResponse`: Wrapper class for
       ``scipy.optimize.least_squares`` to fit dose-response curves on a

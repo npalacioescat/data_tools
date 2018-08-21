@@ -15,7 +15,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy import stats
 
-from data_tools.sets import subsets
+from data_tools.iterables import subsets
 
 
 # TODO: Add example figure
