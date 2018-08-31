@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 21, 2018}
+\date{Aug 31, 2018}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1123,7 +1123,7 @@ combination of box and scatter plots of the gene-set scores.
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, title=None, filename=None, figsize=None}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
 between 2 and 5 (inclusive).
 \begin{itemize}
@@ -1143,6 +1143,10 @@ default (matplotlib default colors). Any iterable containing
 color arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}}
 for red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
+
+\item {} 
+\sphinxstyleemphasis{pct} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Indicates
+whether to show percentages instead of absolute counts.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot

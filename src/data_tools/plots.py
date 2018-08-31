@@ -160,7 +160,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
 
 def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
-         title=None, filename=None, figsize=None):
+         pct=False, title=None, filename=None, figsize=None):
     '''
     Plots a Venn diagram from a list of sets *N*. Number of sets must be
     between 2 and 5 (inclusive).
@@ -175,6 +175,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
           color arguments tolerated by matplotlib (e.g.: ``['r', 'b']``
           for red and blue). Must contain at least the same number of
           elements as *N* (if more are provided, they will be ignored).
+        - *pct* [bool]: Optional, ``False`` by default. Indicates
+          whether to show percentages instead of absolute counts.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -196,11 +198,6 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
            :align: center
            :scale: 100
     '''
-
-    ssets = subsets(N)
-    counts = dict(zip(ssets.keys(), map(len, ssets.values())))
-
-    fig, ax = plt.subplots(figsize=figsize)
 
     if len(N) == 2:
         # Ellipse parameters
@@ -267,12 +264,24 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     else:
         return 'The maximum number of sets supported is 5.'
 
+    ssets = subsets(N)
+    # Subset counts
+    text = dict(zip(ssets.keys(), map(len, ssets.values())))
+
+    if pct:
+        total = float(sum(text.values()))
+        text = dict(zip(text.keys(),
+                          np.round(100 * np.array(text.values()) / total,
+                                   decimals=2)))
+
+    fig, ax = plt.subplots(figsize=figsize)
+
     for i in range(len(N)):
         ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],
                 label=labels[i])
 
-    for i in range(len(counts)):
-        ax.text(xt[i], yt[i], counts[keys[i]], fontdict={'ha':'center'})
+    for i in range(len(text)):
+        ax.text(xt[i], yt[i], text[keys[i]], fontdict={'ha':'center'})
 
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)

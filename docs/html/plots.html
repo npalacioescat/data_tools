@@ -141,7 +141,7 @@ combination of box and scatter plots of the gene-set scores.</li>
 
 <dl class="function">
 <dt id="data_tools.plots.venn">
-<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'], title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'], pct=False, title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a Venn diagram from a list of sets <em>N</em>. Number of sets must be
 between 2 and 5 (inclusive).</p>
 <ul>
@@ -157,6 +157,8 @@ default (matplotlib default colors). Any iterable containing
 color arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code>
 for red and blue). Must contain at least the same number of
 elements as <em>N</em> (if more are provided, they will be ignored).</li>
+<li><em>pct</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Indicates
+whether to show percentages instead of absolute counts.</li>
 <li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
 <li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
@@ -309,7 +311,7 @@ volcano plot.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
