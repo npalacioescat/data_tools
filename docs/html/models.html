@@ -48,7 +48,7 @@
 <p>Model classes module.</p>
 <dl class="class">
 <dt id="data_tools.models.DoseResponse">
-<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1], bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=None, x_scale=None, bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper class for <code class="docutils literal notranslate"><span class="pre">scipy.optimize.least_squares</span></code> to fit
 dose-response curves on a pre-defined Hill function with the
 following form:</p>
@@ -64,15 +64,17 @@ the parameters to be fitted.</p>
 training data corresponding to the dose.</li>
 <li><em>r_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
 training data corresponding to the response.</li>
-<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Contains the initial guess for the
 parameters. Parameters are considered to be in alphabetical
 order. This is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second
-is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</li>
-<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the
+initial guess is inferred from <em>r_data</em>.</li>
+<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Scale of each parameter. May
 improve the fitting if the scaled parameters have similar
-effect on the cost function.</li>
+effect on the cost function. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the scale
+is inferred from <em>x0</em>.</li>
 <li><em>bounds</em> [tuple]: Optional <code class="docutils literal notranslate"><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">-inf],</span> <span class="pre">[inf,</span> <span class="pre">inf,</span> <span class="pre">inf])</span></code>
 by default. Two-element tuple containing the lower and upper
 boundaries for the parameters (elements of the tuple are
@@ -342,7 +344,7 @@ score plot.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

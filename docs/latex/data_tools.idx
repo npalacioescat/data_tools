@@ -16,7 +16,7 @@
 \indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{13}
 \indexentry{ec() (data\_tools.models.DoseResponse method)|hyperpage}{14}
 \indexentry{plot() (data\_tools.models.DoseResponse method)|hyperpage}{14}
-\indexentry{Lasso (class in data\_tools.models)|hyperpage}{14}
+\indexentry{Lasso (class in data\_tools.models)|hyperpage}{15}
 \indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{15}
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{15}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{15}

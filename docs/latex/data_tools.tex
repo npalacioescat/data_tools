@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 31, 2018}
+\date{Sep 07, 2018}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -272,7 +272,7 @@ within the specified path/file name.
 \index{op\_kinase\_substrate() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{incl\_phosphatases=False}}{}
 Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.
 \begin{itemize}
@@ -282,6 +282,11 @@ given organism.
 \sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'9606'}} by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
 interest.
+
+\item {} 
+\sphinxstyleemphasis{incl\_phosphatases} {[}bool{]}: Optional \sphinxcode{\sphinxupquote{False}} by defaultself.
+Determines wether to include dephosphorylation interactions or
+not.
 
 \end{itemize}
 
@@ -698,7 +703,7 @@ Model classes module.
 \index{DoseResponse (class in data\_tools.models)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0={[}1, 1, 1{]}, x\_scale={[}1, 1, 1{]}, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0=None, x\_scale=None, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
 Wrapper class for \sphinxcode{\sphinxupquote{scipy.optimize.least\_squares}} to fit
 dose-response curves on a pre-defined Hill function with the
 following form:
@@ -719,17 +724,19 @@ training data corresponding to the dose.
 training data corresponding to the response.
 
 \item {} 
-\sphinxstyleemphasis{x0} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+\sphinxstyleemphasis{x0} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Or any
 iterable of three elements. Contains the initial guess for the
 parameters. Parameters are considered to be in alphabetical
 order. This is, first element corresponds to \(k\), second
-is \(m\) and last is \(n\).
+is \(m\) and last is \(n\). If \sphinxcode{\sphinxupquote{None}} (default), the
+initial guess is inferred from \sphinxstyleemphasis{r\_data}.
 
 \item {} 
-\sphinxstyleemphasis{x\_scale} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+\sphinxstyleemphasis{x\_scale} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Or any
 iterable of three elements. Scale of each parameter. May
 improve the fitting if the scaled parameters have similar
-effect on the cost function.
+effect on the cost function. If \sphinxcode{\sphinxupquote{None}} (default), the scale
+is inferred from \sphinxstyleemphasis{x0}.
 
 \item {} 
 \sphinxstyleemphasis{bounds} {[}tuple{]}: Optional \sphinxcode{\sphinxupquote{({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}

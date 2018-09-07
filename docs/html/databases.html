@@ -138,7 +138,7 @@ within the specified path/file name.</li>
 
 <dl class="function">
 <dt id="data_tools.databases.op_kinase_substrate">
-<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em>, <em>incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.</p>
 <ul class="simple">
@@ -148,6 +148,9 @@ given organism.</p>
 <li><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
 interest.</li>
+<li><em>incl_phosphatases</em> [bool]: Optional <code class="docutils literal notranslate"><span class="pre">False</span></code> by defaultself.
+Determines wether to include dephosphorylation interactions or
+not.</li>
 </ul>
 </dd>
 </dl>
@@ -275,7 +278,7 @@ the returned table will differ from the length of <code class="docutils literal 
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
