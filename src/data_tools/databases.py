@@ -129,7 +129,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     urllib.urlretrieve(url + params, filename)
 
 
-def op_kinase_substrate(organism='9606'):
+def op_kinase_substrate(organism='9606', incl_phosphatases=False):
     '''
     Queries OmniPath to retrieve the kinase-substrate interactions for a
     given organism.
@@ -138,6 +138,9 @@ def op_kinase_substrate(organism='9606'):
         - *organism* [str]: Optional, ``'9606'`` by default (Homo
           sapiens). NCBI taxonomic identifier for the organism of
           interest.
+        - *incl_phosphatases* [bool]: Optional ``False`` by defaultself.
+          Determines wether to include dephosphorylation interactions or
+          not.
 
     * Returns:
         - [pandas.DataFrame]: Table containing the enzyme-substrate
@@ -146,7 +149,8 @@ def op_kinase_substrate(organism='9606'):
 
     url = 'http://omnipathdb.org/ptms'
 
-    params = {'types':'phosphorylation',
+    params = {'types':'phosphorylation,dephosphorylation' if incl_phosphatases
+                      else 'phosphorylation',
               'organisms':organism}
 
     data = urllib.urlencode(params)
@@ -158,7 +162,7 @@ def op_kinase_substrate(organism='9606'):
 
     df = to_df(page, header=True)
 
-    return df.iloc[:, :-1]
+    return df
 
 
 def up_map(query, source='ACC', target='GENENAME'):
