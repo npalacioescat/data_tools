@@ -39,15 +39,17 @@ class DoseResponse(object):
           training data corresponding to the dose.
         - *r_data* [numpy.ndarray]: Or any iterable (1D). Contains the
           training data corresponding to the response.
-        - *x0* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+        - *x0* [list]: Optional, ``None`` by default. Or any
           iterable of three elements. Contains the initial guess for the
           parameters. Parameters are considered to be in alphabetical
           order. This is, first element corresponds to :math:`k`, second
-          is :math:`m` and last is :math:`n`.
-        - *x_scale* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+          is :math:`m` and last is :math:`n`. If ``None`` (default), the
+          initial guess is inferred from *r_data*.
+        - *x_scale* [list]: Optional, ``None`` by default. Or any
           iterable of three elements. Scale of each parameter. May
           improve the fitting if the scaled parameters have similar
-          effect on the cost function.
+          effect on the cost function. If ``None`` (default), the scale
+          is inferred from *x0*.
         - *bounds* [tuple]: Optional ``([0, 0, -inf], [inf, inf, inf])``
           by default. Two-element tuple containing the lower and upper
           boundaries for the parameters (elements of the tuple are
@@ -63,7 +65,7 @@ class DoseResponse(object):
           fitted parameters :math:`k`, :math:`m` and :math:`n`.
     '''
 
-    def __init__(self, d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1],
+    def __init__(self, d_data, r_data, x0=None, x_scale=None,
                  bounds=([0, 0, -np.inf], [np.inf, np.inf, np.inf])):
 
         def residuals(p, x, y):
@@ -71,6 +73,14 @@ class DoseResponse(object):
 
         self.__xdata = d_data
         self.__ydata = r_data
+
+        if not x0:
+            x0 = [(max(self.__ydata) - min(self.__ydata)) / 2,
+                  max(self.__ydata),
+                  np.sign(self.__ydata[-1] - self.__ydata[0])]
+
+        if not x_scale:
+            x_scale = [10 ** int(np.log10(i)) for i in x0]
 
         ftol = 1e-15
         max_nfev = 1e15
@@ -104,7 +114,7 @@ class DoseResponse(object):
 
         k, m, n = self.params
 
-        return (p * k ** n / (p * m - p)) ** (1 / n)
+        return k * (p / (100 - p)) ** (1 / n)
 
     def plot(self, title=None, filename=None, figsize=None, legend=True):
         '''
