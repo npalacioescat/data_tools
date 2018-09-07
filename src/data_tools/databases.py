@@ -138,7 +138,7 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
         - *organism* [str]: Optional, ``'9606'`` by default (Homo
           sapiens). NCBI taxonomic identifier for the organism of
           interest.
-        - *incl_phosphatases* [bool]: Optional ``False`` by defaultself.
+        - *incl_phosphatases* [bool]: Optional ``False`` by default.
           Determines wether to include dephosphorylation interactions or
           not.
 

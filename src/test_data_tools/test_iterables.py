@@ -7,6 +7,7 @@ import unittest
 
 from data_tools import iterables
 
+
 class BitOrTestCase(unittest.TestCase):
     def test_int_list(self):
         self.assertTupleEqual(iterables.bit_or([0, 0, 1],
