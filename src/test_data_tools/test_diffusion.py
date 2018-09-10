@@ -41,5 +41,5 @@ class EulerExplicit1DTestCase(unittest.TestCase):
             self.Ui = self.U
 
         # Check error with L^inf norm
-        l_inf = norm(self.U, np.inf) - norm(self.analytic, np.inf)
+        l_inf = abs(norm(self.U, np.inf) - norm(self.analytic, np.inf))
         self.assertLess(l_inf, 0.01)

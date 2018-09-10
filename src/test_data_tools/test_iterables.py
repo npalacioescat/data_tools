@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['BitOrTestCase', 'FindMinTestCase', 'InAllTestCase',
-           'SubsetsTestCase']
+__all__ = ['BitOrTestCase', 'ChunkThisTestCase', 'FindMinTestCase',
+           'InAllTestCase', 'SubsetsTestCase', 'UnzipDictsTestCase']
 
 import unittest
 
@@ -18,6 +18,19 @@ class BitOrTestCase(unittest.TestCase):
         self.assertTupleEqual(iterables.bit_or([False, False, True],
                                                [True, False, True]),
                               (True, False, True))
+
+
+class ChunkThisTestCase(unittest.TestCase):
+    def setUp(self):
+        self.aux = range(6)
+
+    def test_even_slicing(self):
+        self.assertEqual(iterables.chunk_this(self.aux, 2),
+                         [[0, 1], [2, 3], [4, 5]])
+
+    def test_uneven_slicing(self):
+        self.assertEqual(iterables.chunk_this(self.aux, 4),
+                         [[0, 1, 2, 3], [4, 5]])
 
 
 class FindMinTestCase(unittest.TestCase):
@@ -80,3 +93,13 @@ class SubsetsTestCase(unittest.TestCase):
                               '110': set([]),
                               '100': set([0]),
                               '101': set([1])})
+
+
+class UnzipDictsTestCase(unittest.TestCase):
+    def setUp(self):
+        self.a = dict([('x_a', 2), ('y_a', 3)])
+        self.b = dict([('x_b', 1), ('y_b', -1)])
+
+    def test_unzip(self):
+        self.assertEqual(iterables.unzip_dicts(self.a, self.b),
+                         [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)])

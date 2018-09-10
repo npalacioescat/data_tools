@@ -27,9 +27,10 @@ class KeggLinkTestCase(unittest.TestCase):
 
 
 class KeggPathwayMappingTestCase(unittest.TestCase):
-    def __init__(self):
-        print('** NOTE **: data_tools.databases.kegg_pathway_mapping cannot be'
-              ' tested.')
+    @unittest.skip('** NOTE **: data_tools.databases.kegg_pathway_mapping'
+                   + ' test unit is not implemented.')
+    def test_null(self):
+        pass
 
 
 class OpKinaseSubstrateTestCase(unittest.TestCase):
@@ -43,12 +44,12 @@ class OpKinaseSubstrateTestCase(unittest.TestCase):
         self.assertGreater(len(self.result), 0)
 
     def test_kinases(self):
-        self.assertIn(self.result[self.result.columns[-1]].values,
-                      'phosphorylation')
+        self.assertIn('phosphorylation',
+                      self.result[self.result.columns[-1]].values)
 
     def test_phosphatases(self):
-        self.assertIn(self.result[self.result.columns[-1]].values,
-                      'dephosphorylation')
+        self.assertIn('dephosphorylation',
+                      self.result[self.result.columns[-1]].values)
 
 
 class UpMapTestCase(unittest.TestCase):

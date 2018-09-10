@@ -1,7 +1,17 @@
 # data_tools version history
 
 ## v0.0.7:
-
+- `test_data_tools` has tests for almost all classes and functions.
+  Functions that include plots are skipped (cannot be tested). Only test
+  missing is `models.Lasso`.
+- In `models` module:
+    - Class `DoseResponse` improved and bugs fixed.
+- In `databases` module:
+    - Function `op_kinase_substrate` now can also download
+      dephosphorylation interactions.
+- In `plots` module:
+    - Function `venn` now can plot global percentages instead of
+      absolute counts.
 ## v0.0.6:
 - Renamed `sets` to `iterables`.
 - In `models` module:

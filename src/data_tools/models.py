@@ -56,6 +56,11 @@ class DoseResponse(object):
           iterables of three elements each).
 
     - Attributes:
+        - *x0* [list]: Contains the initial guess for the parameters.
+          Parameters are considered to be in alphabetical order. This
+          is, first element corresponds to :math:`k`, second is
+          :math:`m` and last is :math:`n`.
+        - *x_scale* [list]: Scale of each parameter.
         - *model* [scipy.optimize.OptimizeResult]: Contains the result
           of the optimized model. See `SciPy's reference <https://docs.\
           scipy.org/doc/scipy/reference/generated/scipy.optimize.Optimi\
