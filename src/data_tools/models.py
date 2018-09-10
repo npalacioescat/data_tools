@@ -80,7 +80,7 @@ class DoseResponse(object):
                   np.sign(self.__ydata[-1] - self.__ydata[0])]
 
         if not x_scale:
-            x_scale = [10 ** int(np.log10(i)) for i in x0]
+            x_scale = [10 ** int(np.log10(abs(i))) for i in x0]
 
         ftol = 1e-15
         max_nfev = 1e15
