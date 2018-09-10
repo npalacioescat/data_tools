@@ -75,18 +75,25 @@ class DoseResponse(object):
         self.__ydata = r_data
 
         if not x0:
-            x0 = [(max(self.__ydata) - min(self.__ydata)) / 2,
-                  max(self.__ydata),
-                  np.sign(self.__ydata[-1] - self.__ydata[0])]
+            half_y = ((max(self.__ydata) - min(self.__ydata)) / 2)
+            k_inf = self.__xdata[np.argmin(abs(self.__ydata - half_y))]
+            self.x0 = [k_inf, max(self.__ydata), np.sign(self.__ydata[-1]
+                                                         - self.__ydata[0])]
+
+        else:
+            self.x0 = x0
 
         if not x_scale:
-            x_scale = [10 ** int(np.log10(abs(i))) for i in x0]
+            self.x_scale = [10 ** int(np.log10(abs(i))) for i in self.x0]
+
+        else:
+            self.x_scale = x_scale
 
         ftol = 1e-15
         max_nfev = 1e15
         diff_step = 1e-15
 
-        self.model = least_squares(residuals, x0, x_scale=x_scale,
+        self.model = least_squares(residuals, self.x0, x_scale=self.x_scale,
                                    args=(self.__xdata, self.__ydata),
                                    tr_solver='exact', bounds=bounds, ftol=ftol,
                                    diff_step=diff_step, max_nfev=max_nfev)
