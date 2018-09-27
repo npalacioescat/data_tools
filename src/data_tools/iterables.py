@@ -92,17 +92,18 @@ def find_min(A):
 
 def in_all(x, N):
     '''
-    Checks if a vector *x* is present in all sets contained in a list
-    *N*.
+    Checks if a element *x* is present in all collections contained in a
+    list *N*.
 
     * Arguments:
-        - *x* [tuple]: Or any hashable type as long as is the same
-          contained in the sets of *N*.
-        - *N* [list]: Or any iterable type containing [set] objects.
+        - *x* [object]: Any type of object, it is assumed to be the same
+          type as the objects contained in the elements of *N*.
+        - *N* [list]: Or any iterable type containing a collection of
+          other iterables containing the objects.
 
     * Returns:
-        - [bool]: ``True`` if *x* is found in all sets of *N*, ``False``
-          otherwise.
+        - [bool]: ``True`` if *x* is found in all elements of *N*,
+          ``False`` otherwise.
 
     * Examples:
         >>> N = [{(0, 0), (0, 1)}, # <- set A
@@ -113,6 +114,11 @@ def in_all(x, N):
         >>> y = (0, 1)
         >>> in_all(y, N)
         False
+        >>> N = [['Hello', 'world', '!'],
+        ...      ['Hello', 'user']]
+        >>> x = 'Hello'
+        >>> in_all(x, N)
+        True
     '''
 
     for s in N:

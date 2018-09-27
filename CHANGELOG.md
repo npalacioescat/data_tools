@@ -1,6 +1,6 @@
 # data_tools version history
 
-## v0.0.7:
+## v0.0.7 (WIP):
 - `test_data_tools` has tests for almost all classes and functions.
   Functions that include plots are skipped (cannot be tested). Only test
   missing is `models.Lasso`.

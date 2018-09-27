@@ -161,15 +161,16 @@ given set <em>A</em>.</p>
 <dl class="function">
 <dt id="data_tools.iterables.in_all">
 <code class="descclassname">data_tools.iterables.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.in_all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if a vector <em>x</em> is present in all sets contained in a list
-<em>N</em>.</p>
+<dd><p>Checks if a element <em>x</em> is present in all collections contained in a
+list <em>N</em>.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li><em>x</em> [tuple]: Or any hashable type as long as is the same
-contained in the sets of <em>N</em>.</li>
-<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
+<li><em>x</em> [object]: Any type of object, it is assumed to be the same
+type as the objects contained in the elements of <em>N</em>.</li>
+<li><em>N</em> [list]: Or any iterable type containing a collection of
+other iterables containing the objects.</li>
 </ul>
 </dd>
 </dl>
@@ -177,8 +178,8 @@ contained in the sets of <em>N</em>.</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
-<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all sets of <em>N</em>, <code class="docutils literal notranslate"><span class="pre">False</span></code>
-otherwise.</li>
+<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all elements of <em>N</em>,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</li>
 </ul>
 </dd>
 </dl>
@@ -193,6 +194,11 @@ otherwise.</li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">],</span>
+<span class="gp">... </span>     <span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd>
@@ -338,7 +344,7 @@ respectively from the dictionaries in <em>*dicts</em>.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

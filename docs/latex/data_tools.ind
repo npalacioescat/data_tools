@@ -17,7 +17,7 @@
   \item data\_tools.plots (module), \hyperpage{16}
   \item data\_tools.strings (module), \hyperpage{19}
   \item density() (in module data\_tools.plots), \hyperpage{16}
-  \item DoseResponse (class in data\_tools.models), \hyperpage{13}
+  \item DoseResponse (class in data\_tools.models), \hyperpage{14}
 
   \indexspace
   \bigletter E
@@ -56,7 +56,7 @@
   \item piano\_consensus() (in module data\_tools.plots), \hyperpage{16}
   \item plot() (data\_tools.models.DoseResponse method), \hyperpage{14}
   \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{15}
-  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{15}
+  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{16}
 
   \indexspace
   \bigletter S
