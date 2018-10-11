@@ -82,8 +82,9 @@ class DoseResponse(object):
         if not x0:
             half_y = ((max(self.__ydata) - min(self.__ydata)) / 2)
             k_inf = self.__xdata[np.argmin(abs(self.__ydata - half_y))]
-            self.x0 = [k_inf, max(self.__ydata), np.sign(self.__ydata[-1]
-                                                         - self.__ydata[0])]
+            self.x0 = [k_inf, max(self.__ydata),
+                       np.sign(self.__ydata[np.argmax(self.__xdata)]
+                               - self.__ydata[np.argmin(self.__xdata)])]
 
         else:
             self.x0 = x0
@@ -126,7 +127,7 @@ class DoseResponse(object):
 
         k, m, n = self.params
 
-        return k * (p / (100 - p)) ** (1 / n)
+        return ((p * k ** n) / (m * 100 - p)) ** (1 / n)
 
     def plot(self, title=None, filename=None, figsize=None, legend=True):
         '''
