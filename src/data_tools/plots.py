@@ -63,8 +63,10 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
         dsty.covariance_factor = lambda : cvf
         dsty._compute_covariance()
 
-        ax.plot(xs, dsty(xs), c=colors[i], label=df.index[i])
-        ax.fill(xs, dsty(xs), c=colors[i], alpha=0.05)
+        y = dsty(xs)
+
+        ax.plot(xs, y, c=colors[i], label=df.index[i])
+        ax.fill(xs, y, c=colors[i], alpha=0.05)
 
     if title:
         ax.set_title(title)
