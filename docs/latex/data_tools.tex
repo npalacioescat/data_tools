@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Sep 21, 2018}
+\date{Oct 11, 2018}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1024,7 +1024,7 @@ Plotting functions module.
 \index{density() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{sample\_col=False}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a density plot of the values on a data frame (row-wise).
 \begin{itemize}
 \item {} \begin{description}
@@ -1032,12 +1032,17 @@ Generates a density plot of the values on a data frame (row-wise).
 \item {} 
 \sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Contains the values to generate the
 plot. Each row is considered as an individual sample while
-each column contains a measured value.
+each column contains a measured value unless otherwise stated
+by keyword argument \sphinxstyleemphasis{sample\_col}.
 
 \item {} 
 \sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.25}} by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.
+
+\item {} 
+\sphinxstyleemphasis{sample\_col} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Specifies
+whether the samples are column-wise or not.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot

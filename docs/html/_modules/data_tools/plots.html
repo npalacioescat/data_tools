@@ -58,17 +58,21 @@
 
 
 <span class="c1"># TODO: Add example figure</span>
-<div class="viewcode-block" id="density"><a class="viewcode-back" href="../../plots.html#data_tools.plots.density">[docs]</a><span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cvf</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="density"><a class="viewcode-back" href="../../plots.html#data_tools.plots.density">[docs]</a><span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cvf</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">sample_col</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a density plot of the values on a data frame (row-wise).</span>
 
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *df* [pandas.DataFrame]: Contains the values to generate the</span>
 <span class="sd">          plot. Each row is considered as an individual sample while</span>
-<span class="sd">          each column contains a measured value.</span>
+<span class="sd">          each column contains a measured value unless otherwise stated</span>
+<span class="sd">          by keyword argument *sample_col*.</span>
 <span class="sd">        - *cvf* [float]: Optional, ``0.25`` by default. Co-variance</span>
 <span class="sd">          factor used in the gaussian kernel estimation. A higher value</span>
 <span class="sd">          increases the smoothness.</span>
+<span class="sd">        - *sample_col* [bool]: Optional, ``False`` by default. Specifies</span>
+<span class="sd">          whether the samples are column-wise or not.</span>
 <span class="sd">        - *title* [str]: Optional, ``None`` by default. Defines the plot</span>
 <span class="sd">          title.</span>
 <span class="sd">        - *filename* [str]: Optional, ``None`` by default. If passed,</span>
@@ -82,6 +86,8 @@
 <span class="sd">        - [*matplotlib.figure.Figure*]: the figure object containing the</span>
 <span class="sd">          density plot.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">sample_col</span> <span class="k">else</span> <span class="n">df</span>
 
     <span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;rainbow&#39;</span><span class="p">)</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>

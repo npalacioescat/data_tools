@@ -19,17 +19,21 @@ from data_tools.iterables import subsets
 
 
 # TODO: Add example figure
-def density(df, cvf=0.25, title=None, filename=None, figsize=None):
+def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
+            figsize=None):
     '''
     Generates a density plot of the values on a data frame (row-wise).
 
     * Arguments:
         - *df* [pandas.DataFrame]: Contains the values to generate the
           plot. Each row is considered as an individual sample while
-          each column contains a measured value.
+          each column contains a measured value unless otherwise stated
+          by keyword argument *sample_col*.
         - *cvf* [float]: Optional, ``0.25`` by default. Co-variance
           factor used in the gaussian kernel estimation. A higher value
           increases the smoothness.
+        - *sample_col* [bool]: Optional, ``False`` by default. Specifies
+          whether the samples are column-wise or not.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -43,6 +47,8 @@ def density(df, cvf=0.25, title=None, filename=None, figsize=None):
         - [*matplotlib.figure.Figure*]: the figure object containing the
           density plot.
     '''
+
+    df = df.T if sample_col else df
 
     cmap = matplotlib.cm.get_cmap('rainbow')
     colors = map(cmap, np.linspace(1, 0, len(df.index)))

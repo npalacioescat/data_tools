@@ -12,6 +12,9 @@
 - In `plots` module:
     - Function `venn` now can plot global percentages instead of
       absolute counts.
+    - Function `density` now can handle data frames with samples on the
+      columns.
+
 ## v0.0.6:
 - Renamed `sets` to `iterables`.
 - In `models` module:

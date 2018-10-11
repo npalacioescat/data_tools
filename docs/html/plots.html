@@ -48,7 +48,7 @@
 <p>Plotting functions module.</p>
 <dl class="function">
 <dt id="data_tools.plots.density">
-<code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>sample_col=False</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a density plot of the values on a data frame (row-wise).</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -56,10 +56,13 @@
 <dd><ul class="first last">
 <li><em>df</em> [pandas.DataFrame]: Contains the values to generate the
 plot. Each row is considered as an individual sample while
-each column contains a measured value.</li>
+each column contains a measured value unless otherwise stated
+by keyword argument <em>sample_col</em>.</li>
 <li><em>cvf</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.25</span></code> by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.</li>
+<li><em>sample_col</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Specifies
+whether the samples are column-wise or not.</li>
 <li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</li>
 <li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
