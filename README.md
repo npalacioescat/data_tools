@@ -69,6 +69,16 @@ A full copy of the GNU General Public License can be found on file
 
 ## Installation
 
+### Fast way with pip
+
+If you have `pip`, just type on the terminal:
+
+```bash
+pip install git+https://github.com/Nic-Nic/data_tools.git
+```
+
+### By cloning the git repository
+
 First download/clone `data_tools` from the [GitHub repository](https://github.com/Nic-Nic/data_tools.git).
 From the terminal:
 
@@ -88,6 +98,8 @@ Or using `pip`:
 ```bash
 pip install .
 ```
+
+### Testing the module
 
 Along with `data_tools`, all dependencies will be installed as well as
 the testing suite. In order to run the tests, type on the terminal:
