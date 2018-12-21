@@ -2,7 +2,7 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.iterables), \hyperpage{11}
+  \item bit\_or() (in module data\_tools.iterables), \hyperpage{12}
 
   \indexspace
   \bigletter C
@@ -12,27 +12,28 @@
   \bigletter D
   \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{11}
-  \item data\_tools.iterables (module), \hyperpage{11}
-  \item data\_tools.models (module), \hyperpage{13}
+  \item data\_tools.iterables (module), \hyperpage{12}
+  \item data\_tools.models (module), \hyperpage{14}
   \item data\_tools.plots (module), \hyperpage{16}
-  \item data\_tools.strings (module), \hyperpage{19}
+  \item data\_tools.strings (module), \hyperpage{20}
   \item density() (in module data\_tools.plots), \hyperpage{16}
   \item DoseResponse (class in data\_tools.models), \hyperpage{14}
 
   \indexspace
   \bigletter E
-  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{14}
+  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{15}
   \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{11}
+  \item euler\_explicit2D() (in module data\_tools.diffusion), \hyperpage{11}
 
   \indexspace
   \bigletter F
   \item find\_min() (in module data\_tools.iterables), \hyperpage{12}
-  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{15}
+  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{16}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.iterables), \hyperpage{12}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{19}
+  \item in\_all() (in module data\_tools.iterables), \hyperpage{13}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{20}
 
   \indexspace
   \bigletter J
@@ -53,9 +54,9 @@
 
   \indexspace
   \bigletter P
-  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{16}
-  \item plot() (data\_tools.models.DoseResponse method), \hyperpage{14}
-  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{15}
+  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{17}
+  \item plot() (data\_tools.models.DoseResponse method), \hyperpage{15}
+  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{16}
   \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{16}
 
   \indexspace
@@ -64,12 +65,12 @@
 
   \indexspace
   \bigletter U
-  \item unzip\_dicts() (in module data\_tools.iterables), \hyperpage{13}
+  \item unzip\_dicts() (in module data\_tools.iterables), \hyperpage{14}
   \item up\_map() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace
   \bigletter V
-  \item venn() (in module data\_tools.plots), \hyperpage{17}
-  \item volcano() (in module data\_tools.plots), \hyperpage{18}
+  \item venn() (in module data\_tools.plots), \hyperpage{18}
+  \item volcano() (in module data\_tools.plots), \hyperpage{19}
 
 \end{sphinxtheindex}

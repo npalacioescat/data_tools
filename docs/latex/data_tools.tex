@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Dec 11, 2018}
+\date{Dec 21, 2018}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -399,7 +399,8 @@ the difusion is to be computed.
 \item {} 
 \sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
 the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}.
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
 
 \end{itemize}
 
@@ -409,6 +410,53 @@ the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'perio
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}numpy.ndarray{]}: Computed state array (1D) after one time-step
+according to the parameters and conditions selected.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{euler\_explicit2D() (in module data\_tools.diffusion)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_explicit2D}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_explicit2D}}}{\emph{x0}, \emph{dt}, \emph{dx2}, \emph{d=1}, \emph{bcs='periodic'}}{}
+Computes diffusion on a 2D space over a time-step using Euler
+explicit method.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x0} {[}numpy.ndarray{]}: Initial state of a 2D array from which
+the difusion is to be computed.
+
+\item {} 
+\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
+
+\item {} 
+\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
+assumed that is the same in both dimensions (dx = dy).
+
+\item {} 
+\sphinxstyleemphasis{d} {[}float{]}: Diffusion coefficient.
+
+\item {} 
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: Computed state array (2D) after one time-step
 according to the parameters and conditions selected.
 
 \end{itemize}

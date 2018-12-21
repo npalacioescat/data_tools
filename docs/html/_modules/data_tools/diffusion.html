@@ -46,7 +46,7 @@
 <span class="sd">Diffusion solvers module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;euler_explicit1D&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;euler_explicit1D&#39;</span><span class="p">,</span> <span class="s1">&#39;euler_explicit2D&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -64,7 +64,8 @@
 <span class="sd">        - *d* [float]: Diffusion coefficient.</span>
 <span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
 <span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
-<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``.</span>
+<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
+<span class="sd">          not hold mass conservation.</span>
 
 <span class="sd">    * Returns:</span>
 <span class="sd">        - [numpy.ndarray]: Computed state array (1D) after one time-step</span>
@@ -84,6 +85,50 @@
     <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
         <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+    <span class="k">return</span> <span class="n">x</span></div>
+
+
+<div class="viewcode-block" id="euler_explicit2D"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.euler_explicit2D">[docs]</a><span class="k">def</span> <span class="nf">euler_explicit2D</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dx2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Computes diffusion on a 2D space over a time-step using Euler</span>
+<span class="sd">    explicit method.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *x0* [numpy.ndarray]: Initial state of a 2D array from which</span>
+<span class="sd">          the difusion is to be computed.</span>
+<span class="sd">        - *dt* [float]: Discretization time-step.</span>
+<span class="sd">        - *dx2* [float]: Discretization spatial-step (squared). It is</span>
+<span class="sd">          assumed that is the same in both dimensions (dx = dy).</span>
+<span class="sd">        - *d* [float]: Diffusion coefficient.</span>
+<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
+<span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
+<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
+<span class="sd">          not hold mass conservation.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [numpy.ndarray]: Computed state array (2D) after one time-step</span>
+<span class="sd">          according to the parameters and conditions selected.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">dx2</span>
+
+    <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
+        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
+                                    <span class="o">+</span> <span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;dirichlet&#39;</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
+                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
+        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
+                                    <span class="o">+</span> <span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="n">x</span></div>
 </pre></div>

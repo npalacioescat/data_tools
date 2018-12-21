@@ -62,7 +62,8 @@ the difusion is to be computed.</li>
 <li><em>d</em> [float]: Diffusion coefficient.</li>
 <li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
 the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>.</li>
+<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
+not hold mass conservation.</li>
 </ul>
 </dd>
 </dl>
@@ -71,6 +72,41 @@ the boundary conditions. Available options are <code class="docutils literal not
 <dt>Returns:</dt>
 <dd><ul class="first last">
 <li>[numpy.ndarray]: Computed state array (1D) after one time-step
+according to the parameters and conditions selected.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.diffusion.euler_explicit2D">
+<code class="descclassname">data_tools.diffusion.</code><code class="descname">euler_explicit2D</code><span class="sig-paren">(</span><em>x0</em>, <em>dt</em>, <em>dx2</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#euler_explicit2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.euler_explicit2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes diffusion on a 2D space over a time-step using Euler
+explicit method.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>x0</em> [numpy.ndarray]: Initial state of a 2D array from which
+the difusion is to be computed.</li>
+<li><em>dt</em> [float]: Discretization time-step.</li>
+<li><em>dx2</em> [float]: Discretization spatial-step (squared). It is
+assumed that is the same in both dimensions (dx = dy).</li>
+<li><em>d</em> [float]: Diffusion coefficient.</li>
+<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
+the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
+not hold mass conservation.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[numpy.ndarray]: Computed state array (2D) after one time-step
 according to the parameters and conditions selected.</li>
 </ul>
 </dd>
@@ -136,7 +172,7 @@ according to the parameters and conditions selected.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
