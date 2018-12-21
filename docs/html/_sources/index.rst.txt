@@ -56,6 +56,10 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.databases.up_map`
    - :meth:`data_tools.diffusion`
       - :meth:`data_tools.diffusion.euler_explicit1D`
+      - :meth:`data_tools.diffusion.euler_explicit2D`
+      - :meth:`data_tools.diffusion.euler_implicit_coef_mat`
+      - :meth:`data_tools.diffusion.crank_nicolson_coef_mats`
+      - :meth:`data_tools.diffusion.build_coef_mat`
    - :meth:`data_tools.iterables`
       - :meth:`data_tools.iterables.bit_or`
       - :meth:`data_tools.iterables.chunk_this`

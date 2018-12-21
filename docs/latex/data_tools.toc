@@ -5,9 +5,9 @@
 \contentsline {chapter}{\numberline {4}Modules}{9}{chapter.4}
 \contentsline {section}{\numberline {4.1}data\_tools.databases}{9}{section.4.1}
 \contentsline {section}{\numberline {4.2}data\_tools.diffusion}{11}{section.4.2}
-\contentsline {section}{\numberline {4.3}data\_tools.iterables}{12}{section.4.3}
-\contentsline {section}{\numberline {4.4}data\_tools.models}{14}{section.4.4}
-\contentsline {section}{\numberline {4.5}data\_tools.plots}{16}{section.4.5}
-\contentsline {section}{\numberline {4.6}data\_tools.strings}{20}{section.4.6}
-\contentsline {chapter}{Python Module Index}{23}{section*.34}
-\contentsline {chapter}{Index}{25}{section*.35}
+\contentsline {section}{\numberline {4.3}data\_tools.iterables}{14}{section.4.3}
+\contentsline {section}{\numberline {4.4}data\_tools.models}{16}{section.4.4}
+\contentsline {section}{\numberline {4.5}data\_tools.plots}{18}{section.4.5}
+\contentsline {section}{\numberline {4.6}data\_tools.strings}{22}{section.4.6}
+\contentsline {chapter}{Python Module Index}{25}{section*.37}
+\contentsline {chapter}{Index}{27}{section*.38}

@@ -374,6 +374,49 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 \section{data\_tools.diffusion}
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
 Diffusion solvers module.
+
+The following functions provide tools to compute the diffusion on one or
+two dimensions with different explicit or implicit methodsself.
+
+\sphinxstylestrong{NOTE:} Explicit methods (\sphinxcode{\sphinxupquote{'euler\_explicit1D'}} and
+\sphinxcode{\sphinxupquote{'euler\_explicit2D'}}) are conditionally stable. This means that in
+order to keep numerical stability of the solution (and obtain an
+accurate result), these methods need to fulfill the
+Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For the one-dimensional case:
+\begin{equation*}
+\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2}\end{split}
+\end{equation*}
+For the two-dimensional case (and assuming \(\Delta x=\Delta y\)):
+\begin{equation*}
+\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{4}\end{split}
+\end{equation*}
+The implicit methods are (theoretically) unconditionally stable, hence
+are more permissive in terms of discretization step-size.
+
+Currently for the implicit methods only the coefficient matrix
+contruction is available. To solve the diffusion problem user can use
+any of the available linear algebra solvers by providing the current
+diffusing field state and the matrix on each time-step.
+\begin{itemize}
+\item {} 
+Simplest options are either \sphinxcode{\sphinxupquote{numpy.linalg.solve()}} or
+\sphinxcode{\sphinxupquote{scipy.linalg.solve()}} (both not very fast).
+
+\item {} 
+If the coefficient matrix is positive-definite (it is most of the
+times, but can be double-checked, specially if errors arise) and
+symmetric, a good option is Choleski’s factorization. This is already
+implemented in \sphinxcode{\sphinxupquote{scipy.linalg.cholesky()}} which factorizes the
+coefficient matrix and that can be passed to the
+\sphinxcode{\sphinxupquote{scipy.linalg.cho\_solve()}} which is way faster than the option above.
+
+\item {} 
+Another option (but don’t tell anyone) is to invert the coefficient
+matrix and just solve the equation with a matrix multiplication. This
+is way faster but your coefficient matrix has to be invertible. If
+the determinant is close to zero, may cause numerical instability.
+
+\end{itemize}
 \index{euler\_explicit1D() (in module data\_tools.diffusion)}
 
 \begin{fulllineitems}
@@ -394,7 +437,8 @@ the difusion is to be computed.
 \sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared).
 
 \item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Diffusion coefficient.
+\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
+coefficient.
 
 \item {} 
 \sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
@@ -441,7 +485,8 @@ the difusion is to be computed.
 assumed that is the same in both dimensions (dx = dy).
 
 \item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Diffusion coefficient.
+\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
+coefficient.
 
 \item {} 
 \sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
@@ -458,6 +503,178 @@ not hold mass conservation.
 \item {} 
 {[}numpy.ndarray{]}: Computed state array (2D) after one time-step
 according to the parameters and conditions selected.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{euler\_implicit\_coef\_mat() (in module data\_tools.diffusion)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_implicit_coef_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_implicit\_coef\_mat}}}{\emph{dx2}, \emph{dt}, \emph{nx}, \emph{ny=None}, \emph{d=1}, \emph{bcs='periodic'}}{}
+Computes the coefficient matrix to solve the diffusion problem with
+the Euler implicit method such that:
+\begin{equation*}
+\begin{split}\mathbf{A}\cdot u^{n+1}=u^{n}\end{split}
+\end{equation*}
+Where \sphinxstylestrong{A} is the coefficient matrix and \sphinxstyleemphasis{u} the diffusing field.
+Note that for a 2D space, it is considered that \sphinxstyleemphasis{u} has been
+vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u} is a 2D
+{[}\sphinxtitleref{numpy.array}{]}).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
+assumed that is the same in both dimensions (dx = dy).
+
+\item {} 
+\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
+
+\item {} 
+\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
+dimension.
+
+\item {} 
+\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
+discrete steps in the second spatial dimension (if any).
+
+\item {} 
+\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
+coefficient.
+
+\item {} 
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The coefficient matrix. Shape is \sphinxtitleref{{[}nx, nx{]}}
+for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}} for the
+two-dimensional case.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{crank\_nicolson\_coef\_mats() (in module data\_tools.diffusion)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.crank_nicolson_coef_mats}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{crank\_nicolson\_coef\_mats}}}{\emph{dx2}, \emph{dt}, \emph{nx}, \emph{ny=None}, \emph{d=1}, \emph{bcs='periodic'}}{}
+Computes the coefficient matrices to solve the diffusion problem
+with the Crank-Nicolson method such that:
+\begin{equation*}
+\begin{split}\mathbf{B}\cdot u^{n+1}=\mathbf{D}\cdot u^{n}\end{split}
+\end{equation*}
+Where \sphinxstylestrong{B} and \sphinxstylestrong{D} are the coefficient matrices and \sphinxstyleemphasis{u} the
+diffusing field. Note that for a 2D space, it is considered that \sphinxstyleemphasis{u}
+has been vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u}
+is a 2D {[}\sphinxtitleref{numpy.array}{]}).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
+assumed that is the same in both dimensions (dx = dy).
+
+\item {} 
+\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
+
+\item {} 
+\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
+dimension.
+
+\item {} 
+\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
+discrete steps in the second spatial dimension (if any).
+
+\item {} 
+\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
+coefficient.
+
+\item {} 
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The coefficient matrix \sphinxstylestrong{B}. Shape is
+\sphinxtitleref{{[}nx, nx{]}} for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}}
+for the two-dimensional case.
+
+\item {} 
+{[}numpy.ndarray{]}: The coefficient matrix \sphinxstylestrong{D}. Shape is the
+same as \sphinxstylestrong{B}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{build\_coef\_mat() (in module data\_tools.diffusion)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_coef_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_coef\_mat}}}{\emph{a}, \emph{b}, \emph{nx}, \emph{ny=None}, \emph{bcs='periodic'}}{}
+Builds a coefficient matrix according to the central and neighbor
+coefficients, system size and boundary conditions.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{a} {[}float{]}: The central element coefficient.
+
+\item {} 
+\sphinxstyleemphasis{b} {[}float{]}: The neighbor element coefficient.
+
+\item {} 
+\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
+dimension.
+
+\item {} 
+\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
+discrete steps in the second spatial dimension (if any).
+
+\item {} 
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The coefficient matrix. Shape is \sphinxtitleref{{[}nx, nx{]}}
+for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}} for the
+two-dimensional case.
 
 \end{itemize}
 
