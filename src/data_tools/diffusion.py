@@ -7,7 +7,7 @@ data_tools.diffusion
 Diffusion solvers module.
 
 The following functions provide tools to compute the diffusion on one or
-two dimensions with different explicit or implicit methodsself.
+two dimensions with different explicit or implicit methods.
 
 **NOTE:** Explicit methods (``'euler_explicit1D'`` and
 ``'euler_explicit2D'``) are conditionally stable. This means that in
