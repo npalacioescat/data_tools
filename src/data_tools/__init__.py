@@ -6,7 +6,7 @@ Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
 
-Copyright (C) 2018 Nicolàs Palacio
+Copyright (C) 2019 Nicolàs Palacio
 
 Contact: nicolaspalacio91@gmail.com
 
