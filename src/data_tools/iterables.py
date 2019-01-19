@@ -187,7 +187,7 @@ def unzip_dicts(*dicts):
     * Example:
         >>> a = dict([('x_a', 2), ('y_a', 3)])
         >>> b = dict([('x_b', 1), ('y_b', -1)])
-        >>> unzip(a, b)
+        >>> unzip_dicts(a, b)
         [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)]
     '''
 
