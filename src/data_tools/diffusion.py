@@ -175,7 +175,7 @@ def euler_implicit_coef_mat(dx2, dt, nx, ny=None, d=1, bcs='periodic'):
     a = 1 + 4 * lbd if ny else 1 + 2 * lbd # Central element coef
     b = -lbd # Neighbor element coefficient
 
-    return build_coef_mat(nx, ny, a, b, bcs=bcs)
+    return build_coef_mat(a, b, nx, ny=ny, bcs=bcs)
 
 
 def crank_nicolson_coef_mats(dx2, dt, nx, ny=None, d=1, bcs='periodic'):
@@ -222,8 +222,8 @@ def crank_nicolson_coef_mats(dx2, dt, nx, ny=None, d=1, bcs='periodic'):
     rhsa = 1 - 2 * lbd if ny else 1 - lbd # Central element coef
     rhsb = lbd / 2. # Neighbor element coefficient
 
-    return (build_coef_mat(nx, ny, lhsa, lhsb, bcs=bcs),
-            build_coef_mat(nx, ny, rhsa, rhsb, bcs=bcs))
+    return (build_coef_mat(lhsa, lhsb, nx, ny=ny, bcs=bcs),
+            build_coef_mat(rhsa, rhsb, nx, ny=ny, bcs=bcs))
 
 
 def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
