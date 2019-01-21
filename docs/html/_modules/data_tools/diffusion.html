@@ -327,6 +327,10 @@
 
         <span class="n">mat</span> <span class="o">=</span> <span class="n">toeplitz</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
+            <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span>
+            <span class="n">mat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span>
+
     <span class="k">return</span> <span class="n">mat</span></div>
 </pre></div>
 

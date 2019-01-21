@@ -288,4 +288,8 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
 
         mat = toeplitz(vec)
 
+        if bcs == 'neumann':
+            mat[0, 0] += b
+            mat[-1, -1] += b
+
     return mat
