@@ -251,7 +251,7 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
     '''
 
     if ny: # 2D coefficient matrix
-        vec = np.zeros(nx * ny)
+        vec = np.zeros(int(nx * ny))
         vec[0] = a
         vec[1], vec[nx] = b, b
 
@@ -279,7 +279,7 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
             mat += b * mask
 
     else: # 1D coefficient matrix
-        vec = np.zeros(nx)
+        vec = np.zeros(int(nx))
 
         vec[:2] = a, b
 
