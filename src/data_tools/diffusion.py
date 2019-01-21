@@ -260,7 +260,7 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
 
         mat = toeplitz(vec)
 
-        for n in xrange(nx, nx * ny, ny):
+        for n in xrange(nx, nx * ny, nx):
             mat[n, n - 1] = 0
             mat[n - 1, n] = 0
 
