@@ -41,8 +41,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
-`LICENSE.md <../../LICENSE.md>`_. If not, see
-http://www.gnu.org/licenses/.
+`LICENSE.md <https://github.com/Nic-Nic/data_tools/blob/master/LICENSE.md>`_.
+If not, see http://www.gnu.org/licenses/.
 
 .. only:: html
 
@@ -76,7 +76,7 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.plots.venn`
       - :meth:`data_tools.plots.volcano`
    - :meth:`data_tools.spatial`
-      - - :meth:`data_tools.spatial.neighbour_count`
+      - :meth:`data_tools.spatial.neighbour_count`
    - :meth:`data_tools.strings`
       - :meth:`data_tools.strings.is_numeric`
       - :meth:`data_tools.strings.join_str_lists`

@@ -52,10 +52,10 @@
 <dd><p>Given an array (up to three dimensions), returns another array with
 the same shape containing the counts of cells’ neighbours whose
 value is zero.</p>
-<ul class="simple">
+<ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
-<dd><ul class="first last">
+<dd><ul class="first last simple">
 <li><em>x</em> [numpy.ndarray]: The array where to count the neighbours
 (zero-valued cells). Note that the cells can have any value
 or data type. As long as they be converted to [bool], the
@@ -66,16 +66,15 @@ function will count all <code class="docutils literal notranslate"><span class="
 </li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
-<dd><ul class="first last">
+<dd><ul class="first last simple">
 <li>[numpy.ndarray]: Array with same shape as <em>x</em> containing the
 neighbour count.</li>
 </ul>
 </dd>
 </dl>
 </li>
-</ul>
-<dl class="docutils">
-<dt># Examples:</dt>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
 <dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
 <span class="go">array([[0, 0, 1, 1, 0],</span>
@@ -93,6 +92,8 @@ neighbour count.</li>
 </div>
 </dd>
 </dl>
+</li>
+</ul>
 </dd></dl>
 
 </div>

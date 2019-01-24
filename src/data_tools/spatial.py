@@ -27,7 +27,7 @@ def neighbour_count(x):
         - [numpy.ndarray]: Array with same shape as *x* containing the
           neighbour count.
 
-    # Examples:
+    * Examples:
         >>> x = numpy.random.randint(2, size=(5, 5))
         >>> x
         array([[0, 0, 1, 1, 0],
