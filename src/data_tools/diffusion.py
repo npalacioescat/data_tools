@@ -147,7 +147,7 @@ def euler_implicit_coef_mat(dx2, dt, nx, ny=None, d=1, bcs='periodic'):
     Where **A** is the coefficient matrix and *u* the diffusing field.
     Note that for a 2D space, it is considered that *u* has been
     vectorized beforehand (e.g.: `u.reshape(-1)` assuming `u` is a 2D
-    [`numpy.array`]).
+    [`numpy.ndarray`]).
 
     * Arguments:
         - *dx2* [float]: Discretization spatial-step (squared). It is
@@ -189,7 +189,7 @@ def crank_nicolson_coef_mats(dx2, dt, nx, ny=None, d=1, bcs='periodic'):
     Where **B** and **D** are the coefficient matrices and *u* the
     diffusing field. Note that for a 2D space, it is considered that *u*
     has been vectorized beforehand (e.g.: `u.reshape(-1)` assuming `u`
-    is a 2D [`numpy.array`]).
+    is a 2D [`numpy.ndarray`]).
 
     * Arguments:
         - *dx2* [float]: Discretization spatial-step (squared). It is

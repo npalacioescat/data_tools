@@ -59,6 +59,8 @@ A full copy of the GNU General Public License can be found on file
     - [piano_consensus](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.piano_consensus)
     - [venn](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.venn)
     - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
+- [spatial](https://nic-nic.github.io/data_tools/html/spatial.html)
+    - [neighbour_count](https://nic-nic.github.io/data_tools/html/spatial.html#data_tools.spatial.neighbour_count)
 - [strings](https://nic-nic.github.io/data_tools/html/strings.html)
     - [is_numeric](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.is_numeric)
     - [join_str_lists](https://nic-nic.github.io/data_tools/html/strings.html#data_tools.strings.join_str_lists)

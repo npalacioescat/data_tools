@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jan 21, 2019}
+\date{Jan 24, 2019}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -524,7 +524,7 @@ the Euler implicit method such that:
 Where \sphinxstylestrong{A} is the coefficient matrix and \sphinxstyleemphasis{u} the diffusing field.
 Note that for a 2D space, it is considered that \sphinxstyleemphasis{u} has been
 vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u} is a 2D
-{[}\sphinxtitleref{numpy.array}{]}).
+{[}\sphinxtitleref{numpy.ndarray}{]}).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -584,7 +584,7 @@ with the Crank-Nicolson method such that:
 Where \sphinxstylestrong{B} and \sphinxstylestrong{D} are the coefficient matrices and \sphinxstyleemphasis{u} the
 diffusing field. Note that for a 2D space, it is considered that \sphinxstyleemphasis{u}
 has been vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u}
-is a 2D {[}\sphinxtitleref{numpy.array}{]}).
+is a 2D {[}\sphinxtitleref{numpy.ndarray}{]}).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -1567,6 +1567,65 @@ volcano plot.
 
 \end{fulllineitems}
 
+\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)}
+
+\section{data\_tools.spatial}
+\label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
+Spatial matrix module.
+\index{neighbour\_count() (in module data\_tools.spatial)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.neighbour_count}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{neighbour\_count}}}{\emph{x}}{}
+Given an array (up to three dimensions), returns another array with
+the same shape containing the counts of cells’ neighbours whose
+value is zero.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x} {[}numpy.ndarray{]}: The array where to count the neighbours
+(zero-valued cells). Note that the cells can have any value
+or data type. As long as they be converted to {[}bool{]}, the
+function will count all \sphinxcode{\sphinxupquote{False}} around all \sphinxcode{\sphinxupquote{True}} cells.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: Array with same shape as \sphinxstyleemphasis{x} containing the
+neighbour count.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\begin{description}
+\item[{\# Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x}
+\PYG{g+go}{array([[0, 0, 1, 1, 0],}
+\PYG{g+go}{       [0, 0, 0, 1, 1],}
+\PYG{g+go}{       [1, 0, 1, 1, 1],}
+\PYG{g+go}{       [0, 0, 0, 0, 0],}
+\PYG{g+go}{       [1, 0, 0, 1, 1]])}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{neighbour\PYGZus{}count}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{g+go}{array([[0, 0, 2, 1, 0],}
+\PYG{g+go}{       [0, 0, 0, 1, 1],}
+\PYG{g+go}{       [3, 0, 3, 1, 1],}
+\PYG{g+go}{       [0, 0, 0, 0, 0],}
+\PYG{g+go}{       [2, 0, 0, 2, 1]])}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{fulllineitems}
+
 \phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)}
 
 \section{data\_tools.strings}
@@ -1680,6 +1739,7 @@ Determines the separator between the joint strings.
 \item {\sphinxstyleindexentry{data\_tools.iterables}}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
 \item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
+\item {\sphinxstyleindexentry{data\_tools.spatial}}\sphinxstyleindexpageref{spatial:\detokenize{module-data_tools.spatial}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}
 

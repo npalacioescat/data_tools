@@ -1,6 +1,10 @@
 # data_tools version history
 
 ## v0.0.7 (WIP):
+- Added `spatial` module:
+    - Function `neighbour_count`: Given an array (up to three
+      dimensions), returns another array with the same shape containing
+      the counts of cells' neighbours whose value is zero.
 - `test_data_tools` has tests for almost all classes and functions.
   Functions that include plots are skipped (cannot be tested). Only test
   missing is `models.Lasso`.

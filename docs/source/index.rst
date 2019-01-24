@@ -75,6 +75,8 @@ http://www.gnu.org/licenses/.
       - :meth:`data_tools.plots.piano_consensus`
       - :meth:`data_tools.plots.venn`
       - :meth:`data_tools.plots.volcano`
+   - :meth:`data_tools.spatial`
+      - - :meth:`data_tools.spatial.neighbour_count`
    - :meth:`data_tools.strings`
       - :meth:`data_tools.strings.is_numeric`
       - :meth:`data_tools.strings.join_str_lists`
@@ -145,4 +147,5 @@ Modules
    iterables
    models
    plots
+   spatial
    strings

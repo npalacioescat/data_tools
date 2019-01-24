@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  21 JAN 2019 13:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  24 JAN 2019 13:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1182,7 +1182,7 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 205.
  [9]
-<hsa04010.png, id=148, 1347.0325pt x 1045.9075pt>
+<hsa04010.png, id=154, 1347.0325pt x 1045.9075pt>
 File: hsa04010.png Graphic file (type png)
 <use hsa04010.png>
 Package pdftex.def Info: hsa04010.png  used on input line 264.
@@ -1204,19 +1204,19 @@ ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
 [17] [18]
-<piano_consensus_example.png, id=223, 505.89pt x 578.16pt>
+<piano_consensus_example.png, id=228, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
 Package pdftex.def Info: piano_consensus_example.png  used on input line 1407.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [19] [20 <./piano_consensus_example.png>]
-<venn_example.png, id=236, 433.62pt x 289.08pt>
+<venn_example.png, id=241, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
 Package pdftex.def Info: venn_example.png  used on input line 1479.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
  [21 <./venn_example.png>]
-<volcano_example.png, id=244, 462.528pt x 346.896pt>
+<volcano_example.png, id=249, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
 Package pdftex.def Info: volcano_example.png  used on input line 1562.
@@ -1236,34 +1236,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
 []\T1/ptm/m/n/10 euler_implicit_coef_mat() (in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 []\T1/ptm/m/n/10 kegg_pathway_mapping() (in mod-ule
  []
 
 [27
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1688.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1688.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1748.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1748.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1688.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1688.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1748.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 49DA0FE04CD9BAFB750BDB1468A5C5B5;1493.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1688.
+(rerunfilecheck)             Checksum: F1AC2C4EBF7AEEF2674BD0CA5FD6C1F0;1641.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1748.
  ) 
 Here is how much of TeX's memory you used:
- 13747 strings out of 494923
- 190885 string characters out of 6180741
- 303527 words of memory out of 5000000
- 16662 multiletter control sequences out of 15000+600000
- 49052 words of font info for 76 fonts, out of 8000000 for 9000
+ 13758 strings out of 494923
+ 191086 string characters out of 6180741
+ 303711 words of memory out of 5000000
+ 16668 multiletter control sequences out of 15000+600000
+ 51774 words of font info for 78 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,16n,45p,513b,644s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1280,10 +1280,10 @@ t/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (31 pages, 444046 bytes).
+Output written on data_tools.pdf (31 pages, 445696 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 321 compressed objects within 4 object streams
- 78 named destinations out of 1000 (max. 500000)
- 137 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 396 PDF objects out of 1000 (max. 8388607)
+ 332 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

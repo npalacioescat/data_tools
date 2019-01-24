@@ -32,4 +32,5 @@ import data_tools.diffusion as diffusion
 import data_tools.iterables as iterables
 import data_tools.models as models
 import data_tools.plots as plots
+import data_tools.spatial as spatial
 import data_tools.strings as strings

@@ -29,6 +29,8 @@
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{20}
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{21}
-\indexentry{data\_tools.strings (module)|hyperpage}{22}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{22}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{22}
+\indexentry{data\_tools.spatial (module)|hyperpage}{22}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{22}
+\indexentry{data\_tools.strings (module)|hyperpage}{23}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{23}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{23}
