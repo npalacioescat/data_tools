@@ -59,18 +59,18 @@ def get_boundaries(x, counts=False):
                 [3, 2, 3]]])
     '''
 
-    edges = np.ones(x.shape, dtype=int)
+    bounds = np.ones(x.shape, dtype=int)
 
     if counts:
-        aux = np.pad(edges, 1, 'constant', constant_values=0)
+        aux = np.pad(bounds, 1, 'constant', constant_values=0)
         counts = neighbour_count(aux)[aux.ndim * (slice(1, -1), )]
 
         return counts
 
     else:
-        edges[x.ndim * (slice(1, -1),)] = 0
+        bounds[x.ndim * (slice(1, -1),)] = 0
 
-        return edges.astype(bool)
+        return bounds.astype(bool)
 
 def neighbour_count(x):
     '''

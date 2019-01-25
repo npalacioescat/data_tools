@@ -238,7 +238,6 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
     Builds a coefficient matrix according to the central and neighbor
     coefficients, system size and boundary conditions.
 
-
     * Arguments:
         - *a* [float]: The central element coefficient.
         - *b* [float]: The neighbor element coefficient.
@@ -277,14 +276,6 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
                 mat[n, n + (nx - 1)] = b
                 mat[n + (nx - 1), n] = b
 
-        elif bcs == 'neumann':
-            aux = np.ones(nx)
-            aux[0], aux[-1] = 2, 2
-            diag_mask = np.concatenate((aux, np.tile(aux - 1, ny - 2), aux))
-            mask = np.diag(diag_mask)
-
-            mat += b * mask
-
     else: # 1D coefficient matrix
         vec = np.zeros(int(nx))
 
@@ -295,8 +286,9 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
 
         mat = toeplitz(vec)
 
-        if bcs == 'neumann':
-            mat[0, 0] += b
-            mat[-1, -1] += b
+    if bcs == 'neumann':
+        bounds = get_boundaries(np.ones((nx, ny) if ny else (nx)),
+                                counts=True).flatten()
+        mat += b * np.diag(bounds)
 
     return mat
