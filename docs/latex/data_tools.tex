@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jan 24, 2019}
+\date{Jan 25, 2019}
 \release{0.0.6}
 \author{Nicolàs Palacio}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1572,6 +1572,92 @@ volcano plot.
 \section{data\_tools.spatial}
 \label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
 Spatial matrix module.
+\index{get\_boundaries() (in module data\_tools.spatial)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
+Given an array, returns either the mask where the boundary edges are
+or their counts if specified.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+x {[}numpy.ndarray{]}: The array where boundaries are to be
+identified or counted. Data type of its elements is totally
+irrelevant.
+
+\item {} 
+count {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
+return the number of boundary edges or just their mask.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} \begin{description}
+\item[{{[}numpy.ndarray{]}: Same shape as \sphinxstyleemphasis{x}. If \sphinxcode{\sphinxupquote{counts=False}},}] \leavevmode
+contains \sphinxcode{\sphinxupquote{True}} on any cell that is on the boundary,
+\sphinxcode{\sphinxupquote{False}} otherwise. If \sphinxcode{\sphinxupquote{counts=True}}, will return a
+similar array but instead of {[}bool{]}, there will be {[}int{]}
+denoting the number of boundary edges of the cells.
+
+\end{description}
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{get\PYGZus{}boundaries}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{g+go}{array([[[ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True]],}
+\end{sphinxVerbatim}
+\begin{quote}
+\begin{description}
+\item[{{[}{[} True,  True,  True{]},}] \leavevmode
+{[} True, False,  True{]},
+{[} True,  True,  True{]}{]},
+
+\item[{{[}{[} True,  True,  True{]},}] \leavevmode
+{[} True,  True,  True{]},
+{[} True,  True,  True{]}{]}{]})
+
+\end{description}
+\end{quote}
+
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{get\PYGZus{}boundaries}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{counts}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{g+go}{array([[[3, 2, 3],}
+\PYG{g+go}{        [2, 1, 2],}
+\PYG{g+go}{        [3, 2, 3]],}
+\end{sphinxVerbatim}
+\begin{quote}
+\begin{description}
+\item[{{[}{[}2, 1, 2{]},}] \leavevmode
+{[}1, 0, 1{]},
+{[}2, 1, 2{]}{]},
+
+\item[{{[}{[}3, 2, 3{]},}] \leavevmode
+{[}2, 1, 2{]},
+{[}3, 2, 3{]}{]}{]})
+
+\end{description}
+\end{quote}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \index{neighbour\_count() (in module data\_tools.spatial)}
 
 \begin{fulllineitems}

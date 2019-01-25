@@ -51,6 +51,13 @@ __all__ = ['euler_explicit1D', 'euler_explicit2D', 'euler_implicit_coef_mat',
 import numpy as np
 from scipy.linalg import toeplitz
 
+# TODO: Join methods and simplify your life with dimension-parametrized
+#       slicing e.g.: x[x.ndim * (slice(1, -1),)]
+
+# TODO: Euler explicit coefficient matrix wrapper?
+
+# TODO: Add 3D versions
+
 
 def euler_explicit1D(x0, dt, dx2, d=1, bcs='periodic'):
     '''

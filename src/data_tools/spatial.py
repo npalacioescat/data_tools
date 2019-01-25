@@ -7,9 +7,70 @@ data_tools.spatial
 Spatial matrix module.
 '''
 
-__all__ = ['neighbour_count']
+__all__ = ['get_boundaries', 'neighbour_count']
 
 import numpy as np
+
+
+def get_boundaries(x, counts=False):
+    '''
+    Given an array, returns either the mask where the boundary edges are
+    or their counts if specified.
+
+    * Arguments:
+        - x [numpy.ndarray]: The array where boundaries are to be
+          identified or counted. Data type of its elements is totally
+          irrelevant.
+        - count [bool]: Optional, ``False`` by default. Whether to
+          return the number of boundary edges or just their mask.
+
+    * Returns:
+        - [numpy.ndarray]: Same shape as *x*. If ``counts=False``,
+           contains ``True`` on any cell that is on the boundary,
+           ``False`` otherwise. If ``counts=True``, will return a
+           similar array but instead of [bool], there will be [int]
+           denoting the number of boundary edges of the cells.
+
+    * Examples:
+        >>> x = numpy.ones((3, 3, 3))
+        >>> get_boundaries(x)
+        array([[[ True,  True,  True],
+                [ True,  True,  True],
+                [ True,  True,  True]],
+
+               [[ True,  True,  True],
+                [ True, False,  True],
+                [ True,  True,  True]],
+
+               [[ True,  True,  True],
+                [ True,  True,  True],
+                [ True,  True,  True]]])
+        >>> get_boundaries(x, counts=True)
+        array([[[3, 2, 3],
+                [2, 1, 2],
+                [3, 2, 3]],
+
+               [[2, 1, 2],
+                [1, 0, 1],
+                [2, 1, 2]],
+
+               [[3, 2, 3],
+                [2, 1, 2],
+                [3, 2, 3]]])
+    '''
+
+    edges = np.ones(x.shape, dtype=int)
+
+    if counts:
+        aux = np.pad(edges, 1, 'constant', constant_values=0)
+        counts = neighbour_count(aux)[aux.ndim * (slice(1, -1), )]
+
+        return counts
+
+    else:
+        edges[x.ndim * (slice(1, -1),)] = 0
+
+        return edges.astype(bool)
 
 def neighbour_count(x):
     '''

@@ -35,13 +35,17 @@
   \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{17}
 
   \indexspace
+  \bigletter G
+  \item get\_boundaries() (in module data\_tools.spatial), \hyperpage{22}
+
+  \indexspace
   \bigletter I
   \item in\_all() (in module data\_tools.iterables), \hyperpage{15}
   \item is\_numeric() (in module data\_tools.strings), \hyperpage{23}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{23}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{24}
 
   \indexspace
   \bigletter K
@@ -54,7 +58,7 @@
 
   \indexspace
   \bigletter N
-  \item neighbour\_count() (in module data\_tools.spatial), \hyperpage{22}
+  \item neighbour\_count() (in module data\_tools.spatial), \hyperpage{23}
 
   \indexspace
   \bigletter O

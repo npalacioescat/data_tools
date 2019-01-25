@@ -76,6 +76,7 @@ If not, see http://www.gnu.org/licenses/.
       - :meth:`data_tools.plots.venn`
       - :meth:`data_tools.plots.volcano`
    - :meth:`data_tools.spatial`
+      - :meth:`data_tools.spatial.get_boundaries`
       - :meth:`data_tools.spatial.neighbour_count`
    - :meth:`data_tools.strings`
       - :meth:`data_tools.strings.is_numeric`

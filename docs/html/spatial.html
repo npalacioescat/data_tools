@@ -47,6 +47,84 @@
 <h1>data_tools.spatial<a class="headerlink" href="#data-tools-spatial" title="Permalink to this headline">¶</a></h1>
 <p>Spatial matrix module.</p>
 <dl class="function">
+<dt id="data_tools.spatial.get_boundaries">
+<code class="descclassname">data_tools.spatial.</code><code class="descname">get_boundaries</code><span class="sig-paren">(</span><em>x</em>, <em>counts=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#get_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.get_boundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an array, returns either the mask where the boundary edges are
+or their counts if specified.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>x [numpy.ndarray]: The array where boundaries are to be
+identified or counted. Data type of its elements is totally
+irrelevant.</li>
+<li>count [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether to
+return the number of boundary edges or just their mask.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>[numpy.ndarray]: Same shape as <em>x</em>. If <code class="docutils literal notranslate"><span class="pre">counts=False</span></code>,</dt>
+<dd>contains <code class="docutils literal notranslate"><span class="pre">True</span></code> on any cell that is on the boundary,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise. If <code class="docutils literal notranslate"><span class="pre">counts=True</span></code>, will return a
+similar array but instead of [bool], there will be [int]
+denoting the number of boundary edges of the cells.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">array([[[ True,  True,  True],</span>
+<span class="go">        [ True,  True,  True],</span>
+<span class="go">        [ True,  True,  True]],</span>
+</pre></div>
+</div>
+<blockquote>
+<div><dl class="docutils">
+<dt>[[ True,  True,  True],</dt>
+<dd><p class="first last">[ True, False,  True],
+[ True,  True,  True]],</p>
+</dd>
+<dt>[[ True,  True,  True],</dt>
+<dd><p class="first last">[ True,  True,  True],
+[ True,  True,  True]]])</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">array([[[3, 2, 3],</span>
+<span class="go">        [2, 1, 2],</span>
+<span class="go">        [3, 2, 3]],</span>
+</pre></div>
+</div>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>[[2, 1, 2],</dt>
+<dd><p class="first last">[1, 0, 1],
+[2, 1, 2]],</p>
+</dd>
+<dt>[[3, 2, 3],</dt>
+<dd><p class="first last">[2, 1, 2],
+[3, 2, 3]]])</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.spatial.neighbour_count">
 <code class="descclassname">data_tools.spatial.</code><code class="descname">neighbour_count</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#neighbour_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.neighbour_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an array (up to three dimensions), returns another array with
