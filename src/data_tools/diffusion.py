@@ -51,6 +51,8 @@ __all__ = ['euler_explicit1D', 'euler_explicit2D', 'euler_implicit_coef_mat',
 import numpy as np
 from scipy.linalg import toeplitz
 
+from data_tools.spatial import get_boundaries
+
 # TODO: Join methods and simplify your life with dimension-parametrized
 #       slicing e.g.: x[x.ndim * (slice(1, -1),)]
 
