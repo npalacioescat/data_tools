@@ -145,7 +145,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'data_tools.tex', u'data\\_tools Documentation',
-     u'Nicolàs Palacio', 'manual'),
+     u'Nicolàs Palacio-Escat', 'manual'),
 ]
 
 

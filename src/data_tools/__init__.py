@@ -6,9 +6,9 @@ Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
 
-Copyright (C) 2019 Nicolàs Palacio
+Copyright (C) 2019 Nicolàs Palacio-Escat
 
-Contact: nicolaspalacio91@gmail.com
+Contact: nicolas.palacio@bioquant.uni-heidelberg.de
 
 GNU-GLPv3:
 This program is free software: you can redistribute it and/or modify it
@@ -25,7 +25,7 @@ A full copy of the GNU General Public License can be found on file
 '''
 
 __version__ = '0.0.6'
-__author__ = u'Nicolàs Palacio'
+__author__ = u'Nicolàs Palacio-Escat'
 
 import data_tools.databases as databases
 import data_tools.diffusion as diffusion
