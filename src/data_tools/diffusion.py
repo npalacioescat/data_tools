@@ -291,6 +291,7 @@ def build_coef_mat(a, b, nx, ny=None, bcs='periodic'):
     if bcs == 'neumann':
         bounds = get_boundaries(np.ones((nx, ny) if ny else (nx)),
                                 counts=True).flatten()
-        mat += b * np.diag(bounds)
+        aux = b * bounds
+        mat += np.diag(aux)
 
     return mat
