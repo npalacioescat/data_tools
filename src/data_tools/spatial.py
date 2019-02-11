@@ -37,11 +37,9 @@ def get_boundaries(x, counts=False):
         array([[[ True,  True,  True],
                 [ True,  True,  True],
                 [ True,  True,  True]],
-
                [[ True,  True,  True],
                 [ True, False,  True],
                 [ True,  True,  True]],
-
                [[ True,  True,  True],
                 [ True,  True,  True],
                 [ True,  True,  True]]])
@@ -49,11 +47,9 @@ def get_boundaries(x, counts=False):
         array([[[3, 2, 3],
                 [2, 1, 2],
                 [3, 2, 3]],
-
                [[2, 1, 2],
                 [1, 0, 1],
                 [2, 1, 2]],
-
                [[3, 2, 3],
                 [2, 1, 2],
                 [3, 2, 3]]])
