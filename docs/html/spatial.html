@@ -81,43 +81,29 @@ denoting the number of boundary edges of the cells.</dd>
 </li>
 <li><dl class="first docutils">
 <dt>Examples:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">array([[[ True,  True,  True],</span>
 <span class="go">        [ True,  True,  True],</span>
 <span class="go">        [ True,  True,  True]],</span>
-</pre></div>
-</div>
-<blockquote>
-<div><dl class="docutils">
-<dt>[[ True,  True,  True],</dt>
-<dd><p class="first last">[ True, False,  True],
-[ True,  True,  True]],</p>
-</dd>
-<dt>[[ True,  True,  True],</dt>
-<dd><p class="first last">[ True,  True,  True],
-[ True,  True,  True]]])</p>
-</dd>
-</dl>
-</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">       [[ True,  True,  True],</span>
+<span class="go">        [ True, False,  True],</span>
+<span class="go">        [ True,  True,  True]],</span>
+<span class="go">       [[ True,  True,  True],</span>
+<span class="go">        [ True,  True,  True],</span>
+<span class="go">        [ True,  True,  True]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">array([[[3, 2, 3],</span>
 <span class="go">        [2, 1, 2],</span>
 <span class="go">        [3, 2, 3]],</span>
+<span class="go">       [[2, 1, 2],</span>
+<span class="go">        [1, 0, 1],</span>
+<span class="go">        [2, 1, 2]],</span>
+<span class="go">       [[3, 2, 3],</span>
+<span class="go">        [2, 1, 2],</span>
+<span class="go">        [3, 2, 3]]])</span>
 </pre></div>
 </div>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>[[2, 1, 2],</dt>
-<dd><p class="first last">[1, 0, 1],
-[2, 1, 2]],</p>
-</dd>
-<dt>[[3, 2, 3],</dt>
-<dd><p class="first last">[2, 1, 2],
-[3, 2, 3]]])</p>
-</dd>
-</dl>
-</div></blockquote>
 </dd>
 </dl>
 </li>
