@@ -210,7 +210,17 @@ other iterables containing the objects.</li>
 <dl class="function">
 <dt id="data_tools.iterables.similarity">
 <code class="descclassname">data_tools.iterables.</code><code class="descname">similarity</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='j'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#similarity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.similarity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the similarity index between two sets.</p>
+<dd><p>Computes the similarity index between two sets. There are three
+options available:</p>
+<p>Jaccard (<code class="docutils literal notranslate"><span class="pre">mode='j'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_J(A,B) = \frac{|A\cap B|}{|A\cup B|}\]</div>
+<p>Sorensen-Dice (<code class="docutils literal notranslate"><span class="pre">mode='sd'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_{SD}(A,B) = \frac{2|A\cap B|}{|A|+|B|}\]</div>
+<p>Szymkiewicz–Simpson (<code class="docutils literal notranslate"><span class="pre">mode='ss'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\]</div>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
@@ -222,6 +232,15 @@ index.</li>
 Indicates which type of similarity index/coefficient is to be
 computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
 for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[float]: The corresponding similarity index/coefficient
+according to the specified <em>mode</em>.</li>
 </ul>
 </dd>
 </dl>

@@ -174,7 +174,23 @@
 
 <div class="viewcode-block" id="similarity"><a class="viewcode-back" href="../../iterables.html#data_tools.iterables.similarity">[docs]</a><span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;j&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Computes the similarity index between two sets.</span>
+<span class="sd">    Computes the similarity index between two sets. There are three</span>
+<span class="sd">    options available:</span>
+
+<span class="sd">    Jaccard (``mode=&#39;j&#39;``):</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        s_J(A,B) = \\frac{|A\\cap B|}{|A\\cup B|}</span>
+
+<span class="sd">    Sorensen-Dice (``mode=&#39;sd&#39;``):</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        s_{SD}(A,B) = \\frac{2|A\\cap B|}{|A|+|B|}</span>
+
+<span class="sd">    Szymkiewicz–Simpson (``mode=&#39;ss&#39;``):</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        s_{SS}(A,B) = \\frac{|A\\cap B|}{\\min(|A|,|B|)}</span>
 
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *a* [set]: One of the two sets to compute the similarity</span>
@@ -184,6 +200,10 @@
 <span class="sd">          Indicates which type of similarity index/coefficient is to be</span>
 <span class="sd">          computed. Available options are: ``&#39;j&#39;`` for Jaccard, ``&#39;sd&#39;``</span>
 <span class="sd">          for Sorensen-Dice and ``&#39;ss&#39;`` for Szymkiewicz–Simpson.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [float]: The corresponding similarity index/coefficient</span>
+<span class="sd">          according to the specified *mode*.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">sa</span><span class="p">,</span> <span class="n">sb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>

@@ -15,7 +15,7 @@
 \indexentry{find\_min() (in module data\_tools.iterables)|hyperpage}{14}
 \indexentry{in\_all() (in module data\_tools.iterables)|hyperpage}{15}
 \indexentry{similarity() (in module data\_tools.iterables)|hyperpage}{15}
-\indexentry{subsets() (in module data\_tools.iterables)|hyperpage}{15}
+\indexentry{subsets() (in module data\_tools.iterables)|hyperpage}{16}
 \indexentry{unzip\_dicts() (in module data\_tools.iterables)|hyperpage}{16}
 \indexentry{data\_tools.models (module)|hyperpage}{16}
 \indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{16}
@@ -25,8 +25,8 @@
 \indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{18}
-\indexentry{data\_tools.plots (module)|hyperpage}{18}
-\indexentry{density() (in module data\_tools.plots)|hyperpage}{18}
+\indexentry{data\_tools.plots (module)|hyperpage}{19}
+\indexentry{density() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{20}
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{21}
@@ -34,5 +34,5 @@
 \indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{22}
 \indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{23}
 \indexentry{data\_tools.strings (module)|hyperpage}{23}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{23}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{24}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{24}

@@ -135,7 +135,23 @@ def in_all(x, N):
 
 def similarity(a, b, mode='j'):
     '''
-    Computes the similarity index between two sets.
+    Computes the similarity index between two sets. There are three
+    options available:
+
+    Jaccard (``mode='j'``):
+
+    .. math::
+        s_J(A,B) = \\frac{|A\\cap B|}{|A\\cup B|}
+
+    Sorensen-Dice (``mode='sd'``):
+
+    .. math::
+        s_{SD}(A,B) = \\frac{2|A\\cap B|}{|A|+|B|}
+
+    Szymkiewicz–Simpson (``mode='ss'``):
+
+    .. math::
+        s_{SS}(A,B) = \\frac{|A\\cap B|}{\\min(|A|,|B|)}
 
     * Arguments:
         - *a* [set]: One of the two sets to compute the similarity
@@ -145,6 +161,10 @@ def similarity(a, b, mode='j'):
           Indicates which type of similarity index/coefficient is to be
           computed. Available options are: ``'j'`` for Jaccard, ``'sd'``
           for Sorensen-Dice and ``'ss'`` for Szymkiewicz–Simpson.
+
+    * Returns:
+        - [float]: The corresponding similarity index/coefficient
+          according to the specified *mode*.
     '''
 
     sa, sb = map(set, (a, b))

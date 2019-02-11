@@ -880,8 +880,21 @@ other iterables containing the objects.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{a}, \emph{b}, \emph{mode='j'}}{}
-Computes the similarity index between two sets.
-\begin{itemize}
+Computes the similarity index between two sets. There are three
+options available:
+
+Jaccard (\sphinxcode{\sphinxupquote{mode='j'}}):
+\begin{equation*}
+\begin{split}s_J(A,B) = \frac{|A\cap B|}{|A\cup B|}\end{split}
+\end{equation*}
+Sorensen-Dice (\sphinxcode{\sphinxupquote{mode='sd'}}):
+\begin{equation*}
+\begin{split}s_{SD}(A,B) = \frac{2|A\cap B|}{|A|+|B|}\end{split}
+\end{equation*}
+Szymkiewicz\textendash{}Simpson (\sphinxcode{\sphinxupquote{mode='ss'}}):
+\begin{equation*}
+\begin{split}s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\end{split}
+\end{equation*}\begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
@@ -896,6 +909,16 @@ index.
 Indicates which type of similarity index/coefficient is to be
 computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
 for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}float{]}: The corresponding similarity index/coefficient
+according to the specified \sphinxstyleemphasis{mode}.
 
 \end{itemize}
 
