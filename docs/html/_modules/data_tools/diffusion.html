@@ -330,7 +330,8 @@
     <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="n">get_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span> <span class="k">if</span> <span class="n">ny</span> <span class="k">else</span> <span class="p">(</span><span class="n">nx</span><span class="p">)),</span>
                                 <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        <span class="n">mat</span> <span class="o">+=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">bounds</span>
+        <span class="n">mat</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">mat</span></div>
 </pre></div>

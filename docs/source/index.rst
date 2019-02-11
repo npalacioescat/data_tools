@@ -65,6 +65,7 @@ If not, see http://www.gnu.org/licenses/.
       - :meth:`data_tools.iterables.chunk_this`
       - :meth:`data_tools.iterables.find_min`
       - :meth:`data_tools.iterables.in_all`
+      - :meth:`data_tools.iterables.similarity`
       - :meth:`data_tools.iterables.subsets`
       - :meth:`data_tools.iterables.unzip_dicts`
    - :meth:`data_tools.models`

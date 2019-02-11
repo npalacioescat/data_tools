@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jan 29, 2019}
+\date{Feb 11, 2019}
 \release{0.0.6}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -869,6 +869,35 @@ other iterables containing the objects.
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
 \PYG{g+go}{True}
 \end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{similarity() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{a}, \emph{b}, \emph{mode='j'}}{}
+Computes the similarity index between two sets.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{a} {[}set{]}: One of the two sets to compute the similarity
+index.
+
+\item {} 
+\sphinxstyleemphasis{b} {[}set{]}: The other set to compute the similarity index.
+
+\item {} 
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
+for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson.
+
+\end{itemize}
 
 \end{description}
 

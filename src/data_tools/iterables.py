@@ -7,8 +7,10 @@ data_tools.iterables
 Iterable-type operations module.
 '''
 
-__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets',
-           'unzip_dicts']
+from __future__ import division
+
+__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'similarity',
+           'subsets', 'unzip_dicts']
 
 import itertools
 
@@ -129,6 +131,41 @@ def in_all(x, N):
             return False
 
     return True
+
+
+def similarity(a, b, mode='j'):
+    '''
+    Computes the similarity index between two sets.
+
+    * Arguments:
+        - *a* [set]: One of the two sets to compute the similarity
+          index.
+        - *b* [set]: The other set to compute the similarity index.
+        - *mode* [str]: Optional, ``'j'`` (Jaccard) by default.
+          Indicates which type of similarity index/coefficient is to be
+          computed. Available options are: ``'j'`` for Jaccard, ``'sd'``
+          for Sorensen-Dice and ``'ss'`` for Szymkiewicz–Simpson.
+    '''
+
+    sa, sb = map(set, (a, b))
+    inter = len(sa.intersection(sb))
+
+    if mode == 'j':
+        num = inter
+        den = len(sa.union(sb))
+
+    elif mode == 'sd':
+        num = 2 * inter
+        den = sum(map(len, (sa, sb)))
+
+    elif mode == 'ss':
+        num = inter
+        den = min(map(len, (sa, sb)))
+
+    num, den = map(float, (num, den))
+
+    return num / den
+
 
 
 def subsets(N):

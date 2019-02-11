@@ -24,7 +24,7 @@
 
   \indexspace
   \bigletter E
-  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{16}
+  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{17}
   \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{12}
   \item euler\_explicit2D() (in module data\_tools.diffusion), \hyperpage{12}
   \item euler\_implicit\_coef\_mat() (in module data\_tools.diffusion), \hyperpage{12}
@@ -32,7 +32,7 @@
   \indexspace
   \bigletter F
   \item find\_min() (in module data\_tools.iterables), \hyperpage{14}
-  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{17}
+  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{18}
 
   \indexspace
   \bigletter G
@@ -73,11 +73,12 @@
 
   \indexspace
   \bigletter S
+  \item similarity() (in module data\_tools.iterables), \hyperpage{15}
   \item subsets() (in module data\_tools.iterables), \hyperpage{15}
 
   \indexspace
   \bigletter U
-  \item unzip\_dicts() (in module data\_tools.iterables), \hyperpage{15}
+  \item unzip\_dicts() (in module data\_tools.iterables), \hyperpage{16}
   \item up\_map() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace

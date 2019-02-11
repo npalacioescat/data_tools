@@ -49,6 +49,7 @@ A full copy of the GNU General Public License can be found on file
     - [chunk_this](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.chunk_this)
     - [find_min](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.find_min)
     - [in_all](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.in_all)
+    - [similarity](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.similarity)
     - [subsets](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.subsets)
     - [unzip_dicts](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.unzip_dicts)
 - [models](https://nic-nic.github.io/data_tools/html/models.html)

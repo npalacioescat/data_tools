@@ -10,6 +10,9 @@
 - `test_data_tools` has tests for almost all classes and functions.
   Functions that include plots are skipped (cannot be tested). Only test
   missing is `models.Lasso`.
+- In `iterables` module:
+    - Function `similarity`: Computes the similarity index between two
+      sets.
 - In `diffusion` module:
     - Function `euler_explicit2D`: Computes diffusion on a 2D space over
       a time-step using Euler explicit method.
