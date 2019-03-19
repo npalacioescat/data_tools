@@ -26,10 +26,10 @@ def get_boundaries(x, counts=False):
 
     * Returns:
         - [numpy.ndarray]: Same shape as *x*. If ``counts=False``,
-           contains ``True`` on any cell that is on the boundary,
-           ``False`` otherwise. If ``counts=True``, will return a
-           similar array but instead of [bool], there will be [int]
-           denoting the number of boundary edges of the cells.
+          contains ``True`` on any cell that is on the boundary,
+          ``False`` otherwise. If ``counts=True``, will return a
+          similar array but instead of [bool], there will be [int]
+          denoting the number of boundary edges of the cells.
 
     * Examples:
         >>> x = numpy.ones((3, 3, 3))

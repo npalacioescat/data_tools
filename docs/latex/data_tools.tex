@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Feb 11, 2019}
+\date{Mar 19, 2019}
 \release{0.0.6}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1467,7 +1467,7 @@ combination of box and scatter plots of the gene-set scores.
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, sizes=False, title=None, filename=None, figsize=None}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
 between 2 and 5 (inclusive).
 \begin{itemize}
@@ -1491,6 +1491,10 @@ elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored)
 \item {} 
 \sphinxstyleemphasis{pct} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Indicates
 whether to show percentages instead of absolute counts.
+
+\item {} 
+\sphinxstyleemphasis{sizes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
+include the size of the sets in the legend or not.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -1648,14 +1652,12 @@ return the number of boundary edges or just their mask.
 
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
-\item {} \begin{description}
-\item[{{[}numpy.ndarray{]}: Same shape as \sphinxstyleemphasis{x}. If \sphinxcode{\sphinxupquote{counts=False}},}] \leavevmode
+\item {} 
+{[}numpy.ndarray{]}: Same shape as \sphinxstyleemphasis{x}. If \sphinxcode{\sphinxupquote{counts=False}},
 contains \sphinxcode{\sphinxupquote{True}} on any cell that is on the boundary,
 \sphinxcode{\sphinxupquote{False}} otherwise. If \sphinxcode{\sphinxupquote{counts=True}}, will return a
 similar array but instead of {[}bool{]}, there will be {[}int{]}
 denoting the number of boundary edges of the cells.
-
-\end{description}
 
 \end{itemize}
 

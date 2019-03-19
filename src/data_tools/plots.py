@@ -168,7 +168,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
 
 def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
-         pct=False, title=None, filename=None, figsize=None):
+         pct=False, sizes=False, title=None, filename=None, figsize=None):
     '''
     Plots a Venn diagram from a list of sets *N*. Number of sets must be
     between 2 and 5 (inclusive).
@@ -185,6 +185,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
           elements as *N* (if more are provided, they will be ignored).
         - *pct* [bool]: Optional, ``False`` by default. Indicates
           whether to show percentages instead of absolute counts.
+        - *sizes* [bool]: Optional, ``False`` by default. Whether to
+          include the size of the sets in the legend or not.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -286,7 +288,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
     for i in range(len(N)):
         ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],
-                label=labels[i])
+                label='%s (%d)' %(labels[i], len(N[i])) if sizes
+                else labels[i])
 
     for i in range(len(text)):
         ax.text(xt[i], yt[i], text[keys[i]], fontdict={'ha':'center'})

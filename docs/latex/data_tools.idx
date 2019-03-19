@@ -33,6 +33,6 @@
 \indexentry{data\_tools.spatial (module)|hyperpage}{22}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{22}
 \indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{23}
-\indexentry{data\_tools.strings (module)|hyperpage}{23}
+\indexentry{data\_tools.strings (module)|hyperpage}{24}
 \indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{24}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{24}

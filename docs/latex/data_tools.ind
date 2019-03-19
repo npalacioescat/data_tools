@@ -18,7 +18,7 @@
   \item data\_tools.models (module), \hyperpage{16}
   \item data\_tools.plots (module), \hyperpage{19}
   \item data\_tools.spatial (module), \hyperpage{22}
-  \item data\_tools.strings (module), \hyperpage{23}
+  \item data\_tools.strings (module), \hyperpage{24}
   \item density() (in module data\_tools.plots), \hyperpage{19}
   \item DoseResponse (class in data\_tools.models), \hyperpage{16}
 
