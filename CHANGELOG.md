@@ -32,7 +32,8 @@
       dephosphorylation interactions.
 - In `plots` module:
     - Function `venn` now can plot global percentages instead of
-      absolute counts.
+      absolute counts. Also added the option to show the set sizes on
+      the legend.
     - Function `density` now can handle data frames with samples on the
       columns.
 
