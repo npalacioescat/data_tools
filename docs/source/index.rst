@@ -49,39 +49,56 @@ If not, see http://www.gnu.org/licenses/.
    Contents
    ========
 
-   - :meth:`data_tools.databases`
-      - :meth:`data_tools.databases.kegg_link`
-      - :meth:`data_tools.databases.kegg_pathway_mapping`
-      - :meth:`data_tools.databases.op_kinase_substrate`
-      - :meth:`data_tools.databases.up_map`
-   - :meth:`data_tools.diffusion`
-      - :meth:`data_tools.diffusion.euler_explicit1D`
-      - :meth:`data_tools.diffusion.euler_explicit2D`
-      - :meth:`data_tools.diffusion.euler_implicit_coef_mat`
-      - :meth:`data_tools.diffusion.crank_nicolson_coef_mats`
-      - :meth:`data_tools.diffusion.build_coef_mat`
-   - :meth:`data_tools.iterables`
-      - :meth:`data_tools.iterables.bit_or`
-      - :meth:`data_tools.iterables.chunk_this`
-      - :meth:`data_tools.iterables.find_min`
-      - :meth:`data_tools.iterables.in_all`
-      - :meth:`data_tools.iterables.similarity`
-      - :meth:`data_tools.iterables.subsets`
-      - :meth:`data_tools.iterables.unzip_dicts`
-   - :meth:`data_tools.models`
-      - :meth:`data_tools.models.Lasso`
-      - :meth:`data_tools.models.DoseResponse`
-   - :meth:`data_tools.plots`
-      - :meth:`data_tools.plots.density`
-      - :meth:`data_tools.plots.piano_consensus`
-      - :meth:`data_tools.plots.venn`
-      - :meth:`data_tools.plots.volcano`
-   - :meth:`data_tools.spatial`
-      - :meth:`data_tools.spatial.get_boundaries`
-      - :meth:`data_tools.spatial.neighbour_count`
-   - :meth:`data_tools.strings`
-      - :meth:`data_tools.strings.is_numeric`
-      - :meth:`data_tools.strings.join_str_lists`
+   - :py:mod:`databases <data_tools.databases>`
+      - :py:func:`kegg_link <data_tools.databases.kegg_link>`
+      - :py:func:`kegg_pathway_mapping <data_tools.databases.kegg_pathway_mapping>`
+      - :py:func:`op_kinase_substrate <data_tools.databases.op_kinase_substrate>`
+      - :py:func:`up_map <data_tools.databases.up_map>`
+
+   - :py:mod:`diffusion <data_tools.diffusion>`
+      - :py:func:`euler_explicit1D <data_tools.diffusion.euler_explicit1D>`
+      - :py:func:`euler_explicit2D <data_tools.diffusion.euler_explicit2D>`
+      - :py:func:`euler_implicit_coef_mat <data_tools.diffusion.euler_implicit_coef_mat>`
+      - :py:func:`crank_nicolson_coef_mats <data_tools.diffusion.crank_nicolson_coef_mats>`
+      - :py:func:`build_coef_mat <data_tools.diffusion.build_coef_mat>`
+
+   - :py:mod:`iterables <data_tools.iterables>`
+      - :py:func:`bit_or <data_tools.iterables.bit_or>`
+      - :py:func:`chunk_this <data_tools.iterables.chunk_this>`
+      - :py:func:`find_min <data_tools.iterables.find_min>`
+      - :py:func:`in_all <data_tools.iterables.in_all>`
+      - :py:func:`similarity <data_tools.iterables.similarity>`
+      - :py:func:`subsets <data_tools.iterables.subsets>`
+      - :py:func:`unzip_dicts <data_tools.iterables.unzip_dicts>`
+
+   - :py:mod:`models <data_tools.models>`
+      - :py:class:`DoseResponse <data_tools.models.DoseResponse>`
+
+        - :py:meth:`ec <data_tools.models.DoseResponse.ec>`
+        - :py:meth:`plot <data_tools.models.DoseResponse.plot>`
+
+      - :py:class:`Lasso <data_tools.models.Lasso>`
+
+        - :py:meth:`fit_data <data_tools.models.Lasso.fit_data>`
+        - :py:meth:`plot_score <data_tools.models.Lasso.plot_score>`
+        - :py:meth:`plot_coef <data_tools.models.Lasso.plot_coef>`
+
+   - :py:mod:`plots <data_tools.plots>`
+      - :py:data:`cmap_bkgr <data_tools.plots.cmap_bkgr>`
+      - :py:data:`cmap_bkrd <data_tools.plots.cmap_bkrd>`
+      - :py:data:`cmap_rdbkgr <data_tools.plots.cmap_rdbkgr>`
+      - :py:func:`density <data_tools.plots.density>`
+      - :py:func:`piano_consensus <data_tools.plots.piano_consensus>`
+      - :py:func:`venn <data_tools.plots.venn>`
+      - :py:func:`volcano <data_tools.plots.volcano>`
+
+   - :py:mod:`spatial <data_tools.spatial>`
+      - :py:func:`get_boundaries <data_tools.spatial.get_boundaries>`
+      - :py:func:`neighbour_count <data_tools.spatial.neighbour_count>`
+
+   - :py:mod:`strings <data_tools.strings>`
+      - :py:func:`is_numeric <data_tools.strings.is_numeric>`
+      - :py:func:`join_str_lists <data_tools.strings.join_str_lists>`
 
 Dependencies
 ============
