@@ -36,6 +36,8 @@
       the legend.
     - Function `density` now can handle data frames with samples on the
       columns.
+    - Created 3 custom colormaps: `cmap_bkgr` (black-green), `cmap_bkrd`
+      (black-red) and `cmap_rdbkgr` (red-black-green).
 
 ## v0.0.6:
 - Renamed `sets` to `iterables`.

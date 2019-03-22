@@ -46,16 +46,34 @@
 <span class="sd">Plotting functions module.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;piano_consensus&#39;</span><span class="p">,</span> <span class="s1">&#39;venn&#39;</span><span class="p">,</span> <span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cmap_bkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;cmap_bkrd&#39;</span><span class="p">,</span><span class="s1">&#39;cmap_rdbkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;density&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;piano_consensus&#39;</span><span class="p">,</span> <span class="s1">&#39;venn&#39;</span><span class="p">,</span> <span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="k">import</span> <span class="n">LinearSegmentedColormap</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.iterables</span> <span class="k">import</span> <span class="n">subsets</span>
 
+<span class="c1">#: Custom colormap, gradient from black (lowest) to lime green (highest).</span>
+<span class="n">cmap_bkgr</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;BkGr&#39;</span><span class="p">,</span>
+                                              <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#000000&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">],</span>
+                                              <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1">#: Custom colormap, gradient from black (lowest) to red (highest).</span>
+<span class="n">cmap_bkrd</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;BkRd&#39;</span><span class="p">,</span>
+                                              <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#000000&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">],</span>
+                                              <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1">#: Custom colormap, gradient from red (lowest) to black (middle) to lime</span>
+<span class="c1">#: green (highest).</span>
+<span class="n">cmap_rdbkgr</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;RdBkGr&#39;</span><span class="p">,</span>
+                                                <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#000000&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;#00FF00&#39;</span><span class="p">],</span>
+                                                <span class="n">N</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
 
 <span class="c1"># TODO: Add example figure</span>
 <div class="viewcode-block" id="density"><a class="viewcode-back" href="../../plots.html#data_tools.plots.density">[docs]</a><span class="k">def</span> <span class="nf">density</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cvf</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">sample_col</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>

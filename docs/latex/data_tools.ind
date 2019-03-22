@@ -8,6 +8,9 @@
   \indexspace
   \bigletter C
   \item chunk\_this() (in module data\_tools.iterables), \hyperpage{14}
+  \item cmap\_bkgr (in module data\_tools.plots), \hyperpage{19}
+  \item cmap\_bkrd (in module data\_tools.plots), \hyperpage{19}
+  \item cmap\_rdbkgr (in module data\_tools.plots), \hyperpage{19}
   \item crank\_nicolson\_coef\_mats() (in module data\_tools.diffusion), \hyperpage{13}
 
   \indexspace

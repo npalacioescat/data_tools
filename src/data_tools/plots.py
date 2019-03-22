@@ -7,16 +7,34 @@ data_tools.plots
 Plotting functions module.
 '''
 
-__all__ = ['density', 'piano_consensus', 'venn', 'volcano']
+__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
+           'piano_consensus', 'venn', 'volcano']
 
 import numpy as np
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 
 from data_tools.iterables import subsets
 
+#: Custom colormap, gradient from black (lowest) to lime green (highest).
+cmap_bkgr = LinearSegmentedColormap.from_list(name='BkGr',
+                                              colors=['#000000', '#00FF00'],
+                                              N=256)
+
+#: Custom colormap, gradient from black (lowest) to red (highest).
+cmap_bkrd = LinearSegmentedColormap.from_list(name='BkRd',
+                                              colors=['#000000', '#FF0000'],
+                                              N=256)
+
+#: Custom colormap, gradient from red (lowest) to black (middle) to lime
+#: green (highest).
+cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
+                                                colors=['#FF0000', '#000000',
+                                                        '#00FF00'],
+                                                N=256)
 
 # TODO: Add example figure
 def density(df, cvf=0.25, sample_col=False, title=None, filename=None,

@@ -26,6 +26,9 @@
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{data\_tools.plots (module)|hyperpage}{19}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{cmap\_rdbkgr (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{density() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{20}
