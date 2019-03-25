@@ -24,9 +24,8 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
-__version__ = '0.0.6'
-__author__ = u'Nicolàs Palacio-Escat'
 
+import data_tools.__info__ as __info__
 import data_tools.databases as databases
 import data_tools.diffusion as diffusion
 import data_tools.iterables as iterables
@@ -34,3 +33,6 @@ import data_tools.models as models
 import data_tools.plots as plots
 import data_tools.spatial as spatial
 import data_tools.strings as strings
+
+__version__ = __info__.__version__
+__author__ = __info__.__author__
