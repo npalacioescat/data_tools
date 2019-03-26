@@ -50,8 +50,8 @@
 
 \addto\extrasenglish{\def\pageautorefname{page}}
 
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
 
 
 \title{data\_tools Documentation}
@@ -157,13 +157,16 @@ python \PYGZhy{}m test\PYGZus{}data\PYGZus{}tools
 implemented.
 
 
-\chapter{Modules}
-\label{\detokenize{index:modules}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
+\chapter{Index}
+\label{\detokenize{index:index}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
 
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
 Databases functions module.
-\index{kegg\_link() (in module data\_tools.databases)}
+
+
+\subsection{Contents}
+\label{\detokenize{databases:contents}}\index{kegg\_link() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{query}, \emph{target='pathway'}}{}
@@ -375,6 +378,9 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
 Diffusion solvers module.
 
+
+\subsection{Introduction}
+\label{\detokenize{diffusion:introduction}}
 The following functions provide tools to solve the diffusion problem for
 any number of spatial dimensions with different explicit and implicit
 methods. The problem is defined as follows:
@@ -400,7 +406,7 @@ finite differences. For instance, in one dimension:
 \begin{split}\frac{\partial^2u}{\partial x^2}\approx\frac{u_{i-1}-2u_i+u_{i+1  }}{\Delta x^2}\end{split}
 \end{equation*}
 
-\subsection{Euler explicit method}
+\subsubsection{Euler explicit method}
 \label{\detokenize{diffusion:euler-explicit-method}}
 “Classic” method, first-order accurate, uses forward difference over
 time:
@@ -436,7 +442,7 @@ The implicit methods are (theoretically) unconditionally stable, hence
 are more permissive in terms of discretization step-size.
 
 
-\subsection{Euler implicit method}
+\subsubsection{Euler implicit method}
 \label{\detokenize{diffusion:euler-implicit-method}}
 Similar to Euler explicit (first-order accurate) but uses backward
 difference over time:
@@ -460,7 +466,7 @@ into one dimension) and \(\mathbf{A}\) becomes a block tri-diagonal
 matrix.
 
 
-\subsection{Crank-Nicolson method}
+\subsubsection{Crank-Nicolson method}
 \label{\detokenize{diffusion:crank-nicolson-method}}
 Implicit method, second-order accurate that uses trapezoidal rule for
 integration time between forward and backward differences. Therefore,
@@ -521,7 +527,10 @@ is way faster but your coefficient matrix has to be invertible. If
 the determinant is close to zero, may cause numerical instability.
 
 \end{itemize}
-\index{build\_mat() (in module data\_tools.diffusion)}
+
+
+\subsection{Contents}
+\label{\detokenize{diffusion:contents}}\index{build\_mat() (in module data\_tools.diffusion)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{cent}, \emph{neigh}, \emph{dims}, \emph{bcs='dirichlet'}}{}
@@ -575,7 +584,10 @@ dimension sizes.
 \section{data\_tools.iterables}
 \label{\detokenize{iterables:data-tools-iterables}}\label{\detokenize{iterables::doc}}
 Iterable-type operations module.
-\index{bit\_or() (in module data\_tools.iterables)}
+
+
+\subsection{Contents}
+\label{\detokenize{iterables:contents}}\index{bit\_or() (in module data\_tools.iterables)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
@@ -909,7 +921,10 @@ respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
 Model classes module.
-\index{DoseResponse (class in data\_tools.models)}
+
+
+\subsection{Contents}
+\label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0=None, x\_scale=None, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
@@ -1224,7 +1239,10 @@ score plot.
 \section{data\_tools.plots}
 \label{\detokenize{plots:data-tools-plots}}\label{\detokenize{plots::doc}}
 Plotting functions module.
-\index{cmap\_bkgr (in module data\_tools.plots)}
+
+
+\subsection{Contents}
+\label{\detokenize{plots:contents}}\index{cmap\_bkgr (in module data\_tools.plots)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
@@ -1539,7 +1557,10 @@ volcano plot.
 \section{data\_tools.spatial}
 \label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
 Spatial matrix module.
-\index{get\_boundaries() (in module data\_tools.spatial)}
+
+
+\subsection{Contents}
+\label{\detokenize{spatial:contents}}\index{get\_boundaries() (in module data\_tools.spatial)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
@@ -1667,7 +1688,10 @@ neighbour count.
 \section{data\_tools.strings}
 \label{\detokenize{strings:data-tools-strings}}\label{\detokenize{strings::doc}}
 String operations module.
-\index{is\_numeric() (in module data\_tools.strings)}
+
+
+\subsection{Contents}
+\label{\detokenize{strings:contents}}\index{is\_numeric() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{s}}{}

@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-######################
-data_tools' reference
-######################
+##################
+data_tools' manual
+##################
 
 .. only:: html
 
@@ -46,8 +46,8 @@ If not, see http://www.gnu.org/licenses/.
 
 .. only:: html
 
-   Contents
-   ========
+   Reference
+   =========
 
    - :py:mod:`databases <data_tools.databases>`
       - :py:func:`kegg_link <data_tools.databases.kegg_link>`
@@ -56,11 +56,7 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`up_map <data_tools.databases.up_map>`
 
    - :py:mod:`diffusion <data_tools.diffusion>`
-      - :py:func:`euler_explicit1D <data_tools.diffusion.euler_explicit1D>`
-      - :py:func:`euler_explicit2D <data_tools.diffusion.euler_explicit2D>`
-      - :py:func:`euler_implicit_coef_mat <data_tools.diffusion.euler_implicit_coef_mat>`
-      - :py:func:`crank_nicolson_coef_mats <data_tools.diffusion.crank_nicolson_coef_mats>`
-      - :py:func:`build_coef_mat <data_tools.diffusion.build_coef_mat>`
+      - :py:func:`build_mat <data_tools.diffusion.build_mat>`
 
    - :py:mod:`iterables <data_tools.iterables>`
       - :py:func:`bit_or <data_tools.iterables.bit_or>`
@@ -155,11 +151,11 @@ implemented.
    You can also find the version history in the
    `changelog <https://github.com/Nic-Nic/data_tools/blob/master/CHANGELOG.md>`_.
 
-Modules
-=======
+Index
+=====
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 6
 
    databases
    diffusion

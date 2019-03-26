@@ -46,6 +46,8 @@
   <span class="target" id="module-data_tools.diffusion"></span><div class="section" id="data-tools-diffusion">
 <h1>data_tools.diffusion<a class="headerlink" href="#data-tools-diffusion" title="Permalink to this headline">¶</a></h1>
 <p>Diffusion solvers module.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The following functions provide tools to solve the diffusion problem for
 any number of spatial dimensions with different explicit and implicit
 methods. The problem is defined as follows:</p>
@@ -67,7 +69,7 @@ finite differences. For instance, in one dimension:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial^2u}{\partial x^2}\approx\frac{u_{i-1}-2u_i+u_{i+1  }}{\Delta x^2}\]</div>
 <div class="section" id="euler-explicit-method">
-<h2>Euler explicit method<a class="headerlink" href="#euler-explicit-method" title="Permalink to this headline">¶</a></h2>
+<h3>Euler explicit method<a class="headerlink" href="#euler-explicit-method" title="Permalink to this headline">¶</a></h3>
 <p>“Classic” method, first-order accurate, uses forward difference over
 time:</p>
 <div class="math notranslate nohighlight">
@@ -97,7 +99,7 @@ case:</p>
 are more permissive in terms of discretization step-size.</p>
 </div>
 <div class="section" id="euler-implicit-method">
-<h2>Euler implicit method<a class="headerlink" href="#euler-implicit-method" title="Permalink to this headline">¶</a></h2>
+<h3>Euler implicit method<a class="headerlink" href="#euler-implicit-method" title="Permalink to this headline">¶</a></h3>
 <p>Similar to Euler explicit (first-order accurate) but uses backward
 difference over time:</p>
 <div class="math notranslate nohighlight">
@@ -117,7 +119,7 @@ into one dimension) and <span class="math notranslate nohighlight">\(\mathbf{A}\
 matrix.</p>
 </div>
 <div class="section" id="crank-nicolson-method">
-<h2>Crank-Nicolson method<a class="headerlink" href="#crank-nicolson-method" title="Permalink to this headline">¶</a></h2>
+<h3>Crank-Nicolson method<a class="headerlink" href="#crank-nicolson-method" title="Permalink to this headline">¶</a></h3>
 <p>Implicit method, second-order accurate that uses trapezoidal rule for
 integration time between forward and backward differences. Therefore,
 assuming <span class="math notranslate nohighlight">\(u_t=f(u,t)\)</span> then:</p>
@@ -163,6 +165,10 @@ matrix and just solve the equation with a matrix multiplication. This
 is way faster but your coefficient matrix has to be invertible. If
 the determinant is close to zero, may cause numerical instability.</li>
 </ul>
+</div>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.diffusion.build_mat">
 <code class="descclassname">data_tools.diffusion.</code><code class="descname">build_mat</code><span class="sig-paren">(</span><em>cent</em>, <em>neigh</em>, <em>dims</em>, <em>bcs='dirichlet'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#build_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.build_mat" title="Permalink to this definition">¶</a></dt>
@@ -214,9 +220,13 @@ dimension sizes.</li>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">data_tools.diffusion</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
 <li><a class="reference internal" href="#euler-explicit-method">Euler explicit method</a></li>
 <li><a class="reference internal" href="#euler-implicit-method">Euler implicit method</a></li>
 <li><a class="reference internal" href="#crank-nicolson-method">Crank-Nicolson method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
 </ul>
 </li>
 </ul>

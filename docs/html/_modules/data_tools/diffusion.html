@@ -41,9 +41,12 @@
 
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">data_tools.diffusion</span>
-<span class="sd">********************</span>
+<span class="sd">====================</span>
 
 <span class="sd">Diffusion solvers module.</span>
+
+<span class="sd">Introduction</span>
+<span class="sd">------------</span>
 
 <span class="sd">The following functions provide tools to solve the diffusion problem for</span>
 <span class="sd">any number of spatial dimensions with different explicit and implicit</span>
@@ -74,7 +77,7 @@
 <span class="sd">  }}{\\Delta x^2}</span>
 
 <span class="sd">Euler explicit method</span>
-<span class="sd">=====================</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^</span>
 
 <span class="sd">&quot;Classic&quot; method, first-order accurate, uses forward difference over</span>
 <span class="sd">time:</span>
@@ -116,7 +119,7 @@
 <span class="sd">are more permissive in terms of discretization step-size.</span>
 
 <span class="sd">Euler implicit method</span>
-<span class="sd">=====================</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^</span>
 
 <span class="sd">Similar to Euler explicit (first-order accurate) but uses backward</span>
 <span class="sd">difference over time:</span>
@@ -144,7 +147,7 @@
 <span class="sd">matrix.</span>
 
 <span class="sd">Crank-Nicolson method</span>
-<span class="sd">=====================</span>
+<span class="sd">^^^^^^^^^^^^^^^^^^^^^</span>
 
 <span class="sd">Implicit method, second-order accurate that uses trapezoidal rule for</span>
 <span class="sd">integration time between forward and backward differences. Therefore,</span>
@@ -202,6 +205,9 @@
 <span class="sd">  matrix and just solve the equation with a matrix multiplication. This</span>
 <span class="sd">  is way faster but your coefficient matrix has to be invertible. If</span>
 <span class="sd">  the determinant is close to zero, may cause numerical instability.</span>
+
+<span class="sd">Contents</span>
+<span class="sd">--------</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;build_mat&#39;</span><span class="p">]</span>
