@@ -47,9 +47,39 @@ diffusing field state and the matrix on each time-step.
 
 __all__ = []
 
-def build_mat(lbd, nx, ny=None, nz=None, bcs='d'):
-    main_block = np.eye(nx) * 2 * lbd + np.eye(nx, k=1) * lbd + np.eye(nx, k=-1) * lbd
-    if bcs == 'p':
-        # Make main block circular
-        main_block[0, nx - 1] = 1
-        main_block[nx - 1, 0] = 1
+import numpy as np
+from scipy.sparse import block_diag
+
+from data_tools.spatial import get_boundaries
+
+def build_mat(lbd, dims, bcs='d'):
+    '''
+    '''
+
+    dims = list(dims)
+
+    for i, n in enumerate(dims):
+
+        if i == 0:
+            mat = (np.eye(n) * 2 * lbd
+                   + np.eye(n, k=1) * lbd
+                   + np.eye(n, k=-1) * lbd)
+
+            if bcs == 'p':
+                # Make matrix circular
+                mat[[0, -1], [-1, 0]] = lbd
+
+        else:
+            prev = mat.shape[0]
+            curr = prev * n
+
+            mat = block_diag([mat] * n).toarray()
+            mat += (curr, k=prev) * lbd + np.eye(curr, k=-prev) * lbd
+
+            if bcs == 'p':
+                mat += (np.eye(curr, k=curr - prev) * lbd
+                        + np.eye(curr, k=prev - curr * lbd))
+
+    if bcs == 'n':
+        factor = get_boundaries(np.ndarray(dims), counts=True).flatten()
+        mat += np.diag(factor) * lbd
