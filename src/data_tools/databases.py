@@ -5,6 +5,9 @@ data_tools.databases
 ====================
 
 Databases functions module.
+
+Contents
+--------
 '''
 
 __all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',

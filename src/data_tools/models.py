@@ -5,6 +5,9 @@ data_tools.models
 =================
 
 Model classes module.
+
+Contents
+--------
 '''
 
 __all__ = ['DoseResponse', 'Lasso']

@@ -5,6 +5,9 @@ data_tools.plots
 ================
 
 Plotting functions module.
+
+Contents
+--------
 '''
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',

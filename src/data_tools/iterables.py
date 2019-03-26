@@ -5,6 +5,9 @@ data_tools.iterables
 ====================
 
 Iterable-type operations module.
+
+Contents
+--------
 '''
 
 from __future__ import division

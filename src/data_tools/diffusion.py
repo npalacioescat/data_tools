@@ -2,9 +2,12 @@
 
 '''
 data_tools.diffusion
-********************
+====================
 
 Diffusion solvers module.
+
+Introduction
+------------
 
 The following functions provide tools to solve the diffusion problem for
 any number of spatial dimensions with different explicit and implicit
@@ -35,7 +38,7 @@ finite differences. For instance, in one dimension:
   }}{\\Delta x^2}
 
 Euler explicit method
-=====================
+^^^^^^^^^^^^^^^^^^^^^
 
 "Classic" method, first-order accurate, uses forward difference over
 time:
@@ -77,7 +80,7 @@ The implicit methods are (theoretically) unconditionally stable, hence
 are more permissive in terms of discretization step-size.
 
 Euler implicit method
-=====================
+^^^^^^^^^^^^^^^^^^^^^
 
 Similar to Euler explicit (first-order accurate) but uses backward
 difference over time:
@@ -105,7 +108,7 @@ into one dimension) and :math:`\\mathbf{A}` becomes a block tri-diagonal
 matrix.
 
 Crank-Nicolson method
-=====================
+^^^^^^^^^^^^^^^^^^^^^
 
 Implicit method, second-order accurate that uses trapezoidal rule for
 integration time between forward and backward differences. Therefore,
@@ -163,6 +166,9 @@ matrix multiplication for time explicit methods).
   matrix and just solve the equation with a matrix multiplication. This
   is way faster but your coefficient matrix has to be invertible. If
   the determinant is close to zero, may cause numerical instability.
+
+Contents
+--------
 '''
 
 __all__ = ['build_mat']

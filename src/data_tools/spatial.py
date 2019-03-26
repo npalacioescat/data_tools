@@ -5,6 +5,9 @@ data_tools.spatial
 ====================
 
 Spatial matrix module.
+
+Contents
+--------
 '''
 
 __all__ = ['get_boundaries', 'neighbour_count']
