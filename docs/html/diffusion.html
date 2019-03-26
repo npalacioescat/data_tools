@@ -46,24 +46,109 @@
   <span class="target" id="module-data_tools.diffusion"></span><div class="section" id="data-tools-diffusion">
 <h1>data_tools.diffusion<a class="headerlink" href="#data-tools-diffusion" title="Permalink to this headline">¶</a></h1>
 <p>Diffusion solvers module.</p>
-<p>The following functions provide tools to compute the diffusion on one or
-two dimensions with different explicit or implicit methods.</p>
-<p><strong>NOTE:</strong> Explicit methods (<code class="docutils literal notranslate"><span class="pre">'euler_explicit1D'</span></code> and
-<code class="docutils literal notranslate"><span class="pre">'euler_explicit2D'</span></code>) are conditionally stable. This means that in
+<p>The following functions provide tools to solve the diffusion problem for
+any number of spatial dimensions with different explicit and implicit
+methods. The problem is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = D\nabla^2u\]</div>
+<p>Where <span class="math notranslate nohighlight">\(u\)</span> is the diffusing component, <span class="math notranslate nohighlight">\(D\)</span> is the diffusion
+coefficient and <span class="math notranslate nohighlight">\(\nabla^2\)</span> is the Laplace operator
+(in Euclidean space <span class="math notranslate nohighlight">\(\nabla^2f=\nabla\cdot\nabla f=\sum_{i=1}^n\frac{\partial^2 f}{\partial x_i^2}\)</span>).</p>
+<p>Some numerical methods to solve this probelm will be explained in
+the following subsections. These are based in approximation of the
+derivatives by finite-differences. Therefore we define the
+discretization step sizes as <span class="math notranslate nohighlight">\(\Delta t\)</span> for the time derivative
+and <span class="math notranslate nohighlight">\(\Delta x\)</span>, <span class="math notranslate nohighlight">\(\Delta y\)</span> and so on for first, second and
+subsequent spatial dimensions respectively.</p>
+<p>From here on we will assume that space is homogeneously discretized
+(e.g.: <span class="math notranslate nohighlight">\(\Delta x=\Delta y\)</span>). All second-order partial
+derivatives in the spatial dimension are discretized using central
+finite differences. For instance, in one dimension:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial^2u}{\partial x^2}\approx\frac{u_{i-1}-2u_i+u_{i+1  }}{\Delta x^2}\]</div>
+<div class="section" id="euler-explicit-method">
+<h2>Euler explicit method<a class="headerlink" href="#euler-explicit-method" title="Permalink to this headline">¶</a></h2>
+<p>“Classic” method, first-order accurate, uses forward difference over
+time:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t}\approx\frac{u^{k+1}-u^k}{\Delta t}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(k\)</span> is the current time-step. Applied to the diffusion
+problem for one dimension and rearranging terms:</p>
+<div class="math notranslate nohighlight">
+\[u_i^{k+1}=\frac{D\Delta t}{\Delta x^2}\left(u_{i+1}^k+u_{i-1}^k  \right)+\left(1-2\frac{D\Delta t}{\Delta x^2}\right)u_i^k\]</div>
+<p>Let us define from here on <span class="math notranslate nohighlight">\(\lambda\equiv\frac{D\Delta t}{\Delta x^2}\)</span> for simplicity. Rewriting the equation above in terms of
+linear algebra, each time-step the next state of <span class="math notranslate nohighlight">\(u\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[u^{k+1}=\mathbf{A}u^{k}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the tri-diagonal coefficient matrix whose
+central element is <span class="math notranslate nohighlight">\((1-2\lambda)\)</span> and its adjacent diagonals are
+<span class="math notranslate nohighlight">\(\lambda\)</span>. Note that for <span class="math notranslate nohighlight">\(n\)</span>-dimensional case, central
+element will then be <span class="math notranslate nohighlight">\((1-2n\lambda)\)</span> and <span class="math notranslate nohighlight">\(u\)</span> must be
+flattened (coerced into one dimension) and <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> becomes
+a block tri-diagonal matrix.</p>
+<p><strong>NOTE:</strong> Explicit methods are conditionally stable. This means that in
 order to keep numerical stability of the solution (and obtain an
 accurate result), these methods need to fulfill the
-Courant–Friedrichs–Lewy (CFL) condition. For the one-dimensional case:</p>
+Courant–Friedrichs–Lewy (CFL) condition. For any <span class="math notranslate nohighlight">\(n\)</span>-dimensional
+case:</p>
 <div class="math notranslate nohighlight">
-\[D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2}\]</div>
-<p>For the two-dimensional case (and assuming <span class="math notranslate nohighlight">\(\Delta x=\Delta y\)</span>):</p>
-<div class="math notranslate nohighlight">
-\[D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{4}\]</div>
+\[D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2n}\]</div>
 <p>The implicit methods are (theoretically) unconditionally stable, hence
 are more permissive in terms of discretization step-size.</p>
-<p>Currently for the implicit methods only the coefficient matrix
-contruction is available. To solve the diffusion problem user can use
-any of the available linear algebra solvers by providing the current
-diffusing field state and the matrix on each time-step.</p>
+</div>
+<div class="section" id="euler-implicit-method">
+<h2>Euler implicit method<a class="headerlink" href="#euler-implicit-method" title="Permalink to this headline">¶</a></h2>
+<p>Similar to Euler explicit (first-order accurate) but uses backward
+difference over time:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\]</div>
+<p>Applied to the diffusion problem in one dimension and taking one step
+forward over discrete time (<span class="math notranslate nohighlight">\(k\rightarrow k+1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[u_i^k=-\lambda\left(u_{i+1}^{k+1}+u_{i-1}^{k+1}\right)+\left(1+2  \lambda\right)u_i^{k+1}\]</div>
+<p>Posed as a linear algebra problem:</p>
+<div class="math notranslate nohighlight">
+\[u^{k}=\mathbf{A}u^{k+1}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the tri-diagonal coefficient matrix whose
+central element is <span class="math notranslate nohighlight">\((1+2\lambda)\)</span> and its adjacent diagonals are
+<span class="math notranslate nohighlight">\(-\lambda\)</span>. For <span class="math notranslate nohighlight">\(n\)</span>-dimensional case, central element will
+then be <span class="math notranslate nohighlight">\((1+2n\lambda)\)</span> and <span class="math notranslate nohighlight">\(u\)</span> must be flattened (coerced
+into one dimension) and <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> becomes a block tri-diagonal
+matrix.</p>
+</div>
+<div class="section" id="crank-nicolson-method">
+<h2>Crank-Nicolson method<a class="headerlink" href="#crank-nicolson-method" title="Permalink to this headline">¶</a></h2>
+<p>Implicit method, second-order accurate that uses trapezoidal rule for
+integration time between forward and backward differences. Therefore,
+assuming <span class="math notranslate nohighlight">\(u_t=f(u,t)\)</span> then:</p>
+<div class="math notranslate nohighlight">
+\[\frac{u^{k+1}-u^k}{\Delta t}=\frac{1}{2}\left(f(u^k,t^k)+f(u^{k+1  },t^{k+1})\right)\]</div>
+<p>Applied to the diffusion problem in one dimension:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\lambda}{2}\left(u_{i+1}^k+u_{i-1}^k\right)+\left(1-  \lambda\right)u_i^k=-\frac{\lambda}{2}\left(u_{i+1}^{k+1}+  u_{i-1}^{k+1}\right)+\left(1+\lambda\right)u_i^{k+1}\]</div>
+<p>Posed as a linear algebra problem:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}u^{k+1}=\mathbf{B}u^k\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the tri-diagonal coefficient matrix for
+<span class="math notranslate nohighlight">\(k+1\)</span> whose central element is <span class="math notranslate nohighlight">\((1+\lambda)\)</span> and its
+adjacent diagonals are <span class="math notranslate nohighlight">\(-\frac{\lambda}{2}\)</span>. Similarly,
+:mathbf{B}: is the tri-diagonal matrix for <span class="math notranslate nohighlight">\(k\)</span> whose central
+element is <span class="math notranslate nohighlight">\((1-\lambda)\)</span> and its adjacent diagonals are
+<span class="math notranslate nohighlight">\(\frac{\lambda}{2}\)</span>. For <span class="math notranslate nohighlight">\(n\)</span>-dimensional case, central
+elements will then be <span class="math notranslate nohighlight">\((1+n\lambda)\)</span> and <span class="math notranslate nohighlight">\((1-n\lambda)\)</span>
+for <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> respectively and
+<span class="math notranslate nohighlight">\(u\)</span> must be flattened (coerced into one dimension) as well as that
+coefficient matrices become block tri-diagonal matrices.</p>
+<hr class="docutils" />
+<p>Independently of the numerical method, it is assumed that the problem is
+posed in terms of linear algebra. This is, the current and next state
+of the diffusing field <span class="math notranslate nohighlight">\(u\)</span> can be expressed with matrix
+multiplication(s) as shown above.</p>
+<p>Currently only the coefficient matrix construction is available. To
+solve the diffusion problem user can use any of the available linear
+algebra solvers by providing the current diffusing field state
+(flattened) and the coefficient matrix on each time-step (or simple
+matrix multiplication for time explicit methods).</p>
 <ul class="simple">
 <li>Simplest options are either <code class="docutils literal notranslate"><span class="pre">numpy.linalg.solve()</span></code> or
 <code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code> (both not very fast).</li>
@@ -79,21 +164,24 @@ is way faster but your coefficient matrix has to be invertible. If
 the determinant is close to zero, may cause numerical instability.</li>
 </ul>
 <dl class="function">
-<dt id="data_tools.diffusion.euler_explicit1D">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">euler_explicit1D</code><span class="sig-paren">(</span><em>x0</em>, <em>dt</em>, <em>dx2</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#euler_explicit1D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.euler_explicit1D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes diffusion on a 1D space over a time-step using Euler
-explicit method.</p>
+<dt id="data_tools.diffusion.build_mat">
+<code class="descclassname">data_tools.diffusion.</code><code class="descname">build_mat</code><span class="sig-paren">(</span><em>cent</em>, <em>neigh</em>, <em>dims</em>, <em>bcs='dirichlet'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#build_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.build_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a (block) tri-diagonal coefficient matrix to solve a
+n-dimensional diffusion problem as a linear algebraic system.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last">
-<li><em>x0</em> [numpy.ndarray]: Initial state of a 1D array from which
-the difusion is to be computed.</li>
-<li><em>dt</em> [float]: Discretization time-step.</li>
-<li><em>dx2</em> [float]: Discretization spatial-step (squared).</li>
-<li><em>d</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The diffusion
-coefficient.</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
+<li><em>cent</em> [float]: The coefficient corresponding to the central
+element of the stencil.</li>
+<li><em>neigh</em> [float]: The coefficient corresponding to the direct
+neighbors of the central element in the stencil.</li>
+<li><em>dims</em> [list]: Or [tuple], contains the size of finite
+elements [int] for each dimension. Note that the order is
+first dimension first (e.g.: <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>) as opposed to
+numpy’s indexing order (last dimension first, e.g.:
+<code class="docutils literal notranslate"><span class="pre">[z,</span> <span class="pre">y,</span> <span class="pre">x]</span></code>).</li>
+<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
 the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
 not hold mass conservation.</li>
@@ -104,172 +192,9 @@ not hold mass conservation.</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last">
-<li>[numpy.ndarray]: Computed state array (1D) after one time-step
-according to the parameters and conditions selected.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
-<dt id="data_tools.diffusion.euler_explicit2D">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">euler_explicit2D</code><span class="sig-paren">(</span><em>x0</em>, <em>dt</em>, <em>dx2</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#euler_explicit2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.euler_explicit2D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes diffusion on a 2D space over a time-step using Euler
-explicit method.</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>x0</em> [numpy.ndarray]: Initial state of a 2D array from which
-the difusion is to be computed.</li>
-<li><em>dt</em> [float]: Discretization time-step.</li>
-<li><em>dx2</em> [float]: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).</li>
-<li><em>d</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The diffusion
-coefficient.</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
-the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: Computed state array (2D) after one time-step
-according to the parameters and conditions selected.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
-<dt id="data_tools.diffusion.euler_implicit_coef_mat">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">euler_implicit_coef_mat</code><span class="sig-paren">(</span><em>dx2</em>, <em>dt</em>, <em>nx</em>, <em>ny=None</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#euler_implicit_coef_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.euler_implicit_coef_mat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the coefficient matrix to solve the diffusion problem with
-the Euler implicit method such that:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{A}\cdot u^{n+1}=u^{n}\]</div>
-<p>Where <strong>A</strong> is the coefficient matrix and <em>u</em> the diffusing field.
-Note that for a 2D space, it is considered that <em>u</em> has been
-vectorized beforehand (e.g.: <cite>u.reshape(-1)</cite> assuming <cite>u</cite> is a 2D
-[<cite>numpy.ndarray</cite>]).</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>dx2</em> [float]: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).</li>
-<li><em>dt</em> [float]: Discretization time-step.</li>
-<li><em>nx</em> [int]: The number of discrete steps in the first spatial
-dimension.</li>
-<li><em>ny</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. The number of
-discrete steps in the second spatial dimension (if any).</li>
-<li><em>d</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The diffusion
-coefficient.</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
-the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The coefficient matrix. Shape is <cite>[nx, nx]</cite>
-for one-dimensional problem and <cite>[nx*ny, nx*ny]</cite> for the
-two-dimensional case.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
-<dt id="data_tools.diffusion.crank_nicolson_coef_mats">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">crank_nicolson_coef_mats</code><span class="sig-paren">(</span><em>dx2</em>, <em>dt</em>, <em>nx</em>, <em>ny=None</em>, <em>d=1</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#crank_nicolson_coef_mats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.crank_nicolson_coef_mats" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the coefficient matrices to solve the diffusion problem
-with the Crank-Nicolson method such that:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{B}\cdot u^{n+1}=\mathbf{D}\cdot u^{n}\]</div>
-<p>Where <strong>B</strong> and <strong>D</strong> are the coefficient matrices and <em>u</em> the
-diffusing field. Note that for a 2D space, it is considered that <em>u</em>
-has been vectorized beforehand (e.g.: <cite>u.reshape(-1)</cite> assuming <cite>u</cite>
-is a 2D [<cite>numpy.ndarray</cite>]).</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>dx2</em> [float]: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).</li>
-<li><em>dt</em> [float]: Discretization time-step.</li>
-<li><em>nx</em> [int]: The number of discrete steps in the first spatial
-dimension.</li>
-<li><em>ny</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. The number of
-discrete steps in the second spatial dimension (if any).</li>
-<li><em>d</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The diffusion
-coefficient.</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
-the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The coefficient matrix <strong>B</strong>. Shape is
-<cite>[nx, nx]</cite> for one-dimensional problem and <cite>[nx*ny, nx*ny]</cite>
-for the two-dimensional case.</li>
-<li>[numpy.ndarray]: The coefficient matrix <strong>D</strong>. Shape is the
-same as <strong>B</strong>.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="function">
-<dt id="data_tools.diffusion.build_coef_mat">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">build_coef_mat</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>nx</em>, <em>ny=None</em>, <em>bcs='periodic'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#build_coef_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.build_coef_mat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds a coefficient matrix according to the central and neighbor
-coefficients, system size and boundary conditions.</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>a</em> [float]: The central element coefficient.</li>
-<li><em>b</em> [float]: The neighbor element coefficient.</li>
-<li><em>nx</em> [int]: The number of discrete steps in the first spatial
-dimension.</li>
-<li><em>ny</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. The number of
-discrete steps in the second spatial dimension (if any).</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code> by default. Determines
-the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
-<code class="docutils literal notranslate"><span class="pre">'dirichlet''</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The coefficient matrix. Shape is <cite>[nx, nx]</cite>
-for one-dimensional problem and <cite>[nx*ny, nx*ny]</cite> for the
-two-dimensional case.</li>
+<li>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
+Matrix will be square with size equal to the product of all
+dimension sizes.</li>
 </ul>
 </dd>
 </dl>
@@ -278,6 +203,7 @@ two-dimensional case.</li>
 </dd></dl>
 
 </div>
+</div>
 
 
           </div>
@@ -285,6 +211,16 @@ two-dimensional case.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">data_tools.diffusion</a><ul>
+<li><a class="reference internal" href="#euler-explicit-method">Euler explicit method</a></li>
+<li><a class="reference internal" href="#euler-implicit-method">Euler implicit method</a></li>
+<li><a class="reference internal" href="#crank-nicolson-method">Crank-Nicolson method</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="databases.html"
                         title="previous chapter">data_tools.databases</a></p>

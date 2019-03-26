@@ -2,35 +2,31 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.iterables), \hyperpage{14}
-  \item build\_coef\_mat() (in module data\_tools.diffusion), \hyperpage{13}
+  \item bit\_or() (in module data\_tools.iterables), \hyperpage{13}
+  \item build\_mat() (in module data\_tools.diffusion), \hyperpage{13}
 
   \indexspace
   \bigletter C
   \item chunk\_this() (in module data\_tools.iterables), \hyperpage{14}
-  \item cmap\_bkgr (in module data\_tools.plots), \hyperpage{19}
-  \item cmap\_bkrd (in module data\_tools.plots), \hyperpage{19}
-  \item cmap\_rdbkgr (in module data\_tools.plots), \hyperpage{19}
-  \item crank\_nicolson\_coef\_mats() (in module data\_tools.diffusion), \hyperpage{13}
+  \item cmap\_bkgr (in module data\_tools.plots), \hyperpage{18}
+  \item cmap\_bkrd (in module data\_tools.plots), \hyperpage{18}
+  \item cmap\_rdbkgr (in module data\_tools.plots), \hyperpage{18}
 
   \indexspace
   \bigletter D
   \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{11}
-  \item data\_tools.iterables (module), \hyperpage{14}
+  \item data\_tools.iterables (module), \hyperpage{13}
   \item data\_tools.models (module), \hyperpage{16}
-  \item data\_tools.plots (module), \hyperpage{19}
+  \item data\_tools.plots (module), \hyperpage{18}
   \item data\_tools.spatial (module), \hyperpage{22}
-  \item data\_tools.strings (module), \hyperpage{24}
+  \item data\_tools.strings (module), \hyperpage{23}
   \item density() (in module data\_tools.plots), \hyperpage{19}
   \item DoseResponse (class in data\_tools.models), \hyperpage{16}
 
   \indexspace
   \bigletter E
   \item ec() (data\_tools.models.DoseResponse method), \hyperpage{17}
-  \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{12}
-  \item euler\_explicit2D() (in module data\_tools.diffusion), \hyperpage{12}
-  \item euler\_implicit\_coef\_mat() (in module data\_tools.diffusion), \hyperpage{12}
 
   \indexspace
   \bigletter F
@@ -43,8 +39,8 @@
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.iterables), \hyperpage{15}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{24}
+  \item in\_all() (in module data\_tools.iterables), \hyperpage{14}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{23}
 
   \indexspace
   \bigletter J
@@ -77,7 +73,7 @@
   \indexspace
   \bigletter S
   \item similarity() (in module data\_tools.iterables), \hyperpage{15}
-  \item subsets() (in module data\_tools.iterables), \hyperpage{16}
+  \item subsets() (in module data\_tools.iterables), \hyperpage{15}
 
   \indexspace
   \bigletter U

@@ -41,34 +41,154 @@
 
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">data_tools.diffusion</span>
-<span class="sd">====================</span>
+<span class="sd">********************</span>
 
 <span class="sd">Diffusion solvers module.</span>
 
-<span class="sd">The following functions provide tools to compute the diffusion on one or</span>
-<span class="sd">two dimensions with different explicit or implicit methods.</span>
+<span class="sd">The following functions provide tools to solve the diffusion problem for</span>
+<span class="sd">any number of spatial dimensions with different explicit and implicit</span>
+<span class="sd">methods. The problem is defined as follows:</span>
 
-<span class="sd">**NOTE:** Explicit methods (``&#39;euler_explicit1D&#39;`` and</span>
-<span class="sd">``&#39;euler_explicit2D&#39;``) are conditionally stable. This means that in</span>
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{\\partial u}{\\partial t} = D\\nabla^2u</span>
+
+<span class="sd">Where :math:`u` is the diffusing component, :math:`D` is the diffusion</span>
+<span class="sd">coefficient and :math:`\\nabla^2` is the Laplace operator</span>
+<span class="sd">(in Euclidean space :math:`\\nabla^2f=\\nabla\\cdot\\nabla f=\\sum_{i=1\</span>
+<span class="sd">}^n\\frac{\\partial^2 f}{\\partial x_i^2}`).</span>
+
+<span class="sd">Some numerical methods to solve this probelm will be explained in</span>
+<span class="sd">the following subsections. These are based in approximation of the</span>
+<span class="sd">derivatives by finite-differences. Therefore we define the</span>
+<span class="sd">discretization step sizes as :math:`\\Delta t` for the time derivative</span>
+<span class="sd">and :math:`\\Delta x`, :math:`\\Delta y` and so on for first, second and</span>
+<span class="sd">subsequent spatial dimensions respectively.</span>
+
+<span class="sd">From here on we will assume that space is homogeneously discretized</span>
+<span class="sd">(e.g.: :math:`\\Delta x=\\Delta y`). All second-order partial</span>
+<span class="sd">derivatives in the spatial dimension are discretized using central</span>
+<span class="sd">finite differences. For instance, in one dimension:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{\\partial^2u}{\\partial x^2}\\approx\\frac{u_{i-1}-2u_i+u_{i+1\</span>
+<span class="sd">  }}{\\Delta x^2}</span>
+
+<span class="sd">Euler explicit method</span>
+<span class="sd">=====================</span>
+
+<span class="sd">&quot;Classic&quot; method, first-order accurate, uses forward difference over</span>
+<span class="sd">time:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{\\partial u}{\\partial t}\\approx\\frac{u^{k+1}-u^k}{\\Delta t}</span>
+
+<span class="sd">Where :math:`k` is the current time-step. Applied to the diffusion</span>
+<span class="sd">problem for one dimension and rearranging terms:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  u_i^{k+1}=\\frac{D\\Delta t}{\\Delta x^2}\\left(u_{i+1}^k+u_{i-1}^k\</span>
+<span class="sd">  \\right)+\\left(1-2\\frac{D\\Delta t}{\\Delta x^2}\\right)u_i^k</span>
+
+<span class="sd">Let us define from here on :math:`\\lambda\\equiv\\frac{D\\Delta t}{\\D\</span>
+<span class="sd">elta x^2}` for simplicity. Rewriting the equation above in terms of</span>
+<span class="sd">linear algebra, each time-step the next state of :math:`u` is:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  u^{k+1}=\\mathbf{A}u^{k}</span>
+
+<span class="sd">Where :math:`\\mathbf{A}` is the tri-diagonal coefficient matrix whose</span>
+<span class="sd">central element is :math:`(1-2\\lambda)` and its adjacent diagonals are</span>
+<span class="sd">:math:`\\lambda`. Note that for :math:`n`-dimensional case, central</span>
+<span class="sd">element will then be :math:`(1-2n\\lambda)` and :math:`u` must be</span>
+<span class="sd">flattened (coerced into one dimension) and :math:`\\mathbf{A}` becomes</span>
+<span class="sd">a block tri-diagonal matrix.</span>
+
+<span class="sd">**NOTE:** Explicit methods are conditionally stable. This means that in</span>
 <span class="sd">order to keep numerical stability of the solution (and obtain an</span>
 <span class="sd">accurate result), these methods need to fulfill the</span>
-<span class="sd">Courant–Friedrichs–Lewy (CFL) condition. For the one-dimensional case:</span>
+<span class="sd">Courant–Friedrichs–Lewy (CFL) condition. For any :math:`n`-dimensional</span>
+<span class="sd">case:</span>
 
 <span class="sd">.. math::</span>
-<span class="sd">  D\\frac{\\Delta t}{\\Delta x^2}\\leq\\frac{1}{2}</span>
-
-<span class="sd">For the two-dimensional case (and assuming :math:`\\Delta x=\\Delta y`):</span>
-
-<span class="sd">.. math::</span>
-<span class="sd">  D\\frac{\\Delta t}{\\Delta x^2}\\leq\\frac{1}{4}</span>
+<span class="sd">  D\\frac{\\Delta t}{\\Delta x^2}\\leq\\frac{1}{2n}</span>
 
 <span class="sd">The implicit methods are (theoretically) unconditionally stable, hence</span>
 <span class="sd">are more permissive in terms of discretization step-size.</span>
 
-<span class="sd">Currently for the implicit methods only the coefficient matrix</span>
-<span class="sd">contruction is available. To solve the diffusion problem user can use</span>
-<span class="sd">any of the available linear algebra solvers by providing the current</span>
-<span class="sd">diffusing field state and the matrix on each time-step.</span>
+<span class="sd">Euler implicit method</span>
+<span class="sd">=====================</span>
+
+<span class="sd">Similar to Euler explicit (first-order accurate) but uses backward</span>
+<span class="sd">difference over time:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{\\partial u}{\\partial t}\\approx\\frac{u^k-u^{k-1}}{\\Delta t}</span>
+
+<span class="sd">Applied to the diffusion problem in one dimension and taking one step</span>
+<span class="sd">forward over discrete time (:math:`k\\rightarrow k+1`):</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  u_i^k=-\\lambda\\left(u_{i+1}^{k+1}+u_{i-1}^{k+1}\\right)+\\left(1+2\</span>
+<span class="sd">  \\lambda\\right)u_i^{k+1}</span>
+
+<span class="sd">Posed as a linear algebra problem:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  u^{k}=\\mathbf{A}u^{k+1}</span>
+
+<span class="sd">Where :math:`\\mathbf{A}` is the tri-diagonal coefficient matrix whose</span>
+<span class="sd">central element is :math:`(1+2\\lambda)` and its adjacent diagonals are</span>
+<span class="sd">:math:`-\\lambda`. For :math:`n`-dimensional case, central element will</span>
+<span class="sd">then be :math:`(1+2n\\lambda)` and :math:`u` must be flattened (coerced</span>
+<span class="sd">into one dimension) and :math:`\\mathbf{A}` becomes a block tri-diagonal</span>
+<span class="sd">matrix.</span>
+
+<span class="sd">Crank-Nicolson method</span>
+<span class="sd">=====================</span>
+
+<span class="sd">Implicit method, second-order accurate that uses trapezoidal rule for</span>
+<span class="sd">integration time between forward and backward differences. Therefore,</span>
+<span class="sd">assuming :math:`u_t=f(u,t)` then:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{u^{k+1}-u^k}{\\Delta t}=\\frac{1}{2}\\left(f(u^k,t^k)+f(u^{k+1\</span>
+<span class="sd">  },t^{k+1})\\right)</span>
+
+<span class="sd">Applied to the diffusion problem in one dimension:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\frac{\\lambda}{2}\\left(u_{i+1}^k+u_{i-1}^k\\right)+\\left(1-\</span>
+<span class="sd">  \\lambda\\right)u_i^k=-\\frac{\\lambda}{2}\\left(u_{i+1}^{k+1}+\</span>
+<span class="sd">  u_{i-1}^{k+1}\\right)+\\left(1+\\lambda\\right)u_i^{k+1}</span>
+
+<span class="sd">Posed as a linear algebra problem:</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">  \\mathbf{A}u^{k+1}=\\mathbf{B}u^k</span>
+
+<span class="sd">Where :math:`\\mathbf{A}` is the tri-diagonal coefficient matrix for</span>
+<span class="sd">:math:`k+1` whose central element is :math:`(1+\\lambda)` and its</span>
+<span class="sd">adjacent diagonals are :math:`-\\frac{\\lambda}{2}`. Similarly,</span>
+<span class="sd">:\\mathbf{B}: is the tri-diagonal matrix for :math:`k` whose central</span>
+<span class="sd">element is :math:`(1-\\lambda)` and its adjacent diagonals are</span>
+<span class="sd">:math:`\\frac{\\lambda}{2}`. For :math:`n`-dimensional case, central</span>
+<span class="sd">elements will then be :math:`(1+n\\lambda)` and :math:`(1-n\\lambda)`</span>
+<span class="sd">for :math:`\\mathbf{A}` and :math:`\\mathbf{B}` respectively and</span>
+<span class="sd">:math:`u` must be flattened (coerced into one dimension) as well as that</span>
+<span class="sd">coefficient matrices become block tri-diagonal matrices.</span>
+
+<span class="sd">------------------------------------------------------------------------</span>
+
+<span class="sd">Independently of the numerical method, it is assumed that the problem is</span>
+<span class="sd">posed in terms of linear algebra. This is, the current and next state</span>
+<span class="sd">of the diffusing field :math:`u` can be expressed with matrix</span>
+<span class="sd">multiplication(s) as shown above.</span>
+
+<span class="sd">Currently only the coefficient matrix construction is available. To</span>
+<span class="sd">solve the diffusion problem user can use any of the available linear</span>
+<span class="sd">algebra solvers by providing the current diffusing field state</span>
+<span class="sd">(flattened) and the coefficient matrix on each time-step (or simple</span>
+<span class="sd">matrix multiplication for time explicit methods).</span>
 
 <span class="sd">* Simplest options are either ``numpy.linalg.solve()`` or</span>
 <span class="sd">  ``scipy.linalg.solve()`` (both not very fast).</span>
@@ -84,254 +204,66 @@
 <span class="sd">  the determinant is close to zero, may cause numerical instability.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;euler_explicit1D&#39;</span><span class="p">,</span> <span class="s1">&#39;euler_explicit2D&#39;</span><span class="p">,</span> <span class="s1">&#39;euler_implicit_coef_mat&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;crank_nicolson_coef_mats&#39;</span><span class="p">,</span> <span class="s1">&#39;build_coef_mat&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;build_mat&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">toeplitz</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="k">import</span> <span class="n">block_diag</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.spatial</span> <span class="k">import</span> <span class="n">get_boundaries</span>
 
-<span class="c1"># TODO: Join methods and simplify your life with dimension-parametrized</span>
-<span class="c1">#       slicing e.g.: x[x.ndim * (slice(1, -1),)]</span>
-
-<span class="c1"># TODO: Euler explicit coefficient matrix wrapper?</span>
-
-<span class="c1"># TODO: Add 3D versions</span>
-
-
-<div class="viewcode-block" id="euler_explicit1D"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.euler_explicit1D">[docs]</a><span class="k">def</span> <span class="nf">euler_explicit1D</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dx2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="build_mat"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.build_mat">[docs]</a><span class="k">def</span> <span class="nf">build_mat</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">neigh</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;dirichlet&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Computes diffusion on a 1D space over a time-step using Euler</span>
-<span class="sd">    explicit method.</span>
+<span class="sd">    Builds a (block) tri-diagonal coefficient matrix to solve a</span>
+<span class="sd">    n-dimensional diffusion problem as a linear algebraic system.</span>
 
 <span class="sd">    * Arguments:</span>
-<span class="sd">        - *x0* [numpy.ndarray]: Initial state of a 1D array from which</span>
-<span class="sd">          the difusion is to be computed.</span>
-<span class="sd">        - *dt* [float]: Discretization time-step.</span>
-<span class="sd">        - *dx2* [float]: Discretization spatial-step (squared).</span>
-<span class="sd">        - *d* [float]: Optional, ``1`` by default. The diffusion</span>
-<span class="sd">          coefficient.</span>
-<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
+<span class="sd">        - *cent* [float]: The coefficient corresponding to the central</span>
+<span class="sd">          element of the stencil.</span>
+<span class="sd">        - *neigh* [float]: The coefficient corresponding to the direct</span>
+<span class="sd">          neighbors of the central element in the stencil.</span>
+<span class="sd">        - *dims* [list]: Or [tuple], contains the size of finite</span>
+<span class="sd">          elements [int] for each dimension. Note that the order is</span>
+<span class="sd">          first dimension first (e.g.: ``[x, y, z]``) as opposed to</span>
+<span class="sd">          numpy&#39;s indexing order (last dimension first, e.g.:</span>
+<span class="sd">          ``[z, y, x]``).</span>
+<span class="sd">        - *bcs* [str]: Optional, ``&#39;dirichlet&#39;`` by default. Determines</span>
 <span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
 <span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
 <span class="sd">          not hold mass conservation.</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [numpy.ndarray]: Computed state array (1D) after one time-step</span>
-<span class="sd">          according to the parameters and conditions selected.</span>
+<span class="sd">        - [numpy.ndarray]: The (block) tri-diagonal coefficient matrix.</span>
+<span class="sd">          Matrix will be square with size equal to the product of all</span>
+<span class="sd">          dimension sizes.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">dx2</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
-        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dims</span><span class="p">):</span>
 
-    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;dirichlet&#39;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
-        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">x0</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x0</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">mat</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">cent</span>
+                   <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span>
+                   <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
-        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+            <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
+                <span class="c1"># Make matrix circular</span>
+                <span class="n">mat</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">neigh</span>
 
-    <span class="k">return</span> <span class="n">x</span></div>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">prev</span> <span class="o">*</span> <span class="n">n</span>
 
+            <span class="n">mat</span> <span class="o">=</span> <span class="n">block_diag</span><span class="p">([</span><span class="n">mat</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+            <span class="n">mat</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">prev</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="n">prev</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span>
 
-<div class="viewcode-block" id="euler_explicit2D"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.euler_explicit2D">[docs]</a><span class="k">def</span> <span class="nf">euler_explicit2D</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dx2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Computes diffusion on a 2D space over a time-step using Euler</span>
-<span class="sd">    explicit method.</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *x0* [numpy.ndarray]: Initial state of a 2D array from which</span>
-<span class="sd">          the difusion is to be computed.</span>
-<span class="sd">        - *dt* [float]: Discretization time-step.</span>
-<span class="sd">        - *dx2* [float]: Discretization spatial-step (squared). It is</span>
-<span class="sd">          assumed that is the same in both dimensions (dx = dy).</span>
-<span class="sd">        - *d* [float]: Optional, ``1`` by default. The diffusion</span>
-<span class="sd">          coefficient.</span>
-<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
-<span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
-<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
-<span class="sd">          not hold mass conservation.</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [numpy.ndarray]: Computed state array (2D) after one time-step</span>
-<span class="sd">          according to the parameters and conditions selected.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">dx2</span>
-
-    <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
-        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
-                                    <span class="o">+</span> <span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;dirichlet&#39;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
-        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
-                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                                                            <span class="o">+</span> <span class="n">x0</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">elif</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
-        <span class="n">xpad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
-                                    <span class="o">+</span> <span class="n">xpad</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">xpad</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">return</span> <span class="n">x</span></div>
-
-
-<div class="viewcode-block" id="euler_implicit_coef_mat"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.euler_implicit_coef_mat">[docs]</a><span class="k">def</span> <span class="nf">euler_implicit_coef_mat</span><span class="p">(</span><span class="n">dx2</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Computes the coefficient matrix to solve the diffusion problem with</span>
-<span class="sd">    the Euler implicit method such that:</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">       \mathbf{A}\cdot u^{n+1}=u^{n}</span>
-
-<span class="sd">    Where **A** is the coefficient matrix and *u* the diffusing field.</span>
-<span class="sd">    Note that for a 2D space, it is considered that *u* has been</span>
-<span class="sd">    vectorized beforehand (e.g.: `u.reshape(-1)` assuming `u` is a 2D</span>
-<span class="sd">    [`numpy.ndarray`]).</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *dx2* [float]: Discretization spatial-step (squared). It is</span>
-<span class="sd">          assumed that is the same in both dimensions (dx = dy).</span>
-<span class="sd">        - *dt* [float]: Discretization time-step.</span>
-<span class="sd">        - *nx* [int]: The number of discrete steps in the first spatial</span>
-<span class="sd">          dimension.</span>
-<span class="sd">        - *ny* [int]: Optional, ``None`` by default. The number of</span>
-<span class="sd">          discrete steps in the second spatial dimension (if any).</span>
-<span class="sd">        - *d* [float]: Optional, ``1`` by default. The diffusion</span>
-<span class="sd">          coefficient.</span>
-<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
-<span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
-<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
-<span class="sd">          not hold mass conservation.</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [numpy.ndarray]: The coefficient matrix. Shape is `[nx, nx]`</span>
-<span class="sd">          for one-dimensional problem and `[nx*ny, nx*ny]` for the</span>
-<span class="sd">          two-dimensional case.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="n">lbd</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">dx2</span>
-
-    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">lbd</span> <span class="k">if</span> <span class="n">ny</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lbd</span> <span class="c1"># Central element coef</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">lbd</span> <span class="c1"># Neighbor element coefficient</span>
-
-    <span class="k">return</span> <span class="n">build_coef_mat</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="n">bcs</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="crank_nicolson_coef_mats"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.crank_nicolson_coef_mats">[docs]</a><span class="k">def</span> <span class="nf">crank_nicolson_coef_mats</span><span class="p">(</span><span class="n">dx2</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Computes the coefficient matrices to solve the diffusion problem</span>
-<span class="sd">    with the Crank-Nicolson method such that:</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">       \mathbf{B}\cdot u^{n+1}=\mathbf{D}\cdot u^{n}</span>
-
-<span class="sd">    Where **B** and **D** are the coefficient matrices and *u* the</span>
-<span class="sd">    diffusing field. Note that for a 2D space, it is considered that *u*</span>
-<span class="sd">    has been vectorized beforehand (e.g.: `u.reshape(-1)` assuming `u`</span>
-<span class="sd">    is a 2D [`numpy.ndarray`]).</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *dx2* [float]: Discretization spatial-step (squared). It is</span>
-<span class="sd">          assumed that is the same in both dimensions (dx = dy).</span>
-<span class="sd">        - *dt* [float]: Discretization time-step.</span>
-<span class="sd">        - *nx* [int]: The number of discrete steps in the first spatial</span>
-<span class="sd">          dimension.</span>
-<span class="sd">        - *ny* [int]: Optional, ``None`` by default. The number of</span>
-<span class="sd">          discrete steps in the second spatial dimension (if any).</span>
-<span class="sd">        - *d* [float]: Optional, ``1`` by default. The diffusion</span>
-<span class="sd">          coefficient.</span>
-<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
-<span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
-<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
-<span class="sd">          not hold mass conservation.</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [numpy.ndarray]: The coefficient matrix **B**. Shape is</span>
-<span class="sd">          `[nx, nx]` for one-dimensional problem and `[nx*ny, nx*ny]`</span>
-<span class="sd">          for the two-dimensional case.</span>
-<span class="sd">        - [numpy.ndarray]: The coefficient matrix **D**. Shape is the</span>
-<span class="sd">          same as **B**.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="n">lbd</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">/</span> <span class="n">dx2</span>
-
-    <span class="n">lhsa</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lbd</span> <span class="k">if</span> <span class="n">ny</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">lbd</span> <span class="c1"># Central element coef</span>
-    <span class="n">lhsb</span> <span class="o">=</span> <span class="o">-</span><span class="n">lbd</span> <span class="o">/</span> <span class="mf">2.</span> <span class="c1"># Neighbor element coefficient</span>
-
-    <span class="n">rhsa</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lbd</span> <span class="k">if</span> <span class="n">ny</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lbd</span> <span class="c1"># Central element coef</span>
-    <span class="n">rhsb</span> <span class="o">=</span> <span class="n">lbd</span> <span class="o">/</span> <span class="mf">2.</span> <span class="c1"># Neighbor element coefficient</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">build_coef_mat</span><span class="p">(</span><span class="n">lhsa</span><span class="p">,</span> <span class="n">lhsb</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="n">bcs</span><span class="p">),</span>
-            <span class="n">build_coef_mat</span><span class="p">(</span><span class="n">rhsa</span><span class="p">,</span> <span class="n">rhsb</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="n">bcs</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="build_coef_mat"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.build_coef_mat">[docs]</a><span class="k">def</span> <span class="nf">build_coef_mat</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Builds a coefficient matrix according to the central and neighbor</span>
-<span class="sd">    coefficients, system size and boundary conditions.</span>
-
-<span class="sd">    * Arguments:</span>
-<span class="sd">        - *a* [float]: The central element coefficient.</span>
-<span class="sd">        - *b* [float]: The neighbor element coefficient.</span>
-<span class="sd">        - *nx* [int]: The number of discrete steps in the first spatial</span>
-<span class="sd">          dimension.</span>
-<span class="sd">        - *ny* [int]: Optional, ``None`` by default. The number of</span>
-<span class="sd">          discrete steps in the second spatial dimension (if any).</span>
-<span class="sd">        - *bcs* [str]: Optional, ``&#39;periodic&#39;`` by default. Determines</span>
-<span class="sd">          the boundary conditions. Available options are ``&#39;periodic&#39;``,</span>
-<span class="sd">          ``&#39;dirichlet&#39;&#39;`` or ``&#39;neumann&#39;``. Note that Dirichlet BCs do</span>
-<span class="sd">          not hold mass conservation.</span>
-
-<span class="sd">    * Returns:</span>
-<span class="sd">        - [numpy.ndarray]: The coefficient matrix. Shape is `[nx, nx]`</span>
-<span class="sd">          for one-dimensional problem and `[nx*ny, nx*ny]` for the</span>
-<span class="sd">          two-dimensional case.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="k">if</span> <span class="n">ny</span><span class="p">:</span> <span class="c1"># 2D coefficient matrix</span>
-        <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span><span class="p">))</span>
-        <span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
-        <span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vec</span><span class="p">[</span><span class="n">nx</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span>
-
-        <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
-            <span class="n">vec</span><span class="p">[</span><span class="o">-</span><span class="n">nx</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
-
-        <span class="n">mat</span> <span class="o">=</span> <span class="n">toeplitz</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">):</span>
-            <span class="n">mat</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">mat</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
-
-            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nx</span> <span class="o">*</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">):</span>
-                <span class="n">mat</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">b</span>
-                <span class="n">mat</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
-
-    <span class="k">else</span><span class="p">:</span> <span class="c1"># 1D coefficient matrix</span>
-        <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span>
-
-        <span class="n">vec</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
-
-        <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
-            <span class="n">vec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
-
-        <span class="n">mat</span> <span class="o">=</span> <span class="n">toeplitz</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;periodic&#39;</span><span class="p">:</span>
+                <span class="n">mat</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">curr</span> <span class="o">-</span> <span class="n">prev</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span>
+                        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">prev</span> <span class="o">-</span> <span class="n">curr</span> <span class="o">*</span> <span class="n">neigh</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">bcs</span> <span class="o">==</span> <span class="s1">&#39;neumann&#39;</span><span class="p">:</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="n">get_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span> <span class="k">if</span> <span class="n">ny</span> <span class="k">else</span> <span class="p">(</span><span class="n">nx</span><span class="p">)),</span>
-                                <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        <span class="n">aux</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">bounds</span>
-        <span class="n">mat</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">get_boundaries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">dims</span><span class="p">),</span> <span class="n">counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">mat</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">neigh</span>
 
     <span class="k">return</span> <span class="n">mat</span></div>
 </pre></div>

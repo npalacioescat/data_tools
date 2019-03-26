@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  25 MAR 2019 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  26 MAR 2019 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,44 +865,37 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 205.
  [9]
-<hsa04010.png, id=154, 1347.0325pt x 1045.9075pt>
+<hsa04010.png, id=169, 1347.0325pt x 1045.9075pt>
 File: hsa04010.png Graphic file (type png)
 <use hsa04010.png>
 Package pdftex.def Info: hsa04010.png  used on input line 264.
 (pdftex.def)             Requested size: 404.05502pt x 313.72679pt.
- [10 <./hsa04010.png (PNG copy)>] [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 578--578
-[]\T1/ptm/m/it/10 dx2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 dt\T1/ptm/m/n/10 , \T1/pt
-m/m/it/10 nx\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ny=None\T1/ptm/m/n/10 , \T1/ptm/m/
-it/10 d=1\T1/ptm/m/n/10 ,
- []
-
-[13] [14]
+ [10 <./hsa04010.png (PNG copy)>] [11] [12] [13] [14]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 858.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 744.
  [15] [16] [17]
-Underfull \hbox (badness 5741) in paragraph at lines 1217--1219
+Underfull \hbox (badness 5741) in paragraph at lines 1103--1105
 []\T1/ptm/m/it/10 **kwargs\T1/ptm/m/n/10 : Op-tional. Any other key-word ar-gu-
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
 [18] [19]
-<piano_consensus_example.png, id=237, 505.89pt x 578.16pt>
+<piano_consensus_example.png, id=252, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 1484.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 1370.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [20 <./piano_consensus_example.png>]
-<venn_example.png, id=245, 433.62pt x 289.08pt>
+<venn_example.png, id=260, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 1560.
+Package pdftex.def Info: venn_example.png  used on input line 1446.
 (pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
  [21 <./venn_example.png>]
-<volcano_example.png, id=253, 462.528pt x 346.896pt>
+<volcano_example.png, id=268, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 1643.
+Package pdftex.def Info: volcano_example.png  used on input line 1529.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 
 [22 <./volcano_example.png>] [23] [24] [25
@@ -913,59 +906,53 @@ Package pdftex.def Info: volcano_example.png  used on input line 1643.
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-[]\T1/ptm/m/n/10 crank_nicolson_coef_mats() (in mod-ule
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
-[]\T1/ptm/m/n/10 euler_implicit_coef_mat() (in mod-ule
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 []\T1/ptm/m/n/10 kegg_pathway_mapping() (in mod-ule
  []
 
 [27
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1898.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1898.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1784.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1784.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1898.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1898.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1784.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1784.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 9D914A879965DBEE93B3AB9F4E60B80C;1641.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1898.
+(rerunfilecheck)             Checksum: D28747FAC89FE0841005FB25F0F76FBF;2157.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1784.
  ) 
 Here is how much of TeX's memory you used:
- 13461 strings out of 494586
- 188689 string characters out of 6177802
- 321301 words of memory out of 5000000
- 16703 multiletter control sequences out of 15000+600000
- 51774 words of font info for 78 fonts, out of 8000000 for 9000
+ 13466 strings out of 494586
+ 188707 string characters out of 6177802
+ 326283 words of memory out of 5000000
+ 16709 multiletter control sequences out of 15000+600000
+ 52432 words of font info for 78 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 37i,16n,45p,513b,681s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,16n,45p,513b,670s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
-b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
-/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (31 pages, 454162 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on data_tools.pdf (31 pages, 488083 bytes).
 PDF statistics:
- 407 PDF objects out of 1000 (max. 8388607)
- 343 compressed objects within 4 object streams
- 86 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 362 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

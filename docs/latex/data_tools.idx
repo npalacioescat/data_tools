@@ -4,18 +4,14 @@
 \indexentry{op\_kinase\_substrate() (in module data\_tools.databases)|hyperpage}{10}
 \indexentry{up\_map() (in module data\_tools.databases)|hyperpage}{10}
 \indexentry{data\_tools.diffusion (module)|hyperpage}{11}
-\indexentry{euler\_explicit1D() (in module data\_tools.diffusion)|hyperpage}{12}
-\indexentry{euler\_explicit2D() (in module data\_tools.diffusion)|hyperpage}{12}
-\indexentry{euler\_implicit\_coef\_mat() (in module data\_tools.diffusion)|hyperpage}{12}
-\indexentry{crank\_nicolson\_coef\_mats() (in module data\_tools.diffusion)|hyperpage}{13}
-\indexentry{build\_coef\_mat() (in module data\_tools.diffusion)|hyperpage}{13}
-\indexentry{data\_tools.iterables (module)|hyperpage}{14}
-\indexentry{bit\_or() (in module data\_tools.iterables)|hyperpage}{14}
+\indexentry{build\_mat() (in module data\_tools.diffusion)|hyperpage}{13}
+\indexentry{data\_tools.iterables (module)|hyperpage}{13}
+\indexentry{bit\_or() (in module data\_tools.iterables)|hyperpage}{13}
 \indexentry{chunk\_this() (in module data\_tools.iterables)|hyperpage}{14}
 \indexentry{find\_min() (in module data\_tools.iterables)|hyperpage}{14}
-\indexentry{in\_all() (in module data\_tools.iterables)|hyperpage}{15}
+\indexentry{in\_all() (in module data\_tools.iterables)|hyperpage}{14}
 \indexentry{similarity() (in module data\_tools.iterables)|hyperpage}{15}
-\indexentry{subsets() (in module data\_tools.iterables)|hyperpage}{16}
+\indexentry{subsets() (in module data\_tools.iterables)|hyperpage}{15}
 \indexentry{unzip\_dicts() (in module data\_tools.iterables)|hyperpage}{16}
 \indexentry{data\_tools.models (module)|hyperpage}{16}
 \indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{16}
@@ -25,10 +21,10 @@
 \indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{18}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{18}
-\indexentry{data\_tools.plots (module)|hyperpage}{19}
-\indexentry{cmap\_bkgr (in module data\_tools.plots)|hyperpage}{19}
-\indexentry{cmap\_bkrd (in module data\_tools.plots)|hyperpage}{19}
-\indexentry{cmap\_rdbkgr (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{data\_tools.plots (module)|hyperpage}{18}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)|hyperpage}{18}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)|hyperpage}{18}
+\indexentry{cmap\_rdbkgr (in module data\_tools.plots)|hyperpage}{18}
 \indexentry{density() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{19}
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{20}
@@ -36,6 +32,6 @@
 \indexentry{data\_tools.spatial (module)|hyperpage}{22}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{22}
 \indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{23}
-\indexentry{data\_tools.strings (module)|hyperpage}{24}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{24}
+\indexentry{data\_tools.strings (module)|hyperpage}{23}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{23}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{24}

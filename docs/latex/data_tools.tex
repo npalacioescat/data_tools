@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Mar 25, 2019}
+\date{Mar 26, 2019}
 \release{0.0.6}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -375,28 +375,132 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
 Diffusion solvers module.
 
-The following functions provide tools to compute the diffusion on one or
-two dimensions with different explicit or implicit methods.
+The following functions provide tools to solve the diffusion problem for
+any number of spatial dimensions with different explicit and implicit
+methods. The problem is defined as follows:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t} = D\nabla^2u\end{split}
+\end{equation*}
+Where \(u\) is the diffusing component, \(D\) is the diffusion
+coefficient and \(\nabla^2\) is the Laplace operator
+(in Euclidean space \(\nabla^2f=\nabla\cdot\nabla f=\sum_{i=1}^n\frac{\partial^2 f}{\partial x_i^2}\)).
 
-\sphinxstylestrong{NOTE:} Explicit methods (\sphinxcode{\sphinxupquote{'euler\_explicit1D'}} and
-\sphinxcode{\sphinxupquote{'euler\_explicit2D'}}) are conditionally stable. This means that in
+Some numerical methods to solve this probelm will be explained in
+the following subsections. These are based in approximation of the
+derivatives by finite-differences. Therefore we define the
+discretization step sizes as \(\Delta t\) for the time derivative
+and \(\Delta x\), \(\Delta y\) and so on for first, second and
+subsequent spatial dimensions respectively.
+
+From here on we will assume that space is homogeneously discretized
+(e.g.: \(\Delta x=\Delta y\)). All second-order partial
+derivatives in the spatial dimension are discretized using central
+finite differences. For instance, in one dimension:
+\begin{equation*}
+\begin{split}\frac{\partial^2u}{\partial x^2}\approx\frac{u_{i-1}-2u_i+u_{i+1  }}{\Delta x^2}\end{split}
+\end{equation*}
+
+\subsection{Euler explicit method}
+\label{\detokenize{diffusion:euler-explicit-method}}
+“Classic” method, first-order accurate, uses forward difference over
+time:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t}\approx\frac{u^{k+1}-u^k}{\Delta t}\end{split}
+\end{equation*}
+Where \(k\) is the current time-step. Applied to the diffusion
+problem for one dimension and rearranging terms:
+\begin{equation*}
+\begin{split}u_i^{k+1}=\frac{D\Delta t}{\Delta x^2}\left(u_{i+1}^k+u_{i-1}^k  \right)+\left(1-2\frac{D\Delta t}{\Delta x^2}\right)u_i^k\end{split}
+\end{equation*}
+Let us define from here on \(\lambda\equiv\frac{D\Delta t}{\Delta x^2}\) for simplicity. Rewriting the equation above in terms of
+linear algebra, each time-step the next state of \(u\) is:
+\begin{equation*}
+\begin{split}u^{k+1}=\mathbf{A}u^{k}\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+central element is \((1-2\lambda)\) and its adjacent diagonals are
+\(\lambda\). Note that for \(n\)-dimensional case, central
+element will then be \((1-2n\lambda)\) and \(u\) must be
+flattened (coerced into one dimension) and \(\mathbf{A}\) becomes
+a block tri-diagonal matrix.
+
+\sphinxstylestrong{NOTE:} Explicit methods are conditionally stable. This means that in
 order to keep numerical stability of the solution (and obtain an
 accurate result), these methods need to fulfill the
-Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For the one-dimensional case:
+Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For any \(n\)-dimensional
+case:
 \begin{equation*}
-\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2}\end{split}
-\end{equation*}
-For the two-dimensional case (and assuming \(\Delta x=\Delta y\)):
-\begin{equation*}
-\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{4}\end{split}
+\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2n}\end{split}
 \end{equation*}
 The implicit methods are (theoretically) unconditionally stable, hence
 are more permissive in terms of discretization step-size.
 
-Currently for the implicit methods only the coefficient matrix
-contruction is available. To solve the diffusion problem user can use
-any of the available linear algebra solvers by providing the current
-diffusing field state and the matrix on each time-step.
+
+\subsection{Euler implicit method}
+\label{\detokenize{diffusion:euler-implicit-method}}
+Similar to Euler explicit (first-order accurate) but uses backward
+difference over time:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\end{split}
+\end{equation*}
+Applied to the diffusion problem in one dimension and taking one step
+forward over discrete time (\(k\rightarrow k+1\)):
+\begin{equation*}
+\begin{split}u_i^k=-\lambda\left(u_{i+1}^{k+1}+u_{i-1}^{k+1}\right)+\left(1+2  \lambda\right)u_i^{k+1}\end{split}
+\end{equation*}
+Posed as a linear algebra problem:
+\begin{equation*}
+\begin{split}u^{k}=\mathbf{A}u^{k+1}\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+central element is \((1+2\lambda)\) and its adjacent diagonals are
+\(-\lambda\). For \(n\)-dimensional case, central element will
+then be \((1+2n\lambda)\) and \(u\) must be flattened (coerced
+into one dimension) and \(\mathbf{A}\) becomes a block tri-diagonal
+matrix.
+
+
+\subsection{Crank-Nicolson method}
+\label{\detokenize{diffusion:crank-nicolson-method}}
+Implicit method, second-order accurate that uses trapezoidal rule for
+integration time between forward and backward differences. Therefore,
+assuming \(u_t=f(u,t)\) then:
+\begin{equation*}
+\begin{split}\frac{u^{k+1}-u^k}{\Delta t}=\frac{1}{2}\left(f(u^k,t^k)+f(u^{k+1  },t^{k+1})\right)\end{split}
+\end{equation*}
+Applied to the diffusion problem in one dimension:
+\begin{equation*}
+\begin{split}\frac{\lambda}{2}\left(u_{i+1}^k+u_{i-1}^k\right)+\left(1-  \lambda\right)u_i^k=-\frac{\lambda}{2}\left(u_{i+1}^{k+1}+  u_{i-1}^{k+1}\right)+\left(1+\lambda\right)u_i^{k+1}\end{split}
+\end{equation*}
+Posed as a linear algebra problem:
+\begin{equation*}
+\begin{split}\mathbf{A}u^{k+1}=\mathbf{B}u^k\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix for
+\(k+1\) whose central element is \((1+\lambda)\) and its
+adjacent diagonals are \(-\frac{\lambda}{2}\). Similarly,
+:mathbf\{B\}: is the tri-diagonal matrix for \(k\) whose central
+element is \((1-\lambda)\) and its adjacent diagonals are
+\(\frac{\lambda}{2}\). For \(n\)-dimensional case, central
+elements will then be \((1+n\lambda)\) and \((1-n\lambda)\)
+for \(\mathbf{A}\) and \(\mathbf{B}\) respectively and
+\(u\) must be flattened (coerced into one dimension) as well as that
+coefficient matrices become block tri-diagonal matrices.
+
+
+\bigskip\hrule\bigskip
+
+
+Independently of the numerical method, it is assumed that the problem is
+posed in terms of linear algebra. This is, the current and next state
+of the diffusing field \(u\) can be expressed with matrix
+multiplication(s) as shown above.
+
+Currently only the coefficient matrix construction is available. To
+solve the diffusion problem user can use any of the available linear
+algebra solvers by providing the current diffusing field state
+(flattened) and the coefficient matrix on each time-step (or simple
+matrix multiplication for time explicit methods).
 \begin{itemize}
 \item {} 
 Simplest options are either \sphinxcode{\sphinxupquote{numpy.linalg.solve()}} or
@@ -417,31 +521,32 @@ is way faster but your coefficient matrix has to be invertible. If
 the determinant is close to zero, may cause numerical instability.
 
 \end{itemize}
-\index{euler\_explicit1D() (in module data\_tools.diffusion)}
+\index{build\_mat() (in module data\_tools.diffusion)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_explicit1D}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_explicit1D}}}{\emph{x0}, \emph{dt}, \emph{dx2}, \emph{d=1}, \emph{bcs='periodic'}}{}
-Computes diffusion on a 1D space over a time-step using Euler
-explicit method.
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{cent}, \emph{neigh}, \emph{dims}, \emph{bcs='dirichlet'}}{}
+Builds a (block) tri-diagonal coefficient matrix to solve a
+n-dimensional diffusion problem as a linear algebraic system.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{x0} {[}numpy.ndarray{]}: Initial state of a 1D array from which
-the difusion is to be computed.
+\sphinxstyleemphasis{cent} {[}float{]}: The coefficient corresponding to the central
+element of the stencil.
 
 \item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
+\sphinxstyleemphasis{neigh} {[}float{]}: The coefficient corresponding to the direct
+neighbors of the central element in the stencil.
 
 \item {} 
-\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared).
+\sphinxstyleemphasis{dims} {[}list{]}: Or {[}tuple{]}, contains the size of finite
+elements {[}int{]} for each dimension. Note that the order is
+first dimension first (e.g.: \sphinxcode{\sphinxupquote{{[}x, y, z{]}}}) as opposed to
+numpy’s indexing order (last dimension first, e.g.:
+\sphinxcode{\sphinxupquote{{[}z, y, x{]}}}).
 
 \item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
-coefficient.
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'dirichlet'}} by default. Determines
 the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
 \sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
 not hold mass conservation.
@@ -453,228 +558,9 @@ not hold mass conservation.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}numpy.ndarray{]}: Computed state array (1D) after one time-step
-according to the parameters and conditions selected.
-
-\end{itemize}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{euler\_explicit2D() (in module data\_tools.diffusion)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_explicit2D}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_explicit2D}}}{\emph{x0}, \emph{dt}, \emph{dx2}, \emph{d=1}, \emph{bcs='periodic'}}{}
-Computes diffusion on a 2D space over a time-step using Euler
-explicit method.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{x0} {[}numpy.ndarray{]}: Initial state of a 2D array from which
-the difusion is to be computed.
-
-\item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
-
-\item {} 
-\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).
-
-\item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
-coefficient.
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
-not hold mass conservation.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}numpy.ndarray{]}: Computed state array (2D) after one time-step
-according to the parameters and conditions selected.
-
-\end{itemize}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{euler\_implicit\_coef\_mat() (in module data\_tools.diffusion)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_implicit_coef_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_implicit\_coef\_mat}}}{\emph{dx2}, \emph{dt}, \emph{nx}, \emph{ny=None}, \emph{d=1}, \emph{bcs='periodic'}}{}
-Computes the coefficient matrix to solve the diffusion problem with
-the Euler implicit method such that:
-\begin{equation*}
-\begin{split}\mathbf{A}\cdot u^{n+1}=u^{n}\end{split}
-\end{equation*}
-Where \sphinxstylestrong{A} is the coefficient matrix and \sphinxstyleemphasis{u} the diffusing field.
-Note that for a 2D space, it is considered that \sphinxstyleemphasis{u} has been
-vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u} is a 2D
-{[}\sphinxtitleref{numpy.ndarray}{]}).
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).
-
-\item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
-
-\item {} 
-\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
-dimension.
-
-\item {} 
-\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
-discrete steps in the second spatial dimension (if any).
-
-\item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
-coefficient.
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
-not hold mass conservation.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}numpy.ndarray{]}: The coefficient matrix. Shape is \sphinxtitleref{{[}nx, nx{]}}
-for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}} for the
-two-dimensional case.
-
-\end{itemize}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{crank\_nicolson\_coef\_mats() (in module data\_tools.diffusion)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.crank_nicolson_coef_mats}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{crank\_nicolson\_coef\_mats}}}{\emph{dx2}, \emph{dt}, \emph{nx}, \emph{ny=None}, \emph{d=1}, \emph{bcs='periodic'}}{}
-Computes the coefficient matrices to solve the diffusion problem
-with the Crank-Nicolson method such that:
-\begin{equation*}
-\begin{split}\mathbf{B}\cdot u^{n+1}=\mathbf{D}\cdot u^{n}\end{split}
-\end{equation*}
-Where \sphinxstylestrong{B} and \sphinxstylestrong{D} are the coefficient matrices and \sphinxstyleemphasis{u} the
-diffusing field. Note that for a 2D space, it is considered that \sphinxstyleemphasis{u}
-has been vectorized beforehand (e.g.: \sphinxtitleref{u.reshape(-1)} assuming \sphinxtitleref{u}
-is a 2D {[}\sphinxtitleref{numpy.ndarray}{]}).
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared). It is
-assumed that is the same in both dimensions (dx = dy).
-
-\item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
-
-\item {} 
-\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
-dimension.
-
-\item {} 
-\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
-discrete steps in the second spatial dimension (if any).
-
-\item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The diffusion
-coefficient.
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
-not hold mass conservation.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}numpy.ndarray{]}: The coefficient matrix \sphinxstylestrong{B}. Shape is
-\sphinxtitleref{{[}nx, nx{]}} for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}}
-for the two-dimensional case.
-
-\item {} 
-{[}numpy.ndarray{]}: The coefficient matrix \sphinxstylestrong{D}. Shape is the
-same as \sphinxstylestrong{B}.
-
-\end{itemize}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{build\_coef\_mat() (in module data\_tools.diffusion)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_coef_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_coef\_mat}}}{\emph{a}, \emph{b}, \emph{nx}, \emph{ny=None}, \emph{bcs='periodic'}}{}
-Builds a coefficient matrix according to the central and neighbor
-coefficients, system size and boundary conditions.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{a} {[}float{]}: The central element coefficient.
-
-\item {} 
-\sphinxstyleemphasis{b} {[}float{]}: The neighbor element coefficient.
-
-\item {} 
-\sphinxstyleemphasis{nx} {[}int{]}: The number of discrete steps in the first spatial
-dimension.
-
-\item {} 
-\sphinxstyleemphasis{ny} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. The number of
-discrete steps in the second spatial dimension (if any).
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
-not hold mass conservation.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}numpy.ndarray{]}: The coefficient matrix. Shape is \sphinxtitleref{{[}nx, nx{]}}
-for one-dimensional problem and \sphinxtitleref{{[}nx*ny, nx*ny{]}} for the
-two-dimensional case.
+{[}numpy.ndarray{]}: The (block) tri-diagonal coefficient matrix.
+Matrix will be square with size equal to the product of all
+dimension sizes.
 
 \end{itemize}
 
