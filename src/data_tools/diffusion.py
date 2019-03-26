@@ -199,7 +199,7 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
           ``[z, y, x]``).
         - *bcs* [str]: Optional, ``'dirichlet'`` by default. Determines
           the boundary conditions. Available options are ``'periodic'``,
-          ``'dirichlet''`` or ``'neumann'``. Note that Dirichlet BCs do
+          ``'dirichlet'`` or ``'neumann'``. Note that Dirichlet BCs do
           not hold mass conservation.
 
     * Returns:
