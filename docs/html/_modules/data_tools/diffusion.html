@@ -216,6 +216,10 @@
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="k">import</span> <span class="n">block_diag</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.spatial</span> <span class="k">import</span> <span class="n">get_boundaries</span>
+<span class="kn">from</span> <span class="nn">data_tools.strings</span> <span class="k">import</span> <span class="n">is_numeric</span>
+
+<span class="c1"># XXX: implement wrappers for the different numerical methods?</span>
+<span class="c1"># XXX: implement solver wrapper?</span>
 
 <div class="viewcode-block" id="build_mat"><a class="viewcode-back" href="../../diffusion.html#data_tools.diffusion.build_mat">[docs]</a><span class="k">def</span> <span class="nf">build_mat</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">neigh</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">bcs</span><span class="o">=</span><span class="s1">&#39;dirichlet&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
@@ -243,7 +247,16 @@
 <span class="sd">          dimension sizes.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">dims</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">is_numeric</span><span class="p">(</span><span class="n">dims</span><span class="p">):</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="p">[</span><span class="n">dims</span><span class="p">])</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dims</span><span class="p">):</span>
 
