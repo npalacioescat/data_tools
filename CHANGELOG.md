@@ -8,13 +8,16 @@
     - Function `get_boundaries`: Given an array, returns either the mask
       where the boundary edges are or their counts if specified.
 - `test_data_tools` has tests for almost all classes and functions.
-  Functions that include plots are skipped (cannot be tested). Only test
-  missing is `models.Lasso`.
+  Functions that include plots are skipped (cannot be tested). Tests
+  missing are `models.Lasso` and `spatial` and `diffusion` modules (or
+  maybe more).
 - In `iterables` module:
     - Function `similarity`: Computes the similarity index between two
       sets.
 - In `diffusion` module:
-    - Function `euler_explicit2D`: Computes diffusion on a 2D space over
+    - Function `build_mat` unifies coefficient matrix building for any
+      number of dimensions, numerical method and boundary condition.
+    - ~~Function `euler_explicit2D`: Computes diffusion on a 2D space over
       a time-step using Euler explicit method.
     - Function `euler_implicit_coef_mat`: Computes the coefficient
       matrix to solve the diffusion problem with the Euler implicit
@@ -24,7 +27,7 @@
       method.
     - Function `build_coef_mat`: Builds a coefficient matrix according
       to the central and neighbor coefficients, system size and boundary
-      conditions.
+      conditions.~~
 - In `models` module:
     - Class `DoseResponse` improved and bugs fixed.
 - In `databases` module:
