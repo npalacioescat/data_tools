@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-__all__ = []
+__all__ = ['DensityTestCase', 'PianoConsensusTestCase', 'VennTestCase',
+           'VolcanoTestCase']
 
 import unittest
 
