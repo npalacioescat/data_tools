@@ -1,16 +1,17 @@
 # data_tools version history
 
 ## v0.0.7 (WIP):
+- `test_data_tools` has tests for almost all classes and functions.
+  Functions that include plots are skipped (cannot be tested). Tests
+  missing are `models.Lasso` and `spatial` module (or maybe more).
+    - Test suite has been improved and continuous integration with
+      TravisCI has been implemented.
 - Added `spatial` module:
     - Function `neighbour_count`: Given an array (up to three
       dimensions), returns another array with the same shape containing
       the counts of cells' neighbours whose value is zero.
     - Function `get_boundaries`: Given an array, returns either the mask
       where the boundary edges are or their counts if specified.
-- `test_data_tools` has tests for almost all classes and functions.
-  Functions that include plots are skipped (cannot be tested). Tests
-  missing are `models.Lasso` and `spatial` and `diffusion` modules (or
-  maybe more).
 - In `iterables` module:
     - Function `similarity`: Computes the similarity index between two
       sets.
