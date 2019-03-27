@@ -8,7 +8,6 @@ import unittest
 
 import test_data_tools
 
-
 if __name__ == '__main__':
     start = time.time()
 

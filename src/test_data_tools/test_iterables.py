@@ -83,16 +83,16 @@ class SimilarityTestCase(unittest.TestCase):
         self.b = {0, 1}
 
     def test_jaccard(self):
-        self.assertEqual(iterables.similarity(a, b), 0.5)
+        self.assertEqual(iterables.similarity(self.a, self.b), 0.5)
 
     def test_sorensen_dice(self):
-        self.assertEqual(iterables.similarity(a, b, mode='sd'), 2./3.)
+        self.assertEqual(iterables.similarity(self.a, self.b, mode='sd'), 2./3)
 
     def test_szymkiewicz_simpson(self):
-        self.assertEqual(iterables.similarity(a, b, mode='ss'), 1.)
+        self.assertEqual(iterables.similarity(self.a, self.b, mode='ss'), 1.)
 
     def test_empty_set(self):
-        self.assertEqual(iterables.similarity(a, set()), np.nan)
+        self.assertEqual(iterables.similarity(self.a, set()), np.nan)
 
 
 class SubsetsTestCase(unittest.TestCase):

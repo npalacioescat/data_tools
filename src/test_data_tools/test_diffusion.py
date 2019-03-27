@@ -8,10 +8,11 @@ import numpy as np
 
 from data_tools import diffusion
 
+
 class BuildMatTestCase(unittest.TestCase):
     def setUp(self):
         # Dirichlet BCs
-        self.dirichlet_1d = np.array([[1, 1, 0],
+        self.dirichlet_1d = np.array([[2, 1, 0],
                                       [1, 2, 1],
                                       [0, 1, 2]])
 
