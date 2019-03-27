@@ -5,6 +5,9 @@ data_tools.models
 =================
 
 Model classes module.
+
+Contents
+--------
 '''
 
 __all__ = ['DoseResponse', 'Lasso']
@@ -38,21 +41,28 @@ class DoseResponse(object):
           training data corresponding to the dose.
         - *r_data* [numpy.ndarray]: Or any iterable (1D). Contains the
           training data corresponding to the response.
-        - *x0* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+        - *x0* [list]: Optional, ``None`` by default. Or any
           iterable of three elements. Contains the initial guess for the
           parameters. Parameters are considered to be in alphabetical
           order. This is, first element corresponds to :math:`k`, second
-          is :math:`m` and last is :math:`n`.
-        - *x_scale* [list]: Optional, ``[1, 1, 1]`` by default. Or any
+          is :math:`m` and last is :math:`n`. If ``None`` (default), the
+          initial guess is inferred from *r_data*.
+        - *x_scale* [list]: Optional, ``None`` by default. Or any
           iterable of three elements. Scale of each parameter. May
           improve the fitting if the scaled parameters have similar
-          effect on the cost function.
+          effect on the cost function. If ``None`` (default), the scale
+          is inferred from *x0*.
         - *bounds* [tuple]: Optional ``([0, 0, -inf], [inf, inf, inf])``
           by default. Two-element tuple containing the lower and upper
           boundaries for the parameters (elements of the tuple are
           iterables of three elements each).
 
     - Attributes:
+        - *x0* [list]: Contains the initial guess for the parameters.
+          Parameters are considered to be in alphabetical order. This
+          is, first element corresponds to :math:`k`, second is
+          :math:`m` and last is :math:`n`.
+        - *x_scale* [list]: Scale of each parameter.
         - *model* [scipy.optimize.OptimizeResult]: Contains the result
           of the optimized model. See `SciPy's reference <https://docs.\
           scipy.org/doc/scipy/reference/generated/scipy.optimize.Optimi\
@@ -62,7 +72,7 @@ class DoseResponse(object):
           fitted parameters :math:`k`, :math:`m` and :math:`n`.
     '''
 
-    def __init__(self, d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1],
+    def __init__(self, d_data, r_data, x0=None, x_scale=None,
                  bounds=([0, 0, -np.inf], [np.inf, np.inf, np.inf])):
 
         def residuals(p, x, y):
@@ -71,11 +81,27 @@ class DoseResponse(object):
         self.__xdata = d_data
         self.__ydata = r_data
 
+        if not x0:
+            half_y = ((max(self.__ydata) - min(self.__ydata)) / 2)
+            k_inf = self.__xdata[np.argmin(abs(self.__ydata - half_y))]
+            self.x0 = [k_inf, max(self.__ydata),
+                       np.sign(self.__ydata[np.argmax(self.__xdata)]
+                               - self.__ydata[np.argmin(self.__xdata)])]
+
+        else:
+            self.x0 = x0
+
+        if not x_scale:
+            self.x_scale = [10 ** int(np.log10(abs(i))) for i in self.x0]
+
+        else:
+            self.x_scale = x_scale
+
         ftol = 1e-15
         max_nfev = 1e15
         diff_step = 1e-15
 
-        self.model = least_squares(residuals, x0, x_scale=x_scale,
+        self.model = least_squares(residuals, self.x0, x_scale=self.x_scale,
                                    args=(self.__xdata, self.__ydata),
                                    tr_solver='exact', bounds=bounds, ftol=ftol,
                                    diff_step=diff_step, max_nfev=max_nfev)
@@ -103,7 +129,7 @@ class DoseResponse(object):
 
         k, m, n = self.params
 
-        return (p * k ** n / (p * m - p)) ** (1 / n)
+        return ((p * k ** n) / (m * 100 - p)) ** (1 / n)
 
     def plot(self, title=None, filename=None, figsize=None, legend=True):
         '''

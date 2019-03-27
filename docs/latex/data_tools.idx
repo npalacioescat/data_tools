@@ -1,28 +1,37 @@
 \indexentry{data\_tools.databases (module)|hyperpage}{9}
 \indexentry{kegg\_link() (in module data\_tools.databases)|hyperpage}{9}
 \indexentry{kegg\_pathway\_mapping() (in module data\_tools.databases)|hyperpage}{9}
+\indexentry{op\_kinase\_substrate() (in module data\_tools.databases)|hyperpage}{10}
 \indexentry{up\_map() (in module data\_tools.databases)|hyperpage}{10}
 \indexentry{data\_tools.diffusion (module)|hyperpage}{11}
-\indexentry{euler\_explicit1D() (in module data\_tools.diffusion)|hyperpage}{11}
-\indexentry{data\_tools.models (module)|hyperpage}{11}
-\indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{11}
-\indexentry{ec() (data\_tools.models.DoseResponse method)|hyperpage}{12}
-\indexentry{plot() (data\_tools.models.DoseResponse method)|hyperpage}{12}
-\indexentry{Lasso (class in data\_tools.models)|hyperpage}{12}
-\indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{13}
-\indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{13}
-\indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{13}
-\indexentry{data\_tools.plots (module)|hyperpage}{13}
-\indexentry{density() (in module data\_tools.plots)|hyperpage}{13}
-\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{14}
-\indexentry{venn() (in module data\_tools.plots)|hyperpage}{15}
-\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{16}
-\indexentry{data\_tools.sets (module)|hyperpage}{17}
-\indexentry{bit\_or() (in module data\_tools.sets)|hyperpage}{17}
-\indexentry{chunk\_this() (in module data\_tools.sets)|hyperpage}{17}
-\indexentry{find\_min() (in module data\_tools.sets)|hyperpage}{18}
-\indexentry{in\_all() (in module data\_tools.sets)|hyperpage}{18}
-\indexentry{subsets() (in module data\_tools.sets)|hyperpage}{18}
-\indexentry{data\_tools.strings (module)|hyperpage}{19}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{19}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{19}
+\indexentry{build\_mat() (in module data\_tools.diffusion)|hyperpage}{13}
+\indexentry{data\_tools.iterables (module)|hyperpage}{13}
+\indexentry{bit\_or() (in module data\_tools.iterables)|hyperpage}{14}
+\indexentry{chunk\_this() (in module data\_tools.iterables)|hyperpage}{14}
+\indexentry{find\_min() (in module data\_tools.iterables)|hyperpage}{14}
+\indexentry{in\_all() (in module data\_tools.iterables)|hyperpage}{15}
+\indexentry{similarity() (in module data\_tools.iterables)|hyperpage}{15}
+\indexentry{subsets() (in module data\_tools.iterables)|hyperpage}{16}
+\indexentry{unzip\_dicts() (in module data\_tools.iterables)|hyperpage}{16}
+\indexentry{data\_tools.models (module)|hyperpage}{16}
+\indexentry{DoseResponse (class in data\_tools.models)|hyperpage}{16}
+\indexentry{ec() (data\_tools.models.DoseResponse method)|hyperpage}{17}
+\indexentry{plot() (data\_tools.models.DoseResponse method)|hyperpage}{17}
+\indexentry{Lasso (class in data\_tools.models)|hyperpage}{17}
+\indexentry{fit\_data() (data\_tools.models.Lasso method)|hyperpage}{18}
+\indexentry{plot\_coef() (data\_tools.models.Lasso method)|hyperpage}{18}
+\indexentry{plot\_score() (data\_tools.models.Lasso method)|hyperpage}{18}
+\indexentry{data\_tools.plots (module)|hyperpage}{19}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{cmap\_rdbkgr (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{density() (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{piano\_consensus() (in module data\_tools.plots)|hyperpage}{19}
+\indexentry{venn() (in module data\_tools.plots)|hyperpage}{20}
+\indexentry{volcano() (in module data\_tools.plots)|hyperpage}{22}
+\indexentry{data\_tools.spatial (module)|hyperpage}{23}
+\indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{23}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{24}
+\indexentry{data\_tools.strings (module)|hyperpage}{24}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{24}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{25}

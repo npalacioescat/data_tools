@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.databases &#8212; data_tools 0.0.5 documentation</title>
+    <title>data_tools.databases &#8212; data_tools 0.0.6 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.diffusion" href="diffusion.html" />
-    <link rel="prev" title="data_tools’ reference" href="index.html" /> 
+    <link rel="prev" title="data_tools’ manual" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -32,9 +32,9 @@
           <a href="diffusion.html" title="data_tools.diffusion"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="data_tools’ reference"
+          <a href="index.html" title="data_tools’ manual"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,6 +46,8 @@
   <span class="target" id="module-data_tools.databases"></span><div class="section" id="data-tools-databases">
 <h1>data_tools.databases<a class="headerlink" href="#data-tools-databases" title="Permalink to this headline">¶</a></h1>
 <p>Databases functions module.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.databases.kegg_link">
 <code class="descclassname">data_tools.databases.</code><code class="descname">kegg_link</code><span class="sig-paren">(</span><em>query</em>, <em>target='pathway'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_link" title="Permalink to this definition">¶</a></dt>
@@ -137,6 +139,37 @@ within the specified path/file name.</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="data_tools.databases.op_kinase_substrate">
+<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em>, <em>incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
+given organism.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
+sapiens). NCBI taxonomic identifier for the organism of
+interest.</li>
+<li><em>incl_phosphatases</em> [bool]: Optional <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
+Determines wether to include dephosphorylation interactions or
+not.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[pandas.DataFrame]: Table containing the enzyme-substrate
+(kinase/phosphatase-target) network of each phospho-site.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.databases.up_map">
 <code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>source='ACC'</em>, <em>target='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to UniProt.org in order to map a given list of
@@ -161,7 +194,10 @@ check other options available in the URL above.</li>
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
 <li>[pandas.DataFrame]: Two-column table containing both the
-inputed identifiers and the mapping result of these.</li>
+inputed identifiers and the mapping result of these. <strong>NOTE:</strong>
+The returned table may not have the same order as in
+<code class="docutils literal notranslate"><span class="pre">query</span></code>. Also, if some ID could not be mapped, the size of
+the returned table will differ from the length of <code class="docutils literal notranslate"><span class="pre">query</span></code>.</li>
 </ul>
 </dd>
 </dl>
@@ -188,6 +224,7 @@ inputed identifiers and the mapping result of these.</li>
 </dd></dl>
 
 </div>
+</div>
 
 
           </div>
@@ -195,9 +232,17 @@ inputed identifiers and the mapping result of these.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">data_tools.databases</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">data_tools’ reference</a></p>
+                        title="previous chapter">data_tools’ manual</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="diffusion.html"
                         title="next chapter">data_tools.diffusion</a></p>
@@ -237,14 +282,14 @@ inputed identifiers and the mapping result of these.</li>
           <a href="diffusion.html" title="data_tools.diffusion"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="data_tools’ reference"
+          <a href="index.html" title="data_tools’ manual"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+        &#169; Copyright 2019, Nicolàs Palacio-Escat.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
     </div>
   </body>
 </html>

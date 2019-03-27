@@ -5,9 +5,13 @@ data_tools.databases
 ====================
 
 Databases functions module.
+
+Contents
+--------
 '''
 
-__all__ = ['kegg_link', 'kegg_pathway_mapping', 'up_map']
+__all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',
+           'up_map']
 
 import sys
 import urllib
@@ -152,6 +156,42 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     urllib.urlretrieve(url + params, filename)
 
 
+def op_kinase_substrate(organism='9606', incl_phosphatases=False):
+    '''
+    Queries OmniPath to retrieve the kinase-substrate interactions for a
+    given organism.
+
+    * Arguments:
+        - *organism* [str]: Optional, ``'9606'`` by default (Homo
+          sapiens). NCBI taxonomic identifier for the organism of
+          interest.
+        - *incl_phosphatases* [bool]: Optional ``False`` by default.
+          Determines wether to include dephosphorylation interactions or
+          not.
+
+    * Returns:
+        - [pandas.DataFrame]: Table containing the enzyme-substrate
+          (kinase/phosphatase-target) network of each phospho-site.
+    '''
+
+    url = 'http://omnipathdb.org/ptms'
+
+    params = {'types':'phosphorylation,dephosphorylation' if incl_phosphatases
+                      else 'phosphorylation',
+              'organisms':organism}
+
+    data = urllib.urlencode(params)
+
+    request = urllib2.Request('?&'.join([url, data]))
+
+    response = urllib2.urlopen(request)
+    page = response.read()
+
+    df = to_df(page, header=True)
+
+    return df
+
+
 def up_map(query, source='ACC', target='GENENAME'):
     '''
     Queries a request to UniProt.org in order to map a given list of
@@ -169,7 +209,10 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     * Returns:
         - [pandas.DataFrame]: Two-column table containing both the
-          inputed identifiers and the mapping result of these.
+          inputed identifiers and the mapping result of these. **NOTE:**
+          The returned table may not have the same order as in
+          ``query``. Also, if some ID could not be mapped, the size of
+          the returned table will differ from the length of ``query``.
 
     * Examples:
         >>> my_query = ['P00533', 'P31749', 'P16220']

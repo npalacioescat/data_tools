@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['IsNumericTestCase', 'JoinStrLists']
+__all__ = ['IsNumericTestCase', 'JoinStrListsTestCase']
 
 import unittest
 
@@ -23,7 +23,7 @@ class IsNumericTestCase(unittest.TestCase):
         self.assertFalse(strings.is_numeric('Hello world'))
 
 
-class JoinStrLists(unittest.TestCase):
+class JoinStrListsTestCase(unittest.TestCase):
     def test_same_size(self):
         self.assertEqual(strings.join_str_lists(['a', 'b'], ['1', '2']),
                          ['a1', 'b2'])

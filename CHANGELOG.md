@@ -1,16 +1,64 @@
 # data_tools version history
 
-## v0.0.6 (WIP):
+## v0.0.7 (WIP):
+- `test_data_tools` has tests for almost all classes and functions.
+  Functions that include plots are skipped (cannot be tested). Tests
+  missing are `models.Lasso` and `spatial` module (or maybe more).
+    - Test suite has been improved and continuous integration with
+      TravisCI has been implemented.
+- Added `spatial` module:
+    - Function `neighbour_count`: Given an array (up to three
+      dimensions), returns another array with the same shape containing
+      the counts of cells' neighbours whose value is zero.
+    - Function `get_boundaries`: Given an array, returns either the mask
+      where the boundary edges are or their counts if specified.
+- In `iterables` module:
+    - Function `similarity`: Computes the similarity index between two
+      sets.
+- In `diffusion` module:
+    - Function `build_mat` unifies coefficient matrix building for any
+      number of dimensions, numerical method and boundary condition.
+    - ~~Function `euler_explicit2D`: Computes diffusion on a 2D space over
+      a time-step using Euler explicit method.
+    - Function `euler_implicit_coef_mat`: Computes the coefficient
+      matrix to solve the diffusion problem with the Euler implicit
+      method.
+    - Function `crank_nicolson_coef_mats`: Computes the coefficient
+      matrices to solve the diffusion problem with the Crank-Nicolson
+      method.
+    - Function `build_coef_mat`: Builds a coefficient matrix according
+      to the central and neighbor coefficients, system size and boundary
+      conditions.~~
+- In `models` module:
+    - Class `DoseResponse` improved and bugs fixed.
+- In `databases` module:
+    - Function `op_kinase_substrate` now can also download
+      dephosphorylation interactions.
+- In `plots` module:
+    - Function `venn` now can plot global percentages instead of
+      absolute counts. Also added the option to show the set sizes on
+      the legend.
+    - Function `density` now can handle data frames with samples on the
+      columns.
+    - Created 3 custom colormaps: `cmap_bkgr` (black-green), `cmap_bkrd`
+      (black-red) and `cmap_rdbkgr` (red-black-green).
+
+## v0.0.6:
+- Renamed `sets` to `iterables`.
 - In `models` module:
     - Class `DoseResponse`: Wrapper class for
       ``scipy.optimize.least_squares`` to fit dose-response curves on a
       pre-defined Hill function.
 - In `sets` module:
+    - Function `unzip_dicts`: Unzips the keys and values for any number
+      of dictionaries passed as arguments (see below for examples).
     - Function `chunk_this`: For a given list *L*, returns another list
       of *n*-sized chunks from it (in the same order).
 - In `plots` module:
     - Function `venn` now accepts up to 5 sets.
 - In `databases` module:
+    - Function `op_kinase_substrate`: Queries OmniPath to retrieve the
+      kinase-substrate interactions for a given organism.
     - Function `kegg_link`: Queries a request to the KEGG database to
       find related entries using cross-references.
     - Function `kegg_pathway_mapping`: Makes a request to KEGG pathway

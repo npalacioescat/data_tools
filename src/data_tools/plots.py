@@ -5,33 +5,58 @@ data_tools.plots
 ================
 
 Plotting functions module.
+
+Contents
+--------
 '''
 
 from __future__ import absolute_import
 
-__all__ = ['density', 'piano_consensus', 'venn', 'volcano']
+__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
+           'piano_consensus', 'venn', 'volcano']
 
 import numpy as np
 import pandas as pd
 import matplotlib
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 
-from data_tools.sets import subsets
+from data_tools.iterables import subsets
 
+#: Custom colormap, gradient from black (lowest) to lime green (highest).
+cmap_bkgr = LinearSegmentedColormap.from_list(name='BkGr',
+                                              colors=['#000000', '#00FF00'],
+                                              N=256)
+
+#: Custom colormap, gradient from black (lowest) to red (highest).
+cmap_bkrd = LinearSegmentedColormap.from_list(name='BkRd',
+                                              colors=['#000000', '#FF0000'],
+                                              N=256)
+
+#: Custom colormap, gradient from red (lowest) to black (middle) to lime
+#: green (highest).
+cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
+                                                colors=['#FF0000', '#000000',
+                                                        '#00FF00'],
+                                                N=256)
 
 # TODO: Add example figure
-def density(df, cvf=0.25, title=None, filename=None, figsize=None):
+def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
+            figsize=None):
     '''
     Generates a density plot of the values on a data frame (row-wise).
 
     * Arguments:
         - *df* [pandas.DataFrame]: Contains the values to generate the
           plot. Each row is considered as an individual sample while
-          each column contains a measured value.
+          each column contains a measured value unless otherwise stated
+          by keyword argument *sample_col*.
         - *cvf* [float]: Optional, ``0.25`` by default. Co-variance
           factor used in the gaussian kernel estimation. A higher value
           increases the smoothness.
+        - *sample_col* [bool]: Optional, ``False`` by default. Specifies
+          whether the samples are column-wise or not.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -46,6 +71,8 @@ def density(df, cvf=0.25, title=None, filename=None, figsize=None):
           density plot.
     '''
 
+    df = df.T if sample_col else df
+
     cmap = matplotlib.cm.get_cmap('rainbow')
     colors = map(cmap, np.linspace(1, 0, len(df.index)))
 
@@ -59,8 +86,10 @@ def density(df, cvf=0.25, title=None, filename=None, figsize=None):
         dsty.covariance_factor = lambda : cvf
         dsty._compute_covariance()
 
-        ax.plot(xs, dsty(xs), c=colors[i], label=df.index[i])
-        ax.fill(xs, dsty(xs), c=colors[i], alpha=0.05)
+        y = dsty(xs)
+
+        ax.plot(xs, y, c=colors[i], label=df.index[i])
+        ax.fill(xs, y, c=colors[i], alpha=0.05)
 
     if title:
         ax.set_title(title)
@@ -162,7 +191,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
 
 def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
-         title=None, filename=None, figsize=None):
+         pct=False, sizes=False, title=None, filename=None, figsize=None):
     '''
     Plots a Venn diagram from a list of sets *N*. Number of sets must be
     between 2 and 5 (inclusive).
@@ -177,6 +206,10 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
           color arguments tolerated by matplotlib (e.g.: ``['r', 'b']``
           for red and blue). Must contain at least the same number of
           elements as *N* (if more are provided, they will be ignored).
+        - *pct* [bool]: Optional, ``False`` by default. Indicates
+          whether to show percentages instead of absolute counts.
+        - *sizes* [bool]: Optional, ``False`` by default. Whether to
+          include the size of the sets in the legend or not.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -198,11 +231,6 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
            :align: center
            :scale: 100
     '''
-
-    ssets = subsets(N)
-    counts = dict(zip(ssets.keys(), map(len, ssets.values())))
-
-    fig, ax = plt.subplots(figsize=figsize)
 
     if len(N) == 2:
         # Ellipse parameters
@@ -269,15 +297,31 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     else:
         return 'The maximum number of sets supported is 5.'
 
+    ssets = subsets(N)
+    # Subset counts
+    text = dict(zip(ssets.keys(), map(len, ssets.values())))
+
+    if pct:
+        total = float(sum(text.values()))
+        text = dict(zip(text.keys(),
+                          np.round(100 * np.array(text.values()) / total,
+                                   decimals=2)))
+
+    fig, ax = plt.subplots(figsize=figsize)
+
     for i in range(len(N)):
         ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],
-                label=labels[i])
+                label='%s (%d)' %(labels[i], len(N[i])) if sizes
+                else labels[i])
 
-    for i in range(len(counts)):
-        ax.text(xt[i], yt[i], counts[keys[i]], fontdict={'ha':'center'})
+    for i in range(len(text)):
+        ax.text(xt[i], yt[i], text[keys[i]], fontdict={'ha':'center'})
 
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
+
+    if title:
+        ax.set_title(title)
 
     ax.legend()
 

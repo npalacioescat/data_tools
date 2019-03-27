@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.models &#8212; data_tools 0.0.5 documentation</title>
+    <title>data_tools.models &#8212; data_tools 0.0.6 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.plots" href="plots.html" />
-    <link rel="prev" title="data_tools.diffusion" href="diffusion.html" /> 
+    <link rel="prev" title="data_tools.iterables" href="iterables.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -32,9 +32,9 @@
           <a href="plots.html" title="data_tools.plots"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="diffusion.html" title="data_tools.diffusion"
+          <a href="iterables.html" title="data_tools.iterables"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,9 +46,11 @@
   <span class="target" id="module-data_tools.models"></span><div class="section" id="data-tools-models">
 <h1>data_tools.models<a class="headerlink" href="#data-tools-models" title="Permalink to this headline">¶</a></h1>
 <p>Model classes module.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="data_tools.models.DoseResponse">
-<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=[1, 1, 1], x_scale=[1, 1, 1], bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=None, x_scale=None, bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper class for <code class="docutils literal notranslate"><span class="pre">scipy.optimize.least_squares</span></code> to fit
 dose-response curves on a pre-defined Hill function with the
 following form:</p>
@@ -64,15 +66,17 @@ the parameters to be fitted.</p>
 training data corresponding to the dose.</li>
 <li><em>r_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
 training data corresponding to the response.</li>
-<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Contains the initial guess for the
 parameters. Parameters are considered to be in alphabetical
 order. This is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second
-is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</li>
-<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1]</span></code> by default. Or any
+is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the
+initial guess is inferred from <em>r_data</em>.</li>
+<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Scale of each parameter. May
 improve the fitting if the scaled parameters have similar
-effect on the cost function.</li>
+effect on the cost function. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the scale
+is inferred from <em>x0</em>.</li>
 <li><em>bounds</em> [tuple]: Optional <code class="docutils literal notranslate"><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">-inf],</span> <span class="pre">[inf,</span> <span class="pre">inf,</span> <span class="pre">inf])</span></code>
 by default. Two-element tuple containing the lower and upper
 boundaries for the parameters (elements of the tuple are
@@ -86,6 +90,11 @@ iterables of three elements each).</li>
 <li><dl class="first docutils">
 <dt>Attributes:</dt>
 <dd><ul class="first last">
+<li><em>x0</em> [list]: Contains the initial guess for the parameters.
+Parameters are considered to be in alphabetical order. This
+is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second is
+<span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</li>
+<li><em>x_scale</em> [list]: Scale of each parameter.</li>
 <li><em>model</em> [scipy.optimize.OptimizeResult]: Contains the result
 of the optimized model. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult">SciPy’s reference</a> for more
 information.</li>
@@ -286,6 +295,7 @@ score plot.</li>
 </dd></dl>
 
 </div>
+</div>
 
 
           </div>
@@ -293,9 +303,17 @@ score plot.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">data_tools.models</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="diffusion.html"
-                        title="previous chapter">data_tools.diffusion</a></p>
+  <p class="topless"><a href="iterables.html"
+                        title="previous chapter">data_tools.iterables</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="plots.html"
                         title="next chapter">data_tools.plots</a></p>
@@ -335,14 +353,14 @@ score plot.</li>
           <a href="plots.html" title="data_tools.plots"
              >next</a> |</li>
         <li class="right" >
-          <a href="diffusion.html" title="data_tools.diffusion"
+          <a href="iterables.html" title="data_tools.iterables"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+        &#169; Copyright 2019, Nicolàs Palacio-Escat.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
     </div>
   </body>
 </html>

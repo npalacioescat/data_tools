@@ -2,41 +2,49 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter B
-  \item bit\_or() (in module data\_tools.sets), \hyperpage{17}
+  \item bit\_or() (in module data\_tools.iterables), \hyperpage{14}
+  \item build\_mat() (in module data\_tools.diffusion), \hyperpage{13}
 
   \indexspace
   \bigletter C
-  \item chunk\_this() (in module data\_tools.sets), \hyperpage{17}
+  \item chunk\_this() (in module data\_tools.iterables), \hyperpage{14}
+  \item cmap\_bkgr (in module data\_tools.plots), \hyperpage{19}
+  \item cmap\_bkrd (in module data\_tools.plots), \hyperpage{19}
+  \item cmap\_rdbkgr (in module data\_tools.plots), \hyperpage{19}
 
   \indexspace
   \bigletter D
   \item data\_tools.databases (module), \hyperpage{9}
   \item data\_tools.diffusion (module), \hyperpage{11}
-  \item data\_tools.models (module), \hyperpage{11}
-  \item data\_tools.plots (module), \hyperpage{13}
-  \item data\_tools.sets (module), \hyperpage{17}
-  \item data\_tools.strings (module), \hyperpage{19}
-  \item density() (in module data\_tools.plots), \hyperpage{13}
-  \item DoseResponse (class in data\_tools.models), \hyperpage{11}
+  \item data\_tools.iterables (module), \hyperpage{13}
+  \item data\_tools.models (module), \hyperpage{16}
+  \item data\_tools.plots (module), \hyperpage{19}
+  \item data\_tools.spatial (module), \hyperpage{23}
+  \item data\_tools.strings (module), \hyperpage{24}
+  \item density() (in module data\_tools.plots), \hyperpage{19}
+  \item DoseResponse (class in data\_tools.models), \hyperpage{16}
 
   \indexspace
   \bigletter E
-  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{12}
-  \item euler\_explicit1D() (in module data\_tools.diffusion), \hyperpage{11}
+  \item ec() (data\_tools.models.DoseResponse method), \hyperpage{17}
 
   \indexspace
   \bigletter F
-  \item find\_min() (in module data\_tools.sets), \hyperpage{18}
-  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{13}
+  \item find\_min() (in module data\_tools.iterables), \hyperpage{14}
+  \item fit\_data() (data\_tools.models.Lasso method), \hyperpage{18}
+
+  \indexspace
+  \bigletter G
+  \item get\_boundaries() (in module data\_tools.spatial), \hyperpage{23}
 
   \indexspace
   \bigletter I
-  \item in\_all() (in module data\_tools.sets), \hyperpage{18}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{19}
+  \item in\_all() (in module data\_tools.iterables), \hyperpage{15}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{24}
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{19}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{25}
 
   \indexspace
   \bigletter K
@@ -45,26 +53,36 @@
 
   \indexspace
   \bigletter L
-  \item Lasso (class in data\_tools.models), \hyperpage{12}
+  \item Lasso (class in data\_tools.models), \hyperpage{17}
+
+  \indexspace
+  \bigletter N
+  \item neighbour\_count() (in module data\_tools.spatial), \hyperpage{24}
+
+  \indexspace
+  \bigletter O
+  \item op\_kinase\_substrate() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace
   \bigletter P
-  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{14}
-  \item plot() (data\_tools.models.DoseResponse method), \hyperpage{12}
-  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{13}
-  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{13}
+  \item piano\_consensus() (in module data\_tools.plots), \hyperpage{19}
+  \item plot() (data\_tools.models.DoseResponse method), \hyperpage{17}
+  \item plot\_coef() (data\_tools.models.Lasso method), \hyperpage{18}
+  \item plot\_score() (data\_tools.models.Lasso method), \hyperpage{18}
 
   \indexspace
   \bigletter S
-  \item subsets() (in module data\_tools.sets), \hyperpage{18}
+  \item similarity() (in module data\_tools.iterables), \hyperpage{15}
+  \item subsets() (in module data\_tools.iterables), \hyperpage{16}
 
   \indexspace
   \bigletter U
+  \item unzip\_dicts() (in module data\_tools.iterables), \hyperpage{16}
   \item up\_map() (in module data\_tools.databases), \hyperpage{10}
 
   \indexspace
   \bigletter V
-  \item venn() (in module data\_tools.plots), \hyperpage{15}
-  \item volcano() (in module data\_tools.plots), \hyperpage{16}
+  \item venn() (in module data\_tools.plots), \hyperpage{20}
+  \item volcano() (in module data\_tools.plots), \hyperpage{22}
 
 \end{sphinxtheindex}

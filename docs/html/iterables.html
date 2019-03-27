@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>data_tools.sets &#8212; data_tools 0.0.5 documentation</title>
+    <title>data_tools.iterables &#8212; data_tools 0.0.6 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,8 +16,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="data_tools.strings" href="strings.html" />
-    <link rel="prev" title="data_tools.plots" href="plots.html" /> 
+    <link rel="next" title="data_tools.models" href="models.html" />
+    <link rel="prev" title="data_tools.diffusion" href="diffusion.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,12 +29,12 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="strings.html" title="data_tools.strings"
+          <a href="models.html" title="data_tools.models"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="plots.html" title="data_tools.plots"
+          <a href="diffusion.html" title="data_tools.diffusion"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -43,12 +43,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="module-data_tools.sets"></span><div class="section" id="data-tools-sets">
-<h1>data_tools.sets<a class="headerlink" href="#data-tools-sets" title="Permalink to this headline">¶</a></h1>
-<p>Set operations module.</p>
+  <span class="target" id="module-data_tools.iterables"></span><div class="section" id="data-tools-iterables">
+<h1>data_tools.iterables<a class="headerlink" href="#data-tools-iterables" title="Permalink to this headline">¶</a></h1>
+<p>Iterable-type operations module.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="data_tools.sets.bit_or">
-<code class="descclassname">data_tools.sets.</code><code class="descname">bit_or</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#bit_or"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.bit_or" title="Permalink to this definition">¶</a></dt>
+<dt id="data_tools.iterables.bit_or">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">bit_or</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#bit_or"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.bit_or" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the bit operation OR between two bit-strings <em>a</em> and <em>b</em>.
 <strong>NOTE:</strong> <em>a</em> and <em>b</em> must have the same size.</p>
 <ul>
@@ -83,8 +85,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.chunk_this">
-<code class="descclassname">data_tools.sets.</code><code class="descname">chunk_this</code><span class="sig-paren">(</span><em>L</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#chunk_this"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.chunk_this" title="Permalink to this definition">¶</a></dt>
+<dt id="data_tools.iterables.chunk_this">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">chunk_this</code><span class="sig-paren">(</span><em>L</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#chunk_this"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.chunk_this" title="Permalink to this definition">¶</a></dt>
 <dd><p>For a given list <em>L</em>, returns another list of <em>n</em>-sized chunks from
 it (in the same order).</p>
 <ul>
@@ -124,8 +126,8 @@ element returned will have an inferior size.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.find_min">
-<code class="descclassname">data_tools.sets.</code><code class="descname">find_min</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#find_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.find_min" title="Permalink to this definition">¶</a></dt>
+<dt id="data_tools.iterables.find_min">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">find_min</code><span class="sig-paren">(</span><em>A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#find_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.find_min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds and returns the subset of vectors whose sum is minimum from a
 given set <em>A</em>.</p>
 <ul>
@@ -159,17 +161,18 @@ given set <em>A</em>.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.in_all">
-<code class="descclassname">data_tools.sets.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.in_all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if a vector <em>x</em> is present in all sets contained in a list
-<em>N</em>.</p>
+<dt id="data_tools.iterables.in_all">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">in_all</code><span class="sig-paren">(</span><em>x</em>, <em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#in_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.in_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a element <em>x</em> is present in all collections contained in a
+list <em>N</em>.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li><em>x</em> [tuple]: Or any hashable type as long as is the same
-contained in the sets of <em>N</em>.</li>
-<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
+<li><em>x</em> [object]: Any type of object, it is assumed to be the same
+type as the objects contained in the elements of <em>N</em>.</li>
+<li><em>N</em> [list]: Or any iterable type containing a collection of
+other iterables containing the objects.</li>
 </ul>
 </dd>
 </dl>
@@ -177,8 +180,8 @@ contained in the sets of <em>N</em>.</li>
 <li><dl class="first docutils">
 <dt>Returns:</dt>
 <dd><ul class="first last simple">
-<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all sets of <em>N</em>, <code class="docutils literal notranslate"><span class="pre">False</span></code>
-otherwise.</li>
+<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all elements of <em>N</em>,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</li>
 </ul>
 </dd>
 </dl>
@@ -193,6 +196,11 @@ otherwise.</li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">],</span>
+<span class="gp">... </span>     <span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd>
@@ -202,8 +210,49 @@ otherwise.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="data_tools.sets.subsets">
-<code class="descclassname">data_tools.sets.</code><code class="descname">subsets</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/sets.html#subsets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.sets.subsets" title="Permalink to this definition">¶</a></dt>
+<dt id="data_tools.iterables.similarity">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">similarity</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='j'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#similarity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the similarity index between two sets. There are three
+options available:</p>
+<p>Jaccard (<code class="docutils literal notranslate"><span class="pre">mode='j'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_J(A,B) = \frac{|A\cap B|}{|A\cup B|}\]</div>
+<p>Sorensen-Dice (<code class="docutils literal notranslate"><span class="pre">mode='sd'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_{SD}(A,B) = \frac{2|A\cap B|}{|A|+|B|}\]</div>
+<p>Szymkiewicz–Simpson (<code class="docutils literal notranslate"><span class="pre">mode='ss'</span></code>):</p>
+<div class="math notranslate nohighlight">
+\[s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\]</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>a</em> [set]: One of the two sets to compute the similarity
+index.</li>
+<li><em>b</em> [set]: The other set to compute the similarity index.</li>
+<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
+for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[float]: The corresponding similarity index/coefficient
+according to the specified <em>mode</em>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.iterables.subsets">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">subsets</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#subsets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.subsets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that computes all possible logical relations between all
 sets on a list <em>N</em> and returns all subsets. This is, the subsets
 that would represent each intersecting area on a Venn diagram.</p>
@@ -243,6 +292,45 @@ that denote the logical relation (see examples below).</li>
 </ul>
 </dd></dl>
 
+<dl class="function">
+<dt id="data_tools.iterables.unzip_dicts">
+<code class="descclassname">data_tools.iterables.</code><code class="descname">unzip_dicts</code><span class="sig-paren">(</span><em>*dicts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/iterables.html#unzip_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.iterables.unzip_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unzips the keys and values for any number of dictionaries passed as
+arguments (see below for examples).</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>*dicts</em> [dict]: Dictionaries from which key/value pairs are
+to be unzipped.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[list]: Two-element list contianing all keys and all values
+respectively from the dictionaries in <em>*dicts</em>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;x_a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y_a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;x_b&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y_b&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unzip_dicts</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">[(&#39;y_a&#39;, &#39;x_a&#39;, &#39;x_b&#39;, &#39;y_b&#39;), (3, 2, 1, -1)]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -251,16 +339,24 @@ that denote the logical relation (see examples below).</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">data_tools.iterables</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="plots.html"
-                        title="previous chapter">data_tools.plots</a></p>
+  <p class="topless"><a href="diffusion.html"
+                        title="previous chapter">data_tools.diffusion</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="strings.html"
-                        title="next chapter">data_tools.strings</a></p>
+  <p class="topless"><a href="models.html"
+                        title="next chapter">data_tools.models</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/sets.rst.txt"
+      <li><a href="_sources/iterables.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -290,17 +386,17 @@ that denote the logical relation (see examples below).</li>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="strings.html" title="data_tools.strings"
+          <a href="models.html" title="data_tools.models"
              >next</a> |</li>
         <li class="right" >
-          <a href="plots.html" title="data_tools.plots"
+          <a href="diffusion.html" title="data_tools.diffusion"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.6 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Nicolàs Palacio.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+        &#169; Copyright 2019, Nicolàs Palacio-Escat.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
     </div>
   </body>
 </html>

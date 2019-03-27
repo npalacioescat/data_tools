@@ -50,14 +50,14 @@
 
 \addto\extrasenglish{\def\pageautorefname{page}}
 
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
 
 
 \title{data\_tools Documentation}
-\date{Aug 14, 2018}
-\release{0.0.5}
-\author{Nicolàs Palacio}
+\date{Mar 27, 2019}
+\release{0.0.6}
+\author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
@@ -72,9 +72,9 @@
 Data tools: a collection of Python functions and classes designed to
 make data scientists’ life easier.
 
-Copyright (C) 2018 Nicolàs Palacio
+Copyright (C) 2019 Nicolàs Palacio-Escat
 
-Contact: \sphinxhref{mailto:nicolaspalacio91@gmail.com}{nicolaspalacio91@gmail.com}
+Contact: \sphinxhref{mailto:nicolas.palacio@bioquant.uni-heidelberg.de}{nicolas.palacio@bioquant.uni-heidelberg.de}
 
 
 \chapter{Disclaimer}
@@ -95,8 +95,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details.
 
 A full copy of the GNU General Public License can be found on file
-\sphinxhref{../../LICENSE.md}{LICENSE.md}. If not, see
-\sphinxurl{http://www.gnu.org/licenses/}.
+\sphinxhref{https://github.com/Nic-Nic/data\_tools/blob/master/LICENSE.md}{LICENSE.md}.
+If not, see \sphinxurl{http://www.gnu.org/licenses/}.
 
 
 \chapter{Dependencies}
@@ -157,13 +157,16 @@ python \PYGZhy{}m test\PYGZus{}data\PYGZus{}tools
 implemented.
 
 
-\chapter{Modules}
-\label{\detokenize{index:modules}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
+\chapter{Index}
+\label{\detokenize{index:index}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
 
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
 Databases functions module.
-\index{kegg\_link() (in module data\_tools.databases)}
+
+
+\subsection{Contents}
+\label{\detokenize{databases:contents}}\index{kegg\_link() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{query}, \emph{target='pathway'}}{}
@@ -269,6 +272,43 @@ within the specified path/file name.
 
 \end{fulllineitems}
 
+\index{op\_kinase\_substrate() (in module data\_tools.databases)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{incl\_phosphatases=False}}{}
+Queries OmniPath to retrieve the kinase-substrate interactions for a
+given organism.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'9606'}} by default (Homo
+sapiens). NCBI taxonomic identifier for the organism of
+interest.
+
+\item {} 
+\sphinxstyleemphasis{incl\_phosphatases} {[}bool{]}: Optional \sphinxcode{\sphinxupquote{False}} by default.
+Determines wether to include dephosphorylation interactions or
+not.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}pandas.DataFrame{]}: Table containing the enzyme-substrate
+(kinase/phosphatase-target) network of each phospho-site.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \index{up\_map() (in module data\_tools.databases)}
 
 \begin{fulllineitems}
@@ -300,7 +340,10 @@ check other options available in the URL above.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}pandas.DataFrame{]}: Two-column table containing both the
-inputed identifiers and the mapping result of these.
+inputed identifiers and the mapping result of these. \sphinxstylestrong{NOTE:}
+The returned table may not have the same order as in
+\sphinxcode{\sphinxupquote{query}}. Also, if some ID could not be mapped, the size of
+the returned table will differ from the length of \sphinxcode{\sphinxupquote{query}}.
 
 \end{itemize}
 
@@ -334,32 +377,188 @@ inputed identifiers and the mapping result of these.
 \section{data\_tools.diffusion}
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
 Diffusion solvers module.
-\index{euler\_explicit1D() (in module data\_tools.diffusion)}
+
+
+\subsection{Introduction}
+\label{\detokenize{diffusion:introduction}}
+The following functions provide tools to solve the diffusion problem for
+any number of spatial dimensions with different explicit and implicit
+methods. The problem is defined as follows:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t} = D\nabla^2u\end{split}
+\end{equation*}
+Where \(u\) is the diffusing component, \(D\) is the diffusion
+coefficient and \(\nabla^2\) is the Laplace operator
+(in Euclidean space \(\nabla^2f=\nabla\cdot\nabla f=\sum_{i=1}^n\frac{\partial^2 f}{\partial x_i^2}\)).
+
+Some numerical methods to solve this probelm will be explained in
+the following subsections. These are based in approximation of the
+derivatives by finite-differences. Therefore we define the
+discretization step sizes as \(\Delta t\) for the time derivative
+and \(\Delta x\), \(\Delta y\) and so on for first, second and
+subsequent spatial dimensions respectively.
+
+From here on we will assume that space is homogeneously discretized
+(e.g.: \(\Delta x=\Delta y\)). All second-order partial
+derivatives in the spatial dimension are discretized using central
+finite differences. For instance, in one dimension:
+\begin{equation*}
+\begin{split}\frac{\partial^2u}{\partial x^2}\approx\frac{u_{i-1}-2u_i+u_{i+1  }}{\Delta x^2}\end{split}
+\end{equation*}
+
+\subsubsection{Euler explicit method}
+\label{\detokenize{diffusion:euler-explicit-method}}
+“Classic” method, first-order accurate, uses forward difference over
+time:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t}\approx\frac{u^{k+1}-u^k}{\Delta t}\end{split}
+\end{equation*}
+Where \(k\) is the current time-step. Applied to the diffusion
+problem for one dimension and rearranging terms:
+\begin{equation*}
+\begin{split}u_i^{k+1}=\frac{D\Delta t}{\Delta x^2}\left(u_{i+1}^k+u_{i-1}^k  \right)+\left(1-2\frac{D\Delta t}{\Delta x^2}\right)u_i^k\end{split}
+\end{equation*}
+Let us define from here on \(\lambda\equiv\frac{D\Delta t}{\Delta x^2}\) for simplicity. Rewriting the equation above in terms of
+linear algebra, each time-step the next state of \(u\) is:
+\begin{equation*}
+\begin{split}u^{k+1}=\mathbf{A}u^{k}\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+central element is \((1-2\lambda)\) and its adjacent diagonals are
+\(\lambda\). Note that for \(n\)-dimensional case, central
+element will then be \((1-2n\lambda)\) and \(u\) must be
+flattened (coerced into one dimension) and \(\mathbf{A}\) becomes
+a block tri-diagonal matrix.
+
+\sphinxstylestrong{NOTE:} Explicit methods are conditionally stable. This means that in
+order to keep numerical stability of the solution (and obtain an
+accurate result), these methods need to fulfill the
+Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For any \(n\)-dimensional
+case:
+\begin{equation*}
+\begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2n}\end{split}
+\end{equation*}
+The implicit methods are (theoretically) unconditionally stable, hence
+are more permissive in terms of discretization step-size.
+
+
+\subsubsection{Euler implicit method}
+\label{\detokenize{diffusion:euler-implicit-method}}
+Similar to Euler explicit (first-order accurate) but uses backward
+difference over time:
+\begin{equation*}
+\begin{split}\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\end{split}
+\end{equation*}
+Applied to the diffusion problem in one dimension and taking one step
+forward over discrete time (\(k\rightarrow k+1\)):
+\begin{equation*}
+\begin{split}u_i^k=-\lambda\left(u_{i+1}^{k+1}+u_{i-1}^{k+1}\right)+\left(1+2  \lambda\right)u_i^{k+1}\end{split}
+\end{equation*}
+Posed as a linear algebra problem:
+\begin{equation*}
+\begin{split}u^{k}=\mathbf{A}u^{k+1}\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+central element is \((1+2\lambda)\) and its adjacent diagonals are
+\(-\lambda\). For \(n\)-dimensional case, central element will
+then be \((1+2n\lambda)\) and \(u\) must be flattened (coerced
+into one dimension) and \(\mathbf{A}\) becomes a block tri-diagonal
+matrix.
+
+
+\subsubsection{Crank-Nicolson method}
+\label{\detokenize{diffusion:crank-nicolson-method}}
+Implicit method, second-order accurate that uses trapezoidal rule for
+integration time between forward and backward differences. Therefore,
+assuming \(u_t=f(u,t)\) then:
+\begin{equation*}
+\begin{split}\frac{u^{k+1}-u^k}{\Delta t}=\frac{1}{2}\left(f(u^k,t^k)+f(u^{k+1  },t^{k+1})\right)\end{split}
+\end{equation*}
+Applied to the diffusion problem in one dimension:
+\begin{equation*}
+\begin{split}\frac{\lambda}{2}\left(u_{i+1}^k+u_{i-1}^k\right)+\left(1-  \lambda\right)u_i^k=-\frac{\lambda}{2}\left(u_{i+1}^{k+1}+  u_{i-1}^{k+1}\right)+\left(1+\lambda\right)u_i^{k+1}\end{split}
+\end{equation*}
+Posed as a linear algebra problem:
+\begin{equation*}
+\begin{split}\mathbf{A}u^{k+1}=\mathbf{B}u^k\end{split}
+\end{equation*}
+Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix for
+\(k+1\) whose central element is \((1+\lambda)\) and its
+adjacent diagonals are \(-\frac{\lambda}{2}\). Similarly,
+:mathbf\{B\}: is the tri-diagonal matrix for \(k\) whose central
+element is \((1-\lambda)\) and its adjacent diagonals are
+\(\frac{\lambda}{2}\). For \(n\)-dimensional case, central
+elements will then be \((1+n\lambda)\) and \((1-n\lambda)\)
+for \(\mathbf{A}\) and \(\mathbf{B}\) respectively and
+\(u\) must be flattened (coerced into one dimension) as well as that
+coefficient matrices become block tri-diagonal matrices.
+
+
+\bigskip\hrule\bigskip
+
+
+Independently of the numerical method, it is assumed that the problem is
+posed in terms of linear algebra. This is, the current and next state
+of the diffusing field \(u\) can be expressed with matrix
+multiplication(s) as shown above.
+
+Currently only the coefficient matrix construction is available. To
+solve the diffusion problem user can use any of the available linear
+algebra solvers by providing the current diffusing field state
+(flattened) and the coefficient matrix on each time-step (or simple
+matrix multiplication for time explicit methods).
+\begin{itemize}
+\item {} 
+Simplest options are either \sphinxcode{\sphinxupquote{numpy.linalg.solve()}} or
+\sphinxcode{\sphinxupquote{scipy.linalg.solve()}} (both not very fast).
+
+\item {} 
+If the coefficient matrix is positive-definite (it is most of the
+times, but can be double-checked, specially if errors arise) and
+symmetric, a good option is Choleski’s factorization. This is already
+implemented in \sphinxcode{\sphinxupquote{scipy.linalg.cholesky()}} which factorizes the
+coefficient matrix and that can be passed to the
+\sphinxcode{\sphinxupquote{scipy.linalg.cho\_solve()}} which is way faster than the option above.
+
+\item {} 
+Another option (but don’t tell anyone) is to invert the coefficient
+matrix and just solve the equation with a matrix multiplication. This
+is way faster but your coefficient matrix has to be invertible. If
+the determinant is close to zero, may cause numerical instability.
+
+\end{itemize}
+
+
+\subsection{Contents}
+\label{\detokenize{diffusion:contents}}\index{build\_mat() (in module data\_tools.diffusion)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.euler_explicit1D}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{euler\_explicit1D}}}{\emph{x0}, \emph{dt}, \emph{dx2}, \emph{d=1}, \emph{bcs='periodic'}}{}
-Computes diffusion on a 1D space over a time-step using Euler
-explicit method.
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{cent}, \emph{neigh}, \emph{dims}, \emph{bcs='dirichlet'}}{}
+Builds a (block) tri-diagonal coefficient matrix to solve a
+n-dimensional diffusion problem as a linear algebraic system.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{x0} {[}numpy.ndarray{]}: Initial state of a 1D array from which
-the difusion is to be computed.
+\sphinxstyleemphasis{cent} {[}float{]}: The coefficient corresponding to the central
+element of the stencil.
 
 \item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Discretization time-step.
+\sphinxstyleemphasis{neigh} {[}float{]}: The coefficient corresponding to the direct
+neighbors of the central element in the stencil.
 
 \item {} 
-\sphinxstyleemphasis{dx2} {[}float{]}: Discretization spatial-step (squared).
+\sphinxstyleemphasis{dims} {[}list{]}: Or {[}tuple{]}, contains the size of finite
+elements {[}int{]} for each dimension. Note that the order is
+first dimension first (e.g.: \sphinxcode{\sphinxupquote{{[}x, y, z{]}}}) as opposed to
+numpy’s indexing order (last dimension first, e.g.:
+\sphinxcode{\sphinxupquote{{[}z, y, x{]}}}).
 
 \item {} 
-\sphinxstyleemphasis{d} {[}float{]}: Diffusion coefficient.
-
-\item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'periodic'}} by default. Determines
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'dirichlet'}} by default. Determines
 the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'{'}}} or \sphinxcode{\sphinxupquote{'neumann'}}.
+\sphinxcode{\sphinxupquote{'dirichlet'}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation.
 
 \end{itemize}
 
@@ -368,10 +567,348 @@ the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'perio
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}numpy.ndarray{]}: Computed state array (1D) after one time-step
-according to the parameters and conditions selected.
+{[}numpy.ndarray{]}: The (block) tri-diagonal coefficient matrix.
+Matrix will be square with size equal to the product of all
+dimension sizes.
 
 \end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{data\_tools.iterables (module)}
+
+\section{data\_tools.iterables}
+\label{\detokenize{iterables:data-tools-iterables}}\label{\detokenize{iterables::doc}}
+Iterable-type operations module.
+
+
+\subsection{Contents}
+\label{\detokenize{iterables:contents}}\index{bit\_or() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
+Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
+\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
+
+\item {} 
+\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+\PYG{g+go}{(1, 0, 1)}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{chunk\_this() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
+For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
+it (in the same order).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
+definded size.
+
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
+number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
+element returned will have an inferior size.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{find\_min() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
+Finds and returns the subset of vectors whose sum is minimum from a
+given set \sphinxstyleemphasis{A}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{in\_all() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
+Checks if a element \sphinxstyleemphasis{x} is present in all collections contained in a
+list \sphinxstyleemphasis{N}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x} {[}object{]}: Any type of object, it is assumed to be the same
+type as the objects contained in the elements of \sphinxstyleemphasis{N}.
+
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing a collection of
+other iterables containing the objects.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}bool{]}: \sphinxcode{\sphinxupquote{True}} if \sphinxstyleemphasis{x} is found in all elements of \sphinxstyleemphasis{N},
+\sphinxcode{\sphinxupquote{False}} otherwise.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set A}
+\PYG{g+gp}{... }     \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set B}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{True}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{False}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Hello}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{world}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{!}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }     \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Hello}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{user}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Hello}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{True}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{similarity() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{a}, \emph{b}, \emph{mode='j'}}{}
+Computes the similarity index between two sets. There are three
+options available:
+
+Jaccard (\sphinxcode{\sphinxupquote{mode='j'}}):
+\begin{equation*}
+\begin{split}s_J(A,B) = \frac{|A\cap B|}{|A\cup B|}\end{split}
+\end{equation*}
+Sorensen-Dice (\sphinxcode{\sphinxupquote{mode='sd'}}):
+\begin{equation*}
+\begin{split}s_{SD}(A,B) = \frac{2|A\cap B|}{|A|+|B|}\end{split}
+\end{equation*}
+Szymkiewicz\textendash{}Simpson (\sphinxcode{\sphinxupquote{mode='ss'}}):
+\begin{equation*}
+\begin{split}s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\end{split}
+\end{equation*}\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{a} {[}set{]}: One of the two sets to compute the similarity
+index.
+
+\item {} 
+\sphinxstyleemphasis{b} {[}set{]}: The other set to compute the similarity index.
+
+\item {} 
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
+for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}float{]}: The corresponding similarity index/coefficient
+according to the specified \sphinxstyleemphasis{mode}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{subsets() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
+Function that computes all possible logical relations between all
+sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
+that would represent each intersecting area on a Venn diagram.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}dict{]}: Collection of subsets according to the logical
+relations between the sets in \sphinxstyleemphasis{N}. The keys are binary codes
+that denote the logical relation (see examples below).
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Examples:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}11\PYGZsq{}: set([2]), \PYGZsq{}10\PYGZsq{}: set([0, 1]), \PYGZsq{}01\PYGZsq{}: set([3, 4])\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{g+go}{\PYGZob{}\PYGZsq{}010\PYGZsq{}: set([2]), \PYGZsq{}011\PYGZsq{}: set([3]), \PYGZsq{}001\PYGZsq{}: set([4]), \PYGZsq{}111\PYGZsq{}: set([}
+\PYG{g+go}{]), \PYGZsq{}110\PYGZsq{}: set([]), \PYGZsq{}100\PYGZsq{}: set([0]), \PYGZsq{}101\PYGZsq{}: set([1])\PYGZcb{}}
+\end{sphinxVerbatim}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{unzip\_dicts() (in module data\_tools.iterables)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{*dicts}}{}
+Unzips the keys and values for any number of dictionaries passed as
+arguments (see below for examples).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{*dicts} {[}dict{]}: Dictionaries from which key/value pairs are
+to be unzipped.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: Two-element list contianing all keys and all values
+respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{b} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{unzip\PYGZus{}dicts}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
+\PYG{g+go}{[(\PYGZsq{}y\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}a\PYGZsq{}, \PYGZsq{}x\PYGZus{}b\PYGZsq{}, \PYGZsq{}y\PYGZus{}b\PYGZsq{}), (3, 2, 1, \PYGZhy{}1)]}
+\end{sphinxVerbatim}
 
 \end{description}
 
@@ -384,10 +921,13 @@ according to the parameters and conditions selected.
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
 Model classes module.
-\index{DoseResponse (class in data\_tools.models)}
+
+
+\subsection{Contents}
+\label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0={[}1, 1, 1{]}, x\_scale={[}1, 1, 1{]}, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0=None, x\_scale=None, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
 Wrapper class for \sphinxcode{\sphinxupquote{scipy.optimize.least\_squares}} to fit
 dose-response curves on a pre-defined Hill function with the
 following form:
@@ -408,17 +948,19 @@ training data corresponding to the dose.
 training data corresponding to the response.
 
 \item {} 
-\sphinxstyleemphasis{x0} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+\sphinxstyleemphasis{x0} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Or any
 iterable of three elements. Contains the initial guess for the
 parameters. Parameters are considered to be in alphabetical
 order. This is, first element corresponds to \(k\), second
-is \(m\) and last is \(n\).
+is \(m\) and last is \(n\). If \sphinxcode{\sphinxupquote{None}} (default), the
+initial guess is inferred from \sphinxstyleemphasis{r\_data}.
 
 \item {} 
-\sphinxstyleemphasis{x\_scale} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}1, 1, 1{]}}} by default. Or any
+\sphinxstyleemphasis{x\_scale} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Or any
 iterable of three elements. Scale of each parameter. May
 improve the fitting if the scaled parameters have similar
-effect on the cost function.
+effect on the cost function. If \sphinxcode{\sphinxupquote{None}} (default), the scale
+is inferred from \sphinxstyleemphasis{x0}.
 
 \item {} 
 \sphinxstyleemphasis{bounds} {[}tuple{]}: Optional \sphinxcode{\sphinxupquote{({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}
@@ -434,6 +976,15 @@ iterables of three elements each).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Attributes:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x0} {[}list{]}: Contains the initial guess for the parameters.
+Parameters are considered to be in alphabetical order. This
+is, first element corresponds to \(k\), second is
+\(m\) and last is \(n\).
+
+\item {} 
+\sphinxstyleemphasis{x\_scale} {[}list{]}: Scale of each parameter.
+
 \item {} 
 \sphinxstyleemphasis{model} {[}scipy.optimize.OptimizeResult{]}: Contains the result
 of the optimized model. See \sphinxhref{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html\#scipy.optimize.OptimizeResult}{SciPy’s reference} for more
@@ -688,10 +1239,38 @@ score plot.
 \section{data\_tools.plots}
 \label{\detokenize{plots:data-tools-plots}}\label{\detokenize{plots::doc}}
 Plotting functions module.
+
+
+\subsection{Contents}
+\label{\detokenize{plots:contents}}\index{cmap\_bkgr (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from black (lowest) to lime green (highest).
+
+\end{fulllineitems}
+
+\index{cmap\_bkrd (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkrd}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkrd}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from black (lowest) to red (highest).
+
+\end{fulllineitems}
+
+\index{cmap\_rdbkgr (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_rdbkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_rdbkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from red (lowest) to black (middle) to lime
+green (highest).
+
+\end{fulllineitems}
+
 \index{density() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{sample\_col=False}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a density plot of the values on a data frame (row-wise).
 \begin{itemize}
 \item {} \begin{description}
@@ -699,12 +1278,17 @@ Generates a density plot of the values on a data frame (row-wise).
 \item {} 
 \sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Contains the values to generate the
 plot. Each row is considered as an individual sample while
-each column contains a measured value.
+each column contains a measured value unless otherwise stated
+by keyword argument \sphinxstyleemphasis{sample\_col}.
 
 \item {} 
 \sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.25}} by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.
+
+\item {} 
+\sphinxstyleemphasis{sample\_col} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Specifies
+whether the samples are column-wise or not.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -812,7 +1396,7 @@ combination of box and scatter plots of the gene-set scores.
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, sizes=False, title=None, filename=None, figsize=None}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
 between 2 and 5 (inclusive).
 \begin{itemize}
@@ -832,6 +1416,14 @@ default (matplotlib default colors). Any iterable containing
 color arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}}
 for red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
+
+\item {} 
+\sphinxstyleemphasis{pct} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Indicates
+whether to show percentages instead of absolute counts.
+
+\item {} 
+\sphinxstyleemphasis{sizes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
+include the size of the sets in the legend or not.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -960,25 +1552,31 @@ volcano plot.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{sets:module-data_tools.sets}}\index{data\_tools.sets (module)}
+\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)}
 
-\section{data\_tools.sets}
-\label{\detokenize{sets:data-tools-sets}}\label{\detokenize{sets::doc}}
-Set operations module.
-\index{bit\_or() (in module data\_tools.sets)}
+\section{data\_tools.spatial}
+\label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
+Spatial matrix module.
+
+
+\subsection{Contents}
+\label{\detokenize{spatial:contents}}\index{get\_boundaries() (in module data\_tools.spatial)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
-Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
-\sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
+Given an array, returns either the mask where the boundary edges are
+or their counts if specified.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{a} {[}tuple{]}: Or any iterable type.
+x {[}numpy.ndarray{]}: The array where boundaries are to be
+identified or counted. Data type of its elements is totally
+irrelevant.
 
 \item {} 
-\sphinxstyleemphasis{b} {[}tuple{]}: Or any iterable type.
+count {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
+return the number of boundary edges or just their mask.
 
 \end{itemize}
 
@@ -987,7 +1585,11 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
+{[}numpy.ndarray{]}: Same shape as \sphinxstyleemphasis{x}. If \sphinxcode{\sphinxupquote{counts=False}},
+contains \sphinxcode{\sphinxupquote{True}} on any cell that is on the boundary,
+\sphinxcode{\sphinxupquote{False}} otherwise. If \sphinxcode{\sphinxupquote{counts=True}}, will return a
+similar array but instead of {[}bool{]}, there will be {[}int{]}
+denoting the number of boundary edges of the cells.
 
 \end{itemize}
 
@@ -997,9 +1599,27 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 \item[{Examples:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
-\PYG{g+go}{(1, 0, 1)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{get\PYGZus{}boundaries}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{g+go}{array([[[ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True]],}
+\PYG{g+go}{       [[ True,  True,  True],}
+\PYG{g+go}{        [ True, False,  True],}
+\PYG{g+go}{        [ True,  True,  True]],}
+\PYG{g+go}{       [[ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True],}
+\PYG{g+go}{        [ True,  True,  True]]])}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{get\PYGZus{}boundaries}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{counts}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{g+go}{array([[[3, 2, 3],}
+\PYG{g+go}{        [2, 1, 2],}
+\PYG{g+go}{        [3, 2, 3]],}
+\PYG{g+go}{       [[2, 1, 2],}
+\PYG{g+go}{        [1, 0, 1],}
+\PYG{g+go}{        [2, 1, 2]],}
+\PYG{g+go}{       [[3, 2, 3],}
+\PYG{g+go}{        [2, 1, 2],}
+\PYG{g+go}{        [3, 2, 3]]])}
 \end{sphinxVerbatim}
 
 \end{description}
@@ -1008,21 +1628,21 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 
 \end{fulllineitems}
 
-\index{chunk\_this() (in module data\_tools.sets)}
+\index{neighbour\_count() (in module data\_tools.spatial)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
-For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
-it (in the same order).
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.neighbour_count}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{neighbour\_count}}}{\emph{x}}{}
+Given an array (up to three dimensions), returns another array with
+the same shape containing the counts of cells’ neighbours whose
+value is zero.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{L} {[}list{]}: The list to be sliced into sublists of the
-definded size.
-
-\item {} 
-\sphinxstyleemphasis{n} {[}int{]}: The size of the chunks.
+\sphinxstyleemphasis{x} {[}numpy.ndarray{]}: The array where to count the neighbours
+(zero-valued cells). Note that the cells can have any value
+or data type. As long as they be converted to {[}bool{]}, the
+function will count all \sphinxcode{\sphinxupquote{False}} around all \sphinxcode{\sphinxupquote{True}} cells.
 
 \end{itemize}
 
@@ -1031,9 +1651,8 @@ definded size.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
-number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
-element returned will have an inferior size.
+{[}numpy.ndarray{]}: Array with same shape as \sphinxstyleemphasis{x} containing the
+neighbour count.
 
 \end{itemize}
 
@@ -1043,148 +1662,19 @@ element returned will have an inferior size.
 \item[{Examples:}] \leavevmode
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{g+go}{[[0, 1], [2, 3], [4, 5]]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
-\PYG{g+go}{[[0, 1, 2, 3], [4, 5]]}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{find\_min() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
-Finds and returns the subset of vectors whose sum is minimum from a
-given set \sphinxstyleemphasis{A}.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{A} {[}set{]}: Set of vectors ({[}tuple{]} or any iterable).
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}set{]}: Subset of vectors in \sphinxstyleemphasis{A} whose sum is minimum.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
-\PYG{g+go}{set([(0, 1, 0), (1, 0, 0)])}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{in\_all() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
-Checks if a vector \sphinxstyleemphasis{x} is present in all sets contained in a list
-\sphinxstyleemphasis{N}.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{x} {[}tuple{]}: Or any hashable type as long as is the same
-contained in the sets of \sphinxstyleemphasis{N}.
-
-\item {} 
-\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}bool{]}: \sphinxcode{\sphinxupquote{True}} if \sphinxstyleemphasis{x} is found in all sets of \sphinxstyleemphasis{N}, \sphinxcode{\sphinxupquote{False}}
-otherwise.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set A}
-\PYG{g+gp}{... }     \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set B}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{True}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{in\PYGZus{}all}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{False}
-\end{sphinxVerbatim}
-
-\end{description}
-
-\end{itemize}
-
-\end{fulllineitems}
-
-\index{subsets() (in module data\_tools.sets)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{sets:data_tools.sets.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.sets.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
-Function that computes all possible logical relations between all
-sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
-that would represent each intersecting area on a Venn diagram.
-\begin{itemize}
-\item {} \begin{description}
-\item[{Arguments:}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Returns:}] \leavevmode\begin{itemize}
-\item {} 
-{[}dict{]}: Collection of subsets according to the logical
-relations between the sets in \sphinxstyleemphasis{N}. The keys are binary codes
-that denote the logical relation (see examples below).
-
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{\PYGZob{}\PYGZsq{}11\PYGZsq{}: set([2]), \PYGZsq{}10\PYGZsq{}: set([0, 1]), \PYGZsq{}01\PYGZsq{}: set([3, 4])\PYGZcb{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
-\PYG{g+go}{\PYGZob{}\PYGZsq{}010\PYGZsq{}: set([2]), \PYGZsq{}011\PYGZsq{}: set([3]), \PYGZsq{}001\PYGZsq{}: set([4]), \PYGZsq{}111\PYGZsq{}: set([}
-\PYG{g+go}{]), \PYGZsq{}110\PYGZsq{}: set([]), \PYGZsq{}100\PYGZsq{}: set([0]), \PYGZsq{}101\PYGZsq{}: set([1])\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x}
+\PYG{g+go}{array([[0, 0, 1, 1, 0],}
+\PYG{g+go}{       [0, 0, 0, 1, 1],}
+\PYG{g+go}{       [1, 0, 1, 1, 1],}
+\PYG{g+go}{       [0, 0, 0, 0, 0],}
+\PYG{g+go}{       [1, 0, 0, 1, 1]])}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{neighbour\PYGZus{}count}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{g+go}{array([[0, 0, 2, 1, 0],}
+\PYG{g+go}{       [0, 0, 0, 1, 1],}
+\PYG{g+go}{       [3, 0, 3, 1, 1],}
+\PYG{g+go}{       [0, 0, 0, 0, 0],}
+\PYG{g+go}{       [2, 0, 0, 2, 1]])}
 \end{sphinxVerbatim}
 
 \end{description}
@@ -1198,7 +1688,10 @@ that denote the logical relation (see examples below).
 \section{data\_tools.strings}
 \label{\detokenize{strings:data-tools-strings}}\label{\detokenize{strings::doc}}
 String operations module.
-\index{is\_numeric() (in module data\_tools.strings)}
+
+
+\subsection{Contents}
+\label{\detokenize{strings:contents}}\index{is\_numeric() (in module data\_tools.strings)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{s}}{}
@@ -1303,9 +1796,10 @@ Determines the separator between the joint strings.
 \bigletter{d}
 \item {\sphinxstyleindexentry{data\_tools.databases}}\sphinxstyleindexpageref{databases:\detokenize{module-data_tools.databases}}
 \item {\sphinxstyleindexentry{data\_tools.diffusion}}\sphinxstyleindexpageref{diffusion:\detokenize{module-data_tools.diffusion}}
+\item {\sphinxstyleindexentry{data\_tools.iterables}}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
 \item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
-\item {\sphinxstyleindexentry{data\_tools.sets}}\sphinxstyleindexpageref{sets:\detokenize{module-data_tools.sets}}
+\item {\sphinxstyleindexentry{data\_tools.spatial}}\sphinxstyleindexpageref{spatial:\detokenize{module-data_tools.spatial}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}
 

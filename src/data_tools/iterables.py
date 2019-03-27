@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 
 '''
-data_tools.sets
-===============
+data_tools.iterables
+====================
 
-Set operations module.
+Iterable-type operations module.
+
+Contents
+--------
 '''
 
-# XXX: Should the module be renamed to something more general?
-#      eg: collections, sequences...
+from __future__ import division
 
-__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'subsets']
+__all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'similarity',
+           'subsets', 'unzip_dicts']
 
 import itertools
 
@@ -94,17 +97,18 @@ def find_min(A):
 
 def in_all(x, N):
     '''
-    Checks if a vector *x* is present in all sets contained in a list
-    *N*.
+    Checks if a element *x* is present in all collections contained in a
+    list *N*.
 
     * Arguments:
-        - *x* [tuple]: Or any hashable type as long as is the same
-          contained in the sets of *N*.
-        - *N* [list]: Or any iterable type containing [set] objects.
+        - *x* [object]: Any type of object, it is assumed to be the same
+          type as the objects contained in the elements of *N*.
+        - *N* [list]: Or any iterable type containing a collection of
+          other iterables containing the objects.
 
     * Returns:
-        - [bool]: ``True`` if *x* is found in all sets of *N*, ``False``
-          otherwise.
+        - [bool]: ``True`` if *x* is found in all elements of *N*,
+          ``False`` otherwise.
 
     * Examples:
         >>> N = [{(0, 0), (0, 1)}, # <- set A
@@ -115,9 +119,15 @@ def in_all(x, N):
         >>> y = (0, 1)
         >>> in_all(y, N)
         False
+        >>> N = [['Hello', 'world', '!'],
+        ...      ['Hello', 'user']]
+        >>> x = 'Hello'
+        >>> in_all(x, N)
+        True
     '''
 
     for s in N:
+
         if x in s:
             pass
 
@@ -125,6 +135,66 @@ def in_all(x, N):
             return False
 
     return True
+
+
+def similarity(a, b, mode='j'):
+    '''
+    Computes the similarity index between two sets. There are three
+    options available:
+
+    Jaccard (``mode='j'``):
+
+    .. math::
+        s_J(A,B) = \\frac{|A\\cap B|}{|A\\cup B|}
+
+    Sorensen-Dice (``mode='sd'``):
+
+    .. math::
+        s_{SD}(A,B) = \\frac{2|A\\cap B|}{|A|+|B|}
+
+    Szymkiewicz–Simpson (``mode='ss'``):
+
+    .. math::
+        s_{SS}(A,B) = \\frac{|A\\cap B|}{\\min(|A|,|B|)}
+
+    * Arguments:
+        - *a* [set]: One of the two sets to compute the similarity
+          index.
+        - *b* [set]: The other set to compute the similarity index.
+        - *mode* [str]: Optional, ``'j'`` (Jaccard) by default.
+          Indicates which type of similarity index/coefficient is to be
+          computed. Available options are: ``'j'`` for Jaccard, ``'sd'``
+          for Sorensen-Dice and ``'ss'`` for Szymkiewicz–Simpson.
+
+    * Returns:
+        - [float]: The corresponding similarity index/coefficient
+          according to the specified *mode*.
+    '''
+
+    sa, sb = map(set, (a, b))
+
+    if len(sa) == 0 or len(sb) == 0:
+        print "WARNING: at least one of the sets' size is 0"
+        return np.nan
+
+    inter = len(sa.intersection(sb))
+
+    if mode == 'j':
+        num = inter
+        den = len(sa.union(sb))
+
+    elif mode == 'sd':
+        num = 2 * inter
+        den = sum(map(len, (sa, sb)))
+
+    elif mode == 'ss':
+        num = inter
+        den = min(map(len, (sa, sb)))
+
+    num, den = map(float, (num, den))
+
+    return num / den
+
 
 
 def subsets(N):
@@ -165,3 +235,26 @@ def subsets(N):
         result[''.join(c)] = lhs.difference(rhs)
 
     return result
+
+
+def unzip_dicts(*dicts):
+    '''
+    Unzips the keys and values for any number of dictionaries passed as
+    arguments (see below for examples).
+
+    * Arguments:
+        - *\*dicts* [dict]: Dictionaries from which key/value pairs are
+          to be unzipped.
+
+    * Returns:
+        - [list]: Two-element list contianing all keys and all values
+          respectively from the dictionaries in *\*dicts*.
+
+    * Example:
+        >>> a = dict([('x_a', 2), ('y_a', 3)])
+        >>> b = dict([('x_b', 1), ('y_b', -1)])
+        >>> unzip_dicts(a, b)
+        [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)]
+    '''
+
+    return zip(*[(k, v) for d in dicts for (k, v) in d.items()])
