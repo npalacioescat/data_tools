@@ -174,7 +174,7 @@ def similarity(a, b, mode='j'):
 
     if len(sa) == 0 or len(sb) == 0:
         print "WARNING: at least one of the sets' size is 0"
-        return 0
+        return np.nan
 
     inter = len(sa.intersection(sb))
 
