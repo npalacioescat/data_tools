@@ -10,7 +10,7 @@ Contents
 --------
 '''
 
-from __future__ import division
+from __future__ import division, print_function
 
 __all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'similarity',
            'subsets', 'unzip_dicts']
@@ -174,7 +174,7 @@ def similarity(a, b, mode='j'):
     sa, sb = map(set, (a, b))
 
     if len(sa) == 0 or len(sb) == 0:
-        print "WARNING: at least one of the sets' size is 0"
+        print("WARNING: at least one of the sets' size is 0")
         return np.nan
 
     inter = len(sa.intersection(sb))
