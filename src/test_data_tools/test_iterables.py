@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 __all__ = ['BitOrTestCase', 'ChunkThisTestCase', 'FindMinTestCase',
-           'InAllTestCase', 'SubsetsTestCase', 'UnzipDictsTestCase']
+           'InAllTestCase', 'SimilarityTestCase', 'SubsetsTestCase',
+           'UnzipDictsTestCase']
 
 import unittest
+
+import numpy as np
 
 from data_tools import iterables
 
@@ -72,6 +75,24 @@ class InAllTestCase(unittest.TestCase):
              {2, 4, 5, 8}]
         self.assertTrue(iterables.in_all(2, N))
         self.assertFalse(iterables.in_all(8, N))
+
+
+class SimilarityTestCase(unittest.TestCase):
+    def setUp(self):
+        self.a = {0, 1, 2, 3}
+        self.b = {0, 1}
+
+    def test_jaccard(self):
+        self.assertEqual(iterables.similarity(a, b), 0.5)
+
+    def test_sorensen_dice(self):
+        self.assertEqual(iterables.similarity(a, b, mode='sd'), 2./3.)
+
+    def test_szymkiewicz_simpson(self):
+        self.assertEqual(iterables.similarity(a, b, mode='ss'), 1.)
+
+    def test_empty_set(self):
+        self.assertEqual(iterables.similarity(a, set()), np.nan)
 
 
 class SubsetsTestCase(unittest.TestCase):
