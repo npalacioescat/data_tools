@@ -24,7 +24,6 @@ A full copy of the GNU General Public License can be found on file
 "LICENSE.md". If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 import data_tools.__info__ as __info__
 import data_tools.databases as databases
 import data_tools.diffusion as diffusion

@@ -182,6 +182,7 @@ from data_tools.strings import is_numeric
 # XXX: implement wrappers for the different numerical methods?
 # XXX: implement solver wrapper?
 
+
 def build_mat(cent, neigh, dims, bcs='dirichlet'):
     '''
     Builds a (block) tri-diagonal coefficient matrix to solve a

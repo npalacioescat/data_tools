@@ -4,7 +4,6 @@ import os
 import imp
 from setuptools import setup, find_packages
 
-
 __info__ = imp.load_source('__info__', os.path.join('src', 'data_tools',
                                                     '__info__.py'))
 
