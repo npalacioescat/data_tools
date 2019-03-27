@@ -53,10 +53,10 @@ if __name__ == '__main__':
     print 'TOTAL ran %d tests in %.3fs\n' % (sum(run), time.time() - start)
     print msg
 
-#    if sum(fail + err) > 0:
-#        sys.exit(1)
+    if sum(fail + err) == 0:
+        sys.exit(0)
 
-#    else:
-#        sys.exit(0)
+    else:
+        sys.exit(1)
 fail
 err
