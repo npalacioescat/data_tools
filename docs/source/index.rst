@@ -8,11 +8,18 @@ data_tools' manual
 ##################
 
 .. only:: html
-
-   .. image:: https://img.shields.io/badge/release-v0.0.6-blue.svg
+   .. image:: https://travis-ci.com/Nic-Nic/data_tools.svg?branch=master
+      :alt: Build Status
+      :target: https://travis-ci.com/Nic-Nic/data_tools
+   .. image:: https://img.shields.io/github/tag/Nic-Nic/data_tools.svg
       :alt: GitHub release
-   .. image:: https://img.shields.io/badge/tests-100%25_passed-brightgreen.svg
-      :alt: Tests output
+      :target: https://github.com/Nic-Nic/data_tools/releases
+   .. image:: https://img.shields.io/github/issues/Nic-Nic/data_tools.svg
+      :alt: Issues
+      :target: https://github.com/Nic-Nic/data_tools/issues
+   .. image:: https://img.shields.io/github/license/Nic-Nic/data_tools.svg
+      :alt: License
+      :target: ../../LICENSE.md
 
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
