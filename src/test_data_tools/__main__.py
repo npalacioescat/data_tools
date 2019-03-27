@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
+import sys
 import os
 import time
 import unittest
@@ -18,6 +19,7 @@ if __name__ == '__main__':
     test_loader = unittest.TestLoader()
     run = []
     skip = []
+    err = []
     fail = []
 
     for submod in [m for m in dir(test_data_tools) if m.startswith('test_')]:
@@ -29,13 +31,20 @@ if __name__ == '__main__':
         res = unittest.TextTestRunner(verbosity=2).run(test_suite)
         run.append(res.testsRun)
         skip.append(len(res.skipped))
-        fail.append(len(res.errors))
+        err.append(len(res.errors))
+        fail.append(len(res.failures))
 
-    if sum(fail) == 0:
+    if sum(fail + err) == 0:
         msg = 'OK'
 
     else:
-        msg = 'FAILED (errors=%d)' % sum(fail)
+        msg = 'FAILED'
+
+        if sum(fail) > 0:
+            msg += ' (failures=%d)' % sum(fail)
+
+        if sum(err) > 0:
+            msg += ' (errors=%d)' % sum(err)
 
     if sum(skip) != 0:
         msg += ' (skipped=%d)' % sum(skip)
@@ -43,3 +52,11 @@ if __name__ == '__main__':
     print '=' * 70
     print 'TOTAL ran %d tests in %.3fs\n' % (sum(run), time.time() - start)
     print msg
+
+#    if sum(fail + err) > 0:
+#        sys.exit(1)
+
+#    else:
+#        sys.exit(0)
+fail
+err
