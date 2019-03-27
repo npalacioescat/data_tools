@@ -92,7 +92,7 @@ class SimilarityTestCase(unittest.TestCase):
         self.assertEqual(iterables.similarity(self.a, self.b, mode='ss'), 1.)
 
     def test_empty_set(self):
-        self.assertEqual(iterables.similarity(self.a, set()), np.nan)
+        self.assertTrue(np.isnan(iterables.similarity(self.a, set())))
 
 
 class SubsetsTestCase(unittest.TestCase):
