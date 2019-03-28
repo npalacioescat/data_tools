@@ -15,9 +15,14 @@ from __future__ import division, print_function
 __all__ = ['bit_or', 'chunk_this', 'find_min', 'in_all', 'similarity',
            'subsets', 'unzip_dicts']
 
+import sys
 import itertools
+from functools import reduce
 
 import numpy as np
+
+if sys.version_info < (3,):
+    range = xrange
 
 
 def bit_or(a, b):
@@ -68,7 +73,7 @@ def chunk_this(L, n):
         [[0, 1, 2, 3], [4, 5]]
     '''
 
-    return [L[i:i + n] for i in xrange(0, len(L), n)]
+    return [L[i:i + n] for i in range(0, len(L), n)]
 
 
 def find_min(A):
@@ -89,7 +94,7 @@ def find_min(A):
     '''
 
     A = list(A)
-    sums = np.array(map(sum, A))
+    sums = np.array(list(map(sum, A)))
     idx_mins = np.where(sums == min(sums))[0]
 
     return {A[i] for i in idx_mins}
@@ -257,4 +262,4 @@ def unzip_dicts(*dicts):
         [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)]
     '''
 
-    return zip(*[(k, v) for d in dicts for (k, v) in d.items()])
+    return list(zip(*[(k, v) for d in dicts for (k, v) in d.items()]))
