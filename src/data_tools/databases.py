@@ -63,7 +63,7 @@ def kegg_link(query, target='pathway'):
     req = Request(url_full)
     response = urlopen(req)
 
-    page = response.read(200000).decode('utf-8')
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=False)
 
@@ -128,7 +128,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     req = Request(full_url)
     response = urlopen(req)
 
-    page = response.read(500000)
+    page = response.read(999999)
 
     # Now extract the image from the HTML page
     # There must be a cleaner way to parse the HTML file, but...
@@ -172,7 +172,7 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
     req = Request('?&'.join([url, data]))
 
     response = urlopen(req)
-    page = response.read(200000).decode('utf-8')
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=True)
 
@@ -226,7 +226,7 @@ def up_map(query, source='ACC', target='GENENAME'):
     req = Request(url, data)
     response = urlopen(req)
 
-    page = response.read(200000).decode('utf-8')
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=True)
     df.columns = [source, target]
@@ -238,6 +238,7 @@ def up_map(query, source='ACC', target='GENENAME'):
 
 
 def to_df(page, header=False):
+
     if header:
         aux = [i.split('\t') for i in page.split('\n')[:-1]]
         return pd.DataFrame(aux[1:], columns=aux[0])
