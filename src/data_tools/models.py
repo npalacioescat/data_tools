@@ -10,6 +10,8 @@ Contents
 --------
 '''
 
+from __future__ import print_function
+
 __all__ = ['DoseResponse', 'Lasso']
 
 import time
@@ -17,6 +19,7 @@ import time
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from scipy.optimize import least_squares
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import KFold as kf
 from sklearn.model_selection import ShuffleSplit as ss

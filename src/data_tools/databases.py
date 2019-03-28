@@ -18,11 +18,11 @@ import urllib
 
 try:
     from urllib.request import urlopen
-    from urllib.request import Request as request
+    from urllib.request import Request as Request
 
 except ImportError:
     from urllib2 import urlopen
-    from urllib2 import Request as request
+    from urllib2 import Request as Request
 
 #if sys.version.startswith('2.'):
 #    import urllib2
@@ -63,12 +63,7 @@ def kegg_link(query, target='pathway'):
     data = '+'.join(query)
     url_full = '/'.join([url, target, data])
 
-#    if sys.version.startswith('2.'):
-#        request = urllib2.Request(url_full)
-#        response = urllib2.urlopen(request)
-
-#    else:
-    req = request(url_full)
+    req = Request(url_full)
     response = urlopen(req)
 
     page = response.read(200000)
@@ -133,12 +128,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
                 'much abstraction to show any relevant information.\nYou ' +
                 'can explore your query here:\n' + full_url)
 
-#    if sys.version.startswith('2.'):
-#        request = urllib2.Request(full_url)
-#        response = urllib2.urlopen(request)
-
-#    else:
-    req = request(full_url)
+    req = Request(full_url)
     response = urlopen(req)
 
     page = response.read(500000)
@@ -182,9 +172,9 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
 
     data = urllib.urlencode(params)
 
-    request = urllib2.Request('?&'.join([url, data]))
+    req = Request('?&'.join([url, data]))
 
-    response = urllib2.urlopen(request)
+    response = urlopen(req)
     page = response.read()
 
     df = to_df(page, header=True)
@@ -237,13 +227,7 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     data = urllib.urlencode(params)
 
-
-#    if sys.version.startswith('2.'):
-#        request = urllib2.Request(url, data)
-#        response = urllib2.urlopen(request)
-
-#    else:
-    req = request(url, data)
+    req = Request(url, data)
     response = urlopen(req)
 
     page = response.read(200000)
