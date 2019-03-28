@@ -8,16 +8,26 @@ data_tools' manual
 ##################
 
 .. only:: html
+
+   .. image:: https://img.shields.io/badge/python-2.7-blue.svg
+      :alt: Python version supported
+      :target: https://www.python.org/
+   .. image:: https://img.shields.io/github/tag/Nic-Nic/data_tools.svg?color=blue
+      :alt: GitHub release
+      :target: https://github.com/Nic-Nic/data_tools/releases
    .. image:: https://travis-ci.com/Nic-Nic/data_tools.svg?branch=master
       :alt: Build Status
       :target: https://travis-ci.com/Nic-Nic/data_tools
-   .. image:: https://img.shields.io/github/tag/Nic-Nic/data_tools.svg
-      :alt: GitHub release
-      :target: https://github.com/Nic-Nic/data_tools/releases
    .. image:: https://img.shields.io/github/issues/Nic-Nic/data_tools.svg
       :alt: Issues
       :target: https://github.com/Nic-Nic/data_tools/issues
-   .. image:: https://img.shields.io/github/license/Nic-Nic/data_tools.svg
+   .. image:: https://img.shields.io/github/issues-pr/Nic-Nic/data_tools.svg
+      :alt: Pull requests
+      :target: https://github.com/Nic-Nic/data_tools/pulls
+   .. image:: https://img.shields.io/website/https/nic-nic.github.io/data_tools/html/index.html.svg?down_color=red&down_message=offline&up_message=online
+      :alt: Webpage status
+      :target: https://nic-nic.github.io/data_tools/html/index.html
+   .. image:: https://img.shields.io/github/license/Nic-Nic/data_tools.svg?color=blue
       :alt: License
       :target: ../../LICENSE.md
 

@@ -1,11 +1,12 @@
 # data_tools
 
+[![Python version supported](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/)
+[![GitHub release](https://img.shields.io/github/tag/Nic-Nic/data_tools.svg?color=blue)](https://github.com/Nic-Nic/data_tools/releases)
 [![Build Status](https://travis-ci.com/Nic-Nic/data_tools.svg?branch=master)](https://travis-ci.com/Nic-Nic/data_tools)
-[![GitHub release](https://img.shields.io/github/tag/Nic-Nic/data_tools.svg)](https://github.com/Nic-Nic/data_tools/releases)
 [![Issues](https://img.shields.io/github/issues/Nic-Nic/data_tools.svg)](https://github.com/Nic-Nic/data_tools/issues)
-[![License](https://img.shields.io/github/license/Nic-Nic/data_tools.svg)](LICENSE.md)
-
-
+[![Pull requests](https://img.shields.io/github/issues-pr/Nic-Nic/data_tools.svg)](https://github.com/Nic-Nic/data_tools/pulls)
+[![Website status](https://img.shields.io/website/https/nic-nic.github.io/data_tools/html/index.html.svg?down_color=red&down_message=offline&up_message=online)](https://nic-nic.github.io/data_tools/html/index.html)
+[![License](https://img.shields.io/github/license/Nic-Nic/data_tools.svg?color=blue)](LICENSE.md)
 
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
