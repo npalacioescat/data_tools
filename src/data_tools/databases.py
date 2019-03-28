@@ -223,7 +223,7 @@ def up_map(query, source='ACC', target='GENENAME'):
               'format=tab']
     data = '&'.join(params)
 
-    req = Request(url, data)
+    req = Request('?'.join([url, data]))
     response = urlopen(req)
 
     page = response.read(999999).decode('utf-8')
