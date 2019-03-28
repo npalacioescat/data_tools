@@ -68,4 +68,4 @@ def join_str_lists(a, b, sep=''):
         ['a_1', 'b_2']
     '''
 
-    return map(sep.join, zip(a, b))
+    return list(map(sep.join, zip(a, b)))
