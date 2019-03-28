@@ -72,6 +72,7 @@ def chunk_this(L, n):
         >>> chunk_this(L, 4)
         [[0, 1, 2, 3], [4, 5]]
     '''
+    L = list(L)
 
     return [L[i:i + n] for i in range(0, len(L), n)]
 

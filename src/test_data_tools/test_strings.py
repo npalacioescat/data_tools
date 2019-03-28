@@ -33,8 +33,8 @@ class JoinStrListsTestCase(unittest.TestCase):
                          ['a1', 'b2'])
 
     def test_sep(self):
-        self.assertEqual(strings.join_str_lists(['a', 'b'], ['1', '2'], sep='_'),
-                         ['a_1', 'b_2'])
+        self.assertEqual(strings.join_str_lists(['a', 'b'], ['1', '2'],
+                                                sep='_'), ['a_1', 'b_2'])
 
     def test_non_str(self):
         with self.assertRaises(TypeError):
