@@ -63,7 +63,7 @@ def kegg_link(query, target='pathway'):
     req = Request(url_full)
     response = urlopen(req)
 
-    page = str(response.read(200000))
+    page = response.read(200000).decode('utf-8')
 
     df = to_df(page, header=False)
 
@@ -121,9 +121,9 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     full_url = url + params
 
     if mapid.endswith('01100'):
-        return ('Skipping the query for %s: Metabolic Pathways.\nToo ' %mapid +
-                'much abstraction to show any relevant information.\nYou ' +
-                'can explore your query here:\n' + full_url)
+        return ('Skipping the query for %s: Metabolic Pathways.\nToo ' % mapid
+                + 'much abstraction to show any relevant information.\nYou '
+                + 'can explore your query here:\n' + full_url)
 
     req = Request(full_url)
     response = urlopen(req)
@@ -172,7 +172,7 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
     req = Request('?&'.join([url, data]))
 
     response = urlopen(req)
-    page = str(response.read(200000))
+    page = response.read(200000).decode('utf-8')
 
     df = to_df(page, header=True)
 
@@ -226,7 +226,7 @@ def up_map(query, source='ACC', target='GENENAME'):
     req = Request(url, data)
     response = urlopen(req)
 
-    page = str(response.read(200000))
+    page = response.read(200000).decode('utf-8')
 
     df = to_df(page, header=True)
     df.columns = [source, target]
