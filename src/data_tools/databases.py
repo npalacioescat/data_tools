@@ -24,9 +24,6 @@ except ImportError:
     from urllib2 import urlopen
     from urllib2 import Request as Request
 
-#if sys.version.startswith('2.'):
-#    import urllib2
-
 import pandas as pd
 
 
@@ -66,7 +63,7 @@ def kegg_link(query, target='pathway'):
     req = Request(url_full)
     response = urlopen(req)
 
-    page = response.read(200000)
+    page = str(response.read(200000))
 
     df = to_df(page, header=False)
 
@@ -166,16 +163,16 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
 
     url = 'http://omnipathdb.org/ptms'
 
-    params = {'types':'phosphorylation,dephosphorylation' if incl_phosphatases
-                      else 'phosphorylation',
-              'organisms':organism}
-
-    data = urllib.urlencode(params)
+    params = ['organisms=%s' % organism,
+              'types=%s' % ','.join(['phosphorylation', 'dephosphorylation']
+                                    if incl_phosphatases
+                                    else ['phosphorylation'])]
+    data = '&'.join(params)
 
     req = Request('?&'.join([url, data]))
 
     response = urlopen(req)
-    page = response.read()
+    page = str(response.read(200000))
 
     df = to_df(page, header=True)
 
@@ -220,17 +217,16 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     url = 'https://www.uniprot.org/uploadlists/'
 
-    params = {'from':source,
-              'to':target,
-              'format':'tab',
-              'query':' '.join(query)}
-
-    data = urllib.urlencode(params)
+    params = ['from=%s' % source,
+              'to=%s' % target,
+              'query=%s' % '+'.join(query),
+              'format=tab']
+    data = '&'.join(params)
 
     req = Request(url, data)
     response = urlopen(req)
 
-    page = response.read(200000)
+    page = str(response.read(200000))
 
     df = to_df(page, header=True)
     df.columns = [source, target]
