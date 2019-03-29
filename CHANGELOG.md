@@ -1,6 +1,8 @@
 # data_tools version history
 
 ## v0.0.8 (WIP):
+- In `plots` module:
+    - Function `similarity_heatmap`
 
 ## v0.0.7:
 - Support for Python 3.x versions.

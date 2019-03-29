@@ -16,6 +16,7 @@ __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
            'piano_consensus', 'venn', 'volcano']
 
 import sys
+import itertools
 
 import numpy as np
 import pandas as pd
@@ -24,7 +25,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 
-from data_tools.iterables import subsets
+from data_tools.iterables import subsets, similarity
 
 if sys.version_info < (3,):
     range = xrange
@@ -187,6 +188,51 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
         ax.set_title(title)
 
     ax.legend(loc=0)
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    return fig
+
+
+def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
+                       title=None, filename=None, figsize=None):
+    '''
+    '''
+
+    sims = []
+
+    for (a, b) in itertools.product(groups, repeat=2):
+        sims.append(similarity(a, b, mode=mode))
+
+    # Convert similarity indices to square matrix
+    sims = np.array(sims).reshape(len(groups), len(groups))
+
+    # Plotting heatmap for a given similarity index
+    fig, ax = plt.subplots(figsize=figsize)
+    im = ax.imshow(sims, cmap=cmap, interpolation='none')
+    fig.colorbar(im)
+
+    if labels:
+
+        try:
+            a, b = map(len, [groups, labels])
+            assert a == b
+
+        except AssertionError as e:
+            raise e('Invalid length of labels %d != %d' % (a, b))
+
+        rng = range(len(groups))
+
+        ax.set_xticks(rng)
+        ax.set_xticklabels(labels, rotation=90)
+        ax.set_yticks(rng)
+        ax.set_yticklabels(labels)
+
+    if title:
+        ax.set_title(title)
+
     fig.tight_layout()
 
     if filename:
