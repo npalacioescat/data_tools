@@ -4,6 +4,7 @@ __all__ = ['KeggLinkTestCase', 'KeggPathwayMappingTestCase',
            'OpKinaseSubstrateTestCase', 'UpMapTestCase']
 
 import unittest
+from urllib.error import URLError
 
 import pandas as pd
 
@@ -54,7 +55,12 @@ class OpKinaseSubstrateTestCase(unittest.TestCase):
 
 class UpMapTestCase(unittest.TestCase):
     def setUp(self):
-        self.result = databases.up_map(['P00533', 'P31749', 'P16220'])
+        try:
+            self.result = databases.up_map(['P00533', 'P31749', 'P16220'])
+
+        except URLError:
+            self.skipTest('Skipping test: UniProt server is not responding')
+
         self.expected = pd.DataFrame([['P00533', 'EGFR'],
                                       ['P31749', 'AKT1'],
                                       ['P16220', 'CREB1']],
