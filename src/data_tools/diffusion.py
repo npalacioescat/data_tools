@@ -177,7 +177,6 @@ import numpy as np
 from scipy.sparse import block_diag
 
 from data_tools.spatial import get_boundaries
-from data_tools.strings import is_numeric
 
 # XXX: implement wrappers for the different numerical methods?
 # XXX: implement solver wrapper?
@@ -210,17 +209,19 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
     '''
 
     try:
-        dims = map(int, dims)
+        assert type(dims) in [list, tuple]
 
-    except TypeError as e:
-
-        if is_numeric(dims):
-            dims = map(int, [dims])
-
-        else:
-            raise e
+    except AssertionError:
+        dims = [dims]
 
     for i, n in enumerate(dims):
+
+        try:
+            n = int(n)
+
+        except (ValueError, TypeError) as e:
+            raise(e.__class__('Invalid dimension %d with value %s of type %s'
+                  % (i, n, type(n))))
 
         if i == 0:
             mat = (np.eye(n) * cent

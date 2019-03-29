@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import sys
 import os
 import time
@@ -11,9 +13,9 @@ import test_data_tools
 if __name__ == '__main__':
     start = time.time()
 
-    print '\nWelcome to data_tools test suite'
-    print '################################\n'
-    print 'Session started @ %s' % time.strftime('%a %d %b %Y - %H:%M')
+    print('\nWelcome to data_tools test suite')
+    print('################################\n')
+    print('Session started @ %s' % time.strftime('%a %d %b %Y - %H:%M'))
 
     test_loader = unittest.TestLoader()
     run = []
@@ -23,7 +25,7 @@ if __name__ == '__main__':
 
     for submod in [m for m in dir(test_data_tools) if m.startswith('test_')]:
         msg = 'Running tests for submodule %s' % submod.replace('test_', '')
-        print '\n%s\n%s' % (msg, '=' * len(msg))
+        print('\n%s\n%s' % (msg, '=' * len(msg)))
 
         test_suite = test_loader.loadTestsFromModule(getattr(test_data_tools,
                                                              submod))
@@ -48,14 +50,12 @@ if __name__ == '__main__':
     if sum(skip) != 0:
         msg += ' (skipped=%d)' % sum(skip)
 
-    print '=' * 70
-    print 'TOTAL ran %d tests in %.3fs\n' % (sum(run), time.time() - start)
-    print msg
+    print('=' * 70)
+    print('TOTAL ran %d tests in %.3fs\n' % (sum(run), time.time() - start))
+    print(msg)
 
     if sum(fail + err) == 0:
         sys.exit(0)
 
     else:
         sys.exit(1)
-fail
-err

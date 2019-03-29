@@ -10,8 +10,12 @@ Contents
 --------
 '''
 
+from __future__ import absolute_import
+
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
            'piano_consensus', 'venn', 'volcano']
+
+import sys
 
 import numpy as np
 import pandas as pd
@@ -21,6 +25,9 @@ from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 
 from data_tools.iterables import subsets
+
+if sys.version_info < (3,):
+    range = xrange
 
 #: Custom colormap, gradient from black (lowest) to lime green (highest).
 cmap_bkgr = LinearSegmentedColormap.from_list(name='BkGr',
@@ -76,7 +83,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
 
     fig, ax = plt.subplots(figsize=figsize)
 
-    for i in xrange(len(df)):
+    for i in range(len(df)):
         ys = df.iloc[i, :].dropna()
         xs = np.linspace(min(ys), max(ys), 1000)
 

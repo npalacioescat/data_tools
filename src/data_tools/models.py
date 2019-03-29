@@ -10,13 +10,15 @@ Contents
 --------
 '''
 
+from __future__ import print_function
+
 __all__ = ['DoseResponse', 'Lasso']
 
 import time
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from scipy.optimize import least_squares
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import KFold as kf
@@ -276,11 +278,11 @@ class Lasso(LogisticRegressionCV):
         self.predictors.sort_values(ascending=False, inplace=True)
 
         if not silent:
-            print 'Model trained, elapsed time %.3f s.' %(time.time() -
-                                                          start)
-            print 'Number of predictors: %d.' %len(self.predictors)
-            print 'Accuracy = %.4f.' %self.accuracy
-            print 'Optimum C = %.6f.\n' %self.C_[0]
+            print('Model trained, elapsed time %.3f s.' %(time.time() -
+                                                          start))
+            print('Number of predictors: %d.' %len(self.predictors))
+            print('Accuracy = %.4f.' %self.accuracy)
+            print('Optimum C = %.6f.\n' %self.C_[0])
 
     # TODO: add example figure
     def plot_score(self, filename=None, figsize=None):

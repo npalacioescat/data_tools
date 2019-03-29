@@ -49,8 +49,12 @@
 <span class="sd">--------</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cmap_bkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;cmap_bkrd&#39;</span><span class="p">,</span><span class="s1">&#39;cmap_rdbkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;density&#39;</span><span class="p">,</span>
            <span class="s1">&#39;piano_consensus&#39;</span><span class="p">,</span> <span class="s1">&#39;venn&#39;</span><span class="p">,</span> <span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -60,6 +64,9 @@
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.iterables</span> <span class="k">import</span> <span class="n">subsets</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+    <span class="nb">range</span> <span class="o">=</span> <span class="n">xrange</span>
 
 <span class="c1">#: Custom colormap, gradient from black (lowest) to lime green (highest).</span>
 <span class="n">cmap_bkgr</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;BkGr&#39;</span><span class="p">,</span>
@@ -115,7 +122,7 @@
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
         <span class="n">ys</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
         <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
 

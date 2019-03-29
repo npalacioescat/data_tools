@@ -13,8 +13,16 @@ Contents
 __all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',
            'up_map']
 
+import sys
 import urllib
-import urllib2
+
+try:
+    from urllib.request import urlopen
+    from urllib.request import Request as Request
+
+except ImportError:
+    from urllib2 import urlopen
+    from urllib2 import Request as Request
 
 import pandas as pd
 
@@ -50,10 +58,12 @@ def kegg_link(query, target='pathway'):
     url = 'http://rest.kegg.jp/link'
 
     data = '+'.join(query)
-    request = urllib2.Request('/'.join([url, target, data]))
+    url_full = '/'.join([url, target, data])
 
-    response = urllib2.urlopen(request)
-    page = response.read()
+    req = Request(url_full)
+    response = urlopen(req)
+
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=False)
 
@@ -108,16 +118,17 @@ def kegg_pathway_mapping(df, mapid, filename=None):
                            for i, (dbentry, bgc, fgc) in df.iterrows()])
 
     params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' %(mapid, query)
+    full_url = url + params
 
     if mapid.endswith('01100'):
-        return ('Skipping the query for %s: Metabolic Pathways.\nToo ' %mapid +
-                'much abstraction to show any relevant information.\nYou ' +
-                'can explore your query here:\n' + url + params)
+        return ('Skipping the query for %s: Metabolic Pathways.\nToo ' % mapid
+                + 'much abstraction to show any relevant information.\nYou '
+                + 'can explore your query here:\n' + full_url)
 
-    request = urllib2.Request(url + params)
+    req = Request(full_url)
+    response = urlopen(req)
 
-    response = urllib2.urlopen(request)
-    page = response.read()
+    page = response.read(999999)
 
     # Now extract the image from the HTML page
     # There must be a cleaner way to parse the HTML file, but...
@@ -152,16 +163,16 @@ def op_kinase_substrate(organism='9606', incl_phosphatases=False):
 
     url = 'http://omnipathdb.org/ptms'
 
-    params = {'types':'phosphorylation,dephosphorylation' if incl_phosphatases
-                      else 'phosphorylation',
-              'organisms':organism}
+    params = ['organisms=%s' % organism,
+              'types=%s' % ','.join(['phosphorylation', 'dephosphorylation']
+                                    if incl_phosphatases
+                                    else ['phosphorylation'])]
+    data = '&'.join(params)
 
-    data = urllib.urlencode(params)
+    req = Request('?&'.join([url, data]))
 
-    request = urllib2.Request('?&'.join([url, data]))
-
-    response = urllib2.urlopen(request)
-    page = response.read()
+    response = urlopen(req)
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=True)
 
@@ -206,16 +217,16 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     url = 'https://www.uniprot.org/uploadlists/'
 
-    params = {'from':source,
-              'to':target,
-              'format':'tab',
-              'query':' '.join(query)}
+    params = ['from=%s' % source,
+              'to=%s' % target,
+              'query=%s' % '+'.join(query),
+              'format=tab']
+    data = '&'.join(params)
 
-    data = urllib.urlencode(params)
-    request = urllib2.Request(url, data)
+    req = Request('?'.join([url, data]))
+    response = urlopen(req)
 
-    response = urllib2.urlopen(request)
-    page = response.read()
+    page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=True)
     df.columns = [source, target]
@@ -227,6 +238,7 @@ def up_map(query, source='ACC', target='GENENAME'):
 
 
 def to_df(page, header=False):
+
     if header:
         aux = [i.split('\t') for i in page.split('\n')[:-1]]
         return pd.DataFrame(aux[1:], columns=aux[0])

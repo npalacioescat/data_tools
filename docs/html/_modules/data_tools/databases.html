@@ -52,8 +52,16 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kegg_link&#39;</span><span class="p">,</span> <span class="s1">&#39;kegg_pathway_mapping&#39;</span><span class="p">,</span> <span class="s1">&#39;op_kinase_substrate&#39;</span><span class="p">,</span>
            <span class="s1">&#39;up_map&#39;</span><span class="p">]</span>
 
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
-<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlopen</span>
+    <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">Request</span> <span class="k">as</span> <span class="n">Request</span>
+
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib2</span> <span class="k">import</span> <span class="n">urlopen</span>
+    <span class="kn">from</span> <span class="nn">urllib2</span> <span class="k">import</span> <span class="n">Request</span> <span class="k">as</span> <span class="n">Request</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -89,10 +97,12 @@
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://rest.kegg.jp/link&#39;</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">]))</span>
+    <span class="n">url_full</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">])</span>
 
-    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">url_full</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -147,16 +157,17 @@
                            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">dbentry</span><span class="p">,</span> <span class="n">bgc</span><span class="p">,</span> <span class="n">fgc</span><span class="p">)</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()])</span>
 
     <span class="n">params</span> <span class="o">=</span> <span class="s1">&#39;/kegg-bin/show_pathway?map=</span><span class="si">%s</span><span class="s1">&amp;multi_query=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">mapid</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+    <span class="n">full_url</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="n">params</span>
 
     <span class="k">if</span> <span class="n">mapid</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;01100&#39;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;Skipping the query for </span><span class="si">%s</span><span class="s1">: Metabolic Pathways.</span><span class="se">\n</span><span class="s1">Too &#39;</span> <span class="o">%</span><span class="n">mapid</span> <span class="o">+</span>
-                <span class="s1">&#39;much abstraction to show any relevant information.</span><span class="se">\n</span><span class="s1">You &#39;</span> <span class="o">+</span>
-                <span class="s1">&#39;can explore your query here:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;Skipping the query for </span><span class="si">%s</span><span class="s1">: Metabolic Pathways.</span><span class="se">\n</span><span class="s1">Too &#39;</span> <span class="o">%</span> <span class="n">mapid</span>
+                <span class="o">+</span> <span class="s1">&#39;much abstraction to show any relevant information.</span><span class="se">\n</span><span class="s1">You &#39;</span>
+                <span class="o">+</span> <span class="s1">&#39;can explore your query here:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">full_url</span><span class="p">)</span>
 
-    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">params</span><span class="p">)</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">full_url</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 
-    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span>
 
     <span class="c1"># Now extract the image from the HTML page</span>
     <span class="c1"># There must be a cleaner way to parse the HTML file, but...</span>
@@ -191,16 +202,16 @@
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://omnipathdb.org/ptms&#39;</span>
 
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;types&#39;</span><span class="p">:</span><span class="s1">&#39;phosphorylation,dephosphorylation&#39;</span> <span class="k">if</span> <span class="n">incl_phosphatases</span>
-                      <span class="k">else</span> <span class="s1">&#39;phosphorylation&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;organisms&#39;</span><span class="p">:</span><span class="n">organism</span><span class="p">}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;organisms=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">organism</span><span class="p">,</span>
+              <span class="s1">&#39;types=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;phosphorylation&#39;</span><span class="p">,</span> <span class="s1">&#39;dephosphorylation&#39;</span><span class="p">]</span>
+                                    <span class="k">if</span> <span class="n">incl_phosphatases</span>
+                                    <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;phosphorylation&#39;</span><span class="p">])]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&amp;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="s1">&#39;?&amp;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">]))</span>
 
-    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;?&amp;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">]))</span>
-
-    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -245,16 +256,16 @@
 
     <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.uniprot.org/uploadlists/&#39;</span>
 
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;from&#39;</span><span class="p">:</span><span class="n">source</span><span class="p">,</span>
-              <span class="s1">&#39;to&#39;</span><span class="p">:</span><span class="n">target</span><span class="p">,</span>
-              <span class="s1">&#39;format&#39;</span><span class="p">:</span><span class="s1">&#39;tab&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;query&#39;</span><span class="p">:</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">)}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;from=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">source</span><span class="p">,</span>
+              <span class="s1">&#39;to=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">target</span><span class="p">,</span>
+              <span class="s1">&#39;query=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+              <span class="s1">&#39;format=tab&#39;</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&amp;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-    <span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">]))</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
 
-    <span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">999999</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">]</span>
@@ -266,6 +277,7 @@
 
 
 <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="n">header</span><span class="p">:</span>
         <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
         <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">columns</span><span class="o">=</span><span class="n">aux</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>

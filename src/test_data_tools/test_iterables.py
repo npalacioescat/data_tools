@@ -122,5 +122,10 @@ class UnzipDictsTestCase(unittest.TestCase):
         self.b = dict([('x_b', 1), ('y_b', -1)])
 
     def test_unzip(self):
-        self.assertEqual(iterables.unzip_dicts(self.a, self.b),
-                         [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)])
+        expect = [('y_a', 'x_a', 'x_b', 'y_b'), (3, 2, 1, -1)]
+        result = iterables.unzip_dicts(self.a, self.b)
+        # Let us zip'em back
+        expect_d = dict(zip(*expect))
+        result_d = dict(zip(*result))
+
+        self.assertDictEqual(expect_d,result_d)
