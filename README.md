@@ -1,6 +1,6 @@
 # data_tools
 
-[![Python version supported](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/)
+[![Python version supported](https://img.shields.io/badge/python-2.7%20%7C%203.7-blue.svg)](https://www.python.org/)
 [![GitHub release](https://img.shields.io/github/tag/Nic-Nic/data_tools.svg?color=blue)](https://github.com/Nic-Nic/data_tools/releases)
 [![Build Status](https://travis-ci.com/Nic-Nic/data_tools.svg?branch=master)](https://travis-ci.com/Nic-Nic/data_tools)
 [![Issues](https://img.shields.io/github/issues/Nic-Nic/data_tools.svg)](https://github.com/Nic-Nic/data_tools/issues)

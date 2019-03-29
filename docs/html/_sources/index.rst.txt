@@ -9,7 +9,7 @@ data_tools' manual
 
 .. only:: html
 
-   .. image:: https://img.shields.io/badge/python-2.7-blue.svg
+   .. image:: https://img.shields.io/badge/python-2.7%20%7C%203.7-blue.svg
       :alt: Python version supported
       :target: https://www.python.org/
    .. image:: https://img.shields.io/github/tag/Nic-Nic/data_tools.svg?color=blue

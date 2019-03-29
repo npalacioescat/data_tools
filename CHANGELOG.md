@@ -1,6 +1,9 @@
 # data_tools version history
 
-## v0.0.7 (WIP):
+## v0.0.8 (WIP):
+
+## v0.0.7:
+- Support for Python 3.x versions.
 - `test_data_tools` has tests for almost all classes and functions.
   Functions that include plots are skipped (cannot be tested). Tests
   missing are `models.Lasso` and `spatial` module (or maybe more).
