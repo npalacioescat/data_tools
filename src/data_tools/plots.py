@@ -13,7 +13,8 @@ Contents
 from __future__ import absolute_import
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
-           'piano_consensus', 'venn', 'volcano']
+           'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
+           'venn', 'volcano']
 
 import sys
 import itertools
@@ -229,6 +230,31 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         ax.set_xticklabels(labels, rotation=90)
         ax.set_yticks(rng)
         ax.set_yticklabels(labels)
+
+    if title:
+        ax.set_title(title)
+
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    return fig
+
+
+def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
+                         figsize=None):
+    '''
+    '''
+
+    sims = [similarity(a, b, mode=mode) for (a, b)
+            in itertools.combinations_with_replacement(groups, 2)]
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    ax.hist(sims, bins=bins)
+    ax.set_xlabel('Similarity index')
+    ax.set_ylabel('Frequency')
 
     if title:
         ax.set_title(title)

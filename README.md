@@ -62,6 +62,8 @@ A full copy of the GNU General Public License can be found on file
     - [cmap_rdbkgr](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.cmap_rdbkgr)
     - [density](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.density)
     - [piano_consensus](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.piano_consensus)
+    - [similarity_heatmap](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_heatmap)
+    - [similarity_histogram](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_histogram)
     - [venn](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.venn)
     - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
 - [spatial](https://nic-nic.github.io/data_tools/html/spatial.html)
