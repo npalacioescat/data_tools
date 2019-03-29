@@ -4,7 +4,12 @@ __all__ = ['KeggLinkTestCase', 'KeggPathwayMappingTestCase',
            'OpKinaseSubstrateTestCase', 'UpMapTestCase']
 
 import unittest
-from urllib.error import URLError
+
+try:
+    from urllib.error import URLError
+
+except ImportError:
+    from urllib2 import URLError
 
 import pandas as pd
 
@@ -55,6 +60,7 @@ class OpKinaseSubstrateTestCase(unittest.TestCase):
 
 class UpMapTestCase(unittest.TestCase):
     def setUp(self):
+
         try:
             self.result = databases.up_map(['P00533', 'P31749', 'P16220'])
 
