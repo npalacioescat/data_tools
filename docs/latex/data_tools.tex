@@ -1393,6 +1393,128 @@ combination of box and scatter plots of the gene-set scores.
 
 \end{fulllineitems}
 
+\index{similarity\_heatmap() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_heatmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_heatmap}}}{\emph{groups}, \emph{labels=None}, \emph{mode='j'}, \emph{cmap='nipy\_spectral'}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Given a group of sets, generates a heatmap with the similarity
+indices across each possible pair.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{groups} {[}list{]}: Or any iterable of {[}set{]} objects.
+
+\item {} 
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for the
+sets following the same order as provided in \sphinxstyleemphasis{groups}.
+
+\item {} 
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
+for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson. See
+{\hyperref[\detokenize{iterables:data_tools.iterables.similarity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{data\_tools.iterables.similarity()}}}}} for more
+information.
+
+\item {} 
+\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'nipy\_spectral'}} by default. The
+colormap used for the plot (can also be a
+{[}matplotlib.colors.Colormap{]} object). See other {[}str{]} options
+available in \sphinxhref{https://matplotlib.org/examples/color/colormaps\_reference.html}{Matplotlib’s reference manual}.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\begin{itemize}
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless \sphinxstyleemphasis{filename} is specified.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{similarity\_histogram() (in module data\_tools.plots)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_histogram}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_histogram}}}{\emph{groups}, \emph{mode='j'}, \emph{bins=10}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Given a group of sets, generates a histogram of the similarity
+indices across each possible pair (same-element pairs excluded).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{groups} {[}list{]}: Or any iterable of {[}set{]} objects.
+
+\item {} 
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
+for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson. See
+{\hyperref[\detokenize{iterables:data_tools.iterables.similarity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{data\_tools.iterables.similarity()}}}}} for more
+information.
+
+\item {} 
+\sphinxstyleemphasis{bins} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{10}} by default. Number of bins to
+show in the histogram.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless \sphinxstyleemphasis{filename} is specified.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \index{venn() (in module data\_tools.plots)}
 
 \begin{fulllineitems}

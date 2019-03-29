@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  29 MAR 2019 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  29 MAR 2019 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -886,24 +886,33 @@ File: piano_consensus_example.png Graphic file (type png)
 Package pdftex.def Info: piano_consensus_example.png  used on input line 1388.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
  [20 <./piano_consensus_example.png>]
-<venn_example.png, id=301, 433.62pt x 289.08pt>
-File: venn_example.png Graphic file (type png)
-<use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 1464.
-(pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
- [21] [22 <./venn_example.png>]
-<volcano_example.png, id=313, 462.528pt x 346.896pt>
-File: volcano_example.png Graphic file (type png)
-<use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 1547.
-(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1417.
 
-Overfull \vbox (0.88008pt too high) detected at line 1623
+Underfull \hbox (badness 10000) in paragraph at lines 1464--1464
+[]\T1/ptm/m/it/10 groups\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mode='j'\T1/ptm/m/n/10
+ , \T1/ptm/m/it/10 bins=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=None\T1/ptm/m
+/n/10 , \T1/ptm/m/it/10 file-
  []
 
-[23 <./volcano_example.png>] [24] [25] [26
+[21]
+<venn_example.png, id=314, 433.62pt x 289.08pt>
+File: venn_example.png Graphic file (type png)
+<use venn_example.png>
+Package pdftex.def Info: venn_example.png  used on input line 1586.
+(pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
+ [22] [23 <./venn_example.png>]
+<volcano_example.png, id=325, 462.528pt x 346.896pt>
+File: volcano_example.png Graphic file (type png)
+<use volcano_example.png>
+Package pdftex.def Info: volcano_example.png  used on input line 1669.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 
-] [27
+Overfull \vbox (0.88008pt too high) detected at line 1745
+ []
+
+[24 <./volcano_example.png>] [25] [26] [27
+
 
 
 ] (./data_tools.ind [28
@@ -917,22 +926,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 [29
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1808.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1808.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1930.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1930.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1808.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1808.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1930.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1930.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: D4195B23D79586456BBBD832C5A11C2F;3013.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1808.
+(rerunfilecheck)             Checksum: 81BDCA2447690864B763BDD36C33F44D;3013.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1930.
  ) 
 Here is how much of TeX's memory you used:
- 13498 strings out of 494586
- 189292 string characters out of 6177802
- 316347 words of memory out of 5000000
- 16729 multiletter control sequences out of 15000+600000
- 55154 words of font info for 80 fonts, out of 8000000 for 9000
+ 13506 strings out of 494586
+ 189453 string characters out of 6177802
+ 316423 words of memory out of 5000000
+ 16733 multiletter control sequences out of 15000+600000
+ 55891 words of font info for 82 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,16n,45p,513b,685s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -953,10 +962,10 @@ hvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (33 pages, 490358 bytes).
+Output written on data_tools.pdf (33 pages, 494678 bytes).
 PDF statistics:
- 480 PDF objects out of 1000 (max. 8388607)
- 409 compressed objects within 5 object streams
- 95 named destinations out of 1000 (max. 500000)
+ 491 PDF objects out of 1000 (max. 8388607)
+ 420 compressed objects within 5 object streams
+ 97 named destinations out of 1000 (max. 500000)
  233 words of extra memory for PDF output out of 10000 (max. 10000000)
 

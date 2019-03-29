@@ -164,6 +164,98 @@ combination of box and scatter plots of the gene-set scores.</li>
 </dd></dl>
 
 <dl class="function">
+<dt id="data_tools.plots.similarity_heatmap">
+<code class="descclassname">data_tools.plots.</code><code class="descname">similarity_heatmap</code><span class="sig-paren">(</span><em>groups</em>, <em>labels=None</em>, <em>mode='j'</em>, <em>cmap='nipy_spectral'</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_heatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_heatmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a group of sets, generates a heatmap with the similarity
+indices across each possible pair.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>groups</em> [list]: Or any iterable of [set] objects.</li>
+<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
+sets following the same order as provided in <em>groups</em>.</li>
+<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
+for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson. See
+<a class="reference internal" href="iterables.html#data_tools.iterables.similarity" title="data_tools.iterables.similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">data_tools.iterables.similarity()</span></code></a> for more
+information.</li>
+<li><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'nipy_spectral'</span></code> by default. The
+colormap used for the plot (can also be a
+[matplotlib.colors.Colormap] object). See other [str] options
+available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s reference manual</a>.</li>
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[<em>matplotlib.figure.Figure</em>]: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless <em>filename</em> is specified.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.plots.similarity_histogram">
+<code class="descclassname">data_tools.plots.</code><code class="descname">similarity_histogram</code><span class="sig-paren">(</span><em>groups</em>, <em>mode='j'</em>, <em>bins=10</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a group of sets, generates a histogram of the similarity
+indices across each possible pair (same-element pairs excluded).</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>groups</em> [list]: Or any iterable of [set] objects.</li>
+<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+Indicates which type of similarity index/coefficient is to be
+computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
+for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson. See
+<a class="reference internal" href="iterables.html#data_tools.iterables.similarity" title="data_tools.iterables.similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">data_tools.iterables.similarity()</span></code></a> for more
+information.</li>
+<li><em>bins</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">10</span></code> by default. Number of bins to
+show in the histogram.</li>
+<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</li>
+<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</li>
+<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[<em>matplotlib.figure.Figure</em>]: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless <em>filename</em> is specified.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
 <dt id="data_tools.plots.venn">
 <code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'], pct=False, sizes=False, title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a Venn diagram from a list of sets <em>N</em>. Number of sets must be

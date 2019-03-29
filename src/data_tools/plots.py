@@ -13,9 +13,11 @@ Contents
 from __future__ import absolute_import
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
-           'piano_consensus', 'venn', 'volcano']
+           'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
+           'venn', 'volcano']
 
 import sys
+import itertools
 
 import numpy as np
 import pandas as pd
@@ -24,7 +26,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 
-from data_tools.iterables import subsets
+from data_tools.iterables import subsets, similarity
 
 if sys.version_info < (3,):
     range = xrange
@@ -189,6 +191,137 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
         ax.set_title(title)
 
     ax.legend(loc=0)
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
+
+
+def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
+                       title=None, filename=None, figsize=None):
+    '''
+    Given a group of sets, generates a heatmap with the similarity
+    indices across each possible pair.
+
+    * Arguments:
+        - *groups* [list]: Or any iterable of [set] objects.
+        - *labels* [list]: Optional, ``None`` by default. Labels for the
+          sets following the same order as provided in *groups*.
+        - *mode* [str]: Optional, ``'j'`` (Jaccard) by default.
+          Indicates which type of similarity index/coefficient is to be
+          computed. Available options are: ``'j'`` for Jaccard, ``'sd'``
+          for Sorensen-Dice and ``'ss'`` for Szymkiewicz–Simpson. See
+          :py:func:`data_tools.iterables.similarity` for more
+          information.
+        - *cmap* [str]: Optional, ``'nipy_spectral'`` by default. The
+          colormap used for the plot (can also be a
+          [matplotlib.colors.Colormap] object). See other [str] options
+          available in `Matplotlib's reference manual`_.
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    .. _`Matplotlib's reference manual`:
+        https://matplotlib.org/examples/color/colormaps_reference.html
+
+    * Returns:
+        - [*matplotlib.figure.Figure*]: the figure object containing a
+          combination of box and scatter plots of the gene-set scores,
+          unless *filename* is provided.
+    '''
+
+    sims = []
+
+    for (a, b) in itertools.product(groups, repeat=2):
+        sims.append(similarity(set(a), set(b), mode=mode))
+
+    # Convert similarity indices to square matrix
+    sims = np.array(sims).reshape(len(groups), len(groups))
+
+    # Plotting heatmap for a given similarity index
+    fig, ax = plt.subplots(figsize=figsize)
+    im = ax.imshow(sims, cmap=cmap, interpolation='none')
+    fig.colorbar(im)
+
+    if labels:
+
+        try:
+            a, b = map(len, [groups, labels])
+            assert a == b
+
+        except AssertionError as e:
+            raise e('Invalid length of labels %d != %d' % (a, b))
+
+        rng = range(len(groups))
+
+        ax.set_xticks(rng)
+        ax.set_xticklabels(labels, rotation=90)
+        ax.set_yticks(rng)
+        ax.set_yticklabels(labels)
+
+    if title:
+        ax.set_title(title)
+
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
+
+
+def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
+                         figsize=None):
+    '''
+    Given a group of sets, generates a histogram of the similarity
+    indices across each possible pair (same-element pairs excluded).
+
+    * Arguments:
+        - *groups* [list]: Or any iterable of [set] objects.
+        - *mode* [str]: Optional, ``'j'`` (Jaccard) by default.
+          Indicates which type of similarity index/coefficient is to be
+          computed. Available options are: ``'j'`` for Jaccard, ``'sd'``
+          for Sorensen-Dice and ``'ss'`` for Szymkiewicz–Simpson. See
+          :py:func:`data_tools.iterables.similarity` for more
+          information.
+        - *bins* [int]: Optional, ``10`` by default. Number of bins to
+          show in the histogram.
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    * Returns:
+        - [*matplotlib.figure.Figure*]: the figure object containing a
+          combination of box and scatter plots of the gene-set scores,
+          unless *filename* is provided.
+    '''
+
+    sims = [similarity(a, b, mode=mode) for (a, b)
+            in itertools.combinations_with_replacement(groups, 2)]
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    ax.hist(sims, bins=bins)
+    ax.set_xlabel('Similarity index')
+    ax.set_ylabel('Frequency')
+
+    if title:
+        ax.set_title(title)
+
     fig.tight_layout()
 
     if filename:

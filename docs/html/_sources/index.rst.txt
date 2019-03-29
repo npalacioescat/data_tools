@@ -102,6 +102,8 @@ If not, see http://www.gnu.org/licenses/.
       - :py:data:`cmap_rdbkgr <data_tools.plots.cmap_rdbkgr>`
       - :py:func:`density <data_tools.plots.density>`
       - :py:func:`piano_consensus <data_tools.plots.piano_consensus>`
+      - :py:func:`similarity_heatmap <data_tools.plots.similarity_heatmap>`
+      - :py:func:`similarity_histogram <data_tools.plots.similarity_histogram>`
       - :py:func:`venn <data_tools.plots.venn>`
       - :py:func:`volcano <data_tools.plots.volcano>`
 
