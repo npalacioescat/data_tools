@@ -2,8 +2,10 @@
 
 ## v0.0.8 (WIP):
 - In `plots` module:
-    - Function `similarity_heatmap`
-    - Function `similarity_histogram`
+    - Function `similarity_heatmap`: Given a group of sets, generates a
+      heatmap with the similarity indices across each possible pair.
+    - Function `similarity_histogram`: Given a group of sets, generates
+      a histogram of the similarity indices across each possible pair (same-element pairs excluded).
 
 ## v0.0.7:
 - Support for Python 3.x versions.
