@@ -216,8 +216,7 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         - *cmap* [str]: Optional, ``'nipy_spectral'`` by default. The
           colormap used for the plot (can also be a
           [matplotlib.colors.Colormap] object). See other [str] options
-          available in [Matplotlib's reference manual](https://matplotl\
-          ib.org/examples/color/colormaps_reference.html)
+          available in `Matplotlib's reference manual`_.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -226,6 +225,9 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         - *figsize* [tuple]: Optional, ``None`` by default (default
           matplotlib size). Any iterable containing two values denoting
           the figure size (in inches) as [width, height].
+
+    .. _`Matplotlib's reference manual`:
+        https://matplotlib.org/examples/color/colormaps_reference.html
 
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing a
