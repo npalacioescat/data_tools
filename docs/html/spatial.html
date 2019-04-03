@@ -45,9 +45,39 @@
             
   <span class="target" id="module-data_tools.spatial"></span><div class="section" id="data-tools-spatial">
 <h1>data_tools.spatial<a class="headerlink" href="#data-tools-spatial" title="Permalink to this headline">¶</a></h1>
-<p>Spatial matrix module.</p>
+<p>Spatial tools module.</p>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="data_tools.spatial.equidist_polar">
+<code class="descclassname">data_tools.spatial.</code><code class="descname">equidist_polar</code><span class="sig-paren">(</span><em>n</em>, <em>r=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#equidist_polar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.equidist_polar" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a given number of points (and optionally radius), returns the
+Cartesian coordinates of such number of equidistant points (in polar
+coordinates). This is, the (x, y) coordinates of <em>n</em> points equally
+spaced in a circle of radius <em>r</em>.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>n</em> [int]: Number of points to retrieve the coordinates.</li>
+<li><em>r</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The radius of the
+polar coordinates.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[list]: Contains <em>n</em> [tuple] pairs containing the (x, y)
+Cartesian coordinates.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
 <dl class="function">
 <dt id="data_tools.spatial.get_boundaries">
 <code class="descclassname">data_tools.spatial.</code><code class="descname">get_boundaries</code><span class="sig-paren">(</span><em>x</em>, <em>counts=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#get_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.get_boundaries" title="Permalink to this definition">¶</a></dt>

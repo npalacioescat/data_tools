@@ -27,6 +27,7 @@
   \indexspace
   \bigletter E
   \item ec() (data\_tools.models.DoseResponse method), \hyperpage{17}
+  \item equidist\_polar() (in module data\_tools.spatial), \hyperpage{24}
 
   \indexspace
   \bigletter F
@@ -40,7 +41,7 @@
   \indexspace
   \bigletter I
   \item in\_all() (in module data\_tools.iterables), \hyperpage{15}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{25}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{26}
 
   \indexspace
   \bigletter J

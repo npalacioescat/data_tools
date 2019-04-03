@@ -108,6 +108,7 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`volcano <data_tools.plots.volcano>`
 
    - :py:mod:`spatial <data_tools.spatial>`
+      - :py:func:`equidist_polar <data_tools.spatial.equidist_polar>`
       - :py:func:`get_boundaries <data_tools.spatial.get_boundaries>`
       - :py:func:`neighbour_count <data_tools.spatial.neighbour_count>`
 

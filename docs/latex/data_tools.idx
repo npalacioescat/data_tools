@@ -32,8 +32,9 @@
 \indexentry{venn() (in module data\_tools.plots)|hyperpage}{21}
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{23}
 \indexentry{data\_tools.spatial (module)|hyperpage}{24}
+\indexentry{equidist\_polar() (in module data\_tools.spatial)|hyperpage}{24}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{24}
 \indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{25}
 \indexentry{data\_tools.strings (module)|hyperpage}{25}
-\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{25}
+\indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{26}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{26}

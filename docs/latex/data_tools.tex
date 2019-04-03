@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Mar 29, 2019}
+\date{Apr 03, 2019}
 \release{0.0.7}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1678,11 +1678,47 @@ volcano plot.
 
 \section{data\_tools.spatial}
 \label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
-Spatial matrix module.
+Spatial tools module.
 
 
 \subsection{Contents}
-\label{\detokenize{spatial:contents}}\index{get\_boundaries() (in module data\_tools.spatial)}
+\label{\detokenize{spatial:contents}}\index{equidist\_polar() (in module data\_tools.spatial)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.equidist_polar}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{equidist\_polar}}}{\emph{n}, \emph{r=1}}{}
+For a given number of points (and optionally radius), returns the
+Cartesian coordinates of such number of equidistant points (in polar
+coordinates). This is, the (x, y) coordinates of \sphinxstyleemphasis{n} points equally
+spaced in a circle of radius \sphinxstyleemphasis{r}.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: Number of points to retrieve the coordinates.
+
+\item {} 
+\sphinxstyleemphasis{r} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The radius of the
+polar coordinates.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}list{]}: Contains \sphinxstyleemphasis{n} {[}tuple{]} pairs containing the (x, y)
+Cartesian coordinates.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{get\_boundaries() (in module data\_tools.spatial)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
