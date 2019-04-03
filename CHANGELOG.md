@@ -1,6 +1,10 @@
 # data_tools version history
 
 ## v0.0.8 (WIP):
+- In `spatial` module:
+    - Function `equidist_polar`: For a given number of points (and
+      optionally radius), returns the Cartesian coordinates of such
+      number of equidistant points (in polar coordinates).
 - In `plots` module:
     - Function `similarity_heatmap`: Given a group of sets, generates a
       heatmap with the similarity indices across each possible pair.

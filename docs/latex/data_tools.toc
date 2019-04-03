@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {4.5.1}Contents}{19}{subsection.4.5.1}
 \contentsline {section}{\numberline {4.6}data\_tools.spatial}{24}{section.4.6}
 \contentsline {subsection}{\numberline {4.6.1}Contents}{24}{subsection.4.6.1}
-\contentsline {section}{\numberline {4.7}data\_tools.strings}{25}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Contents}{25}{subsection.4.7.1}
-\contentsline {chapter}{Python Module Index}{27}{section*.42}
-\contentsline {chapter}{Index}{29}{section*.43}
+\contentsline {section}{\numberline {4.7}data\_tools.strings}{26}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Contents}{26}{subsection.4.7.1}
+\contentsline {chapter}{Python Module Index}{27}{section*.43}
+\contentsline {chapter}{Index}{29}{section*.44}

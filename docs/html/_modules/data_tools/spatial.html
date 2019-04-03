@@ -43,15 +43,39 @@
 <span class="sd">data_tools.spatial</span>
 <span class="sd">====================</span>
 
-<span class="sd">Spatial matrix module.</span>
+<span class="sd">Spatial tools module.</span>
 
 <span class="sd">Contents</span>
 <span class="sd">--------</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get_boundaries&#39;</span><span class="p">,</span> <span class="s1">&#39;neighbour_count&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;equidist_polar&#39;</span><span class="p">,</span> <span class="s1">&#39;get_boundaries&#39;</span><span class="p">,</span> <span class="s1">&#39;neighbour_count&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="equidist_polar"><a class="viewcode-back" href="../../spatial.html#data_tools.spatial.equidist_polar">[docs]</a><span class="k">def</span> <span class="nf">equidist_polar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    For a given number of points (and optionally radius), returns the</span>
+<span class="sd">    Cartesian coordinates of such number of equidistant points (in polar</span>
+<span class="sd">    coordinates). This is, the (x, y) coordinates of *n* points equally</span>
+<span class="sd">    spaced in a circle of radius *r*.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *n* [int]: Number of points to retrieve the coordinates.</span>
+<span class="sd">        - *r* [float]: Optional, ``1`` by default. The radius of the</span>
+<span class="sd">          polar coordinates.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [list]: Contains *n* [tuple] pairs containing the (x, y)</span>
+<span class="sd">          Cartesian coordinates.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="get_boundaries"><a class="viewcode-back" href="../../spatial.html#data_tools.spatial.get_boundaries">[docs]</a><span class="k">def</span> <span class="nf">get_boundaries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">counts</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>

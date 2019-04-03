@@ -4,15 +4,39 @@
 data_tools.spatial
 ====================
 
-Spatial matrix module.
+Spatial tools module.
 
 Contents
 --------
 '''
 
-__all__ = ['get_boundaries', 'neighbour_count']
+__all__ = ['equidist_polar', 'get_boundaries', 'neighbour_count']
 
 import numpy as np
+
+
+def equidist_polar(n, r=1):
+    '''
+    For a given number of points (and optionally radius), returns the
+    Cartesian coordinates of such number of equidistant points (in polar
+    coordinates). This is, the (x, y) coordinates of *n* points equally
+    spaced in a circle of radius *r*.
+
+    * Arguments:
+        - *n* [int]: Number of points to retrieve the coordinates.
+        - *r* [float]: Optional, ``1`` by default. The radius of the
+          polar coordinates.
+
+    * Returns:
+        - [list]: Contains *n* [tuple] pairs containing the (x, y)
+          Cartesian coordinates.
+    '''
+
+    angles = np.linspace(0, 2 * np.pi, n + 1)[:-1]
+    xs = r * np.cos(angles)
+    ys = r * np.sin(angles)
+
+    return list(zip(xs, ys))
 
 
 def get_boundaries(x, counts=False):
