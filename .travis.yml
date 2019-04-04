@@ -4,7 +4,6 @@ branches:
   only:
     - master
     - dev
-    - py3-comp
 python:
   - 2.7
   - 3.4
