@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['GetBoundariesTestCase', 'NeighbourCountTestCase']
+__all__ = ['EquidistPolarTestCase', 'GetBoundariesTestCase',
+           'NeighbourCountTestCase']
 
 import unittest
 
 from data_tools import spatial
+
+
+class EquidistPolarTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.spatial.equidist_polar test unit is'
+                   + ' not implemented.')
+    def test_null(self):
+        pass
 
 
 class GetBoundariesTestCase(unittest.TestCase):
