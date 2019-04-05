@@ -1,6 +1,9 @@
 # data_tools version history
 
 ## v0.0.8 (WIP):
+- Added `signal` module:
+    - Function `fconvolve`: Convolves two vectors or arrays using Fast
+      Fourier Transform (FFT).
 - In `spatial` module:
     - Function `equidist_polar`: For a given number of points (and
       optionally radius), returns the Cartesian coordinates of such
@@ -56,7 +59,7 @@
       (black-red) and `cmap_rdbkgr` (red-black-green).
 
 ## v0.0.6:
-- Renamed `sets` to `iterables`.
+- Renamed `sets` module to `iterables`.
 - In `models` module:
     - Class `DoseResponse`: Wrapper class for
       ``scipy.optimize.least_squares`` to fit dose-response curves on a

@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Apr 03, 2019}
+\date{Apr 05, 2019}
 \release{0.0.7}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1674,6 +1674,49 @@ volcano plot.
 
 \end{fulllineitems}
 
+\phantomsection\label{\detokenize{signal:module-data_tools.signal}}\index{data\_tools.signal (module)}
+
+\section{data\_tools.signal}
+\label{\detokenize{signal:data-tools-signal}}\label{\detokenize{signal::doc}}
+Signal processing module.
+
+
+\subsection{Contents}
+\label{\detokenize{signal:contents}}\index{fconvolve() (in module data\_tools.signal)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{signal:data_tools.signal.fconvolve}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{fconvolve}}}{\emph{u}, \emph{v}}{}
+Convolves two vectors or arrays using Fast Fourier Transform (FFT).
+According to Fourier theory, the convolution theorem states that:
+\begin{equation*}
+\begin{split}g(x)=u(x)\ast v(x)=\mathcal{F}^{-1}\left\{\mathcal{F}\{u(x)
+\}\mathcal{F}\{v(x)\}\right\}\end{split}
+\end{equation*}\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{u} {[}numpy.ndarray{]}: First array to convolve.
+
+\item {} 
+\sphinxstyleemphasis{v} {[}numpy.ndarray{]}: The other array to be convolved.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The convolved array of \sphinxstyleemphasis{u} and \sphinxstyleemphasis{v}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
 \phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)}
 
 \section{data\_tools.spatial}
@@ -1957,6 +2000,7 @@ Determines the separator between the joint strings.
 \item {\sphinxstyleindexentry{data\_tools.iterables}}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
 \item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
 \item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
+\item {\sphinxstyleindexentry{data\_tools.signal}}\sphinxstyleindexpageref{signal:\detokenize{module-data_tools.signal}}
 \item {\sphinxstyleindexentry{data\_tools.spatial}}\sphinxstyleindexpageref{spatial:\detokenize{module-data_tools.spatial}}
 \item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}

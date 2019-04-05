@@ -66,6 +66,8 @@ A full copy of the GNU General Public License can be found on file
     - [similarity_histogram](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_histogram)
     - [venn](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.venn)
     - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
+- [signal](https://nic-nic.github.io/data_tools/html/signal.html)
+    - [fconvolve](https://nic-nic.github.io/data_tools/html/signal.html#data_tools.signal.fconvolve)
 - [spatial](https://nic-nic.github.io/data_tools/html/spatial.html)
     - [equidist_polar](https://nic-nic.github.io/data_tools/html/spatial.html#data_tools.spatial.equidist_polar)
     - [get_boundaries](https://nic-nic.github.io/data_tools/html/spatial.html#data_tools.spatial.get_boundaries)

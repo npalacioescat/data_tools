@@ -107,6 +107,9 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`venn <data_tools.plots.venn>`
       - :py:func:`volcano <data_tools.plots.volcano>`
 
+    -:py:mod:`signal <data_tools.signal>`
+      - :py:func:`fconvolve <data_tools.signal.fconvolve>`
+
    - :py:mod:`spatial <data_tools.spatial>`
       - :py:func:`equidist_polar <data_tools.spatial.equidist_polar>`
       - :py:func:`get_boundaries <data_tools.spatial.get_boundaries>`
@@ -182,5 +185,6 @@ Index
    iterables
    models
    plots
+   signal
    spatial
    strings
