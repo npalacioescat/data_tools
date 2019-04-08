@@ -15,7 +15,14 @@ class FConvolveTestCase(unittest.TestCase):
 
 
 class GaussKernelTestCase(unittest.TestCase):
-    @unittest.skip('** NOTE **: data_tools.signal.gauss_kernel test uni'
-                   + 't is not implemented.')
+    @unittest.skip('** NOTE **: data_tools.signal.gauss_kernel test unit is no'
+                   + 't implemented.')
+    def test_null(self):
+        pass
+
+
+class GaussNoiseTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.signal.gauss_noise test unit is not'
+                   + ' implemented.')
     def test_null(self):
         pass
