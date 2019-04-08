@@ -49,7 +49,7 @@
 <span class="sd">--------</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fconvolve&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss_kernel&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fconvolve&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss_kernel&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss_noise&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -113,6 +113,24 @@
                   <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sd</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
 
     <span class="k">return</span> <span class="n">f</span> <span class="o">/</span> <span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="gauss_noise"><a class="viewcode-back" href="../../signal.html#data_tools.signal.gauss_noise">[docs]</a><span class="k">def</span> <span class="nf">gauss_noise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Applies additive Gaussian (white) noise to a given signal.</span>
+
+<span class="sd">    * Arguments;</span>
+<span class="sd">        - *x* [numpy.ndarray]: The signal, can have any number of</span>
+<span class="sd">          dimensions.</span>
+<span class="sd">        - *sd* [float]: Optional, ``1`` by default. The standard</span>
+<span class="sd">          deviation of the noise to apply.</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [numpy.ndarray]: The signal *x* with the additive Gaussian</span>
+<span class="sd">          noise applied.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">sd</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

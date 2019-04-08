@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  8 APR 2019 16:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.15)  8 APR 2019 17:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -917,29 +917,29 @@ Package pdftex.def Info: volcano_example.png  used on input line 1669.
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
 []\T1/ptm/m/n/10 kegg_pathway_mapping() (in mod-ule
  []
 
 [31
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2055.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2055.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2089.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2089.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2055.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2055.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2089.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2089.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 780A688F3A42C7A86FA7524A079EA584;3316.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2055.
+(rerunfilecheck)             Checksum: 849706B64CB204B8480A59DA1F1DF005;3316.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2089.
  ) 
 Here is how much of TeX's memory you used:
- 13523 strings out of 494586
- 189787 string characters out of 6177802
- 314730 words of memory out of 5000000
- 16742 multiletter control sequences out of 15000+600000
- 55891 words of font info for 82 fonts, out of 8000000 for 9000
+ 13524 strings out of 494586
+ 189830 string characters out of 6177802
+ 326768 words of memory out of 5000000
+ 16743 multiletter control sequences out of 15000+600000
+ 54813 words of font info for 81 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,18n,45p,513b,685s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -961,10 +961,10 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (35 pages, 508573 bytes).
+Output written on data_tools.pdf (35 pages, 508871 bytes).
 PDF statistics:
- 523 PDF objects out of 1000 (max. 8388607)
- 449 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 525 PDF objects out of 1000 (max. 8388607)
+ 451 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

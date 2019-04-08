@@ -109,6 +109,8 @@ If not, see http://www.gnu.org/licenses/.
 
     - :py:mod:`signal <data_tools.signal>`
       - :py:func:`fconvolve <data_tools.signal.fconvolve>`
+      - :py:func:`gauss_kernel <data_tools.signal.gauss_kernel>`
+      - :py:func:`gauss_noise <data_tools.signal.gauss_noise>`
 
    - :py:mod:`spatial <data_tools.spatial>`
       - :py:func:`equidist_polar <data_tools.spatial.equidist_polar>`

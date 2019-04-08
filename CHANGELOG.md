@@ -5,6 +5,8 @@
     - Function `fconvolve`: Convolves two vectors or arrays using Fast
       Fourier Transform (FFT).
     - Function  `gauss_kernel`: Returns a N-dimensional Gaussian kernel.
+    - Function `gauss_noise`: Applies additive Gaussian (white) noise to
+      a given signal.
 - In `spatial` module:
     - Function `equidist_polar`: For a given number of points (and
       optionally radius), returns the Cartesian coordinates of such

@@ -69,6 +69,7 @@ A full copy of the GNU General Public License can be found on file
 - [signal](https://nic-nic.github.io/data_tools/html/signal.html)
     - [fconvolve](https://nic-nic.github.io/data_tools/html/signal.html#data_tools.signal.fconvolve)
     - [gauss_kernel](https://nic-nic.github.io/data_tools/html/signal.html#data_tools.signal.gauss_kernel)
+    - [gauss_noise](https://nic-nic.github.io/data_tools/html/signal.html#data_tools.signal.gauss_noise)
 - [spatial](https://nic-nic.github.io/data_tools/html/spatial.html)
     - [equidist_polar](https://nic-nic.github.io/data_tools/html/spatial.html#data_tools.spatial.equidist_polar)
     - [get_boundaries](https://nic-nic.github.io/data_tools/html/spatial.html#data_tools.spatial.get_boundaries)

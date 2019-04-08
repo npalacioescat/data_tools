@@ -39,12 +39,13 @@
   \indexspace
   \bigletter G
   \item gauss\_kernel() (in module data\_tools.signal), \hyperpage{24}
+  \item gauss\_noise() (in module data\_tools.signal), \hyperpage{25}
   \item get\_boundaries() (in module data\_tools.spatial), \hyperpage{25}
 
   \indexspace
   \bigletter I
   \item in\_all() (in module data\_tools.iterables), \hyperpage{15}
-  \item is\_numeric() (in module data\_tools.strings), \hyperpage{26}
+  \item is\_numeric() (in module data\_tools.strings), \hyperpage{27}
 
   \indexspace
   \bigletter J
