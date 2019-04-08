@@ -75,7 +75,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
 
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing the
-          density plot.
+          density plot, unless *filename* is provided.
     '''
 
     df = df.T if sample_col else df
@@ -107,7 +107,8 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
     if filename:
         fig.savefig(filename)
 
-    return fig
+    else:
+        return fig
 
 
 def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
@@ -141,7 +142,8 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing a
-          combination of box and scatter plots of the gene-set scores.
+          combination of box and scatter plots of the gene-set scores,
+          unless *filename* is provided.
 
     * Example:
         >>> piano_consensus(df, figsize=[7, 8])
@@ -194,7 +196,8 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     if filename:
         fig.savefig(filename)
 
-    return fig
+    else:
+        return fig
 
 
 def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
@@ -232,7 +235,7 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
-          unless *filename* is specified.
+          unless *filename* is provided.
     '''
 
     sims = []
@@ -304,7 +307,7 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
-          unless *filename* is specified.
+          unless *filename* is provided.
     '''
 
     sims = [similarity(a, b, mode=mode) for (a, b)
@@ -359,7 +362,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
     * Returns:
         - [*matplotlib.figure.Figure*]: the figure object containing a
-          combination of box and scatter plots of the gene-set scores.
+          combination of box and scatter plots of the gene-set scores,
+          unless *filename* is provided.
 
     * Example:
         >>> N = [{0, 1}, {2, 3}, {1, 3, 4}] # Sets A, B, C
@@ -469,7 +473,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     if filename:
         fig.savefig(filename)
 
-    return fig
+    else:
+        return fig
 
 
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
@@ -509,7 +514,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 
     * Returns:
         - [matplotlib.figure.Figure]: Figure object containing the
-          volcano plot.
+          volcano plot, unless *filename* is provided.
 
     * Example:
         >>> volcano(my_log_fc, my_log_pval)
@@ -565,7 +570,8 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     if filename:
         fig.savefig(filename)
 
-    return fig
+    else:
+        return fig
 
 
 ###############################################################################

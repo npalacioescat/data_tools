@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import sys
 import os
 import imp
 from setuptools import setup, find_packages
 
 __info__ = imp.load_source('__info__', os.path.join('src', 'data_tools',
                                                     '__info__.py'))
+
+mpl = 'matplotlib < 3' if sys.version_info < (3,) else 'matplotlib',
 
 setup(name='data_tools',
       version=__info__.__version__,
@@ -17,7 +20,7 @@ setup(name='data_tools',
       package_dir = {'':'src'},
       packages=find_packages('src'),
       install_requires=['numpy',
-                        'matplotlib',
+                        mpl,
                         'pandas',
                         'scipy',
                         'sklearn'],
