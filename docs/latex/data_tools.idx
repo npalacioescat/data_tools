@@ -33,10 +33,11 @@
 \indexentry{volcano() (in module data\_tools.plots)|hyperpage}{23}
 \indexentry{data\_tools.signal (module)|hyperpage}{24}
 \indexentry{fconvolve() (in module data\_tools.signal)|hyperpage}{24}
-\indexentry{data\_tools.spatial (module)|hyperpage}{24}
-\indexentry{equidist\_polar() (in module data\_tools.spatial)|hyperpage}{24}
+\indexentry{gauss\_kernel() (in module data\_tools.signal)|hyperpage}{24}
+\indexentry{data\_tools.spatial (module)|hyperpage}{25}
+\indexentry{equidist\_polar() (in module data\_tools.spatial)|hyperpage}{25}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)|hyperpage}{25}
-\indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{25}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)|hyperpage}{26}
 \indexentry{data\_tools.strings (module)|hyperpage}{26}
 \indexentry{is\_numeric() (in module data\_tools.strings)|hyperpage}{26}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{26}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)|hyperpage}{27}

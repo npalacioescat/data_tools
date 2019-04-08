@@ -77,6 +77,41 @@ According to Fourier theory, the convolution theorem states that:</p>
 </ul>
 </dd></dl>
 
+<dl class="function">
+<dt id="data_tools.signal.gauss_kernel">
+<code class="descclassname">data_tools.signal.</code><code class="descname">gauss_kernel</code><span class="sig-paren">(</span><em>size</em>, <em>sd=1</em>, <em>ndim=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/signal.html#gauss_kernel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.signal.gauss_kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a N-dimensional Gaussian kernel. The kernel is defined as
+follows:</p>
+<div class="math notranslate nohighlight">
+\[k(\vec{x})=\frac{1}{(\sqrt{2\pi}\sigma)^N}\mathrm{e}^{-
+\frac{||\vec{x}||_2^2}{2\sigma^2}}\]</div>
+<p>Where :math`N` is the number of dimensions and <span class="math notranslate nohighlight">\(\sigma\)</span> is
+the standard deviation of the kernel.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first simple">
+<li><em>size</em> [int]: The number of discrete points of the kernel
+(will be the same on each dimension).</li>
+<li><em>sd</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The standard
+deviation of the gaussian kernel.</li>
+<li><em>ndim</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. Number of dimensions</li>
+</ul>
+<p class="last">for the desired kernel.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[numpy.ndarray]: The Gaussian kernel.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
 </div>
 </div>
 

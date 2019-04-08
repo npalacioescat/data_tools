@@ -55,7 +55,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Apr 05, 2019}
+\date{Apr 08, 2019}
 \release{0.0.7}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -157,8 +157,8 @@ python \PYGZhy{}m test\PYGZus{}data\PYGZus{}tools
 implemented.
 
 
-\chapter{Index}
-\label{\detokenize{index:index}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
+\chapter{Module reference}
+\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
 
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
@@ -1708,6 +1708,51 @@ According to Fourier theory, the convolution theorem states that:
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}numpy.ndarray{]}: The convolved array of \sphinxstyleemphasis{u} and \sphinxstyleemphasis{v}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{gauss\_kernel() (in module data\_tools.signal)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{signal:data_tools.signal.gauss_kernel}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_kernel}}}{\emph{size}, \emph{sd=1}, \emph{ndim=2}}{}
+Returns a N-dimensional Gaussian kernel. The kernel is defined as
+follows:
+\begin{equation*}
+\begin{split}k(\vec{x})=\frac{1}{(\sqrt{2\pi}\sigma)^N}\mathrm{e}^{-
+\frac{||\vec{x}||_2^2}{2\sigma^2}}\end{split}
+\end{equation*}
+Where :math{}`N{}` is the number of dimensions and \(\sigma\) is
+the standard deviation of the kernel.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{size} {[}int{]}: The number of discrete points of the kernel
+(will be the same on each dimension).
+
+\item {} 
+\sphinxstyleemphasis{sd} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{1}} by default. The standard
+deviation of the gaussian kernel.
+
+\item {} 
+\sphinxstyleemphasis{ndim} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{2}} by default. Number of dimensions
+
+\end{itemize}
+
+for the desired kernel.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The Gaussian kernel.
 
 \end{itemize}
 

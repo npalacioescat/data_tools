@@ -4,6 +4,7 @@
 - Added `signal` module:
     - Function `fconvolve`: Convolves two vectors or arrays using Fast
       Fourier Transform (FFT).
+    - Function  `gauss_kernel`: Returns a N-dimensional Gaussian kernel.
 - In `spatial` module:
     - Function `equidist_polar`: For a given number of points (and
       optionally radius), returns the Cartesian coordinates of such

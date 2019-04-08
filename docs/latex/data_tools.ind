@@ -20,7 +20,7 @@
   \item data\_tools.models (module), \hyperpage{16}
   \item data\_tools.plots (module), \hyperpage{19}
   \item data\_tools.signal (module), \hyperpage{24}
-  \item data\_tools.spatial (module), \hyperpage{24}
+  \item data\_tools.spatial (module), \hyperpage{25}
   \item data\_tools.strings (module), \hyperpage{26}
   \item density() (in module data\_tools.plots), \hyperpage{19}
   \item DoseResponse (class in data\_tools.models), \hyperpage{16}
@@ -28,7 +28,7 @@
   \indexspace
   \bigletter E
   \item ec() (data\_tools.models.DoseResponse method), \hyperpage{17}
-  \item equidist\_polar() (in module data\_tools.spatial), \hyperpage{24}
+  \item equidist\_polar() (in module data\_tools.spatial), \hyperpage{25}
 
   \indexspace
   \bigletter F
@@ -38,6 +38,7 @@
 
   \indexspace
   \bigletter G
+  \item gauss\_kernel() (in module data\_tools.signal), \hyperpage{24}
   \item get\_boundaries() (in module data\_tools.spatial), \hyperpage{25}
 
   \indexspace
@@ -47,7 +48,7 @@
 
   \indexspace
   \bigletter J
-  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{26}
+  \item join\_str\_lists() (in module data\_tools.strings), \hyperpage{27}
 
   \indexspace
   \bigletter K
@@ -60,7 +61,7 @@
 
   \indexspace
   \bigletter N
-  \item neighbour\_count() (in module data\_tools.spatial), \hyperpage{25}
+  \item neighbour\_count() (in module data\_tools.spatial), \hyperpage{26}
 
   \indexspace
   \bigletter O

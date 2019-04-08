@@ -107,8 +107,9 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`venn <data_tools.plots.venn>`
       - :py:func:`volcano <data_tools.plots.volcano>`
 
-    -:py:mod:`signal <data_tools.signal>`
+    - :py:mod:`signal <data_tools.signal>`
       - :py:func:`fconvolve <data_tools.signal.fconvolve>`
+      - :py:func:`gauss_kernel <data_tools.signal.gauss_kernel>`
 
    - :py:mod:`spatial <data_tools.spatial>`
       - :py:func:`equidist_polar <data_tools.spatial.equidist_polar>`
@@ -174,8 +175,8 @@ implemented.
    You can also find the version history in the
    `changelog <https://github.com/Nic-Nic/data_tools/blob/master/CHANGELOG.md>`_.
 
-Index
-=====
+Module reference
+================
 
 .. toctree::
    :maxdepth: 6
