@@ -10,7 +10,7 @@ Contents
 --------
 '''
 
-__all__ = ['fconvolve']
+__all__ = ['fconvolve', 'gauss_kernel']
 
 import numpy as np
 
@@ -36,3 +36,41 @@ def fconvolve(u, v):
     V = np.fft.fftshift(np.fft.fftn(v))
 
     return np.real(np.fft.fftshift(np.fft.ifftn(np.fft.ifftshift(U * V))))
+
+
+def gauss_kernel(size, sd=1, ndim=2):
+    '''
+    Returns a N-dimensional Gaussian kernel. The kernel is defined as
+    follows:
+
+    .. math::
+      k(\\vec{x})=\\frac{1}{(\\sqrt{2\\pi}\\sigma)^N}\\mathrm{e}^{-
+      \\frac{||\\vec{x}||_2^2}{2\\sigma^2}}
+
+    Where :math`N` is the number of dimensions and :math:`\\sigma` is
+    the standard deviation of the kernel.
+
+    * Arguments:
+        - *size* [int]: The number of discrete points of the kernel
+          (will be the same on each dimension).
+        - *sd* [float]: Optional, ``1`` by default. The standard
+          deviation of the gaussian kernel.
+        - *ndim* [int]: Optional, ``2`` by default. Number of dimensions
+        for the desired kernel.
+
+    * Returns:
+        - [numpy.ndarray]: The Gaussian kernel.
+    '''
+
+    s = int(size / 2)
+    if size % 2 == 0:
+        dims = np.mgrid[ndim * (slice(-s, s), )]
+
+    else:
+        dims = np.mgrid[ndim * (slice(-s, s + 1), )]
+
+    f = (1 / ((np.sqrt(2 * np.pi) * sd) ** ndim)
+         * np.exp(-(np.linalg.norm(dims, axis=0, ord=2) ** 2 / float(s))
+                  / (2 * sd ** 2)))
+
+    return f / f.sum()
