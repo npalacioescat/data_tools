@@ -10,7 +10,7 @@ Contents
 --------
 '''
 
-__all__ = ['fconvolve', 'gauss_kernel']
+__all__ = ['fconvolve', 'gauss_kernel', 'gauss_noise']
 
 import numpy as np
 
@@ -74,3 +74,21 @@ def gauss_kernel(size, sd=1, ndim=2):
                   / (2 * sd ** 2)))
 
     return f / f.sum()
+
+
+def gauss_noise(x, sd=1):
+    '''
+    Applies additive Gaussian (white) noise to a given signal.
+
+    * Arguments;
+        - *x* [numpy.ndarray]: The signal, can have any number of
+          dimensions.
+        - *sd* [float]: Optional, ``1`` by default. The standard
+          deviation of the noise to apply.
+
+    * Returns:
+        - [numpy.ndarray]: The signal *x* with the additive Gaussian
+          noise applied.
+    '''
+
+    return np.random.normal(np.real(u), sd)
