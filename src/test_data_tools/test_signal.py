@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__all__ = []
+__all__ = ['FConvolveTestCase', 'GaussKernelTestCase', 'GaussNoiseTestCase']
 
 import unittest
 

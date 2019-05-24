@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['DensityTestCase', 'PianoConsensusTestCase', 'VennTestCase',
-           'VolcanoTestCase']
+__all__ = ['DensityTestCase', 'PianoConsensusTestCase',
+           'SimilarityHeatmapTestCase', 'SimilarityHistogramTestCase',
+           'UpSetWrapTestCase', 'VennTestCase', 'VolcanoTestCase']
 
 import unittest
 
@@ -18,6 +19,27 @@ class DensityTestCase(unittest.TestCase):
 class PianoConsensusTestCase(unittest.TestCase):
     @unittest.skip('** NOTE **: data_tools.plots.piano_consensus test unit is'
                    + ' not implemented.')
+    def test_null(self):
+        pass
+
+
+class SimilarityHeatmapTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.similarity_heatmap test unit'
+                   + ' is not implemented.')
+    def test_null(self):
+        pass
+
+
+class SimilarityHistogramTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.similarity_histogram test'
+                   + ' unit is not implemented.')
+    def test_null(self):
+        pass
+
+
+class UpSetWrapTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.upset_wrap test unit is not'
+                   + ' implemented.')
     def test_null(self):
         pass
 
