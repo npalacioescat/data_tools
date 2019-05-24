@@ -23,6 +23,6 @@ setup(name='data_tools',
                         mpl,
                         'pandas',
                         'scipy',
-                        'sklearn'],
-                        #'UpSetPlot'],
+                        'sklearn',
+                        'UpSetPlot'],
       zip_safe=False)

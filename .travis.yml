@@ -11,6 +11,6 @@ python:
   - 3.6
   - 3.7
 install:
-  - pip install UpSetPlot
+  - pip install pandas
   - pip install .
 script: python -m test_data_tools
