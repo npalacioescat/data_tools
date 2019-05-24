@@ -1,19 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>data_tools.databases &#8212; data_tools 0.0.7 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.diffusion" href="diffusion.html" />
@@ -55,32 +56,29 @@
 cross-references. A list of available database(s) and query examples
 can be found in <a class="reference external" href="https://www.kegg.jp/kegg/rest/keggapi.html#link">https://www.kegg.jp/kegg/rest/keggapi.html#link</a>.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>query</em> [list]: Or any iterable type containing the
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>query</em> [list]: Or any iterable type containing the
 identifier(s) to be queried as [str]. These can be either
 valid database identifiers or databases <em>per se</em> (see the link
-above).</li>
-<li><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'pathway'</span></code> by default. Targeted
+above).</p></li>
+<li><p><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'pathway'</span></code> by default. Targeted
 database to which the query should be linked to. You can check
-other options available in the URL above.</li>
+other options available in the URL above.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[pandas.DataFrame]: Two-column table containing both the
-input query identifiers and their linked ones.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[pandas.DataFrame]: Two-column table containing both the
+input query identifiers and their linked ones.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hsa:10458&#39;</span><span class="p">,</span> <span class="s1">&#39;ece:Z5100&#39;</span><span class="p">]</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hsa:10458&#39;</span><span class="p">,</span> <span class="s1">&#39;ece:Z5100&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">kegg_link</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
 <span class="go">   query        pathway</span>
 <span class="go">0  hsa:10458  path:hsa04520</span>
@@ -104,34 +102,32 @@ with their corresponding background colors (and optionally also
 foreground colors). The result is downloaded in the current
 directory or a user-specified path.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>df</em> [pandas.DataFrame]: Dataframe containing KEGG valid IDs
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>df</em> [pandas.DataFrame]: Dataframe containing KEGG valid IDs
 in the first column and corresponding background colors (e.g.:
 red, blue, …). Optionally, a third column with the
 foreground (font) colors can also be provided (black by
 default). <strong>NOTE:</strong> hexadecimal codes for colors is also
-supported. Index and column names of dataframe are ignored.</li>
-<li><em>mapid</em> [str]: A valid KEGG pathway ID. It can be a general
-(e.g.: “mapXXXXX”) or organism-specific ID (e.g.: “hsaXXXXX”).</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. This is, the
+supported. Index and column names of dataframe are ignored.</p></li>
+<li><p><em>mapid</em> [str]: A valid KEGG pathway ID. It can be a general
+(e.g.: “mapXXXXX”) or organism-specific ID (e.g.: “hsaXXXXX”).</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. This is, the
 image will be stored in the current directory with the <em>mapid</em>
 provided as file name. If provided, the image will be stored
-within the specified path/file name.</li>
+within the specified path/file name.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;1956&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;#f1f1f1&#39;</span><span class="p">],</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;1956&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;#f1f1f1&#39;</span><span class="p">],</span>
 <span class="gp">... </span>                             <span class="p">[</span><span class="s1">&#39;3845&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;#f1f1f1&#39;</span><span class="p">],</span>
 <span class="gp">... </span>                             <span class="p">[</span><span class="s1">&#39;5594&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">kegg_pathway_mapping</span><span class="p">(</span><span class="n">my_query</span><span class="p">,</span> <span class="s1">&#39;hsa04010&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/hsa04010.png" class="last align-center" src="_images/hsa04010.png" />
+<img alt="_images/hsa04010.png" class="align-center" src="_images/hsa04010.png" />
 </dd>
 </dl>
 </li>
@@ -144,24 +140,22 @@ within the specified path/file name.</li>
 <dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
-interest.</li>
-<li><em>incl_phosphatases</em> [bool]: Optional <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
+interest.</p></li>
+<li><p><em>incl_phosphatases</em> [bool]: Optional <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
 Determines wether to include dephosphorylation interactions or
-not.</li>
+not.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[pandas.DataFrame]: Table containing the enzyme-substrate
-(kinase/phosphatase-target) network of each phospho-site.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[pandas.DataFrame]: Table containing the enzyme-substrate
+(kinase/phosphatase-target) network of each phospho-site.</p></li>
 </ul>
 </dd>
 </dl>
@@ -176,35 +170,32 @@ not.</li>
 identifiers. You can check the options available of input/output
 identifiers at <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a>.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>query</em> [list]: Or any iterable type containing the
-identifiers to be queried as [str].</li>
-<li><em>source</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'ACC'</span></code> by default. This is,
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>query</em> [list]: Or any iterable type containing the
+identifiers to be queried as [str].</p></li>
+<li><p><em>source</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'ACC'</span></code> by default. This is,
 UniProt accesion number. You can check other options available
-in the URL above.</li>
-<li><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'GENENAME'</span></code> by default. You can
-check other options available in the URL above.</li>
+in the URL above.</p></li>
+<li><p><em>target</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'GENENAME'</span></code> by default. You can
+check other options available in the URL above.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[pandas.DataFrame]: Two-column table containing both the
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[pandas.DataFrame]: Two-column table containing both the
 inputed identifiers and the mapping result of these. <strong>NOTE:</strong>
 The returned table may not have the same order as in
 <code class="docutils literal notranslate"><span class="pre">query</span></code>. Also, if some ID could not be mapped, the size of
-the returned table will differ from the length of <code class="docutils literal notranslate"><span class="pre">query</span></code>.</li>
+the returned table will differ from the length of <code class="docutils literal notranslate"><span class="pre">query</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Examples:</dt>
-<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P00533&#39;</span><span class="p">,</span> <span class="s1">&#39;P31749&#39;</span><span class="p">,</span> <span class="s1">&#39;P16220&#39;</span><span class="p">]</span>
+<li><dl>
+<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_query</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P00533&#39;</span><span class="p">,</span> <span class="s1">&#39;P31749&#39;</span><span class="p">,</span> <span class="s1">&#39;P16220&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">up_map</span><span class="p">(</span><span class="n">my_query</span><span class="p">)</span>
 <span class="go">      ACC GENENAME</span>
 <span class="go">0  P00533     EGFR</span>
@@ -232,7 +223,7 @@ the returned table will differ from the length of <code class="docutils literal 
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">data_tools.databases</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
@@ -259,8 +250,6 @@ the returned table will differ from the length of <code class="docutils literal 
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -289,7 +278,7 @@ the returned table will differ from the length of <code class="docutils literal 
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
     </div>
   </body>
 </html>

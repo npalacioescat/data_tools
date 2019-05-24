@@ -1,19 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>data_tools.signal &#8212; data_tools 0.0.7 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.spatial" href="spatial.html" />
@@ -57,19 +58,17 @@ According to Fourier theory, the convolution theorem states that:</p>
 \[g(x)=u(x)\ast v(x)=\mathcal{F}^{-1}\left\{\mathcal{F}\{u(x)
 \}\mathcal{F}\{v(x)\}\right\}\]</div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>u</em> [numpy.ndarray]: First array to convolve.</li>
-<li><em>v</em> [numpy.ndarray]: The other array to be convolved.</li>
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>u</em> [numpy.ndarray]: First array to convolve.</p></li>
+<li><p><em>v</em> [numpy.ndarray]: The other array to be convolved.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The convolved array of <em>u</em> and <em>v</em>.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[numpy.ndarray]: The convolved array of <em>u</em> and <em>v</em>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -88,23 +87,21 @@ follows:</p>
 <p>Where :math`N` is the number of dimensions and <span class="math notranslate nohighlight">\(\sigma\)</span> is
 the standard deviation of the kernel.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first simple">
-<li><em>size</em> [int]: The number of discrete points of the kernel
-(will be the same on each dimension).</li>
-<li><em>sd</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The standard
-deviation of the gaussian kernel.</li>
-<li><em>ndim</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. Number of dimensions</li>
+<li><dl>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>size</em> [int]: The number of discrete points of the kernel
+(will be the same on each dimension).</p></li>
+<li><p><em>sd</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The standard
+deviation of the gaussian kernel.</p></li>
+<li><p><em>ndim</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. Number of dimensions</p></li>
 </ul>
-<p class="last">for the desired kernel.</p>
+<p>for the desired kernel.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[numpy.ndarray]: The Gaussian kernel.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[numpy.ndarray]: The Gaussian kernel.</p></li>
 </ul>
 </dd>
 </dl>
@@ -117,22 +114,20 @@ deviation of the gaussian kernel.</li>
 <code class="descclassname">data_tools.signal.</code><code class="descname">gauss_noise</code><span class="sig-paren">(</span><em>x</em>, <em>sd=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/signal.html#gauss_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.signal.gauss_noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies additive Gaussian (white) noise to a given signal.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments;</dt>
-<dd><ul class="first last">
-<li><em>x</em> [numpy.ndarray]: The signal, can have any number of
-dimensions.</li>
-<li><em>sd</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The standard
-deviation of the noise to apply.</li>
+<li><dl class="simple">
+<dt>Arguments;</dt><dd><ul>
+<li><p><em>x</em> [numpy.ndarray]: The signal, can have any number of
+dimensions.</p></li>
+<li><p><em>sd</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">1</span></code> by default. The standard
+deviation of the noise to apply.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The signal <em>x</em> with the additive Gaussian
-noise applied.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[numpy.ndarray]: The signal <em>x</em> with the additive Gaussian
+noise applied.</p></li>
 </ul>
 </dd>
 </dl>
@@ -149,7 +144,7 @@ noise applied.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">data_tools.signal</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
@@ -176,8 +171,6 @@ noise applied.</li>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -206,7 +199,7 @@ noise applied.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
     </div>
   </body>
 </html>

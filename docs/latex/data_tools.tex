@@ -8,30 +8,54 @@
 \PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
 \ifdefined\DeclareUnicodeCharacter
- \ifdefined\DeclareUnicodeCharacterAsOptional
-  \DeclareUnicodeCharacter{"00A0}{\nobreakspace}
-  \DeclareUnicodeCharacter{"2500}{\sphinxunichar{2500}}
-  \DeclareUnicodeCharacter{"2502}{\sphinxunichar{2502}}
-  \DeclareUnicodeCharacter{"2514}{\sphinxunichar{2514}}
-  \DeclareUnicodeCharacter{"251C}{\sphinxunichar{251C}}
-  \DeclareUnicodeCharacter{"2572}{\textbackslash}
- \else
-  \DeclareUnicodeCharacter{00A0}{\nobreakspace}
-  \DeclareUnicodeCharacter{2500}{\sphinxunichar{2500}}
-  \DeclareUnicodeCharacter{2502}{\sphinxunichar{2502}}
-  \DeclareUnicodeCharacter{2514}{\sphinxunichar{2514}}
-  \DeclareUnicodeCharacter{251C}{\sphinxunichar{251C}}
-  \DeclareUnicodeCharacter{2572}{\textbackslash}
- \fi
+% support both utf8 and utf8x syntaxes
+  \ifdefined\DeclareUnicodeCharacterAsOptional
+    \def\sphinxDUC#1{\DeclareUnicodeCharacter{"#1}}
+  \else
+    \let\sphinxDUC\DeclareUnicodeCharacter
+  \fi
+  \sphinxDUC{00A0}{\nobreakspace}
+  \sphinxDUC{2500}{\sphinxunichar{2500}}
+  \sphinxDUC{2502}{\sphinxunichar{2502}}
+  \sphinxDUC{2514}{\sphinxunichar{2514}}
+  \sphinxDUC{251C}{\sphinxunichar{251C}}
+  \sphinxDUC{2572}{\textbackslash}
 \fi
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{babel}
+
+
+
 \usepackage{times}
+\expandafter\ifx\csname T@LGR\endcsname\relax
+\else
+% LGR was declared as font encoding
+  \substitutefont{LGR}{\rmdefault}{cmr}
+  \substitutefont{LGR}{\sfdefault}{cmss}
+  \substitutefont{LGR}{\ttdefault}{cmtt}
+\fi
+\expandafter\ifx\csname T@X2\endcsname\relax
+  \expandafter\ifx\csname T@T2A\endcsname\relax
+  \else
+  % T2A was declared as font encoding
+    \substitutefont{T2A}{\rmdefault}{cmr}
+    \substitutefont{T2A}{\sfdefault}{cmss}
+    \substitutefont{T2A}{\ttdefault}{cmtt}
+  \fi
+\else
+% X2 was declared as font encoding
+  \substitutefont{X2}{\rmdefault}{cmr}
+  \substitutefont{X2}{\sfdefault}{cmss}
+  \substitutefont{X2}{\ttdefault}{cmtt}
+\fi
+
+
 \usepackage[Bjarne]{fncychap}
 \usepackage{sphinx}
 
+\fvset{fontsize=\small}
 \usepackage{geometry}
 
 % Include hyperref last.
@@ -41,31 +65,25 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
-\addto\captionsenglish{\renewcommand{\tablename}{Table}}
-\addto\captionsenglish{\renewcommand{\literalblockname}{Listing}}
-
-\addto\captionsenglish{\renewcommand{\literalblockcontinuedname}{continued from previous page}}
-\addto\captionsenglish{\renewcommand{\literalblockcontinuesname}{continues on next page}}
-
-\addto\extrasenglish{\def\pageautorefname{page}}
-
+\usepackage{sphinxmessages}
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
 
 \title{data\_tools Documentation}
-\date{Apr 08, 2019}
+\date{May 24, 2019}
 \release{0.0.7}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
-
 \begin{document}
 
-\maketitle
+\pagestyle{empty}
+\sphinxmaketitle
+\pagestyle{plain}
 \sphinxtableofcontents
+\pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
 
 
@@ -116,6 +134,9 @@ If not, see \sphinxurl{http://www.gnu.org/licenses/}.
 \item {} 
 \sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
 
+\item {} 
+\sphinxhref{https://upsetplot.readthedocs.io/en/stable/}{UpSetPlot}
+
 \end{itemize}
 
 
@@ -125,7 +146,6 @@ First download/clone \sphinxcode{\sphinxupquote{data\_tools}} from the
 \sphinxhref{https://github.com/Nic-Nic/data\_tools.git}{GitHub repository}.
 From the terminal:
 
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 git clone https://github.com/Nic\PYGZhy{}Nic/data\PYGZus{}tools.git
 \PYG{n+nb}{cd} data\PYGZus{}tools
@@ -133,14 +153,12 @@ git clone https://github.com/Nic\PYGZhy{}Nic/data\PYGZus{}tools.git
 
 Then you can install it by running \sphinxcode{\sphinxupquote{setup.py}} as follows:
 
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 python setup.py sdist
 \end{sphinxVerbatim}
 
 Or using \sphinxcode{\sphinxupquote{pip}}:
 
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 pip install .
 \end{sphinxVerbatim}
@@ -148,7 +166,6 @@ pip install .
 Along with \sphinxcode{\sphinxupquote{data\_tools}}, all dependencies will be installed as well as
 the testing suite. In order to run the tests, type on the terminal:
 
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 python \PYGZhy{}m test\PYGZus{}data\PYGZus{}tools
 \end{sphinxVerbatim}
@@ -158,7 +175,7 @@ implemented.
 
 
 \chapter{Module reference}
-\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)}
+\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)@\spxentry{data\_tools.databases}\spxextra{module}}
 
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
@@ -166,7 +183,7 @@ Databases functions module.
 
 
 \subsection{Contents}
-\label{\detokenize{databases:contents}}\index{kegg\_link() (in module data\_tools.databases)}
+\label{\detokenize{databases:contents}}\index{kegg\_link() (in module data\_tools.databases)@\spxentry{kegg\_link()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{query}, \emph{target='pathway'}}{}
@@ -203,7 +220,6 @@ input query identifiers and their linked ones.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hsa:10458}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ece:Z5100}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{kegg\PYGZus{}link}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
@@ -219,7 +235,7 @@ input query identifiers and their linked ones.
 
 \end{fulllineitems}
 
-\index{kegg\_pathway\_mapping() (in module data\_tools.databases)}
+\index{kegg\_pathway\_mapping() (in module data\_tools.databases)@\spxentry{kegg\_pathway\_mapping()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.kegg_pathway_mapping}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_pathway\_mapping}}}{\emph{df}, \emph{mapid}, \emph{filename=None}}{}
@@ -256,7 +272,6 @@ within the specified path/file name.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{n}{pandas}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1956}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}f1f1f1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
 \PYG{g+gp}{... }                             \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{3845}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsh{}f1f1f1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
@@ -272,7 +287,7 @@ within the specified path/file name.
 
 \end{fulllineitems}
 
-\index{op\_kinase\_substrate() (in module data\_tools.databases)}
+\index{op\_kinase\_substrate() (in module data\_tools.databases)@\spxentry{op\_kinase\_substrate()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{incl\_phosphatases=False}}{}
@@ -309,7 +324,7 @@ not.
 
 \end{fulllineitems}
 
-\index{up\_map() (in module data\_tools.databases)}
+\index{up\_map() (in module data\_tools.databases)@\spxentry{up\_map()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{query}, \emph{source='ACC'}, \emph{target='GENENAME'}}{}
@@ -351,7 +366,6 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{my\PYGZus{}query} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P00533}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P31749}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{P16220}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{up\PYGZus{}map}\PYG{p}{(}\PYG{n}{my\PYGZus{}query}\PYG{p}{)}
@@ -372,7 +386,7 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{diffusion:module-data_tools.diffusion}}\index{data\_tools.diffusion (module)}
+\phantomsection\label{\detokenize{diffusion:module-data_tools.diffusion}}\index{data\_tools.diffusion (module)@\spxentry{data\_tools.diffusion}\spxextra{module}}
 
 \section{data\_tools.diffusion}
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
@@ -530,7 +544,7 @@ the determinant is close to zero, may cause numerical instability.
 
 
 \subsection{Contents}
-\label{\detokenize{diffusion:contents}}\index{build\_mat() (in module data\_tools.diffusion)}
+\label{\detokenize{diffusion:contents}}\index{build\_mat() (in module data\_tools.diffusion)@\spxentry{build\_mat()}\spxextra{in module data\_tools.diffusion}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{cent}, \emph{neigh}, \emph{dims}, \emph{bcs='dirichlet'}}{}
@@ -579,7 +593,7 @@ dimension sizes.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{data\_tools.iterables (module)}
+\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{data\_tools.iterables (module)@\spxentry{data\_tools.iterables}\spxextra{module}}
 
 \section{data\_tools.iterables}
 \label{\detokenize{iterables:data-tools-iterables}}\label{\detokenize{iterables::doc}}
@@ -587,7 +601,7 @@ Iterable-type operations module.
 
 
 \subsection{Contents}
-\label{\detokenize{iterables:contents}}\index{bit\_or() (in module data\_tools.iterables)}
+\label{\detokenize{iterables:contents}}\index{bit\_or() (in module data\_tools.iterables)@\spxentry{bit\_or()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
@@ -617,7 +631,6 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a}\PYG{p}{,} \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{bit\PYGZus{}or}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{)}
@@ -630,7 +643,7 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 
 \end{fulllineitems}
 
-\index{chunk\_this() (in module data\_tools.iterables)}
+\index{chunk\_this() (in module data\_tools.iterables)@\spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
@@ -663,7 +676,6 @@ element returned will have an inferior size.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{L} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chunk\PYGZus{}this}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
@@ -678,7 +690,7 @@ element returned will have an inferior size.
 
 \end{fulllineitems}
 
-\index{find\_min() (in module data\_tools.iterables)}
+\index{find\_min() (in module data\_tools.iterables)@\spxentry{find\_min()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
@@ -705,7 +717,6 @@ given set \sphinxstyleemphasis{A}.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{A} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{find\PYGZus{}min}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
@@ -718,7 +729,7 @@ given set \sphinxstyleemphasis{A}.
 
 \end{fulllineitems}
 
-\index{in\_all() (in module data\_tools.iterables)}
+\index{in\_all() (in module data\_tools.iterables)@\spxentry{in\_all()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
@@ -751,7 +762,6 @@ other iterables containing the objects.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set A}
 \PYG{g+gp}{... }     \PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} \PYGZlt{}\PYGZhy{} set B}
@@ -774,7 +784,7 @@ other iterables containing the objects.
 
 \end{fulllineitems}
 
-\index{similarity() (in module data\_tools.iterables)}
+\index{similarity() (in module data\_tools.iterables)@\spxentry{similarity()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{a}, \emph{b}, \emph{mode='j'}}{}
@@ -826,7 +836,7 @@ according to the specified \sphinxstyleemphasis{mode}.
 
 \end{fulllineitems}
 
-\index{subsets() (in module data\_tools.iterables)}
+\index{subsets() (in module data\_tools.iterables)@\spxentry{subsets()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
@@ -856,7 +866,6 @@ that denote the logical relation (see examples below).
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{subsets}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
@@ -873,7 +882,7 @@ that denote the logical relation (see examples below).
 
 \end{fulllineitems}
 
-\index{unzip\_dicts() (in module data\_tools.iterables)}
+\index{unzip\_dicts() (in module data\_tools.iterables)@\spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{iterables:data_tools.iterables.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{*dicts}}{}
@@ -902,7 +911,6 @@ respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{b} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{(}\PYG{p}{[}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{x\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y\PYGZus{}b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
@@ -916,7 +924,7 @@ respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)}
+\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)@\spxentry{data\_tools.models}\spxextra{module}}
 
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
@@ -924,7 +932,7 @@ Model classes module.
 
 
 \subsection{Contents}
-\label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)}
+\label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)@\spxentry{DoseResponse}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0=None, x\_scale=None, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
@@ -999,7 +1007,7 @@ fitted parameters \(k\), \(m\) and \(n\).
 \end{description}
 
 \end{itemize}
-\index{ec() (data\_tools.models.DoseResponse method)}
+\index{ec() (data\_tools.models.DoseResponse method)@\spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.ec}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{ec}}}{\emph{p=50}}{}
@@ -1031,7 +1039,7 @@ to the model parameters.
 
 \end{fulllineitems}
 
-\index{plot() (data\_tools.models.DoseResponse method)}
+\index{plot() (data\_tools.models.DoseResponse method)@\spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{legend=True}}{}
@@ -1078,7 +1086,7 @@ points and the fitted model function.
 
 \end{fulllineitems}
 
-\index{Lasso (class in data\_tools.models)}
+\index{Lasso (class in data\_tools.models)@\spxentry{Lasso}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Lasso}}}{\emph{Cs=500}, \emph{cv=10}, \emph{sampler='skf'}, \emph{solver='liblinear'}, \emph{**kwargs}}{}
@@ -1127,7 +1135,7 @@ reference}.
 \end{description}
 
 \end{itemize}
-\index{fit\_data() (data\_tools.models.Lasso method)}
+\index{fit\_data() (data\_tools.models.Lasso method)@\spxentry{fit\_data()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit\_data}}}{\emph{x}, \emph{y}, \emph{silent=False}}{}
@@ -1157,7 +1165,7 @@ Determines whether messages are printed or not.
 
 \end{fulllineitems}
 
-\index{plot\_coef() (data\_tools.models.Lasso method)}
+\index{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_coef}}}{\emph{filename=None}, \emph{figsize=None}}{}
@@ -1194,7 +1202,7 @@ bar plot of the non-zero coefficients.
 
 \end{fulllineitems}
 
-\index{plot\_score() (data\_tools.models.Lasso method)}
+\index{plot\_score() (data\_tools.models.Lasso method)@\spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_score}}}{\emph{filename=None}, \emph{figsize=None}}{}
@@ -1234,7 +1242,7 @@ score plot.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)}
+\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}}
 
 \section{data\_tools.plots}
 \label{\detokenize{plots:data-tools-plots}}\label{\detokenize{plots::doc}}
@@ -1242,7 +1250,7 @@ Plotting functions module.
 
 
 \subsection{Contents}
-\label{\detokenize{plots:contents}}\index{cmap\_bkgr (in module data\_tools.plots)}
+\label{\detokenize{plots:contents}}\index{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
@@ -1250,7 +1258,7 @@ Custom colormap, gradient from black (lowest) to lime green (highest).
 
 \end{fulllineitems}
 
-\index{cmap\_bkrd (in module data\_tools.plots)}
+\index{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkrd}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkrd}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
@@ -1258,7 +1266,7 @@ Custom colormap, gradient from black (lowest) to red (highest).
 
 \end{fulllineitems}
 
-\index{cmap\_rdbkgr (in module data\_tools.plots)}
+\index{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.cmap_rdbkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_rdbkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
@@ -1267,7 +1275,7 @@ green (highest).
 
 \end{fulllineitems}
 
-\index{density() (in module data\_tools.plots)}
+\index{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{sample\_col=False}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -1311,8 +1319,8 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing the
-density plot.
+{[}matplotlib.figure.Figure{]}: the figure object containing the
+density plot, unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1322,7 +1330,7 @@ density plot.
 
 \end{fulllineitems}
 
-\index{piano\_consensus() (in module data\_tools.plots)}
+\index{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -1371,8 +1379,9 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
-combination of box and scatter plots of the gene-set scores.
+{[}matplotlib.figure.Figure{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1380,7 +1389,6 @@ combination of box and scatter plots of the gene-set scores.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{piano\PYGZus{}consensus}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -1393,7 +1401,7 @@ combination of box and scatter plots of the gene-set scores.
 
 \end{fulllineitems}
 
-\index{similarity\_heatmap() (in module data\_tools.plots)}
+\index{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.similarity_heatmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_heatmap}}}{\emph{groups}, \emph{labels=None}, \emph{mode='j'}, \emph{cmap='nipy\_spectral'}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -1446,9 +1454,9 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: the figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless \sphinxstyleemphasis{filename} is specified.
+unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1458,7 +1466,7 @@ unless \sphinxstyleemphasis{filename} is specified.
 
 \end{fulllineitems}
 
-\index{similarity\_histogram() (in module data\_tools.plots)}
+\index{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.similarity_histogram}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_histogram}}}{\emph{groups}, \emph{mode='j'}, \emph{bins=10}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -1503,9 +1511,9 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: the figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless \sphinxstyleemphasis{filename} is specified.
+unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1515,7 +1523,44 @@ unless \sphinxstyleemphasis{filename} is specified.
 
 \end{fulllineitems}
 
-\index{venn() (in module data\_tools.plots)}
+\index{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.upset_wrap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{upset\_wrap}}}{\emph{N}, \emph{labels=None}, \emph{**kwargs}}{}
+Wrapper for UpSetPlot package. Mostly just generates the Boolean
+multi-indexed \sphinxcode{\sphinxupquote{pandas.Series}} the \sphinxcode{\sphinxupquote{upsetplot.plot}} function
+needs as input.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
+
+\item {} 
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for the
+sets following the same order as provided in \sphinxstyleemphasis{N}. If none is
+passed they will be labelled \sphinxcode{\sphinxupquote{'set0'}}, \sphinxcode{\sphinxupquote{'set1'}} and so on.
+
+\item {} 
+\sphinxstyleemphasis{**kwargs}: Optional. Additional keyword arguments passed to
+\sphinxcode{\sphinxupquote{upsetplot.UpSet}} class.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode
+{[}dict{]}: Contains the \sphinxcode{\sphinxupquote{matplotlib.axes.Axes}} instances for the
+UpSetPlot figure.
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, sizes=False, title=None, filename=None, figsize=None}}{}
@@ -1568,8 +1613,9 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}\sphinxstyleemphasis{matplotlib.figure.Figure}{]}: the figure object containing a
-combination of box and scatter plots of the gene-set scores.
+{[}matplotlib.figure.Figure{]}: the figure object containing a
+combination of box and scatter plots of the gene-set scores,
+unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1577,7 +1623,6 @@ combination of box and scatter plots of the gene-set scores.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{}}\PYG{p}{]} \PYG{c+c1}{\PYGZsh{} Sets A, B, C}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{venn}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
@@ -1591,7 +1636,7 @@ combination of box and scatter plots of the gene-set scores.
 
 \end{fulllineitems}
 
-\index{volcano() (in module data\_tools.plots)}
+\index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
@@ -1653,7 +1698,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: Figure object containing the
-volcano plot.
+volcano plot, unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1661,7 +1706,6 @@ volcano plot.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{volcano}\PYG{p}{(}\PYG{n}{my\PYGZus{}log\PYGZus{}fc}\PYG{p}{,} \PYG{n}{my\PYGZus{}log\PYGZus{}pval}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -1674,7 +1718,7 @@ volcano plot.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{signal:module-data_tools.signal}}\index{data\_tools.signal (module)}
+\phantomsection\label{\detokenize{signal:module-data_tools.signal}}\index{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}}
 
 \section{data\_tools.signal}
 \label{\detokenize{signal:data-tools-signal}}\label{\detokenize{signal::doc}}
@@ -1682,7 +1726,7 @@ Signal processing module.
 
 
 \subsection{Contents}
-\label{\detokenize{signal:contents}}\index{fconvolve() (in module data\_tools.signal)}
+\label{\detokenize{signal:contents}}\index{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{signal:data_tools.signal.fconvolve}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{fconvolve}}}{\emph{u}, \emph{v}}{}
@@ -1717,7 +1761,7 @@ According to Fourier theory, the convolution theorem states that:
 
 \end{fulllineitems}
 
-\index{gauss\_kernel() (in module data\_tools.signal)}
+\index{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{signal:data_tools.signal.gauss_kernel}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_kernel}}}{\emph{size}, \emph{sd=1}, \emph{ndim=2}}{}
@@ -1762,7 +1806,7 @@ for the desired kernel.
 
 \end{fulllineitems}
 
-\index{gauss\_noise() (in module data\_tools.signal)}
+\index{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{signal:data_tools.signal.gauss_noise}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_noise}}}{\emph{x}, \emph{sd=1}}{}
@@ -1796,7 +1840,7 @@ noise applied.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)}
+\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}}
 
 \section{data\_tools.spatial}
 \label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
@@ -1804,7 +1848,7 @@ Spatial tools module.
 
 
 \subsection{Contents}
-\label{\detokenize{spatial:contents}}\index{equidist\_polar() (in module data\_tools.spatial)}
+\label{\detokenize{spatial:contents}}\index{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spatial:data_tools.spatial.equidist_polar}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{equidist\_polar}}}{\emph{n}, \emph{r=1}}{}
@@ -1840,7 +1884,7 @@ Cartesian coordinates.
 
 \end{fulllineitems}
 
-\index{get\_boundaries() (in module data\_tools.spatial)}
+\index{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
@@ -1877,7 +1921,6 @@ denoting the number of boundary edges of the cells.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{get\PYGZus{}boundaries}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
@@ -1908,7 +1951,7 @@ denoting the number of boundary edges of the cells.
 
 \end{fulllineitems}
 
-\index{neighbour\_count() (in module data\_tools.spatial)}
+\index{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spatial:data_tools.spatial.neighbour_count}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{neighbour\_count}}}{\emph{x}}{}
@@ -1940,7 +1983,6 @@ neighbour count.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x} \PYG{o}{=} \PYG{n}{numpy}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{x}
@@ -1963,7 +2005,7 @@ neighbour count.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)}
+\phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}}
 
 \section{data\_tools.strings}
 \label{\detokenize{strings:data-tools-strings}}\label{\detokenize{strings::doc}}
@@ -1971,7 +2013,7 @@ String operations module.
 
 
 \subsection{Contents}
-\label{\detokenize{strings:contents}}\index{is\_numeric() (in module data\_tools.strings)}
+\label{\detokenize{strings:contents}}\index{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{s}}{}
@@ -1999,7 +2041,6 @@ satisfied.
 
 \item {} \begin{description}
 \item[{Examples:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{is\PYGZus{}numeric}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{4}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \PYG{g+go}{True}
@@ -2017,7 +2058,7 @@ satisfied.
 
 \end{fulllineitems}
 
-\index{join\_str\_lists() (in module data\_tools.strings)}
+\index{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{strings:data_tools.strings.join_str_lists}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{join\_str\_lists}}}{\emph{a}, \emph{b}, \emph{sep=''}}{}
@@ -2054,7 +2095,6 @@ Determines the separator between the joint strings.
 
 \item {} \begin{description}
 \item[{Example:}] \leavevmode
-\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{a} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{b} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
@@ -2072,16 +2112,16 @@ Determines the separator between the joint strings.
 
 \renewcommand{\indexname}{Python Module Index}
 \begin{sphinxtheindex}
-\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+\let\bigletter\sphinxstyleindexlettergroup
 \bigletter{d}
-\item {\sphinxstyleindexentry{data\_tools.databases}}\sphinxstyleindexpageref{databases:\detokenize{module-data_tools.databases}}
-\item {\sphinxstyleindexentry{data\_tools.diffusion}}\sphinxstyleindexpageref{diffusion:\detokenize{module-data_tools.diffusion}}
-\item {\sphinxstyleindexentry{data\_tools.iterables}}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
-\item {\sphinxstyleindexentry{data\_tools.models}}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
-\item {\sphinxstyleindexentry{data\_tools.plots}}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
-\item {\sphinxstyleindexentry{data\_tools.signal}}\sphinxstyleindexpageref{signal:\detokenize{module-data_tools.signal}}
-\item {\sphinxstyleindexentry{data\_tools.spatial}}\sphinxstyleindexpageref{spatial:\detokenize{module-data_tools.spatial}}
-\item {\sphinxstyleindexentry{data\_tools.strings}}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
+\item\relax\sphinxstyleindexentry{data\_tools.databases}\sphinxstyleindexpageref{databases:\detokenize{module-data_tools.databases}}
+\item\relax\sphinxstyleindexentry{data\_tools.diffusion}\sphinxstyleindexpageref{diffusion:\detokenize{module-data_tools.diffusion}}
+\item\relax\sphinxstyleindexentry{data\_tools.iterables}\sphinxstyleindexpageref{iterables:\detokenize{module-data_tools.iterables}}
+\item\relax\sphinxstyleindexentry{data\_tools.models}\sphinxstyleindexpageref{models:\detokenize{module-data_tools.models}}
+\item\relax\sphinxstyleindexentry{data\_tools.plots}\sphinxstyleindexpageref{plots:\detokenize{module-data_tools.plots}}
+\item\relax\sphinxstyleindexentry{data\_tools.signal}\sphinxstyleindexpageref{signal:\detokenize{module-data_tools.signal}}
+\item\relax\sphinxstyleindexentry{data\_tools.spatial}\sphinxstyleindexpageref{spatial:\detokenize{module-data_tools.spatial}}
+\item\relax\sphinxstyleindexentry{data\_tools.strings}\sphinxstyleindexpageref{strings:\detokenize{module-data_tools.strings}}
 \end{sphinxtheindex}
 
 \renewcommand{\indexname}{Index}

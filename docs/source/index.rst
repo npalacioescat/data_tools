@@ -104,6 +104,7 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`piano_consensus <data_tools.plots.piano_consensus>`
       - :py:func:`similarity_heatmap <data_tools.plots.similarity_heatmap>`
       - :py:func:`similarity_histogram <data_tools.plots.similarity_histogram>`
+      - :py:func:`upset_wrap <data_tools.plots.upset_wrap>`
       - :py:func:`venn <data_tools.plots.venn>`
       - :py:func:`volcano <data_tools.plots.volcano>`
 
@@ -129,6 +130,7 @@ Dependencies
 - `Pandas <https://pandas.pydata.org/>`_
 - `SciPy <https://www.scipy.org/>`_
 - `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
+- `UpSetPlot <https://upsetplot.readthedocs.io/en/stable/>`_
 
 Installation
 ============

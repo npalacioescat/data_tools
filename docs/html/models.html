@@ -1,19 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>data_tools.models &#8212; data_tools 0.0.7 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="data_tools.plots" href="plots.html" />
@@ -59,47 +60,45 @@ following form:</p>
 <p>Where <span class="math notranslate nohighlight">\(D\)</span> is the dose, <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are
 the parameters to be fitted.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>d_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
-training data corresponding to the dose.</li>
-<li><em>r_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
-training data corresponding to the response.</li>
-<li><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>d_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
+training data corresponding to the dose.</p></li>
+<li><p><em>r_data</em> [numpy.ndarray]: Or any iterable (1D). Contains the
+training data corresponding to the response.</p></li>
+<li><p><em>x0</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Contains the initial guess for the
 parameters. Parameters are considered to be in alphabetical
 order. This is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second
 is <span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the
-initial guess is inferred from <em>r_data</em>.</li>
-<li><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
+initial guess is inferred from <em>r_data</em>.</p></li>
+<li><p><em>x_scale</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Or any
 iterable of three elements. Scale of each parameter. May
 improve the fitting if the scaled parameters have similar
 effect on the cost function. If <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the scale
-is inferred from <em>x0</em>.</li>
-<li><em>bounds</em> [tuple]: Optional <code class="docutils literal notranslate"><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">-inf],</span> <span class="pre">[inf,</span> <span class="pre">inf,</span> <span class="pre">inf])</span></code>
+is inferred from <em>x0</em>.</p></li>
+<li><p><em>bounds</em> [tuple]: Optional <code class="docutils literal notranslate"><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">-inf],</span> <span class="pre">[inf,</span> <span class="pre">inf,</span> <span class="pre">inf])</span></code>
 by default. Two-element tuple containing the lower and upper
 boundaries for the parameters (elements of the tuple are
-iterables of three elements each).</li>
+iterables of three elements each).</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Attributes:</dt>
-<dd><ul class="first last">
-<li><em>x0</em> [list]: Contains the initial guess for the parameters.
+<li><dl class="simple">
+<dt>Attributes:</dt><dd><ul>
+<li><p><em>x0</em> [list]: Contains the initial guess for the parameters.
 Parameters are considered to be in alphabetical order. This
 is, first element corresponds to <span class="math notranslate nohighlight">\(k\)</span>, second is
-<span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</li>
-<li><em>x_scale</em> [list]: Scale of each parameter.</li>
-<li><em>model</em> [scipy.optimize.OptimizeResult]: Contains the result
+<span class="math notranslate nohighlight">\(m\)</span> and last is <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p><em>x_scale</em> [list]: Scale of each parameter.</p></li>
+<li><p><em>model</em> [scipy.optimize.OptimizeResult]: Contains the result
 of the optimized model. See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.OptimizeResult.html#scipy.optimize.OptimizeResult">SciPy’s reference</a> for more
-information.</li>
-<li><em>params</em> [numpy.ndarray]: Three-element array containing the
-fitted parameters <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</li>
+information.</p></li>
+<li><p><em>params</em> [numpy.ndarray]: Three-element array containing the
+fitted parameters <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -111,21 +110,19 @@ fitted parameters <span class="math notranslate nohighlight">\(k\)</span>, <span
 <dd><p>Computes the effective concentration for the specified
 percentage of maximal concentration (<span class="math notranslate nohighlight">\(EC_{p}\)</span>).</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>p</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">50</span></code> by default (<span class="math notranslate nohighlight">\(EC_{50}\)</span>).
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>p</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">50</span></code> by default (<span class="math notranslate nohighlight">\(EC_{50}\)</span>).
 Defines the percentage of the maximal from which the
-effective concentration is to be computed.</li>
+effective concentration is to be computed.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns</dt>
-<dd><ul class="first last">
-<li>[float]: Value of the <span class="math notranslate nohighlight">\(EC_{p}\)</span> computed according
-to the model parameters.</li>
+<li><dl class="simple">
+<dt>Returns</dt><dd><ul>
+<li><p>[float]: Value of the <span class="math notranslate nohighlight">\(EC_{p}\)</span> computed according
+to the model parameters.</p></li>
 </ul>
 </dd>
 </dl>
@@ -138,28 +135,26 @@ to the model parameters.</li>
 <code class="descname">plot</code><span class="sig-paren">(</span><em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>legend=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the data points and the fitted function together.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the
-plot title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the
+plot title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
 passed, indicates the file name or path where to store the
-figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+figure. Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values
-denoting the figure size (in inches) as [width, height].</li>
-<li><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
-whether to show the plot legend or not.</li>
+denoting the figure size (in inches) as [width, height].</p></li>
+<li><p><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
+whether to show the plot legend or not.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: Figure object showing the data
-points and the fitted model function.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: Figure object showing the data
+points and the fitted model function.</p></li>
 </ul>
 </dd>
 </dl>
@@ -176,31 +171,30 @@ points and the fitted model function.</li>
 <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> with L1
 regularization.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first simple">
-<li><em>Cs</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">500</span></code> by default. Integer or list of
+<li><dl>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>Cs</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">500</span></code> by default. Integer or list of
 float values of regularization parameters to test. If an
 integer is passed, it will determine the number of values
 taken from a logarithmic scale between <code class="docutils literal notranslate"><span class="pre">1e-4</span></code> and <code class="docutils literal notranslate"><span class="pre">1e4</span></code>.
 Note that the value of the parameter is defined as the inverse
-of the regularization strength.</li>
-<li><em>cv</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">10</span></code> by default. Denotes the number of
-cross validation (CV) folds.</li>
-<li><em>sampler</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'skf'</span></code> by default. Determines
+of the regularization strength.</p></li>
+<li><p><em>cv</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">10</span></code> by default. Denotes the number of
+cross validation (CV) folds.</p></li>
+<li><p><em>sampler</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'skf'</span></code> by default. Determines
 which sampling method is used to generate the test and
 training sets for CV. Methods available are K-Fold (<code class="docutils literal notranslate"><span class="pre">'kf'</span></code>),
 Shuffle Split (<code class="docutils literal notranslate"><span class="pre">'ss'</span></code>) and their stratified variants
-(<code class="docutils literal notranslate"><span class="pre">'skf'</span></code> and <code class="docutils literal notranslate"><span class="pre">'sss'</span></code> respectively).</li>
-<li><em>solver</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'liblinear'</span></code> by default.
+(<code class="docutils literal notranslate"><span class="pre">'skf'</span></code> and <code class="docutils literal notranslate"><span class="pre">'sss'</span></code> respectively).</p></li>
+<li><p><em>solver</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'liblinear'</span></code> by default.
 Determines which solver algorithm to use. Note that L1
 regularization can only be handled by <code class="docutils literal notranslate"><span class="pre">'liblinear'</span></code> and
 <code class="docutils literal notranslate"><span class="pre">'saga'</span></code>. Additionally if the classification is multinomial,
-only the latter option is available.</li>
-<li><em>**kwargs</em>: Optional. Any other keyword argument accepted by
-the <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> class.</li>
+only the latter option is available.</p></li>
+<li><p><em>**kwargs</em>: Optional. Any other keyword argument accepted by
+the <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> class.</p></li>
 </ul>
-<p class="last">Other keyword arguments and functions available from the parent
+<p>Other keyword arguments and functions available from the parent
 class <code class="docutils literal notranslate"><span class="pre">LogisticRegressionCV</span></code> can be fount in <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegressionCV.html">Scikit-Learn’s
 reference</a>.</p>
 </dd>
@@ -212,17 +206,16 @@ reference</a>.</p>
 <code class="descname">fit_data</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>silent=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.fit_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.fit_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the data to the logistic model.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>x</em> [pandas.DataFrame]: Contains the values/measurements
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>x</em> [pandas.DataFrame]: Contains the values/measurements
 [float] of the features (columns) for each
-sample/replicate (rows).</li>
-<li><em>y</em> [pandas.Series]: List or any iterable containing the
+sample/replicate (rows).</p></li>
+<li><p><em>y</em> [pandas.Series]: List or any iterable containing the
 observed class of each sample (must have the same order as
-in <em>x</em>).</li>
-<li><em>silent</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
-Determines whether messages are printed or not.</li>
+in <em>x</em>).</p></li>
+<li><p><em>silent</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
+Determines whether messages are printed or not.</p></li>
 </ul>
 </dd>
 </dl>
@@ -236,24 +229,22 @@ Determines whether messages are printed or not.</li>
 <dd><p>Plots the non-zero coefficients for the fitted predictor
 features.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
 passed, indicates the file name or path where to store the
-figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+figure. Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values
-denoting the figure size (in inches) as [width, height].</li>
+denoting the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: Figure object containing the
-bar plot of the non-zero coefficients.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: Figure object containing the
+bar plot of the non-zero coefficients.</p></li>
 </ul>
 </dd>
 </dl>
@@ -267,24 +258,22 @@ bar plot of the non-zero coefficients.</li>
 <dd><p>Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If
 passed, indicates the file name or path where to store the
-figure. Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+figure. Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values
-denoting the figure size (in inches) as [width, height].</li>
+denoting the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: Figure object containing the
-score plot.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: Figure object containing the
+score plot.</p></li>
 </ul>
 </dd>
 </dl>
@@ -303,7 +292,7 @@ score plot.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">data_tools.models</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
@@ -330,8 +319,6 @@ score plot.</li>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -360,7 +347,7 @@ score plot.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
     </div>
   </body>
 </html>
