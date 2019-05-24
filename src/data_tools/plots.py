@@ -14,7 +14,7 @@ from __future__ import absolute_import
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
            'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
-           'venn', 'volcano']
+           'upset_wrap', 'venn', 'volcano']
 
 import sys
 import itertools
@@ -25,6 +25,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
+import upsetplot as usp
 
 from data_tools.iterables import subsets, similarity
 
@@ -74,7 +75,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: the figure object containing the
+        - [matplotlib.figure.Figure]: the figure object containing the
           density plot, unless *filename* is provided.
     '''
 
@@ -141,7 +142,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: the figure object containing a
+        - [matplotlib.figure.Figure]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
 
@@ -233,7 +234,7 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         https://matplotlib.org/examples/color/colormaps_reference.html
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: the figure object containing a
+        - [matplotlib.figure.Figure]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
     '''
@@ -305,7 +306,7 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: the figure object containing a
+        - [matplotlib.figure.Figure]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
     '''
@@ -329,6 +330,38 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
 
     else:
         return fig
+
+
+def upset_wrap(N, labels=None, **kwargs):
+    '''
+    Wrapper for UpSetPlot package. Mostly just generates the Boolean
+    multi-indexed ``pandas.Series`` the ``upsetplot.plot`` function
+    needs as input.
+
+    * Arguments:
+        - *N* [list]: Or any iterable type containing [set] objects.
+        - *labels* [list]: Optional, ``None`` by default. Labels for the
+          sets following the same order as provided in *N*. If none is
+          passed they will be labelled ``'set0'``, ``'set1'`` and so on.
+        - *\*\*kwargs*: Optional. Additional keyword arguments passed to
+          ``upsetplot.UpSet`` class.
+
+    * Returns:
+        [dict]: Contains the ``matplotlib.axes.Axes`` instances for the
+        UpSetPlot figure.
+    '''
+
+    ss = subsets(N)
+    ids = [tuple([bool(int(j)) for j in i]) for i in ss.keys()]
+    counts = list(map(len, ss.values()))
+
+    if labels is None:
+        labels = ['set%d' % i for i in range(len(N))]
+
+    idx = pd.MultiIndex.from_tuples(ids, names=labels)
+    series = pd.Series(counts, index=idx)
+
+    return usp.plot(series, **kwargs)
 
 
 def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
@@ -361,7 +394,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [*matplotlib.figure.Figure*]: the figure object containing a
+        - [matplotlib.figure.Figure]: the figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
 
