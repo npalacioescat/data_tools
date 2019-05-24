@@ -12,6 +12,9 @@
       optionally radius), returns the Cartesian coordinates of such
       number of equidistant points (in polar coordinates).
 - In `plots` module:
+    - Function `upset_wrap`: Wrapper for UpSetPlot package. Mostly just
+      generates the Boolean multi-indexed ``pandas.Series`` the
+      ``upsetplot.plot`` function needs as input.
     - Function `similarity_heatmap`: Given a group of sets, generates a
       heatmap with the similarity indices across each possible pair.
     - Function `similarity_histogram`: Given a group of sets, generates

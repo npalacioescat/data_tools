@@ -23,5 +23,6 @@ setup(name='data_tools',
                         mpl,
                         'pandas',
                         'scipy',
-                        'sklearn'],
+                        'sklearn',
+                        'upsetplot'],
       zip_safe=False)

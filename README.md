@@ -64,6 +64,7 @@ A full copy of the GNU General Public License can be found on file
     - [piano_consensus](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.piano_consensus)
     - [similarity_heatmap](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_heatmap)
     - [similarity_histogram](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_histogram)
+    - [upset_wrap](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.upset_wrap)
     - [venn](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.venn)
     - [volcano](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.volcano)
 - [signal](https://nic-nic.github.io/data_tools/html/signal.html)
@@ -85,6 +86,7 @@ A full copy of the GNU General Public License can be found on file
 - [Pandas](https://pandas.pydata.org/)
 - [SciPy](https://www.scipy.org/)
 - [Scikit-learn](http://scikit-learn.org/stable/index.html)
+- [UpSetPlot](https://upsetplot.readthedocs.io/en/stable/)
 
 ## Installation
 
