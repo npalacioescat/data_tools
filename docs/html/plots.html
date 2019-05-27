@@ -250,7 +250,7 @@ unless <em>filename</em> is provided.</p></li>
 
 <dl class="function">
 <dt id="data_tools.plots.upset_wrap">
-<code class="descclassname">data_tools.plots.</code><code class="descname">upset_wrap</code><span class="sig-paren">(</span><em>N</em>, <em>labels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#upset_wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.upset_wrap" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">upset_wrap</code><span class="sig-paren">(</span><em>N</em>, <em>labels=None</em>, <em>drop_empty=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#upset_wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.upset_wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for UpSetPlot package. Mostly just generates the Boolean
 multi-indexed <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> the <code class="docutils literal notranslate"><span class="pre">upsetplot.plot</span></code> function
 needs as input.</p>
@@ -261,6 +261,8 @@ needs as input.</p>
 <li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
 sets following the same order as provided in <em>N</em>. If none is
 passed they will be labelled <code class="docutils literal notranslate"><span class="pre">'set0'</span></code>, <code class="docutils literal notranslate"><span class="pre">'set1'</span></code> and so on.</p></li>
+<li><p><em>drop_empty</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
+to remove the empty set intersections from the plot or not.</p></li>
 <li><p><em>**kwargs</em>: Optional. Additional keyword arguments passed to
 <code class="docutils literal notranslate"><span class="pre">upsetplot.UpSet</span></code> class.</p></li>
 </ul>

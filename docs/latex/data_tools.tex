@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{May 24, 2019}
+\date{May 27, 2019}
 \release{0.0.7}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1526,7 +1526,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.upset_wrap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{upset\_wrap}}}{\emph{N}, \emph{labels=None}, \emph{**kwargs}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.upset_wrap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{upset\_wrap}}}{\emph{N}, \emph{labels=None}, \emph{drop\_empty=False}, \emph{**kwargs}}{}
 Wrapper for UpSetPlot package. Mostly just generates the Boolean
 multi-indexed \sphinxcode{\sphinxupquote{pandas.Series}} the \sphinxcode{\sphinxupquote{upsetplot.plot}} function
 needs as input.
@@ -1540,6 +1540,10 @@ needs as input.
 \sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for the
 sets following the same order as provided in \sphinxstyleemphasis{N}. If none is
 passed they will be labelled \sphinxcode{\sphinxupquote{'set0'}}, \sphinxcode{\sphinxupquote{'set1'}} and so on.
+
+\item {} 
+\sphinxstyleemphasis{drop\_empty} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether
+to remove the empty set intersections from the plot or not.
 
 \item {} 
 \sphinxstyleemphasis{**kwargs}: Optional. Additional keyword arguments passed to

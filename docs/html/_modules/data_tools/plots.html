@@ -372,7 +372,7 @@
         <span class="k">return</span> <span class="n">fig</span></div>
 
 
-<div class="viewcode-block" id="upset_wrap"><a class="viewcode-back" href="../../plots.html#data_tools.plots.upset_wrap">[docs]</a><span class="k">def</span> <span class="nf">upset_wrap</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="upset_wrap"><a class="viewcode-back" href="../../plots.html#data_tools.plots.upset_wrap">[docs]</a><span class="k">def</span> <span class="nf">upset_wrap</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Wrapper for UpSetPlot package. Mostly just generates the Boolean</span>
 <span class="sd">    multi-indexed ``pandas.Series`` the ``upsetplot.plot`` function</span>
@@ -383,6 +383,8 @@
 <span class="sd">        - *labels* [list]: Optional, ``None`` by default. Labels for the</span>
 <span class="sd">          sets following the same order as provided in *N*. If none is</span>
 <span class="sd">          passed they will be labelled ``&#39;set0&#39;``, ``&#39;set1&#39;`` and so on.</span>
+<span class="sd">        - *drop_empty* [bool]: Optional, ``False`` by default. Whether</span>
+<span class="sd">          to remove the empty set intersections from the plot or not.</span>
 <span class="sd">        - *\*\*kwargs*: Optional. Additional keyword arguments passed to</span>
 <span class="sd">          ``upsetplot.UpSet`` class.</span>
 
@@ -400,6 +402,10 @@
 
     <span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">drop_empty</span><span class="p">:</span>
+        <span class="n">series</span><span class="p">[</span><span class="n">series</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">series</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">usp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
