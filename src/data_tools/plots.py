@@ -82,7 +82,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
     df = df.T if sample_col else df
 
     cmap = matplotlib.cm.get_cmap('rainbow')
-    colors = map(cmap, np.linspace(1, 0, len(df.index)))
+    colors = list(map(cmap, np.linspace(1, 0, len(df.index))))
 
     fig, ax = plt.subplots(figsize=figsize)
 
