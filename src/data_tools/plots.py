@@ -12,7 +12,7 @@ Contents
 
 from __future__ import absolute_import
 
-__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'density',
+__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'cluster_hmap', 'density',
            'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
            'upset_wrap', 'venn', 'volcano']
 
@@ -25,6 +25,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
+from scipy.cluster.hierarchy import dendrogram, linkage
 import upsetplot as usp
 
 from data_tools.iterables import subsets, similarity
@@ -48,6 +49,107 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
                                                 colors=['#FF0000', '#000000',
                                                         '#00FF00'],
                                                 N=256)
+
+
+def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
+                 figsize=None, cmap='viridis', link_kwargs={},
+                 dendo_kwargs={}):
+    '''
+    Generates a heatmap with hierarchical clustering dendrograms
+    attached. The linkage matrix and dendogram are computed using the
+    module :py:mod:`scipy.cluster.hierarchy`, you may check the
+    corresponding documentation for available and default methods.
+
+    * Arguments:
+        - *matrix* [numpy.ndarray]: Contains the values to generate the
+          plot. It is assumed to be a 2-dimensional matrix.
+        - *xlabels* [list]: Optional, ``None`` by default. Labels for
+          the x-axis of the matrix following the same order as provided
+          (e.g. sample names).
+        - *ylabels* [list]: Optional, ``None`` by default. Labels for
+          the y-axis of the matrix following the same order as provided
+          (e.g. measurements).
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+        - *cmap* [str]: Optional, ``'viridis'`` by default. The colormap
+          used for the plot (can also be a [matplotlib.colors.Colormap]
+          object). See other [str] options available in `Matplotlib's
+          reference manual`_.
+        - *link_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
+          containing the key-value pairs for keyword arguments passed to
+          `scipy.cluster.hierarchy.linkage`_.
+        - *dendo_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
+          containing the key-value pairs for keyword arguments passed to
+          `scipy.cluster.hierarchy.dendogram`_.
+
+    .. _`Matplotlib's reference manual`:
+        https://matplotlib.org/examples/color/colormaps_reference.html
+    .. _`scipy.cluster.hierarchy.linkage`:
+        https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
+        py.cluster.hierarchy.linkage.html
+    .. _`scipy.cluster.hierarchy.dendogram`:
+        https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
+        py.cluster.hierarchy.dendrogram.html
+
+    * Returns:
+        - [matplotlib.figure.Figure]: the figure object containing the
+          density plot, unless *filename* is provided.
+    '''
+
+    xlinked = linkage(matrix.T, **link_kwargs)
+    ylinked = linkage(matrix, **link_kwargs)
+
+    fig, ax = plt.subplots(figsize=figsize or (7, 7), nrows=2, ncols=2,
+                           gridspec_kw={'height_ratios': [1, 7],
+                                        'width_ratios': [7, 1]})
+    # Upper dendogram + store info from clustering
+    xdendo = dendrogram(xlinked, ax=ax[0, 0], link_color_func=lambda k: 'k',
+                       **dendo_kwargs)
+    # Right-hand dendogram
+    ydendo = dendrogram(ylinked, ax=ax[1, 1], link_color_func=lambda k: 'k',
+                        orientation='right', **dendo_kwargs)
+
+    ord_mat = matrix[:, xdendo['leaves']][ydendo['leaves'], :]
+
+    im = ax[1, 0].imshow(ord_mat, interpolation='none', cmap=cmap,
+                         aspect='auto')
+
+    # Share x/y axes with dendograms
+    ax[1, 0].get_shared_x_axes().join(ax[0, 0], ax[1, 0])
+    ax[1, 0].get_shared_y_axes().join(ax[1, 1], ax[1, 0])
+
+    # Remove axis from dendograms
+    ax[0, 0].set_axis_off()
+    ax[1, 1].set_axis_off()
+
+    rng = range(len(xlabels or []))
+    ax[1, 0].set_xticks(rng)
+    ax[1, 0].set_xticklabels(xlabels or [], rotation=90)
+
+    rng = range(len(ylabels or []))
+    ax[1, 0].set_yticks(rng)
+    ax[1, 0].set_yticklabels(ylabels or [])
+
+    fig.suptitle(title)
+
+    fig.colorbar(im)
+    fig.delaxes(ax[0, 1])
+    fig.tight_layout()
+    fig.subplots_adjust(hspace=0)
+    fig.subplots_adjust(wspace=0)
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
+
 
 # TODO: Add example figure
 def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
@@ -99,8 +201,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
         ax.plot(xs, y, c=colors[i], label=df.index[i])
         ax.fill(xs, y, c=colors[i], alpha=0.05)
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     ax.legend(ncol=2, fontsize=10, loc=0)
     fig.tight_layout()
@@ -188,8 +289,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     ax.set_ylabel('Gene-set', rotation=90, ha='center')
     ax.set_ylim(-1, len(df))
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     ax.legend(loc=0)
     fig.tight_layout()
@@ -268,8 +368,7 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         ax.set_yticks(rng)
         ax.set_yticklabels(labels)
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     fig.tight_layout()
 
@@ -320,8 +419,7 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
     ax.set_xlabel('Similarity index')
     ax.set_ylabel('Frequency')
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     fig.tight_layout()
 
@@ -501,8 +599,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     ax.legend()
 
@@ -598,8 +695,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     ax.set_xlabel(r'$\log_2(FC)$')
     ax.set_ylabel(r'$-\log_{10}(p$-val$)$')
 
-    if title:
-        ax.set_title(title)
+    ax.set_title(title)
 
     if legend:
         ax.legend()
