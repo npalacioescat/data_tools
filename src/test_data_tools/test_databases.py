@@ -21,6 +21,7 @@ class KeggLinkTestCase(unittest.TestCase):
         self.result = databases.kegg_link(['hsa:10458', 'ece:Z5100'])
         self.expected = pd.DataFrame([['hsa:10458', 'path:hsa04520'],
                                       ['hsa:10458', 'path:hsa04810'],
+                                      ['hsa:10458', 'path:hsa05135']
                                       ['ece:Z5100', 'path:ece05130']],
                                      columns=['query', 'pathway'])
         self.expected.sort_values(by='query', inplace=True)
