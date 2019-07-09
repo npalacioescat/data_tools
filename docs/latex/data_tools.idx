@@ -25,21 +25,22 @@
 \indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{19}
 \indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{19}
 \indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{20}
-\indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
-\indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
+\indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{19}
+\indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
+\indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
+\indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
 \indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
 \indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{24}
-\indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{24}
-\indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{24}
+\indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{25}
+\indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{25}
 \indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{25}
 \indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{25}
 \indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{25}
-\indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{25}
+\indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{26}
 \indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{26}
-\indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{26}
+\indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{27}
 \indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{27}
 \indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{27}

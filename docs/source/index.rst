@@ -100,6 +100,7 @@ If not, see http://www.gnu.org/licenses/.
       - :py:data:`cmap_bkgr <data_tools.plots.cmap_bkgr>`
       - :py:data:`cmap_bkrd <data_tools.plots.cmap_bkrd>`
       - :py:data:`cmap_rdbkgr <data_tools.plots.cmap_rdbkgr>`
+      - :py:func:`cluster_hmap <data_tools.plots.cluster_hmap>`
       - :py:func:`density <data_tools.plots.density>`
       - :py:func:`piano_consensus <data_tools.plots.piano_consensus>`
       - :py:func:`similarity_heatmap <data_tools.plots.similarity_heatmap>`

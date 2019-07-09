@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>data_tools.plots &#8212; data_tools 0.0.7 documentation</title>
+    <title>data_tools.plots &#8212; data_tools 0.0.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -66,6 +66,59 @@
 <code class="descclassname">data_tools.plots.</code><code class="descname">cmap_rdbkgr</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_rdbkgr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Custom colormap, gradient from red (lowest) to black (middle) to lime
 green (highest).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.plots.cluster_hmap">
+<code class="descclassname">data_tools.plots.</code><code class="descname">cluster_hmap</code><span class="sig-paren">(</span><em>matrix</em>, <em>xlabels=None</em>, <em>ylabels=None</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>cmap='viridis'</em>, <em>link_kwargs={}</em>, <em>dendo_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#cluster_hmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.cluster_hmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a heatmap with hierarchical clustering dendrograms
+attached. The linkage matrix and dendogram are computed using the
+module <code class="xref py py-mod docutils literal notranslate"><span class="pre">scipy.cluster.hierarchy</span></code>, you may check the
+corresponding documentation for available and default methods.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>matrix</em> [numpy.ndarray]: Contains the values to generate the
+plot. It is assumed to be a 2-dimensional matrix.</p></li>
+<li><p><em>xlabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
+the x-axis of the matrix following the same order as provided
+(e.g. sample names).</p></li>
+<li><p><em>ylabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
+the y-axis of the matrix following the same order as provided
+(e.g. measurements).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</p></li>
+<li><p><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'viridis'</span></code> by default. The colormap
+used for the plot (can also be a [matplotlib.colors.Colormap]
+object). See other [str] options available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s
+reference manual</a>.</p></li>
+<li><p><em>link_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
+containing the key-value pairs for keyword arguments passed to
+<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html">scipy.cluster.hierarchy.linkage</a>.</p></li>
+<li><p><em>dendo_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
+containing the key-value pairs for keyword arguments passed to
+<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.dendrogram.html">scipy.cluster.hierarchy.dendogram</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: the figure object containing the
+density plot, unless <em>filename</em> is provided.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </dd></dl>
 
 <dl class="function">
@@ -449,7 +502,7 @@ volcano plot, unless <em>filename</em> is provided.</p></li>
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.7 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -1,6 +1,9 @@
 # data_tools version history
 
-## v0.0.8 (WIP):
+## v0.0.9 (WIP):
+- 
+
+## v0.0.8:
 - Added `signal` module:
     - Function `fconvolve`: Convolves two vectors or arrays using Fast
       Fourier Transform (FFT).
@@ -12,6 +15,8 @@
       optionally radius), returns the Cartesian coordinates of such
       number of equidistant points (in polar coordinates).
 - In `plots` module:
+    - Function `cluster_hmap`: Generates a heatmap with hierarchical
+      clustering dendrograms attached.
     - Function `upset_wrap`: Wrapper for UpSetPlot package. Mostly just
       generates the Boolean multi-indexed ``pandas.Series`` the
       ``upsetplot.plot`` function needs as input.

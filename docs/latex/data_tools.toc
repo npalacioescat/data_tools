@@ -18,10 +18,10 @@
 \contentsline {section}{\numberline {4.5}data\_tools.plots}{19}{section.4.5}% 
 \contentsline {subsection}{\numberline {4.5.1}Contents}{19}{subsection.4.5.1}% 
 \contentsline {section}{\numberline {4.6}data\_tools.signal}{24}{section.4.6}% 
-\contentsline {subsection}{\numberline {4.6.1}Contents}{24}{subsection.4.6.1}% 
+\contentsline {subsection}{\numberline {4.6.1}Contents}{25}{subsection.4.6.1}% 
 \contentsline {section}{\numberline {4.7}data\_tools.spatial}{25}{section.4.7}% 
 \contentsline {subsection}{\numberline {4.7.1}Contents}{25}{subsection.4.7.1}% 
-\contentsline {section}{\numberline {4.8}data\_tools.strings}{26}{section.4.8}% 
+\contentsline {section}{\numberline {4.8}data\_tools.strings}{27}{section.4.8}% 
 \contentsline {subsection}{\numberline {4.8.1}Contents}{27}{subsection.4.8.1}% 
-\contentsline {chapter}{Python Module Index}{29}{section*.48}% 
-\contentsline {chapter}{Index}{31}{section*.49}% 
+\contentsline {chapter}{Python Module Index}{29}{section*.49}% 
+\contentsline {chapter}{Index}{31}{section*.50}% 
