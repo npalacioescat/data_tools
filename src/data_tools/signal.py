@@ -56,7 +56,7 @@ def gauss_kernel(size, sd=1, ndim=2):
         - *sd* [float]: Optional, ``1`` by default. The standard
           deviation of the gaussian kernel.
         - *ndim* [int]: Optional, ``2`` by default. Number of dimensions
-        for the desired kernel.
+          for the desired kernel.
 
     * Returns:
         - [numpy.ndarray]: The Gaussian kernel.
