@@ -1,12 +1,19 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['DensityTestCase', 'PianoConsensusTestCase',
+__all__ = ['ClusterHmapTestCase', 'DensityTestCase', 'PianoConsensusTestCase',
            'SimilarityHeatmapTestCase', 'SimilarityHistogramTestCase',
            'UpSetWrapTestCase', 'VennTestCase', 'VolcanoTestCase']
 
 import unittest
 
 from data_tools import plots
+
+
+class ClusterHmapTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.cluster_hmap test unit is not'
+                   + ' implemented.')
+    def test_null(self):
+        pass
 
 
 class DensityTestCase(unittest.TestCase):
