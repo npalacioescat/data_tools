@@ -56,7 +56,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
                  dendo_kwargs={}):
     '''
     Generates a heatmap with hierarchical clustering dendrograms
-    attached. The linkage matrix and dendogram are computed using the
+    attached. The linkage matrix and dendrogram are computed using the
     module :py:mod:`scipy.cluster.hierarchy`, you may check the
     corresponding documentation for available and default methods.
 
@@ -86,14 +86,14 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
           `scipy.cluster.hierarchy.linkage`_.
         - *dendo_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
           containing the key-value pairs for keyword arguments passed to
-          `scipy.cluster.hierarchy.dendogram`_.
+          `scipy.cluster.hierarchy.dendrogram`_.
 
     .. _`Matplotlib's reference manual`:
         https://matplotlib.org/examples/color/colormaps_reference.html
     .. _`scipy.cluster.hierarchy.linkage`:
         https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
         py.cluster.hierarchy.linkage.html
-    .. _`scipy.cluster.hierarchy.dendogram`:
+    .. _`scipy.cluster.hierarchy.dendrogram`:
         https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
         py.cluster.hierarchy.dendrogram.html
 
@@ -108,14 +108,14 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     fig, ax = plt.subplots(figsize=figsize or (7, 7), nrows=2, ncols=2,
                            gridspec_kw={'height_ratios': [1, 7],
                                         'width_ratios': [7, 1]})
-    # Upper dendogram + store info from clustering
+    # Upper dendrogram + store info from clustering
     xdendo = dendrogram(xlinked, ax=ax[0, 0], link_color_func=lambda k: 'k',
                        **dendo_kwargs)
-    # Right-hand dendogram
+    # Right-hand dendrogram
     ydendo = dendrogram(ylinked, ax=ax[1, 1], link_color_func=lambda k: 'k',
                         orientation='right', **dendo_kwargs)
 
-    # Fixing order of side dendogram (invert y-axes)
+    # Fixing order of side dendrogram (invert y-axes)
     ax[1, 1].set_ylim(10 * matrix.shape[0], 0)
 
     ord_mat = matrix[:, xdendo['leaves']][ydendo['leaves'], :]
@@ -123,11 +123,11 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     im = ax[1, 0].imshow(ord_mat, interpolation='none', cmap=cmap,
                          aspect='auto')
 
-    # Share x/y axes with dendograms
+    # Share x/y axes with dendrograms
     ax[1, 0].get_shared_x_axes().join(ax[0, 0], ax[1, 0])
     ax[1, 0].get_shared_y_axes().join(ax[1, 1], ax[1, 0])
 
-    # Remove axis from dendograms
+    # Remove axis from dendrograms
     ax[0, 0].set_axis_off()
     ax[1, 1].set_axis_off()
 

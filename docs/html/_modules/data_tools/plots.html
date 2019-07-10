@@ -96,7 +96,7 @@
                  <span class="n">dendo_kwargs</span><span class="o">=</span><span class="p">{}):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a heatmap with hierarchical clustering dendrograms</span>
-<span class="sd">    attached. The linkage matrix and dendogram are computed using the</span>
+<span class="sd">    attached. The linkage matrix and dendrogram are computed using the</span>
 <span class="sd">    module :py:mod:`scipy.cluster.hierarchy`, you may check the</span>
 <span class="sd">    corresponding documentation for available and default methods.</span>
 
@@ -126,14 +126,14 @@
 <span class="sd">          `scipy.cluster.hierarchy.linkage`_.</span>
 <span class="sd">        - *dendo_kwargs* [dict]: Optional, ``{}`` by default. Dictionary</span>
 <span class="sd">          containing the key-value pairs for keyword arguments passed to</span>
-<span class="sd">          `scipy.cluster.hierarchy.dendogram`_.</span>
+<span class="sd">          `scipy.cluster.hierarchy.dendrogram`_.</span>
 
 <span class="sd">    .. _`Matplotlib&#39;s reference manual`:</span>
 <span class="sd">        https://matplotlib.org/examples/color/colormaps_reference.html</span>
 <span class="sd">    .. _`scipy.cluster.hierarchy.linkage`:</span>
 <span class="sd">        https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\</span>
 <span class="sd">        py.cluster.hierarchy.linkage.html</span>
-<span class="sd">    .. _`scipy.cluster.hierarchy.dendogram`:</span>
+<span class="sd">    .. _`scipy.cluster.hierarchy.dendrogram`:</span>
 <span class="sd">        https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\</span>
 <span class="sd">        py.cluster.hierarchy.dendrogram.html</span>
 
@@ -148,14 +148,14 @@
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                            <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
                                         <span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-    <span class="c1"># Upper dendogram + store info from clustering</span>
+    <span class="c1"># Upper dendrogram + store info from clustering</span>
     <span class="n">xdendo</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="p">(</span><span class="n">xlinked</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">link_color_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
                        <span class="o">**</span><span class="n">dendo_kwargs</span><span class="p">)</span>
-    <span class="c1"># Right-hand dendogram</span>
+    <span class="c1"># Right-hand dendrogram</span>
     <span class="n">ydendo</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="p">(</span><span class="n">ylinked</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">link_color_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
                         <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">dendo_kwargs</span><span class="p">)</span>
 
-    <span class="c1"># Fixing order of side dendogram (invert y-axes)</span>
+    <span class="c1"># Fixing order of side dendrogram (invert y-axes)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="n">ord_mat</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[:,</span> <span class="n">xdendo</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">]][</span><span class="n">ydendo</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">],</span> <span class="p">:]</span>
@@ -163,11 +163,11 @@
     <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ord_mat</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
                          <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
 
-    <span class="c1"># Share x/y axes with dendograms</span>
+    <span class="c1"># Share x/y axes with dendrograms</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_shared_x_axes</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_shared_y_axes</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
-    <span class="c1"># Remove axis from dendograms</span>
+    <span class="c1"># Remove axis from dendrograms</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
 
