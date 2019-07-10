@@ -115,6 +115,9 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     ydendo = dendrogram(ylinked, ax=ax[1, 1], link_color_func=lambda k: 'k',
                         orientation='right', **dendo_kwargs)
 
+    # Fixing order of side dendogram (invert y-axes)
+    ax[1, 1].set_ylim(10 * matrix.shape[0], 0)
+
     ord_mat = matrix[:, xdendo['leaves']][ydendo['leaves'], :]
 
     im = ax[1, 0].imshow(ord_mat, interpolation='none', cmap=cmap,
@@ -140,7 +143,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
 
     fig.colorbar(im)
     fig.delaxes(ax[0, 1])
-    fig.tight_layout()
+
     fig.subplots_adjust(hspace=0)
     fig.subplots_adjust(wspace=0)
 
