@@ -103,7 +103,7 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
 
         .. image:: ../figures/chordplot.png
            :align: center
-           :scale: 60
+           :scale: 80
     '''
 
     # Preparing inputs
