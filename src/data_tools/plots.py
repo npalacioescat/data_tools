@@ -86,6 +86,24 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
         - *figsize* [tuple]: Optional, ``None`` by default (default
           matplotlib size). Any iterable containing two values denoting
           the figure size (in inches) as [width, height].
+
+    * Returns:
+        - [matplotlib.figure.Figure]: The figure object containing the
+          chord plot, unless *filename* is provided.
+
+    * Example:
+        >>> nodes = {'A':5, 'B':10, 'C':20, 'D':15, 'E':15}
+        >>> edges = [['A', 'B', 10],
+        ...          ['A', 'C', 25],
+        ...          ['B', 'C', 50],
+        ...          ['D', 'E', 5],
+        ...          ['B', 'E', 30],
+        ...          ['C', 'D', 20]]
+        >>> chordplot(nodes, edges)
+
+        .. image:: ../figures/chordplot.png
+           :align: center
+           :scale: 60
     '''
 
     # Preparing inputs
