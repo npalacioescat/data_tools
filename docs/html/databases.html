@@ -51,7 +51,7 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.databases.kegg_link">
-<code class="descclassname">data_tools.databases.</code><code class="descname">kegg_link</code><span class="sig-paren">(</span><em>query</em>, <em>target='pathway'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.databases.</code><code class="sig-name descname">kegg_link</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">target='pathway'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to the KEGG database to find related entries using
 cross-references. A list of available database(s) and query examples
 can be found in <a class="reference external" href="https://www.kegg.jp/kegg/rest/keggapi.html#link">https://www.kegg.jp/kegg/rest/keggapi.html#link</a>.</p>
@@ -94,7 +94,7 @@ input query identifiers and their linked ones.</p></li>
 
 <dl class="function">
 <dt id="data_tools.databases.kegg_pathway_mapping">
-<code class="descclassname">data_tools.databases.</code><code class="descname">kegg_pathway_mapping</code><span class="sig-paren">(</span><em>df</em>, <em>mapid</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_pathway_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_pathway_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.databases.</code><code class="sig-name descname">kegg_pathway_mapping</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">mapid</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#kegg_pathway_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.kegg_pathway_mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes a request to KEGG pathway mapping tool according to a given
 pathway ID (see <a class="reference external" href="https://www.kegg.jp/kegg/tool/map_pathway2.html">https://www.kegg.jp/kegg/tool/map_pathway2.html</a> for
 more information). The user must provide a query of IDs to be mapped
@@ -136,7 +136,7 @@ within the specified path/file name.</p></li>
 
 <dl class="function">
 <dt id="data_tools.databases.op_kinase_substrate">
-<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em>, <em>incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.databases.</code><code class="sig-name descname">op_kinase_substrate</code><span class="sig-paren">(</span><em class="sig-param">organism='9606'</em>, <em class="sig-param">incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.</p>
 <ul class="simple">
@@ -165,7 +165,7 @@ not.</p></li>
 
 <dl class="function">
 <dt id="data_tools.databases.up_map">
-<code class="descclassname">data_tools.databases.</code><code class="descname">up_map</code><span class="sig-paren">(</span><em>query</em>, <em>source='ACC'</em>, <em>target='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.databases.</code><code class="sig-name descname">up_map</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">source='ACC'</em>, <em class="sig-param">target='GENENAME'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#up_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.up_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a>.</p>
@@ -245,10 +245,10 @@ the returned table will differ from the length of <code class="docutils literal 
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -278,7 +278,7 @@ the returned table will differ from the length of <code class="docutils literal 
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
     </div>
   </body>
 </html>

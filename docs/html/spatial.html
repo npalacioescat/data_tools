@@ -51,7 +51,7 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="data_tools.spatial.equidist_polar">
-<code class="descclassname">data_tools.spatial.</code><code class="descname">equidist_polar</code><span class="sig-paren">(</span><em>n</em>, <em>r=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#equidist_polar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.equidist_polar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.spatial.</code><code class="sig-name descname">equidist_polar</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">r=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#equidist_polar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.equidist_polar" title="Permalink to this definition">¶</a></dt>
 <dd><p>For a given number of points (and optionally radius), returns the
 Cartesian coordinates of such number of equidistant points (in polar
 coordinates). This is, the (x, y) coordinates of <em>n</em> points equally
@@ -79,7 +79,7 @@ Cartesian coordinates.</p></li>
 
 <dl class="function">
 <dt id="data_tools.spatial.get_boundaries">
-<code class="descclassname">data_tools.spatial.</code><code class="descname">get_boundaries</code><span class="sig-paren">(</span><em>x</em>, <em>counts=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#get_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.get_boundaries" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.spatial.</code><code class="sig-name descname">get_boundaries</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">counts=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#get_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.get_boundaries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an array, returns either the mask where the boundary edges are
 or their counts if specified.</p>
 <ul>
@@ -137,7 +137,7 @@ denoting the number of boundary edges of the cells.</p></li>
 
 <dl class="function">
 <dt id="data_tools.spatial.neighbour_count">
-<code class="descclassname">data_tools.spatial.</code><code class="descname">neighbour_count</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#neighbour_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.neighbour_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.spatial.</code><code class="sig-name descname">neighbour_count</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/spatial.html#neighbour_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.spatial.neighbour_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an array (up to three dimensions), returns another array with
 the same shape containing the counts of cells’ neighbours whose
 value is zero.</p>
@@ -213,10 +213,10 @@ neighbour count.</p></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -246,7 +246,7 @@ neighbour count.</p></li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
     </div>
   </body>
 </html>

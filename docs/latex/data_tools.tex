@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 10, 2019}
+\date{Jul 16, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1272,6 +1272,94 @@ Custom colormap, gradient from black (lowest) to red (highest).
 \phantomsection\label{\detokenize{plots:data_tools.plots.cmap_rdbkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_rdbkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
 Custom colormap, gradient from red (lowest) to black (middle) to lime
 green (highest).
+
+\end{fulllineitems}
+
+\index{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a chord plot from a collection of nodes and edges (and
+their sizes).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{nodes} {[}dict{]}: Can also be {[}pandas.DataFrame{]} or
+{[}pandas.Series{]}. Values contain the nodes sizes and the keys/
+indices the node names (must correspond to the ones in
+\sphinxstyleemphasis{edges}).
+
+\item {} 
+\sphinxstyleemphasis{edges} {[}pd.DataFrame{]}: Can also be {[}numpy.ndarray{]} or {[}list{]}
+of {[}list{]} as long as contains \sphinxstyleemphasis{n} by 3 elements where \sphinxstyleemphasis{n} is
+the number of edges and their elements describe the source and
+target nodes and the size of that edge.
+
+\item {} 
+\sphinxstyleemphasis{labels} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. If \sphinxcode{\sphinxupquote{True}}
+will label de nodes according to their index/key inputed in
+the first argument. Otherwise can be {[}list{]} or other iterable
+containing other labels (same order as provided in \sphinxstyleemphasis{nodes}).
+
+\item {} 
+\sphinxstyleemphasis{label\_sizes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Sets
+whether to append the node sizes when labelling the plot.
+
+\item {} 
+\sphinxstyleemphasis{colors} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (matplotlib
+default color sequence). Any iterable containing color
+arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for
+red and blue). Must contain at least the same number of
+elements as \sphinxstyleemphasis{nodes} (if more are provided, they will be
+ignored).
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}matplotlib.figure.Figure{]}: The figure object containing the
+chord plot, unless \sphinxstyleemphasis{filename} is provided.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{nodes} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{15}\PYG{p}{\PYGZcb{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{edges} \PYG{o}{=} \PYG{p}{[}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{A}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{25}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{]}\PYG{p}{,}
+\PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{]}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chordplot}\PYG{p}{(}\PYG{n}{nodes}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.6]{{chordplot}.png}\hspace*{\fill}}
+
+\end{description}
+
+\end{itemize}
 
 \end{fulllineitems}
 
