@@ -1278,7 +1278,7 @@ green (highest).
 \index{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{plot\_lines=False}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a chord plot from a collection of nodes and edges (and
 their sizes).
 \begin{itemize}
@@ -1295,6 +1295,10 @@ indices the node names (must correspond to the ones in
 of {[}list{]} as long as contains \sphinxstyleemphasis{n} by 3 elements where \sphinxstyleemphasis{n} is
 the number of edges and their elements describe the source and
 target nodes and the size of that edge.
+
+\item {} 
+\sphinxstyleemphasis{plot\_lines} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether
+to plot the edge borders or not.
 
 \item {} 
 \sphinxstyleemphasis{labels} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. If \sphinxcode{\sphinxupquote{True}}
@@ -1352,7 +1356,7 @@ chord plot, unless \sphinxstyleemphasis{filename} is provided.
 \PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{,}
 \PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{B}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{]}\PYG{p}{,}
 \PYG{g+gp}{... }         \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{D}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{]}\PYG{p}{]}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chordplot}\PYG{p}{(}\PYG{n}{nodes}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chordplot}\PYG{p}{(}\PYG{n}{nodes}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{,} \PYG{n}{plot\PYGZus{}lines}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.8]{{chordplot}.png}\hspace*{\fill}}

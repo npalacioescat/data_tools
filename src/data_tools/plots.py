@@ -51,8 +51,8 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
                                                 N=256)
 
 
-def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
-              title=None, filename=None, figsize=None):
+def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
+              colors=None, title=None, filename=None, figsize=None):
     '''
     Generates a chord plot from a collection of nodes and edges (and
     their sizes).
@@ -66,6 +66,8 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
           of [list] as long as contains *n* by 3 elements where *n* is
           the number of edges and their elements describe the source and
           target nodes and the size of that edge.
+        - *plot_lines* [bool]: Optional, ``False`` by default. Whether
+          to plot the edge borders or not.
         - *labels* [bool]: Optional, ``False`` by default. If ``True``
           will label de nodes according to their index/key inputed in
           the first argument. Otherwise can be [list] or other iterable
@@ -99,7 +101,7 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
         ...          ['D', 'E', 5],
         ...          ['B', 'E', 30],
         ...          ['C', 'D', 20]]
-        >>> chordplot(nodes, edges)
+        >>> chordplot(nodes, edges, plot_lines=True)
 
         .. image:: ../figures/chordplot.png
            :align: center
@@ -201,7 +203,7 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
         counter[s] += 1
         counter[t] += 1
 
-        # Drawing borders of edge as Bézier curves
+        # Generate borders of edge as Bézier curves
         curve1 = bezier_quad(ps1, pt1)
         curve2 = bezier_quad(ps2, pt2)
 
@@ -213,8 +215,9 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
         tarc = np.vstack([np.cos(tarcr), np.sin(tarcr)])
 
         # Plotting the edge borders
-        ax.plot(*curve1, c=c, zorder=0)
-        ax.plot(*curve2, c=c, zorder=0)
+        if plot_lines:
+            ax.plot(*curve1, c=c, zorder=0)
+            ax.plot(*curve2, c=c, zorder=0)
 
         # Filling the edge
         ax.fill(np.concatenate([curve1[0], tarc[0][::-1],

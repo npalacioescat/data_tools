@@ -70,7 +70,7 @@ green (highest).</p>
 
 <dl class="function">
 <dt id="data_tools.plots.chordplot">
-<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">chordplot</code><span class="sig-paren">(</span><em class="sig-param">nodes</em>, <em class="sig-param">edges</em>, <em class="sig-param">labels=False</em>, <em class="sig-param">label_sizes=False</em>, <em class="sig-param">colors=None</em>, <em class="sig-param">title=None</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#chordplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.chordplot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">chordplot</code><span class="sig-paren">(</span><em class="sig-param">nodes</em>, <em class="sig-param">edges</em>, <em class="sig-param">plot_lines=False</em>, <em class="sig-param">labels=False</em>, <em class="sig-param">label_sizes=False</em>, <em class="sig-param">colors=None</em>, <em class="sig-param">title=None</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#chordplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.chordplot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a chord plot from a collection of nodes and edges (and
 their sizes).</p>
 <ul>
@@ -84,6 +84,8 @@ indices the node names (must correspond to the ones in
 of [list] as long as contains <em>n</em> by 3 elements where <em>n</em> is
 the number of edges and their elements describe the source and
 target nodes and the size of that edge.</p></li>
+<li><p><em>plot_lines</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
+to plot the edge borders or not.</p></li>
 <li><p><em>labels</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. If <code class="docutils literal notranslate"><span class="pre">True</span></code>
 will label de nodes according to their index/key inputed in
 the first argument. Otherwise can be [list] or other iterable
@@ -124,7 +126,7 @@ chord plot, unless <em>filename</em> is provided.</p></li>
 <span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
 <span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
 <span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">chordplot</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chordplot</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">plot_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/chordplot.png"><img alt="_images/chordplot.png" class="align-center" src="_images/chordplot.png" style="width: 345.6px; height: 230.4px;" /></a>

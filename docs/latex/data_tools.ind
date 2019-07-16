@@ -97,7 +97,7 @@
 
   \indexspace
   \bigletter V
-  \item \spxentry{venn()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{venn()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
   \item \spxentry{volcano()}\spxextra{in module data\_tools.plots}, \hyperpage{25}
 
 \end{sphinxtheindex}
