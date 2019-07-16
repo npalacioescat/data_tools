@@ -51,30 +51,99 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
                                                 N=256)
 
 
-def chordplot(nodes, edges):
+def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
+              title=None, filename=None, figsize=None):
     '''
+    Generates a chord plot from a list of nodes and edges (and their sizes).
+
+    * Arguments:
+        - *nodes* [dict]: Can also be [pandas.DataFrame] or
+          [pandas.Series]. Values contain the nodes sizes and the keys/
+          indices the node names (must correspond to the ones in
+          *edges*).
+        - *edges* [pd.DataFrame]: Can also be [numpy.ndarray] or [list]
+          of [list] as long as contains *n* by 3 elements where *n* is
+          the number of edges and their elements describe the source and
+          target nodes and the size of that edge.
+        - *labels* [bool]: Optional, ``False`` by default. If ``True``
+          will label de nodes according to their index/key inputed in
+          the first argument. Otherwise can be [list] or other iterable
+          containing other labels (same order as provided in *nodes*).
+        - *label_sizes* [bool]: Optional, ``False`` by default. Sets
+          whether to append the node sizes when labelling the plot.
+        - *colors* [list]: Optional, ``None`` by default (matplotlib
+          default color sequence). Any iterable containing color
+          arguments tolerated by matplotlib (e.g.: ``['r', 'b']`` for
+          red and blue). Must contain at least the same number of
+          elements as *nodes* (if more are provided, they will be
+          ignored).
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
     '''
 
-    fig, ax = plt.subplots(figsize=(10, 10))
-    ax.pie(node, wedgeprops=dict(width=0.1))
-    edges = edge
-    # Node properties
-    nodes = pd.DataFrame(node, columns=['size'])
+    # Preparing inputs
+    # Edge properties table
+    edges = pd.DataFrame(edges, columns=['source', 'target', 'size'])
+
+    # Node properties table
+    if type(nodes) is dict:
+        nodes = pd.Series(nodes)
+
+    nodes = pd.DataFrame(nodes, columns=['size'])
+
+    # Checking color list
+    if colors:
+        msg = ('List of colors (%d) is not the same length as nodes (%d)'
+               % (len(colors), len(nodes)))
+        assert len(colors) == len(nodes), msg
+
+    colors = colors or ['C%d' % i for i in len(nodes)]
+
+    # Checking label list
+    if labels and type(labels) is not bool:
+        msg = ('List of labels (%d) is not the same length as nodes (%d)'
+               % (len(labels), len(nodes)))
+        assert len(labels) == len(nodes), msg
+
+    elif labels == True:
+        labels = nodes.index.values
+
+    else:
+        labels = None
+
+    if label_sizes and labels:
+        labels = [lab + ' (%s)' % str(nodes['sizes'][i]) for (i, lab)
+                  in enumerate(labels)]
+
+    # Node relative sizes (wrt. sum of all node sizes) - int/float
     nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
+    # Edge sizes for each node (involved in them) - list
     nodes['e_sizes'] = [edge.loc[(edge.source == n) | (edge.target == n),
-                                'size'].values for n in nodes.index]
+                                 'size'].values for n in nodes.index]
+    # Total edge sizes involving a node - int/float
     nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
+    # Relative edge sizes (wrt. total edges involving that node) - list
     nodes['rel_e_sizes'] = nodes['e_sizes'] / nodes['tot_e_size']
+    # Global relative edge sizes (relative edge * relative node size) - list
     nodes['glob_e_sizes'] = nodes['rel_e_sizes'] * nodes['rel_size']
-    nodes
 
+    # Flattened list of global edge sizes (ordered by node positions) - sum = 1
     rel_e_pos = np.concatenate(nodes['glob_e_sizes'])
-    # Cummulative edge positions
+    # Cummulative edge positions (starting from 0) - list [0, 1]
     cum_rel_e_pos = [0]
 
     for i in range(len(rel_e_pos)):
         cum_rel_e_pos.append(cum_rel_e_pos[i] + rel_e_pos[i])
 
+    # List of edge positions - len = len(nodes)
+    # Each element is an array of shape (n, 2) where n is the edges involving
+    # that node and 2 are the (start, end) positions of such edge
     counter = 0
     e_pos = []
     for n in nodes.index:
@@ -87,46 +156,67 @@ def chordplot(nodes, edges):
 
         e_pos.append(aux)
 
+    # Storing those edge positions to each related node
     nodes['e_pos'] = e_pos
-    nodes
 
+    # Keep a counter of added edges on each node
     counter = dict((n, 0) for n in nodes.index)
+
+    # Plotting the donut and edges
+    fig, ax = plt.subplots(figsize=figsize)
 
     for i, e in edges.iterrows():
         # Source/target node names
         s = e['source']
         t = e['target']
-        # Color (from source)
-        c = 'C%d' % nodes.index.to_list().index(s)
-        # Retrieve relative positions of edges
+        # Color according to source node
+        c = colors[nodes.index.to_list().index(s)]
+        # Retrieve relative positions of edges on a circle
+        # - Source points of edge
         s1, s2 = nodes.loc[s, 'e_pos'][counter[s]]
-        ps1, ps2 = get_rel_pos_circ(s1), get_rel_pos_circ(s2)
+        ps1, ps2 = map(get_rel_pos_circ, [s1, s2])
+        # - Target points of edge (swapped)
         t1, t2 = nodes.loc[t, 'e_pos'][counter[t]][::-1]
-        pt1, pt2 = get_rel_pos_circ(t1), get_rel_pos_circ(t2)
+        pt1, pt2 = map(get_rel_pos_circ, [t1, t2])
         # Count the nodes' edges
         counter[s] += 1
         counter[t] += 1
 
+        # Drawing borders of edge as Bézier curves
         curve1 = bezier_quad(ps1, pt1)
         curve2 = bezier_quad(ps2, pt2)
 
-        # Filling the gaps (arcs of edges)
-        sarcr = np.linspace(np.radians(360 * s1),
-                            np.radians(360 * s2), 100)
+        # Filling the gaps (arcs between borders of edge)
+        sarcr = np.linspace(2 * np.pi * s1, 2 * np.pi * s2, 100)
         sarc = np.vstack([np.cos(sarcr), np.sin(sarcr)])
 
-        tarcr = np.linspace(np.radians(360 * t1),
-                            np.radians(360 * t2), 100)
+        tarcr = np.linspace(2 * np.pi * t1, 2 * np.pi * t2, 100)
         tarc = np.vstack([np.cos(tarcr), np.sin(tarcr)])
 
-        ax.plot(*curve1, c=c)
-        ax.plot(*curve2, c=c)
+        # Plotting the edge borders
+        ax.plot(*curve1, c=c, zorder=0)
+        ax.plot(*curve2, c=c, zorder=0)
 
+        # Filling the edge
         ax.fill(np.concatenate([curve1[0], tarc[0][::-1],
                                 curve2[0][::-1], sarc[0][::-1]], axis=None),
                 np.concatenate([curve1[1], tarc[1][::-1],
                                 curve2[1][::-1], sarc[1][::-1]], axis=None),
-                color=c, alpha=0.2)
+                color=c, alpha=0.2, zorder=0)
+
+    # Plotting the donut on top (slightly bigger radius to cover edge tips)
+    ax.pie(nodes['size'], wedgeprops=dict([('width', 0.1)]), radius=1.01,
+           labels=labels, rotatelabels=True, colors=colors)
+
+    ax.set_title(title)
+
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
 
 
 def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
@@ -795,7 +885,10 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     else:
         return fig
 
-
+###############################################################################
+#+---------------------------------------------------------------------------+#
+#|                           SUPLEMENTARY FUNCTIONS                          |#
+#+---------------------------------------------------------------------------+#
 ###############################################################################
 
 def get_rel_pos_circ(pt, r=1):
@@ -824,10 +917,25 @@ def get_rel_pos_circ(pt, r=1):
 
     return r * np.cos(a), r * np.sin(a)
 
+
 def bezier_quad(pa, pb, pc=[0, 0], res=1e2):
     '''
     Creates a Bézier quadratic curve between two points.
 
+    * Arguments:
+        - *pa* [list]: Or any iterable of two [float] values. Point of
+           origin of the curve in Cartesian coordinates.
+        - *pb* [list]: Or any iterable of two [float] values. Ending
+          point of the curve in Cartesian coordinates.
+        - *pc* [list]: Optional ``[0, 0]`` by default. Can be any
+          iterable of two [float] values. Control point for the curve in
+          Cartesian coordinates.
+        - *res* [float]: Optional, ``1e2`` by default. Resolution of the
+          curve (e.g. number of points).
+
+    * Returns:
+        - [numpy.ndarray]: Array of size (2, *res* + 1). Contains the
+          (x, y) coordinates of the curve points (defined by *res*).
     '''
 
     t = np.linspace(0, 1, res + 1)
@@ -836,7 +944,4 @@ def bezier_quad(pa, pb, pc=[0, 0], res=1e2):
     pb = np.array(pb).reshape(2, 1)
     pc = np.array(pc).reshape(2, 1)
 
-    aux = ((1 - t) * ((1 - t) * pa + t * pc)
-           + t * ((1 - t) * pc + t * pb))
-
-    return aux
+    return ((1 - t) * ((1 - t) * pa + t * pc) + t * ((1 - t) * pc + t * pb))
