@@ -51,6 +51,84 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
                                                 N=256)
 
 
+def chordplot(nodes, edges):
+    '''
+    '''
+
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.pie(node, wedgeprops=dict(width=0.1))
+    edges = edge
+    # Node properties
+    nodes = pd.DataFrame(node, columns=['size'])
+    nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
+    nodes['e_sizes'] = [edge.loc[(edge.source == n) | (edge.target == n),
+                                'size'].values for n in nodes.index]
+    nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
+    nodes['rel_e_sizes'] = nodes['e_sizes'] / nodes['tot_e_size']
+    nodes['glob_e_sizes'] = nodes['rel_e_sizes'] * nodes['rel_size']
+    nodes
+
+    rel_e_pos = np.concatenate(nodes['glob_e_sizes'])
+    # Cummulative edge positions
+    cum_rel_e_pos = [0]
+
+    for i in range(len(rel_e_pos)):
+        cum_rel_e_pos.append(cum_rel_e_pos[i] + rel_e_pos[i])
+
+    counter = 0
+    e_pos = []
+    for n in nodes.index:
+        es = len(nodes.loc[n, 'glob_e_sizes'])
+        aux = np.array([[0, 0] * es], dtype=float).reshape(es, 2)
+
+        for e in range(es):
+            aux[e, :] = np.array(cum_rel_e_pos[counter:counter + 2])
+            counter += 1
+
+        e_pos.append(aux)
+
+    nodes['e_pos'] = e_pos
+    nodes
+
+    counter = dict((n, 0) for n in nodes.index)
+
+    for i, e in edges.iterrows():
+        # Source/target node names
+        s = e['source']
+        t = e['target']
+        # Color (from source)
+        c = 'C%d' % nodes.index.to_list().index(s)
+        # Retrieve relative positions of edges
+        s1, s2 = nodes.loc[s, 'e_pos'][counter[s]]
+        ps1, ps2 = get_rel_pos_circ(s1), get_rel_pos_circ(s2)
+        t1, t2 = nodes.loc[t, 'e_pos'][counter[t]][::-1]
+        pt1, pt2 = get_rel_pos_circ(t1), get_rel_pos_circ(t2)
+        # Count the nodes' edges
+        counter[s] += 1
+        counter[t] += 1
+
+        curve1 = bezier_quad(ps1, pt1)
+        curve2 = bezier_quad(ps2, pt2)
+
+        # Filling the gaps (arcs of edges)
+        sarcr = np.linspace(np.radians(360 * s1),
+                            np.radians(360 * s2), 100)
+        sarc = np.vstack([np.cos(sarcr), np.sin(sarcr)])
+
+        tarcr = np.linspace(np.radians(360 * t1),
+                            np.radians(360 * t2), 100)
+        tarc = np.vstack([np.cos(tarcr), np.sin(tarcr)])
+
+        ax.plot(*curve1, c=c)
+        ax.plot(*curve2, c=c)
+
+        ax.fill(np.concatenate([curve1[0], tarc[0][::-1],
+                                curve2[0][::-1], sarc[0][::-1]], axis=None),
+                np.concatenate([curve1[1], tarc[1][::-1],
+                                curve2[1][::-1], sarc[1][::-1]], axis=None),
+                color=c, alpha=0.2)
+
+
 def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
                  figsize=None, cmap='viridis', link_kwargs={},
                  dendo_kwargs={}):
@@ -514,6 +592,12 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
            :scale: 100
     '''
 
+    def ellipse(ax, x, y, w, h, a, color, alpha=1, label=None):
+        e = matplotlib.patches.Ellipse(xy=(x, y), width=w, height=h, angle=a,
+                                       color=color, alpha=alpha, label=label)
+
+        ax.add_patch(e)
+
     if len(N) == 2:
         # Ellipse parameters
         x = [-.25, .25]
@@ -714,9 +798,45 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 
 ###############################################################################
 
+def get_rel_pos_circ(pt, r=1):
+    '''
+    Returns the x, y coordinates on a circle of radius r (centered at
+    (0, 0)) given a percentage of the circumference (range [0, 1]).
 
-def ellipse(ax, x, y, w, h, a, color, alpha=1, label=None):
-    e = matplotlib.patches.Ellipse(xy=(x, y), width=w, height=h, angle=a,
-                                   color=color, alpha=alpha, label=label)
+    * Arguments:
+        - *pt* [float]: Percentage of the circumference (centered at
+          (0, 0) and starting from (x, y) = (r, 0)) to retrieve the
+          (x, y) coordinates.
+        - *r* [float]: Optional, ``1`` by default. The radius of the
+          circumference.
 
-    ax.add_patch(e)
+    * Returns:
+        - [tuple]: The (x, y) coordinates of the queried point [float].
+
+    * Examples:
+        >>> get_rel_pos_circ(0)
+        (1, 0)
+        >>> get_rel_pos_circ(0.25)
+        (0, 1)
+    '''
+
+    a = pt * 2 * np.pi
+
+    return r * np.cos(a), r * np.sin(a)
+
+def bezier_quad(pa, pb, pc=[0, 0], res=1e2):
+    '''
+    Creates a Bézier quadratic curve between two points.
+
+    '''
+
+    t = np.linspace(0, 1, res + 1)
+
+    pa = np.array(pa).reshape(2, 1)
+    pb = np.array(pb).reshape(2, 1)
+    pc = np.array(pc).reshape(2, 1)
+
+    aux = ((1 - t) * ((1 - t) * pa + t * pc)
+           + t * ((1 - t) * pc + t * pb))
+
+    return aux
