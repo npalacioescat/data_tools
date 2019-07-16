@@ -12,9 +12,9 @@ Contents
 
 from __future__ import absolute_import
 
-__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'cluster_hmap', 'density',
-           'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
-           'upset_wrap', 'venn', 'volcano']
+__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'chordplot', 'cluster_hmap',
+           'density', 'piano_consensus', 'similarity_heatmap',
+           'similarity_histogram', 'upset_wrap', 'venn', 'volcano']
 
 import sys
 import itertools
@@ -54,7 +54,8 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
 def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
               title=None, filename=None, figsize=None):
     '''
-    Generates a chord plot from a list of nodes and edges (and their sizes).
+    Generates a chord plot from a collection of nodes and edges (and
+    their sizes).
 
     * Arguments:
         - *nodes* [dict]: Can also be [pandas.DataFrame] or
@@ -103,7 +104,7 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
                % (len(colors), len(nodes)))
         assert len(colors) == len(nodes), msg
 
-    colors = colors or ['C%d' % i for i in len(nodes)]
+    colors = colors or ['C%d' % i for i in range(len(nodes))]
 
     # Checking label list
     if labels and type(labels) is not bool:
@@ -112,19 +113,19 @@ def chordplot(nodes, edges, labels=False, label_sizes=False, colors=None,
         assert len(labels) == len(nodes), msg
 
     elif labels == True:
-        labels = nodes.index.values
+        labels = nodes.index.to_list()
 
     else:
         labels = None
 
     if label_sizes and labels:
-        labels = [lab + ' (%s)' % str(nodes['sizes'][i]) for (i, lab)
+        labels = [lab + ' (%s)' % str(nodes['size'][i]) for (i, lab)
                   in enumerate(labels)]
 
     # Node relative sizes (wrt. sum of all node sizes) - int/float
     nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
     # Edge sizes for each node (involved in them) - list
-    nodes['e_sizes'] = [edge.loc[(edge.source == n) | (edge.target == n),
+    nodes['e_sizes'] = [edges.loc[(edges.source == n) | (edges.target == n),
                                  'size'].values for n in nodes.index]
     # Total edge sizes involving a node - int/float
     nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
@@ -891,7 +892,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 #+---------------------------------------------------------------------------+#
 ###############################################################################
 
-def get_rel_pos_circ(pt, r=1):
+def get_rel_pos_circ(pt, r=1): # NOTE: Move to spatial module?
     '''
     Returns the x, y coordinates on a circle of radius r (centered at
     (0, 0)) given a percentage of the circumference (range [0, 1]).
@@ -918,7 +919,7 @@ def get_rel_pos_circ(pt, r=1):
     return r * np.cos(a), r * np.sin(a)
 
 
-def bezier_quad(pa, pb, pc=[0, 0], res=1e2):
+def bezier_quad(pa, pb, pc=[0, 0], res=1e2): # NOTE: Move to top level?
     '''
     Creates a Bézier quadratic curve between two points.
 

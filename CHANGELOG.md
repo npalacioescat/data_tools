@@ -1,7 +1,9 @@
 # data_tools version history
 
 ## v0.0.9 (WIP):
-- 
+- In `plots` module:
+    - Function `chordplot`: Generates a chord plot from a collection of
+      nodes and edges (and their sizes).
 
 ## v0.0.8:
 - Added `signal` module:

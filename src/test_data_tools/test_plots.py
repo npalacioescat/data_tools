@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['ClusterHmapTestCase', 'DensityTestCase', 'PianoConsensusTestCase',
-           'SimilarityHeatmapTestCase', 'SimilarityHistogramTestCase',
-           'UpSetWrapTestCase', 'VennTestCase', 'VolcanoTestCase']
+__all__ = ['ChordplotTestCase', 'ClusterHmapTestCase', 'DensityTestCase',
+           'PianoConsensusTestCase', 'SimilarityHeatmapTestCase',
+           'SimilarityHistogramTestCase', 'UpSetWrapTestCase', 'VennTestCase',
+           'VolcanoTestCase']
 
 import unittest
 
 from data_tools import plots
+
+
+class ChordplotTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.chordplot test unit is not'
+                   + ' implemented.')
+    def test_null(self):
+        pass
 
 
 class ClusterHmapTestCase(unittest.TestCase):
