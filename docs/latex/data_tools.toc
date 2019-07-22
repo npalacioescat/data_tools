@@ -1,27 +1,27 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Disclaimer}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Dependencies}{5}{chapter.2}
-\contentsline {chapter}{\numberline {3}Installation}{7}{chapter.3}
-\contentsline {chapter}{\numberline {4}Module reference}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}data\_tools.databases}{9}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Contents}{9}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}data\_tools.diffusion}{11}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Introduction}{11}{subsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.1.1}Euler explicit method}{12}{subsubsection.4.2.1.1}
-\contentsline {subsubsection}{\numberline {4.2.1.2}Euler implicit method}{12}{subsubsection.4.2.1.2}
-\contentsline {subsubsection}{\numberline {4.2.1.3}Crank-Nicolson method}{12}{subsubsection.4.2.1.3}
-\contentsline {subsection}{\numberline {4.2.2}Contents}{13}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}data\_tools.iterables}{14}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Contents}{14}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}data\_tools.models}{16}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Contents}{16}{subsection.4.4.1}
-\contentsline {section}{\numberline {4.5}data\_tools.plots}{19}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Contents}{19}{subsection.4.5.1}
-\contentsline {section}{\numberline {4.6}data\_tools.signal}{26}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Contents}{26}{subsection.4.6.1}
-\contentsline {section}{\numberline {4.7}data\_tools.spatial}{27}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Contents}{27}{subsection.4.7.1}
-\contentsline {section}{\numberline {4.8}data\_tools.strings}{28}{section.4.8}
-\contentsline {subsection}{\numberline {4.8.1}Contents}{29}{subsection.4.8.1}
-\contentsline {chapter}{Python Module Index}{31}{section*.50}
-\contentsline {chapter}{Index}{33}{section*.51}
+\contentsline {chapter}{\numberline {1}Disclaimer}{3}{chapter.1}% 
+\contentsline {chapter}{\numberline {2}Dependencies}{5}{chapter.2}% 
+\contentsline {chapter}{\numberline {3}Installation}{7}{chapter.3}% 
+\contentsline {chapter}{\numberline {4}Module reference}{9}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}data\_tools.databases}{9}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Contents}{9}{subsection.4.1.1}% 
+\contentsline {section}{\numberline {4.2}data\_tools.diffusion}{11}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Introduction}{11}{subsection.4.2.1}% 
+\contentsline {subsubsection}{\numberline {4.2.1.1}Euler explicit method}{12}{subsubsection.4.2.1.1}% 
+\contentsline {subsubsection}{\numberline {4.2.1.2}Euler implicit method}{12}{subsubsection.4.2.1.2}% 
+\contentsline {subsubsection}{\numberline {4.2.1.3}Crank-Nicolson method}{12}{subsubsection.4.2.1.3}% 
+\contentsline {subsection}{\numberline {4.2.2}Contents}{13}{subsection.4.2.2}% 
+\contentsline {section}{\numberline {4.3}data\_tools.iterables}{14}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Contents}{14}{subsection.4.3.1}% 
+\contentsline {section}{\numberline {4.4}data\_tools.models}{16}{section.4.4}% 
+\contentsline {subsection}{\numberline {4.4.1}Contents}{16}{subsection.4.4.1}% 
+\contentsline {section}{\numberline {4.5}data\_tools.plots}{19}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Contents}{19}{subsection.4.5.1}% 
+\contentsline {section}{\numberline {4.6}data\_tools.signal}{26}{section.4.6}% 
+\contentsline {subsection}{\numberline {4.6.1}Contents}{26}{subsection.4.6.1}% 
+\contentsline {section}{\numberline {4.7}data\_tools.spatial}{27}{section.4.7}% 
+\contentsline {subsection}{\numberline {4.7.1}Contents}{27}{subsection.4.7.1}% 
+\contentsline {section}{\numberline {4.8}data\_tools.strings}{28}{section.4.8}% 
+\contentsline {subsection}{\numberline {4.8.1}Contents}{29}{subsection.4.8.1}% 
+\contentsline {chapter}{Python Module Index}{31}{section*.50}% 
+\contentsline {chapter}{Index}{33}{section*.51}% 

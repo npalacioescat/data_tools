@@ -51,7 +51,7 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="data_tools.models.DoseResponse">
-<em class="property">class </em><code class="sig-prename descclassname">data_tools.models.</code><code class="sig-name descname">DoseResponse</code><span class="sig-paren">(</span><em class="sig-param">d_data, r_data, x0=None, x_scale=None, bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">DoseResponse</code><span class="sig-paren">(</span><em>d_data, r_data, x0=None, x_scale=None, bounds=([0, 0, -inf], [inf, inf, inf])</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper class for <code class="docutils literal notranslate"><span class="pre">scipy.optimize.least_squares</span></code> to fit
 dose-response curves on a pre-defined Hill function with the
 following form:</p>
@@ -106,7 +106,7 @@ fitted parameters <span class="math notranslate nohighlight">\(k\)</span>, <span
 </ul>
 <dl class="method">
 <dt id="data_tools.models.DoseResponse.ec">
-<code class="sig-name descname">ec</code><span class="sig-paren">(</span><em class="sig-param">p=50</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.ec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.ec" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ec</code><span class="sig-paren">(</span><em>p=50</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.ec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.ec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the effective concentration for the specified
 percentage of maximal concentration (<span class="math notranslate nohighlight">\(EC_{p}\)</span>).</p>
 <ul class="simple">
@@ -132,7 +132,7 @@ to the model parameters.</p></li>
 
 <dl class="method">
 <dt id="data_tools.models.DoseResponse.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">title=None</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">figsize=None</em>, <em class="sig-param">legend=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot</code><span class="sig-paren">(</span><em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>legend=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#DoseResponse.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.DoseResponse.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the data points and the fitted function together.</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -166,7 +166,7 @@ points and the fitted model function.</p></li>
 
 <dl class="class">
 <dt id="data_tools.models.Lasso">
-<em class="property">class </em><code class="sig-prename descclassname">data_tools.models.</code><code class="sig-name descname">Lasso</code><span class="sig-paren">(</span><em class="sig-param">Cs=500</em>, <em class="sig-param">cv=10</em>, <em class="sig-param">sampler='skf'</em>, <em class="sig-param">solver='liblinear'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">data_tools.models.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>Cs=500</em>, <em>cv=10</em>, <em>sampler='skf'</em>, <em>solver='liblinear'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper class inheriting from
 <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegressionCV</span></code> with L1
 regularization.</p>
@@ -203,7 +203,7 @@ reference</a>.</p>
 </ul>
 <dl class="method">
 <dt id="data_tools.models.Lasso.fit_data">
-<code class="sig-name descname">fit_data</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">silent=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.fit_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.fit_data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit_data</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>silent=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.fit_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.fit_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the data to the logistic model.</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -225,7 +225,7 @@ Determines whether messages are printed or not.</p></li>
 
 <dl class="method">
 <dt id="data_tools.models.Lasso.plot_coef">
-<code class="sig-name descname">plot_coef</code><span class="sig-paren">(</span><em class="sig-param">filename=None</em>, <em class="sig-param">figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_coef</code><span class="sig-paren">(</span><em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_coef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_coef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the non-zero coefficients for the fitted predictor
 features.</p>
 <ul class="simple">
@@ -254,7 +254,7 @@ bar plot of the non-zero coefficients.</p></li>
 
 <dl class="method">
 <dt id="data_tools.models.Lasso.plot_score">
-<code class="sig-name descname">plot_score</code><span class="sig-paren">(</span><em class="sig-param">filename=None</em>, <em class="sig-param">figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot_score</code><span class="sig-paren">(</span><em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/models.html#Lasso.plot_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.models.Lasso.plot_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.</p>
 <ul class="simple">
@@ -314,10 +314,10 @@ score plot.</p></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -347,7 +347,7 @@ score plot.</p></li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
     </div>
   </body>
 </html>

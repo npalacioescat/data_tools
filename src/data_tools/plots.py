@@ -51,8 +51,9 @@ cmap_rdbkgr = LinearSegmentedColormap.from_list(name='RdBkGr',
                                                 N=256)
 
 
-def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
-              colors=None, title=None, filename=None, figsize=None):
+def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
+              label_sizes=False, colors=None, title=None, filename=None,
+              figsize=None):
     '''
     Generates a chord plot from a collection of nodes and edges (and
     their sizes).
@@ -66,6 +67,8 @@ def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
           of [list] as long as contains *n* by 3 elements where *n* is
           the number of edges and their elements describe the source and
           target nodes and the size of that edge.
+        - *alpha* [float]: Optional, ``0.2`` by default. Sets the
+          transparency of the edges.
         - *plot_lines* [bool]: Optional, ``False`` by default. Whether
           to plot the edge borders or not.
         - *labels* [bool]: Optional, ``False`` by default. If ``True``
@@ -110,7 +113,10 @@ def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
 
     # Preparing inputs
     # Edge properties table
-    edges = pd.DataFrame(edges, columns=['source', 'target', 'size'])
+    if type(edges) is pd.DataFrame:
+        edges.columns = ['source', 'target', 'size']
+    else:
+        edges = pd.DataFrame(edges, columns=['source', 'target', 'size'])
 
     # Node properties table
     if type(nodes) is dict:
@@ -146,7 +152,7 @@ def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
     nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
     # Edge sizes for each node (involved in them) - list
     nodes['e_sizes'] = [edges.loc[(edges.source == n) | (edges.target == n),
-                                 'size'].values for n in nodes.index]
+                                'size'].values for n in nodes.index]
     # Total edge sizes involving a node - int/float
     nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
     # Relative edge sizes (wrt. total edges involving that node) - list
@@ -192,39 +198,67 @@ def chordplot(nodes, edges, plot_lines=False, labels=False, label_sizes=False,
         t = e['target']
         # Color according to source node
         c = colors[nodes.index.to_list().index(s)]
+
         # Retrieve relative positions of edges on a circle
-        # - Source points of edge
-        s1, s2 = nodes.loc[s, 'e_pos'][counter[s]]
-        ps1, ps2 = map(get_rel_pos_circ, [s1, s2])
-        # - Target points of edge (swapped)
-        t1, t2 = nodes.loc[t, 'e_pos'][counter[t]][::-1]
-        pt1, pt2 = map(get_rel_pos_circ, [t1, t2])
-        # Count the nodes' edges
-        counter[s] += 1
-        counter[t] += 1
+        if s != t:
+            # - Source points of edge
+            s1, s2 = nodes.loc[s, 'e_pos'][counter[s]]
+            ps1, ps2 = map(get_rel_pos_circ, [s1, s2])
+            # - Target points of edge (swapped)
+            t1, t2 = nodes.loc[t, 'e_pos'][counter[t]][::-1]
+            pt1, pt2 = map(get_rel_pos_circ, [t1, t2])
+            # Count the nodes' edges
+            counter[s] += 1
+            counter[t] += 1
 
-        # Generate borders of edge as Bézier curves
-        curve1 = bezier_quad(ps1, pt1)
-        curve2 = bezier_quad(ps2, pt2)
+            # Generate borders of edge as Bézier curves
+            curve1 = bezier_quad(ps1, pt1)
+            curve2 = bezier_quad(ps2, pt2)
 
-        # Filling the gaps (arcs between borders of edge)
-        sarcr = np.linspace(2 * np.pi * s1, 2 * np.pi * s2, 100)
-        sarc = np.vstack([np.cos(sarcr), np.sin(sarcr)])
+            # Filling the gaps (arcs between borders of edge)
+            sarcr = np.linspace(2 * np.pi * s1, 2 * np.pi * s2, 100)
+            sarc = np.vstack([np.cos(sarcr), np.sin(sarcr)])
 
-        tarcr = np.linspace(2 * np.pi * t1, 2 * np.pi * t2, 100)
-        tarc = np.vstack([np.cos(tarcr), np.sin(tarcr)])
+            tarcr = np.linspace(2 * np.pi * t1, 2 * np.pi * t2, 100)
+            tarc = np.vstack([np.cos(tarcr), np.sin(tarcr)])
 
-        # Plotting the edge borders
-        if plot_lines:
-            ax.plot(*curve1, c=c, zorder=0)
-            ax.plot(*curve2, c=c, zorder=0)
+            # Plotting the edge borders
+            if plot_lines:
+                ax.plot(*curve1, c=c, zorder=0)
+                ax.plot(*curve2, c=c, zorder=0)
 
-        # Filling the edge
-        ax.fill(np.concatenate([curve1[0], tarc[0][::-1],
-                                curve2[0][::-1], sarc[0][::-1]], axis=None),
-                np.concatenate([curve1[1], tarc[1][::-1],
-                                curve2[1][::-1], sarc[1][::-1]], axis=None),
-                color=c, alpha=0.2, zorder=0)
+            # Filling the edge
+            ax.fill(np.concatenate([curve1[0], tarc[0][::-1],
+                                    curve2[0][::-1], sarc[0][::-1]],
+                                   axis=None),
+                    np.concatenate([curve1[1], tarc[1][::-1],
+                                    curve2[1][::-1], sarc[1][::-1]],
+                                   axis=None),
+                    color=c, alpha=alpha, zorder=0)
+
+        else:
+            # - Points of edge
+            s1, s2 = nodes.loc[s, 'e_pos'][counter[s]]
+            ps1, ps2 = map(get_rel_pos_circ, [s1, s2])
+
+            # Count the nodes' edges
+            counter[s] += 1
+
+            # Generate borders of edge as Bézier curves
+            curve1 = bezier_quad(ps1, ps2)
+
+            # Filling the gaps (arcs between borders of edge)
+            sarcr = np.linspace(2 * np.pi * s1, 2 * np.pi * s2, 100)
+            sarc = np.vstack([np.cos(sarcr), np.sin(sarcr)])
+
+            # Plotting the edge borders
+            if plot_lines:
+                ax.plot(*curve1, c=c, zorder=0)
+
+            # Filling the edge
+            ax.fill(np.concatenate([curve1[0], sarc[0][::-1]], axis=None),
+                    np.concatenate([curve1[1], sarc[1][::-1]], axis=None),
+                    color=c, alpha=alpha, zorder=0)
 
     # Plotting the donut on top (slightly bigger radius to cover edge tips)
     ax.pie(nodes['size'], wedgeprops=dict([('width', 0.1)]), radius=1.01,

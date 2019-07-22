@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 16, 2019}
+\date{Jul 22, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1278,7 +1278,7 @@ green (highest).
 \index{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{plot\_lines=False}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{alpha=0.2}, \emph{plot\_lines=False}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a chord plot from a collection of nodes and edges (and
 their sizes).
 \begin{itemize}
@@ -1295,6 +1295,10 @@ indices the node names (must correspond to the ones in
 of {[}list{]} as long as contains \sphinxstyleemphasis{n} by 3 elements where \sphinxstyleemphasis{n} is
 the number of edges and their elements describe the source and
 target nodes and the size of that edge.
+
+\item {} 
+\sphinxstyleemphasis{alpha} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.2}} by default. Sets the
+transparency of the edges.
 
 \item {} 
 \sphinxstyleemphasis{plot\_lines} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether
