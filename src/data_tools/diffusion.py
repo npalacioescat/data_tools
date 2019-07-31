@@ -83,7 +83,7 @@ Euler implicit method
 ^^^^^^^^^^^^^^^^^^^^^
 
 Similar to Euler explicit (first-order accurate) but uses backward
-difference over time:
+difference over time (theoretically, unconditionally stable):
 
 .. math::
   \\frac{\\partial u}{\\partial t}\\approx\\frac{u^k-u^{k-1}}{\\Delta t}
@@ -133,8 +133,8 @@ Posed as a linear algebra problem:
 Where :math:`\\mathbf{A}` is the tri-diagonal coefficient matrix for
 :math:`k+1` whose central element is :math:`(1+\\lambda)` and its
 adjacent diagonals are :math:`-\\frac{\\lambda}{2}`. Similarly,
-:\\mathbf{B}: is the tri-diagonal matrix for :math:`k` whose central
-element is :math:`(1-\\lambda)` and its adjacent diagonals are
+:math:`\\mathbf{B}` is the tri-diagonal matrix for :math:`k` whose
+central element is :math:`(1-\\lambda)` and its adjacent diagonals are
 :math:`\\frac{\\lambda}{2}`. For :math:`n`-dimensional case, central
 elements will then be :math:`(1+n\\lambda)` and :math:`(1-n\\lambda)`
 for :math:`\\mathbf{A}` and :math:`\\mathbf{B}` respectively and

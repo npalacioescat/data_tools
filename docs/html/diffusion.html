@@ -102,7 +102,7 @@ are more permissive in terms of discretization step-size.</p>
 <div class="section" id="euler-implicit-method">
 <h3>Euler implicit method<a class="headerlink" href="#euler-implicit-method" title="Permalink to this headline">¶</a></h3>
 <p>Similar to Euler explicit (first-order accurate) but uses backward
-difference over time:</p>
+difference over time (theoretically, unconditionally stable):</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\]</div>
 <p>Applied to the diffusion problem in one dimension and taking one step
@@ -135,8 +135,8 @@ assuming <span class="math notranslate nohighlight">\(u_t=f(u,t)\)</span> then:<
 <p>Where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the tri-diagonal coefficient matrix for
 <span class="math notranslate nohighlight">\(k+1\)</span> whose central element is <span class="math notranslate nohighlight">\((1+\lambda)\)</span> and its
 adjacent diagonals are <span class="math notranslate nohighlight">\(-\frac{\lambda}{2}\)</span>. Similarly,
-:mathbf{B}: is the tri-diagonal matrix for <span class="math notranslate nohighlight">\(k\)</span> whose central
-element is <span class="math notranslate nohighlight">\((1-\lambda)\)</span> and its adjacent diagonals are
+<span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is the tri-diagonal matrix for <span class="math notranslate nohighlight">\(k\)</span> whose
+central element is <span class="math notranslate nohighlight">\((1-\lambda)\)</span> and its adjacent diagonals are
 <span class="math notranslate nohighlight">\(\frac{\lambda}{2}\)</span>. For <span class="math notranslate nohighlight">\(n\)</span>-dimensional case, central
 elements will then be <span class="math notranslate nohighlight">\((1+n\lambda)\)</span> and <span class="math notranslate nohighlight">\((1-n\lambda)\)</span>
 for <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> respectively and

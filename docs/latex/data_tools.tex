@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 22, 2019}
+\date{Jul 31, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -459,7 +459,7 @@ are more permissive in terms of discretization step-size.
 \subsubsection{Euler implicit method}
 \label{\detokenize{diffusion:euler-implicit-method}}
 Similar to Euler explicit (first-order accurate) but uses backward
-difference over time:
+difference over time (theoretically, unconditionally stable):
 \begin{equation*}
 \begin{split}\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\end{split}
 \end{equation*}
@@ -499,8 +499,8 @@ Posed as a linear algebra problem:
 Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix for
 \(k+1\) whose central element is \((1+\lambda)\) and its
 adjacent diagonals are \(-\frac{\lambda}{2}\). Similarly,
-:mathbf\{B\}: is the tri-diagonal matrix for \(k\) whose central
-element is \((1-\lambda)\) and its adjacent diagonals are
+\(\mathbf{B}\) is the tri-diagonal matrix for \(k\) whose
+central element is \((1-\lambda)\) and its adjacent diagonals are
 \(\frac{\lambda}{2}\). For \(n\)-dimensional case, central
 elements will then be \((1+n\lambda)\) and \((1-n\lambda)\)
 for \(\mathbf{A}\) and \(\mathbf{B}\) respectively and
