@@ -1304,6 +1304,91 @@ provided data.
 
 \end{fulllineitems}
 
+\index{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{PowerLaw}}}{\emph{x}, \emph{y}}{}
+Fits a power law model to the provided data. Given \(y=ax^k\),
+the data is log-transformed and fitted to a linear model using
+least squares, since applaying log to both sides of the model:
+\begin{equation*}
+\begin{split}\log(y)=k\log(x)+\log(a)\end{split}
+\end{equation*}
+This can be interpreted as a linear model of slope \(k\) and
+intercept \(\log(a)\).
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x} {[}np.ndarray{]}: The independent variable to fit the model.
+
+\item {} 
+\sphinxstyleemphasis{y} {[}np.ndarray{]}: The dependent variable to fit the model.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Attributes:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{lm} {[}data\_tools.models.Linear{]}: The linear model of the data
+in log space.
+
+\item {} 
+\sphinxstyleemphasis{a} {[}float{]}: The constant of the power law distribution.
+
+\item {} 
+\sphinxstyleemphasis{k} {[}float{]}: The exponent of the power law distribution.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\index{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{filename=None}, \emph{figsize=None}, \emph{grid=False}}{}
+Plots the data and the fitted model in a log-log scale.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If
+passed, indicates the file name or path where to store the
+figure. Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values
+denoting the figure size (in inches) as {[}width, height{]}.
+
+\item {} 
+\sphinxstyleemphasis{grid} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
+show the plot grid lines.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}matplotlib.figure.Figure{]}: Figure object containing the
+score plot.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
 \phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}}
 
 \section{data\_tools.plots}

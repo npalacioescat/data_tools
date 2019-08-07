@@ -97,6 +97,9 @@ If not, see http://www.gnu.org/licenses/.
         - :py:meth:`plot_coef <data_tools.models.Lasso.plot_coef>`
 
       - :py:class:`Linear <data_tools.models.Linear>`
+      - :py:class:`PowerLaw <data_tools.models.PowerLaw>`
+
+        - :py:meth:`plot <data_tools.models.PowerLaw.plot>`
 
    - :py:mod:`plots <data_tools.plots>`
       - :py:data:`cmap_bkgr <data_tools.plots.cmap_bkgr>`

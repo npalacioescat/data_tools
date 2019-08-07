@@ -22,27 +22,29 @@
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)@\spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
 \indexentry{Linear (class in data\_tools.models)@\spxentry{Linear}\spxextra{class in data\_tools.models}|hyperpage}{19}
-\indexentry{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}|hyperpage}{19}
-\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{19}
-\indexentry{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}|hyperpage}{19}
+\indexentry{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}|hyperpage}{19}
+\indexentry{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}|hyperpage}{19}
+\indexentry{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}|hyperpage}{20}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}|hyperpage}{20}
 \indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
-\indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
+\indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
 \indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
 \indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
 \indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
-\indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
-\indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{25}
-\indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{26}
+\indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{25}
+\indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{26}
+\indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{27}
 \indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{27}
 \indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{27}
-\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{27}
-\indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{27}
-\indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{27}
+\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{28}
+\indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{28}
+\indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{28}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{28}
-\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{28}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{29}
 \indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{29}
-\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{29}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{29}
+\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{30}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{30}
