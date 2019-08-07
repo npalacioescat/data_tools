@@ -22,8 +22,9 @@
 \indexentry{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)@\spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
 \indexentry{Linear (class in data\_tools.models)@\spxentry{Linear}\spxextra{class in data\_tools.models}|hyperpage}{19}
+\indexentry{plot() (data\_tools.models.Linear method)@\spxentry{plot()}\spxextra{data\_tools.models.Linear method}|hyperpage}{19}
 \indexentry{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}|hyperpage}{19}
-\indexentry{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}|hyperpage}{19}
+\indexentry{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}|hyperpage}{20}
 \indexentry{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}|hyperpage}{20}
 \indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{20}
 \indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{20}

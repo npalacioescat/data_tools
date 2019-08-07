@@ -466,6 +466,35 @@ class Linear(object):
     def intercept(self, val):
         self.intercept = val
 
+    def plot(self, filename=None, figsize=None):
+        '''
+        Plots the data and the fitted model.
+
+        * Arguments:
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
+
+        * Returns:
+            - [matplotlib.figure.Figure]: Figure object containing the
+              score plot.
+        '''
+
+        fig, ax = plt.subplots(figsize=figsize)
+
+        ax.scatter(self.x, self.y)
+        ax.plot(self.x, self.slope * self.x + self.intercept, 'k--')
+
+        fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
+
+        return fig
+
 
 class PowerLaw(object):
     '''

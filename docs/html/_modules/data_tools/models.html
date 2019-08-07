@@ -504,7 +504,36 @@
 
     <span class="nd">@intercept</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">intercept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">intercept</span> <span class="o">=</span> <span class="n">val</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intercept</span> <span class="o">=</span> <span class="n">val</span>
+
+<div class="viewcode-block" id="Linear.plot"><a class="viewcode-back" href="../../models.html#data_tools.models.Linear.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Plots the data and the fitted model.</span>
+
+<span class="sd">        * Arguments:</span>
+<span class="sd">            - *filename* [str]: Optional, ``None`` by default. If</span>
+<span class="sd">              passed, indicates the file name or path where to store the</span>
+<span class="sd">              figure. Format must be specified (e.g.: .png, .pdf, etc)</span>
+<span class="sd">            - *figsize* [tuple]: Optional, ``None`` by default (default</span>
+<span class="sd">              matplotlib size). Any iterable containing two values</span>
+<span class="sd">              denoting the figure size (in inches) as [width, height].</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            - [matplotlib.figure.Figure]: Figure object containing the</span>
+<span class="sd">              score plot.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">fig</span></div></div>
 
 
 <div class="viewcode-block" id="PowerLaw"><a class="viewcode-back" href="../../models.html#data_tools.models.PowerLaw">[docs]</a><span class="k">class</span> <span class="nc">PowerLaw</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>

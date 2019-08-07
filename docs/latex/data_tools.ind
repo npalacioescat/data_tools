@@ -80,7 +80,8 @@
   \bigletter P
   \item \spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}, \hyperpage{22}
   \item \spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{17}
-  \item \spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}, \hyperpage{19}
+  \item \spxentry{plot()}\spxextra{data\_tools.models.Linear method}, \hyperpage{19}
+  \item \spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}, \hyperpage{20}
   \item \spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
   \item \spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
   \item \spxentry{PowerLaw}\spxextra{class in data\_tools.models}, \hyperpage{19}
