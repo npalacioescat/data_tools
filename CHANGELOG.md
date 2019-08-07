@@ -1,6 +1,8 @@
 # data_tools version history
 
 ## v0.0.9 (WIP):
+- In `models` module:
+    - Class `Linear`: Linear regression model using least squares.
 - In `plots` module:
     - Function `chordplot`: Generates a chord plot from a collection of
       nodes and edges (and their sizes).

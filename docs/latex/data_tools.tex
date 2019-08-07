@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jul 16, 2019}
+\date{Aug 07, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1239,6 +1239,68 @@ score plot.
 
 \end{fulllineitems}
 
+
+\end{fulllineitems}
+
+\index{Linear (class in data\_tools.models)@\spxentry{Linear}\spxextra{class in data\_tools.models}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{models:data_tools.models.Linear}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Linear}}}{\emph{x}, \emph{y}}{}
+Linear regression model using least squares. We define the model as
+\(y=mx+b\). The slope \(m\) is computed by dividing the
+covariance of \(x\) and \(y\) over the variance of
+\(x\):
+\begin{equation*}
+\begin{split}m=\frac{S_{xy}}{S_{xx}}\end{split}
+\end{equation*}
+Which are defined as follows:
+\begin{equation*}
+\begin{split}S_{xx}=\sum x^2-\frac{(\sum x)^2}{n}\\
+S_{xy}=\sum xy-\frac{(\sum x)(\sum y)}{n}\end{split}
+\end{equation*}
+Where \(n\) is the number of \((x,y)\) data points. The
+intercept is then obtained from:
+\begin{equation*}
+\begin{split}b=\frac{\sum y+a\sum x}{n}\end{split}
+\end{equation*}\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{x} {[}np.ndarray{]}: The independent variable to fit the linear
+model.
+
+\item {} 
+\sphinxstyleemphasis{y} {[}np.ndarray{]}: The dependent variable to fit the linear
+model.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Attributes:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{n} {[}int{]}: Number of data points provided.
+
+\item {} 
+\sphinxstyleemphasis{var} {[}float{]}: Variance of the independent variable.
+
+\item {} 
+\sphinxstyleemphasis{covar} {[}float{]}: Covariance between dependent and independent
+variables.
+
+\item {} 
+\sphinxstyleemphasis{slope} {[}float{]}: The slope of the linear model fitted to the
+provided data.
+
+\item {} 
+\sphinxstyleemphasis{intercept} {[}float{]}: The intercept of the fitted model.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
 
 \end{fulllineitems}
 

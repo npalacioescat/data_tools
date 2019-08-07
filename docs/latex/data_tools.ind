@@ -12,7 +12,7 @@
   \bigletter C
   \item \spxentry{chordplot()}\spxextra{in module data\_tools.plots}, \hyperpage{19}
   \item \spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}, \hyperpage{14}
-  \item \spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}, \hyperpage{20}
+  \item \spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}, \hyperpage{21}
   \item \spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}, \hyperpage{19}
   \item \spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}, \hyperpage{19}
   \item \spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}, \hyperpage{19}
@@ -24,37 +24,37 @@
   \item \spxentry{data\_tools.iterables}\spxextra{module}, \hyperpage{13}
   \item \spxentry{data\_tools.models}\spxextra{module}, \hyperpage{16}
   \item \spxentry{data\_tools.plots}\spxextra{module}, \hyperpage{19}
-  \item \spxentry{data\_tools.signal}\spxextra{module}, \hyperpage{25}
-  \item \spxentry{data\_tools.spatial}\spxextra{module}, \hyperpage{26}
-  \item \spxentry{data\_tools.strings}\spxextra{module}, \hyperpage{28}
+  \item \spxentry{data\_tools.signal}\spxextra{module}, \hyperpage{26}
+  \item \spxentry{data\_tools.spatial}\spxextra{module}, \hyperpage{27}
+  \item \spxentry{data\_tools.strings}\spxextra{module}, \hyperpage{29}
   \item \spxentry{density()}\spxextra{in module data\_tools.plots}, \hyperpage{21}
   \item \spxentry{DoseResponse}\spxextra{class in data\_tools.models}, \hyperpage{16}
 
   \indexspace
   \bigletter E
   \item \spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{17}
-  \item \spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}, \hyperpage{26}
+  \item \spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}, \hyperpage{27}
 
   \indexspace
   \bigletter F
-  \item \spxentry{fconvolve()}\spxextra{in module data\_tools.signal}, \hyperpage{26}
+  \item \spxentry{fconvolve()}\spxextra{in module data\_tools.signal}, \hyperpage{27}
   \item \spxentry{find\_min()}\spxextra{in module data\_tools.iterables}, \hyperpage{14}
   \item \spxentry{fit\_data()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
 
   \indexspace
   \bigletter G
-  \item \spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}, \hyperpage{26}
-  \item \spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}, \hyperpage{26}
-  \item \spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}, \hyperpage{27}
+  \item \spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}, \hyperpage{27}
+  \item \spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}, \hyperpage{27}
+  \item \spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}, \hyperpage{28}
 
   \indexspace
   \bigletter I
   \item \spxentry{in\_all()}\spxextra{in module data\_tools.iterables}, \hyperpage{15}
-  \item \spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}, \hyperpage{28}
+  \item \spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}, \hyperpage{29}
 
   \indexspace
   \bigletter J
-  \item \spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}, \hyperpage{28}
+  \item \spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}, \hyperpage{29}
 
   \indexspace
   \bigletter K
@@ -65,10 +65,11 @@
   \indexspace
   \bigletter L
   \item \spxentry{Lasso}\spxextra{class in data\_tools.models}, \hyperpage{17}
+  \item \spxentry{Linear}\spxextra{class in data\_tools.models}, \hyperpage{19}
 
   \indexspace
   \bigletter N
-  \item \spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}, \hyperpage{27}
+  \item \spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}, \hyperpage{28}
 
   \indexspace
   \bigletter O
@@ -77,7 +78,7 @@
 
   \indexspace
   \bigletter P
-  \item \spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}, \hyperpage{21}
+  \item \spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}, \hyperpage{22}
   \item \spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{17}
   \item \spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
   \item \spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
@@ -85,19 +86,19 @@
   \indexspace
   \bigletter S
   \item \spxentry{similarity()}\spxextra{in module data\_tools.iterables}, \hyperpage{15}
-  \item \spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}, \hyperpage{22}
-  \item \spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
   \item \spxentry{subsets()}\spxextra{in module data\_tools.iterables}, \hyperpage{16}
 
   \indexspace
   \bigletter U
   \item \spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}, \hyperpage{16}
   \item \spxentry{up\_map()}\spxextra{in module data\_tools.databases}, \hyperpage{10}
-  \item \spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
 
   \indexspace
   \bigletter V
-  \item \spxentry{venn()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
-  \item \spxentry{volcano()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
+  \item \spxentry{venn()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
+  \item \spxentry{volcano()}\spxextra{in module data\_tools.plots}, \hyperpage{25}
 
 \end{sphinxtheindex}
