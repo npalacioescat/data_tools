@@ -367,7 +367,25 @@ class Lasso(LogisticRegressionCV):
 
 class Linear(object):
     '''
-    Linear regression model using least squares.
+    Linear regression model using least squares. We define the model as
+    :math:`y=mx+b`. The slope :math:`m` is computed by dividing the
+    covariance of :math:`x` and :math:`y` over the variance of
+    :math:`x`:
+
+    .. math::
+       m=\\frac{S_{xy}}{S_{xx}}
+
+    Which are defined as follows:
+
+    .. math::
+       S_{xx}=\\sum x^2-\\frac{(\\sum x)^2}{n}\\\\
+       S_{xy}=\\sum xy-\\frac{(\\sum x)(\\sum y)}{n}
+
+    Where :math:`n` is the number of :math:`(x,y)` data points. The
+    intercept is then obtained from:
+
+    .. math::
+       b=\\frac{\\sum y+a\\sum x}{n}
 
     * Arguments:
         - *x* [np.ndarray]: The independent variable to fit the linear
