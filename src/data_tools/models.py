@@ -12,7 +12,7 @@ Contents
 
 from __future__ import print_function
 
-__all__ = ['DoseResponse', 'Lasso']
+__all__ = ['DoseResponse', 'Lasso', 'Linear']
 
 import time
 
@@ -363,3 +363,87 @@ class Lasso(LogisticRegressionCV):
             fig.savefig(filename)
 
         return fig
+
+
+class Linear(object):
+    '''
+    Linear regression model using least squares.
+
+    * Arguments:
+        - *x* [np.ndarray]: The independent variable to fit the linear
+          model.
+        - *y* [np.ndarray]: The dependent variable to fit the linear
+          model.
+
+    * Attributes:
+        - *n* [int]: Number of data points provided.
+        - *var* [float]: Variance of the independent variable.
+        - *covar* [float]: Covariance between dependent and independent
+          variables.
+        - *slope* [float]: The slope of the linear model fitted to the
+          provided data.
+        - *intercept* [float]: The intercept of the fitted model.
+    '''
+
+    def __init__(self, x, y):
+        assert len(x) == len(y), 'x and y must have the same length!'
+
+        self.x = x
+        self.y = y
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, val):
+        self._x = np.array(val)
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, val):
+        self._y = np.array(val)
+
+    @property
+    def n(self):
+        return len(self.x)
+
+    @n.setter
+    def n(self, val):
+        self.n = val
+
+    @property
+    def var(self):
+        return np.square(self.x).sum() - np.square(self.x.sum()) / self.n
+
+    @var.setter
+    def var(self, val):
+        self.var = val
+
+    @property
+    def covar(self):
+        return (np.multiply(self.x, self.y).sum()
+                - np.multiply(self.x.sum(), self.y.sum()) / self.n)
+
+    @covar.setter
+    def covar(self, val):
+        self.covar = val
+
+    @property
+    def slope(self):
+        return self.covar / self.var
+
+    @slope.setter
+    def slope(self, val):
+        self.slope = val
+
+    @property
+    def intercept(self):
+        return (self.y.sum() - self.slope * self.x.sum()) / self.n
+
+    @intercept.setter
+    def intercept(self, val):
+        self.intercept = val
