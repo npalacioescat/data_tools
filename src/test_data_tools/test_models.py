@@ -46,7 +46,6 @@ class LinearTestCase(unittest.TestCase):
         self.x = [0, 1, 2, 3, 4, 5]
         self.y = [0, 1, 2, 3, 4, 5]
 
-    def test_fit(self):
         self.model = models.Linear(self.x, self.y)
 
     def test_intercept(self):
