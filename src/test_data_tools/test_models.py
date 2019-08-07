@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['DoseResponseTestCase', 'LassoTestCase']
+__all__ = ['DoseResponseTestCase', 'LassoTestCase', 'LinearTestCase']
 
 import unittest
 
@@ -38,3 +38,19 @@ class LassoTestCase(unittest.TestCase):
                    + ' implemented.')
     def test_null(self):
         pass
+
+
+class LinearTestCase(unittest.TestCase):
+    def setUp(self):
+        # Fit y = x
+        self.x = [0, 1, 2, 3, 4, 5]
+        self.y = [0, 1, 2, 3, 4, 5]
+
+    def test_fit(self):
+        self.model = models.Linear(self.x, self.y)
+
+    def test_intercept(self):
+        self.assertEqual(self.model.intercept, 0.0)
+
+    def test_slope(self):
+        self.assertEqual(self.model.slope, 1.0)
