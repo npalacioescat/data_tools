@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.4.25)  31 JUL 2019 11:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.4.25)  7 AUG 2019 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -886,67 +886,68 @@ Underfull \hbox (badness 5741) in paragraph at lines 1126--1128
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
-[18]
-Underfull \hbox (badness 7099) in paragraph at lines 1281--1281
+[18] [19]
+Underfull \hbox (badness 7099) in paragraph at lines 1464--1464
 []\T1/ptm/m/it/10 nodes\T1/ptm/m/n/10 , \T1/ptm/m/it/10 edges\T1/ptm/m/n/10 , \
 T1/ptm/m/it/10 al-pha=0.2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 plot_lines=False\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 la-bels=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 la-
  []
 
-[19]
-<chordplot.png, id=303, 433.62pt x 289.08pt>
+[20]
+<chordplot.png, id=311, 433.62pt x 289.08pt>
 File: chordplot.png Graphic file (type png)
 <use chordplot.png>
-Package pdftex.def Info: chordplot.png  used on input line 1366.
+Package pdftex.def Info: chordplot.png  used on input line 1549.
 (pdftex.def)             Requested size: 346.89647pt x 231.2643pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1377--1377
+Underfull \hbox (badness 10000) in paragraph at lines 1560--1560
 []\T1/ptm/m/it/10 matrix\T1/ptm/m/n/10 , \T1/ptm/m/it/10 xla-bels=None\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 yla-bels=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=No
 ne\T1/ptm/m/n/10 , \T1/ptm/m/it/10 file-
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 1377--1377
+Underfull \hbox (badness 5245) in paragraph at lines 1560--1560
 \T1/ptm/m/it/10 name=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 fig-size=None\T1/ptm/
 m/n/10 , \T1/ptm/m/it/10 cmap='viridis'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 link_kw
 args={}\T1/ptm/m/n/10 ,
  []
 
-[20 <./chordplot.png>] [21]
-<piano_consensus_example.png, id=322, 505.89pt x 578.16pt>
+[21 <./chordplot.png>] [22]
+<piano_consensus_example.png, id=329, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 1567.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 1750.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
+ [23]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1596.
- [22 <./piano_consensus_example.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1643--1643
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1779.
+ [24 <./piano_consensus_example.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1826--1826
 []\T1/ptm/m/it/10 groups\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mode='j'\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 bins=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=None\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 file-
  []
 
-[23]
-<venn_example.png, id=341, 433.62pt x 289.08pt>
+[25]
+<venn_example.png, id=354, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 1806.
+Package pdftex.def Info: venn_example.png  used on input line 1989.
 (pdftex.def)             Requested size: 404.07626pt x 269.38416pt.
- [24] [25 <./venn_example.png>]
-<volcano_example.png, id=353, 462.528pt x 346.896pt>
+ [26 <./venn_example.png>]
+<volcano_example.png, id=361, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 1888.
+Package pdftex.def Info: volcano_example.png  used on input line 2071.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
- [26 <./volcano_example.png>] [27] [28]
-[29] [30
+ [27 <./volcano_example.png>] [28] [29] [30]
+[31] [32
 
-] [31
+] [33
 
 
-] (./data_tools.ind [32
+] (./data_tools.ind [34
 
 
 ]
@@ -956,43 +957,43 @@ ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--77
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
 []\T1/pcr/m/n/10 op_kinase_substrate() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-u
 le
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 []\T1/pcr/m/n/10 similarity_heatmap() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-ul
 e
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 []\T1/pcr/m/n/10 similarity_histogram() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-
 ule
  []
 
-[33
+[35
 
-] [34
+] [36
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2303.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2303.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2486.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2486.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2303.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2303.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2486.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2486.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
-(rerunfilecheck)             Checksum: 8CAA5CF7804BBA94EEBA3A848B416403;3316.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2303.
+(rerunfilecheck)             Checksum: 79B7AE55A441A222AA8D5DAD5DFF5B33;3316.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2486.
  ) 
 Here is how much of TeX's memory you used:
- 13611 strings out of 494561
- 191383 string characters out of 6177454
- 329923 words of memory out of 5000000
- 16842 multiletter control sequences out of 15000+600000
+ 13621 strings out of 494561
+ 191587 string characters out of 6177454
+ 325075 words of memory out of 5000000
+ 16846 multiletter control sequences out of 15000+600000
  54813 words of font info for 81 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,18n,45p,617b,671s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1015,10 +1016,10 @@ pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (38 pages, 538477 bytes).
+Output written on data_tools.pdf (40 pages, 544936 bytes).
 PDF statistics:
- 555 PDF objects out of 1000 (max. 8388607)
- 476 compressed objects within 5 object streams
- 112 named destinations out of 1000 (max. 500000)
+ 572 PDF objects out of 1000 (max. 8388607)
+ 491 compressed objects within 5 object streams
+ 118 named destinations out of 1000 (max. 500000)
  254 words of extra memory for PDF output out of 10000 (max. 10000000)
 

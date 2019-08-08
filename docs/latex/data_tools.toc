@@ -15,13 +15,13 @@
 \contentsline {subsection}{\numberline {4.3.1}Contents}{14}{subsection.4.3.1}% 
 \contentsline {section}{\numberline {4.4}data\_tools.models}{16}{section.4.4}% 
 \contentsline {subsection}{\numberline {4.4.1}Contents}{16}{subsection.4.4.1}% 
-\contentsline {section}{\numberline {4.5}data\_tools.plots}{19}{section.4.5}% 
-\contentsline {subsection}{\numberline {4.5.1}Contents}{19}{subsection.4.5.1}% 
-\contentsline {section}{\numberline {4.6}data\_tools.signal}{26}{section.4.6}% 
-\contentsline {subsection}{\numberline {4.6.1}Contents}{26}{subsection.4.6.1}% 
-\contentsline {section}{\numberline {4.7}data\_tools.spatial}{27}{section.4.7}% 
-\contentsline {subsection}{\numberline {4.7.1}Contents}{27}{subsection.4.7.1}% 
-\contentsline {section}{\numberline {4.8}data\_tools.strings}{28}{section.4.8}% 
-\contentsline {subsection}{\numberline {4.8.1}Contents}{29}{subsection.4.8.1}% 
-\contentsline {chapter}{Python Module Index}{31}{section*.50}% 
-\contentsline {chapter}{Index}{33}{section*.51}% 
+\contentsline {section}{\numberline {4.5}data\_tools.plots}{20}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Contents}{20}{subsection.4.5.1}% 
+\contentsline {section}{\numberline {4.6}data\_tools.signal}{27}{section.4.6}% 
+\contentsline {subsection}{\numberline {4.6.1}Contents}{28}{subsection.4.6.1}% 
+\contentsline {section}{\numberline {4.7}data\_tools.spatial}{28}{section.4.7}% 
+\contentsline {subsection}{\numberline {4.7.1}Contents}{28}{subsection.4.7.1}% 
+\contentsline {section}{\numberline {4.8}data\_tools.strings}{30}{section.4.8}% 
+\contentsline {subsection}{\numberline {4.8.1}Contents}{30}{subsection.4.8.1}% 
+\contentsline {chapter}{Python Module Index}{33}{section*.54}% 
+\contentsline {chapter}{Index}{35}{section*.55}% 

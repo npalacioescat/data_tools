@@ -12,7 +12,7 @@ Contents
 
 from __future__ import print_function
 
-__all__ = ['DoseResponse', 'Lasso']
+__all__ = ['DoseResponse', 'Lasso', 'Linear', 'PowerLaw']
 
 import time
 
@@ -356,6 +356,244 @@ class Lasso(LogisticRegressionCV):
                            va='top')
         ax.set_title('Non-zero coefficient values')
         ax.set_xlim(-1, len(self.predictors))
+
+        fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
+
+        return fig
+
+
+class Linear(object):
+    '''
+    Linear regression model using least squares. We define the model as
+    :math:`y=mx+b`. The slope :math:`m` is computed by dividing the
+    covariance of :math:`x` and :math:`y` over the variance of
+    :math:`x`:
+
+    .. math::
+       m=\\frac{S_{xy}}{S_{xx}}
+
+    Which are defined as follows:
+
+    .. math::
+       S_{xx}=\\sum x^2-\\frac{(\\sum x)^2}{n}\\\\
+       S_{xy}=\\sum xy-\\frac{(\\sum x)(\\sum y)}{n}
+
+    Where :math:`n` is the number of :math:`(x,y)` data points. The
+    intercept is then obtained from:
+
+    .. math::
+       b=\\frac{\\sum y+a\\sum x}{n}
+
+    * Arguments:
+        - *x* [np.ndarray]: The independent variable to fit the linear
+          model.
+        - *y* [np.ndarray]: The dependent variable to fit the linear
+          model.
+
+    * Attributes:
+        - *n* [int]: Number of data points provided.
+        - *var* [float]: Variance of the independent variable.
+        - *covar* [float]: Covariance between dependent and independent
+          variables.
+        - *slope* [float]: The slope of the linear model fitted to the
+          provided data.
+        - *intercept* [float]: The intercept of the fitted model.
+    '''
+
+    def __init__(self, x, y):
+        assert len(x) == len(y), 'x and y must have the same length!'
+
+        self.x = x
+        self.y = y
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, val):
+        self._x = np.array(val)
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, val):
+        self._y = np.array(val)
+
+    @property
+    def n(self):
+        return len(self.x)
+
+    @n.setter
+    def n(self, val):
+        self.n = val
+
+    @property
+    def var(self):
+        return np.square(self.x).sum() - np.square(self.x.sum()) / self.n
+
+    @var.setter
+    def var(self, val):
+        self.var = val
+
+    @property
+    def covar(self):
+        return (np.multiply(self.x, self.y).sum()
+                - np.multiply(self.x.sum(), self.y.sum()) / self.n)
+
+    @covar.setter
+    def covar(self, val):
+        self.covar = val
+
+    @property
+    def slope(self):
+        return self.covar / self.var
+
+    @slope.setter
+    def slope(self, val):
+        self.slope = val
+
+    @property
+    def intercept(self):
+        return (self.y.sum() - self.slope * self.x.sum()) / self.n
+
+    @intercept.setter
+    def intercept(self, val):
+        self.intercept = val
+
+    def plot(self, filename=None, figsize=None):
+        '''
+        Plots the data and the fitted model.
+
+        * Arguments:
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
+
+        * Returns:
+            - [matplotlib.figure.Figure]: Figure object containing the
+              score plot.
+        '''
+
+        fig, ax = plt.subplots(figsize=figsize)
+
+        ax.scatter(self.x, self.y)
+        ax.plot(self.x, self.slope * self.x + self.intercept, 'k--')
+
+        fig.tight_layout()
+
+        if filename:
+            fig.savefig(filename)
+
+        return fig
+
+
+class PowerLaw(object):
+    '''
+    Fits a power law model to the provided data. Given :math:`y=ax^k`,
+    the data is log-transformed and fitted to a linear model using
+    least squares, since applaying log to both sides of the model:
+
+    .. math::
+       \\log(y)=k\\log(x)+\\log(a)
+
+    This can be interpreted as a linear model of slope :math:`k` and
+    intercept :math:`\\log(a)`.
+
+    * Arguments:
+        - *x* [np.ndarray]: The independent variable to fit the model.
+        - *y* [np.ndarray]: The dependent variable to fit the model.
+
+    * Attributes:
+        - *lm* [data_tools.models.Linear]: The linear model of the data
+          in log space.
+        - *a* [float]: The constant of the power law distribution.
+        - *k* [float]: The exponent of the power law distribution.
+    '''
+
+    def __init__(self, x, y):
+        assert len(x) == len(y), 'x and y must have the same length!'
+
+        self.x = x
+        self.y = y
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, val):
+        self._x = np.array(val)
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, val):
+        self._y = np.array(val)
+
+    @property
+    def lm(self):
+        return Linear(np.log10(self.x), np.log10(self.y))
+
+    @lm.setter
+    def lm(self, value):
+        self.lm = val
+
+    @property
+    def a(self):
+        return 10 ** self.lm.intercept
+
+    @a.setter
+    def a(self, val):
+        self.a = val
+
+    @property
+    def k(self):
+        return self.lm.slope
+
+    @k.setter
+    def k(self, val):
+        self.k = val
+
+    def plot(self, filename=None, figsize=None, grid=False):
+        '''
+        Plots the data and the fitted model in a log-log scale.
+
+        * Arguments:
+            - *filename* [str]: Optional, ``None`` by default. If
+              passed, indicates the file name or path where to store the
+              figure. Format must be specified (e.g.: .png, .pdf, etc)
+            - *figsize* [tuple]: Optional, ``None`` by default (default
+              matplotlib size). Any iterable containing two values
+              denoting the figure size (in inches) as [width, height].
+            - *grid* [bool]: Optional, ``False`` by default. Whether to
+              show the plot grid lines.
+
+        * Returns:
+            - [matplotlib.figure.Figure]: Figure object containing the
+              score plot.
+        '''
+
+        fig, ax = plt.subplots(figsize=figsize)
+
+        ax.scatter(self.x, self.y)
+        ax.plot(self.x, self.a * self.x ** self.k, 'k--')
+
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+
+        if grid:
+            ax.grid(which='both')
 
         fig.tight_layout()
 
