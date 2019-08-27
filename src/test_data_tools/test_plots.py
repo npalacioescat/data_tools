@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 __all__ = ['ChordplotTestCase', 'ClusterHmapTestCase', 'DensityTestCase',
-           'PianoConsensusTestCase', 'SimilarityHeatmapTestCase',
-           'SimilarityHistogramTestCase', 'UpSetWrapTestCase', 'VennTestCase',
-           'VolcanoTestCase']
+           'PianoConsensusTestCase', 'PcaTestCase',
+           'SimilarityHeatmapTestCase', 'SimilarityHistogramTestCase',
+           'UpSetWrapTestCase', 'VennTestCase', 'VolcanoTestCase']
 
 import unittest
 
@@ -26,6 +26,13 @@ class ClusterHmapTestCase(unittest.TestCase):
 
 class DensityTestCase(unittest.TestCase):
     @unittest.skip('** NOTE **: data_tools.plots.density test unit is not'
+                   + ' implemented.')
+    def test_null(self):
+        pass
+
+
+class PcaTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.plots.pca test unit is not'
                    + ' implemented.')
     def test_null(self):
         pass
