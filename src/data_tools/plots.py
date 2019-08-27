@@ -323,7 +323,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
         py.cluster.hierarchy.dendrogram.html
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing the
+        - [matplotlib.figure.Figure]: The figure object containing the
           density plot, unless *filename* is provided.
     '''
 
@@ -405,7 +405,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing the
+        - [matplotlib.figure.Figure]: The figure object containing the
           density plot, unless *filename* is provided.
     '''
 
@@ -444,6 +444,41 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
 def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
         filename=None, figsize=None):
     '''
+    Computes the principal component analysis (PCA) and plots the
+    results.
+
+    * Arguments:
+        - *data* [pandas.DataFrame]: Contains the high-dimensional data
+          to compute the PCA. The samples (data points) are assumed to
+          be rows and the measurements (features) in the columns.
+        - *n_comp* [int]: Optional, ``2`` by default. The number of
+          first components to plot. Maximum is three (otherwise defaults
+          to two).
+        - *groups* [dict]: Optional, ``None`` by default. Can also be a
+          [pandas.Series]. Defines which samples (keys/index
+          corresponding to row names in *data*) belong to a group (e.g.
+          condition, treatment, ...) to color the data points. If none
+          is provided, all points are colored in black.
+        - *cmap* [str]: Optional, ``'rainbow'`` by default. The colormap
+          used to draw the groups' colors (can also be a user-defined
+          [matplotlib.colors.Colormap] object). See other [str] options
+          available in `Matplotlib's reference manual`_. If no *groups*
+          are provided, the argument is ignored.
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    .. _`Matplotlib's reference manual`:
+        https://matplotlib.org/examples/color/colormaps_reference.html
+
+    * Returns:
+        - [matplotlib.figure.Figure]: The figure object containing the
+          scatter plot of the PC's unless *filename* is provided.
     '''
 
     # Preparing the figure and axes
@@ -545,7 +580,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing a
+        - [matplotlib.figure.Figure]: The figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
 
@@ -636,7 +671,7 @@ def similarity_heatmap(groups, labels=None, mode='j', cmap='nipy_spectral',
         https://matplotlib.org/examples/color/colormaps_reference.html
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing a
+        - [matplotlib.figure.Figure]: The figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
     '''
@@ -707,7 +742,7 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing a
+        - [matplotlib.figure.Figure]: The figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
     '''
@@ -800,7 +835,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
           the figure size (in inches) as [width, height].
 
     * Returns:
-        - [matplotlib.figure.Figure]: the figure object containing a
+        - [matplotlib.figure.Figure]: The figure object containing a
           combination of box and scatter plots of the gene-set scores,
           unless *filename* is provided.
 
