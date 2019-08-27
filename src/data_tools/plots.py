@@ -27,6 +27,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from scipy import stats
 from scipy.cluster.hierarchy import dendrogram, linkage
 import upsetplot as usp
+from sklearn.decomposition import PCA
 
 from data_tools.iterables import subsets, similarity
 
@@ -431,6 +432,67 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
     ax.set_title(title)
 
     ax.legend(ncol=2, fontsize=10, loc=0)
+    fig.tight_layout()
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
+
+
+def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
+        filename=None, figsize=None):
+        # If groups=None - all is one color
+        # if n_comp=3 make a 3d plot
+    '''
+    '''
+
+
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111, projection='3d' if n_comp == 3 else None)
+
+    if groups:
+        # Generating color palette
+        assert (type(a) == dict or type(a) == pd.Series),\
+               'Please, provide a dict or pandas.Series for groups'
+        groups = pd.Series(groups)
+        # Colormap instance
+        icmp = matplotlib.cm.get_cmap(cmap)
+        unique_groups = pd.unique(groups)
+        palette = dict(zip(unique_groups,
+                           list(map(icmp,
+                                    np.linspace(1, 0, len(unique_groups))))))
+
+        colors = [palette[groups[dtp]] for dtp in data.index]
+
+    else:
+        colors = 'black'
+
+    # Reducing dimensions
+    pca = PCA(n_components=n_comp)
+    pca.fit(data)
+
+    x = pca.transform(data)
+
+    exp_var = pca.explained_variance_ratio_
+    ax.set_xlabel('PC1 (%.1f)' % exp_var[0])
+    ax.set_ylabel('PC2 (%.1f)' % exp_var[1])
+
+    if n_comp == 3:
+        ax.scatter(x[:, 0], x[:, 1], x[:, 2], c=colors)
+        ax.set_zlabel('PC3 (%.1f)' % exp_var[2])
+
+    else:
+        ax.scatter(x[:, 0], x[:, 1], c=colors)
+
+    if groups:
+        ax.legend([matplotlib.lines.Line2D([0], [0], marker='o', color='w',
+                                           markerfacecolor=c)
+                   for c in palette.values()],
+                  palette.keys(), loc=0)
+
+    ax.set_title(title)
     fig.tight_layout()
 
     if filename:
