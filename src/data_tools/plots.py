@@ -13,7 +13,7 @@ Contents
 from __future__ import absolute_import
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'chordplot', 'cluster_hmap',
-           'density', 'piano_consensus', 'similarity_heatmap',
+           'density', 'pca', 'piano_consensus', 'similarity_heatmap',
            'similarity_histogram', 'upset_wrap', 'venn', 'volcano']
 
 import sys
@@ -443,18 +443,26 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
 
 def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
         filename=None, figsize=None):
-        # If groups=None - all is one color
-        # if n_comp=3 make a 3d plot
     '''
     '''
 
-
+    # Preparing the figure and axes
     fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111, projection='3d' if n_comp == 3 else None)
+    ax = (fig.add_axes(([0.1, 0.1, 0.65, 0.8] if groups is not None
+                        else [0.1, 0.1, 0.8, 0.8]),
+                       projection='3d' if n_comp == 3 else None),
+          fig.add_axes([0.75, 0.1, 0.25, 0.8]) if groups is not None
+          else None)
 
-    if groups:
+    # Removing NaN's from data
+    print('Data contains %d rows and %d columns' % data.shape)
+    data.dropna(axis=1, inplace=True)
+    data.dropna(axis=0, inplace=True)
+    print('After removing NaNs %d rows and %d columns remain' % data.shape)
+
+    if groups is not None:
         # Generating color palette
-        assert (type(a) == dict or type(a) == pd.Series),\
+        assert (type(groups) == dict or type(groups) == pd.Series),\
                'Please, provide a dict or pandas.Series for groups'
         groups = pd.Series(groups)
         # Colormap instance
@@ -475,25 +483,30 @@ def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
 
     x = pca.transform(data)
 
+    # Variance explained per component
     exp_var = pca.explained_variance_ratio_
-    ax.set_xlabel('PC1 (%.1f)' % exp_var[0])
-    ax.set_ylabel('PC2 (%.1f)' % exp_var[1])
+    ax[0].set_xlabel('PC1 (%.1f%%)' % (exp_var[0] * 100))
+    ax[0].set_ylabel('PC2 (%.1f%%)' % (exp_var[1] * 100))
 
+    # In case of 3D
     if n_comp == 3:
-        ax.scatter(x[:, 0], x[:, 1], x[:, 2], c=colors)
-        ax.set_zlabel('PC3 (%.1f)' % exp_var[2])
+        ax[0].scatter(x[:, 0], x[:, 1], x[:, 2], c=colors)
+        ax[0].set_zlabel('PC3 (%.1f%%)' % (exp_var[2] * 100))
 
     else:
-        ax.scatter(x[:, 0], x[:, 1], c=colors)
+        ax[0].scatter(x[:, 0], x[:, 1], c=colors)
+        ax[0].axis('square')
 
-    if groups:
-        ax.legend([matplotlib.lines.Line2D([0], [0], marker='o', color='w',
+    # If groups are provided, add legend
+    if groups is not None:
+        ax[1].legend([matplotlib.lines.Line2D([0], [0], marker='o', color='w',
                                            markerfacecolor=c)
                    for c in palette.values()],
-                  palette.keys(), loc=0)
+                  palette.keys(), loc='center left')
+        ax[1].set_axis_off()
 
-    ax.set_title(title)
-    fig.tight_layout()
+    ax[0].set_title(title)
+    #fig.tight_layout()
 
     if filename:
         fig.savefig(filename)
