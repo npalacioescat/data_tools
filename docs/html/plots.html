@@ -182,7 +182,7 @@ containing the key-value pairs for keyword arguments passed to
 <ul class="simple">
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul>
-<li><p>[matplotlib.figure.Figure]: the figure object containing the
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
 density plot, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
@@ -221,8 +221,57 @@ the figure size (in inches) as [width, height].</p></li>
 </li>
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul>
-<li><p>[matplotlib.figure.Figure]: the figure object containing the
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
 density plot, unless <em>filename</em> is provided.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.plots.pca">
+<code class="descclassname">data_tools.plots.</code><code class="descname">pca</code><span class="sig-paren">(</span><em>data</em>, <em>n_comp=2</em>, <em>groups=None</em>, <em>cmap='rainbow'</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#pca"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.pca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the principal component analysis (PCA) and plots the
+results.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>data</em> [pandas.DataFrame]: Contains the high-dimensional data
+to compute the PCA. The samples (data points) are assumed to
+be rows and the measurements (features) in the columns.</p></li>
+<li><p><em>n_comp</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. The number of
+first components to plot. Maximum is three (otherwise defaults
+to two).</p></li>
+<li><p><em>groups</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Can also be a
+[pandas.Series]. Defines which samples (keys/index
+corresponding to row names in <em>data</em>) belong to a group (e.g.
+condition, treatment, …) to color the data points. If none
+is provided, all points are colored in black.</p></li>
+<li><p><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'rainbow'</span></code> by default. The colormap
+used to draw the groups’ colors (can also be a user-defined
+[matplotlib.colors.Colormap] object). See other [str] options
+available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s reference manual</a>. If no <em>groups</em>
+are provided, the argument is ignored.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+scatter plot of the PC’s unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -265,7 +314,7 @@ the figure size (in inches) as [width, height].</p></li>
 </li>
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul class="simple">
-<li><p>[matplotlib.figure.Figure]: the figure object containing a
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless <em>filename</em> is provided.</p></li>
 </ul>
@@ -320,7 +369,7 @@ the figure size (in inches) as [width, height].</p></li>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul>
-<li><p>[matplotlib.figure.Figure]: the figure object containing a
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless <em>filename</em> is provided.</p></li>
 </ul>
@@ -361,7 +410,7 @@ the figure size (in inches) as [width, height].</p></li>
 </li>
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul>
-<li><p>[matplotlib.figure.Figure]: the figure object containing a
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless <em>filename</em> is provided.</p></li>
 </ul>
@@ -436,7 +485,7 @@ the figure size (in inches) as [width, height].</p></li>
 </li>
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul class="simple">
-<li><p>[matplotlib.figure.Figure]: the figure object containing a
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless <em>filename</em> is provided.</p></li>
 </ul>

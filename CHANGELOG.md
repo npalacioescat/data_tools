@@ -7,6 +7,8 @@
 - In `plots` module:
     - Function `chordplot`: Generates a chord plot from a collection of
       nodes and edges (and their sizes).
+    - Function `PCA`: Computes the principal component analysis (PCA)
+      and plots the results.
 
 ## v0.0.8:
 - Added `signal` module:
@@ -28,7 +30,8 @@
     - Function `similarity_heatmap`: Given a group of sets, generates a
       heatmap with the similarity indices across each possible pair.
     - Function `similarity_histogram`: Given a group of sets, generates
-      a histogram of the similarity indices across each possible pair (same-element pairs excluded).
+      a histogram of the similarity indices across each possible pair
+      (same-element pairs excluded).
 
 ## v0.0.7:
 - Support for Python 3.x versions.
@@ -49,8 +52,8 @@
 - In `diffusion` module:
     - Function `build_mat` unifies coefficient matrix building for any
       number of dimensions, numerical method and boundary condition.
-    - ~~Function `euler_explicit2D`: Computes diffusion on a 2D space over
-      a time-step using Euler explicit method.
+    - ~~Function `euler_explicit2D`: Computes diffusion on a 2D space
+      over a time-step using Euler explicit method.
     - Function `euler_implicit_coef_mat`: Computes the coefficient
       matrix to solve the diffusion problem with the Euler implicit
       method.

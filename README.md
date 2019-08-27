@@ -65,6 +65,7 @@ A full copy of the GNU General Public License can be found on file
     - [chordplot](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.chordplot)
     - [cluster_hmap](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.cluster_hmap)
     - [density](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.density)
+    - [pca](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.pca)
     - [piano_consensus](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.piano_consensus)
     - [similarity_heatmap](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_heatmap)
     - [similarity_histogram](https://nic-nic.github.io/data_tools/html/plots.html#data_tools.plots.similarity_histogram)

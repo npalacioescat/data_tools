@@ -23,5 +23,5 @@
 \contentsline {subsection}{\numberline {4.7.1}Contents}{28}{subsection.4.7.1}% 
 \contentsline {section}{\numberline {4.8}data\_tools.strings}{30}{section.4.8}% 
 \contentsline {subsection}{\numberline {4.8.1}Contents}{30}{subsection.4.8.1}% 
-\contentsline {chapter}{Python Module Index}{33}{section*.54}% 
-\contentsline {chapter}{Index}{35}{section*.55}% 
+\contentsline {chapter}{Python Module Index}{33}{section*.55}% 
+\contentsline {chapter}{Index}{35}{section*.56}% 

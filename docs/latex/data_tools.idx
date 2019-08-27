@@ -32,6 +32,7 @@
 \indexentry{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}|hyperpage}{20}
 \indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
 \indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
+\indexentry{pca() (in module data\_tools.plots)@\spxentry{pca()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
 \indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{25}

@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Aug 07, 2019}
+\date{Aug 27, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1618,7 +1618,7 @@ containing the key-value pairs for keyword arguments passed to
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing the
+{[}matplotlib.figure.Figure{]}: The figure object containing the
 density plot, unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
@@ -1673,8 +1673,75 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing the
+{[}matplotlib.figure.Figure{]}: The figure object containing the
 density plot, unless \sphinxstyleemphasis{filename} is provided.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{pca() (in module data\_tools.plots)@\spxentry{pca()}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.pca}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{pca}}}{\emph{data}, \emph{n\_comp=2}, \emph{groups=None}, \emph{cmap='rainbow'}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Computes the principal component analysis (PCA) and plots the
+results.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{data} {[}pandas.DataFrame{]}: Contains the high-dimensional data
+to compute the PCA. The samples (data points) are assumed to
+be rows and the measurements (features) in the columns.
+
+\item {} 
+\sphinxstyleemphasis{n\_comp} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{2}} by default. The number of
+first components to plot. Maximum is three (otherwise defaults
+to two).
+
+\item {} 
+\sphinxstyleemphasis{groups} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Can also be a
+{[}pandas.Series{]}. Defines which samples (keys/index
+corresponding to row names in \sphinxstyleemphasis{data}) belong to a group (e.g.
+condition, treatment, …) to color the data points. If none
+is provided, all points are colored in black.
+
+\item {} 
+\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'rainbow'}} by default. The colormap
+used to draw the groups’ colors (can also be a user-defined
+{[}matplotlib.colors.Colormap{]} object). See other {[}str{]} options
+available in \sphinxhref{https://matplotlib.org/examples/color/colormaps\_reference.html}{Matplotlib’s reference manual}. If no \sphinxstyleemphasis{groups}
+are provided, the argument is ignored.
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+\begin{itemize}
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}matplotlib.figure.Figure{]}: The figure object containing the
+scatter plot of the PC’s unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
 
@@ -1733,7 +1800,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
@@ -1808,7 +1875,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
@@ -1865,7 +1932,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
@@ -1971,7 +2038,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}matplotlib.figure.Figure{]}: the figure object containing a
+{[}matplotlib.figure.Figure{]}: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 

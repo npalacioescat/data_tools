@@ -53,7 +53,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cmap_bkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;cmap_bkrd&#39;</span><span class="p">,</span><span class="s1">&#39;cmap_rdbkgr&#39;</span><span class="p">,</span> <span class="s1">&#39;chordplot&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster_hmap&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;piano_consensus&#39;</span><span class="p">,</span> <span class="s1">&#39;similarity_heatmap&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="s1">&#39;piano_consensus&#39;</span><span class="p">,</span> <span class="s1">&#39;similarity_heatmap&#39;</span><span class="p">,</span>
            <span class="s1">&#39;similarity_histogram&#39;</span><span class="p">,</span> <span class="s1">&#39;upset_wrap&#39;</span><span class="p">,</span> <span class="s1">&#39;venn&#39;</span><span class="p">,</span> <span class="s1">&#39;volcano&#39;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -67,6 +67,7 @@
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
 <span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">import</span> <span class="n">dendrogram</span><span class="p">,</span> <span class="n">linkage</span>
 <span class="kn">import</span> <span class="nn">upsetplot</span> <span class="k">as</span> <span class="nn">usp</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.iterables</span> <span class="k">import</span> <span class="n">subsets</span><span class="p">,</span> <span class="n">similarity</span>
 
@@ -362,7 +363,7 @@
 <span class="sd">        py.cluster.hierarchy.dendrogram.html</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing the</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing the</span>
 <span class="sd">          density plot, unless *filename* is provided.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
@@ -444,7 +445,7 @@
 <span class="sd">          the figure size (in inches) as [width, height].</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing the</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing the</span>
 <span class="sd">          density plot, unless *filename* is provided.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
@@ -472,6 +473,115 @@
 
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="pca"><a class="viewcode-back" href="../../plots.html#data_tools.plots.pca">[docs]</a><span class="k">def</span> <span class="nf">pca</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_comp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;rainbow&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Computes the principal component analysis (PCA) and plots the</span>
+<span class="sd">    results.</span>
+
+<span class="sd">    * Arguments:</span>
+<span class="sd">        - *data* [pandas.DataFrame]: Contains the high-dimensional data</span>
+<span class="sd">          to compute the PCA. The samples (data points) are assumed to</span>
+<span class="sd">          be rows and the measurements (features) in the columns.</span>
+<span class="sd">        - *n_comp* [int]: Optional, ``2`` by default. The number of</span>
+<span class="sd">          first components to plot. Maximum is three (otherwise defaults</span>
+<span class="sd">          to two).</span>
+<span class="sd">        - *groups* [dict]: Optional, ``None`` by default. Can also be a</span>
+<span class="sd">          [pandas.Series]. Defines which samples (keys/index</span>
+<span class="sd">          corresponding to row names in *data*) belong to a group (e.g.</span>
+<span class="sd">          condition, treatment, ...) to color the data points. If none</span>
+<span class="sd">          is provided, all points are colored in black.</span>
+<span class="sd">        - *cmap* [str]: Optional, ``&#39;rainbow&#39;`` by default. The colormap</span>
+<span class="sd">          used to draw the groups&#39; colors (can also be a user-defined</span>
+<span class="sd">          [matplotlib.colors.Colormap] object). See other [str] options</span>
+<span class="sd">          available in `Matplotlib&#39;s reference manual`_. If no *groups*</span>
+<span class="sd">          are provided, the argument is ignored.</span>
+<span class="sd">        - *title* [str]: Optional, ``None`` by default. Defines the plot</span>
+<span class="sd">          title.</span>
+<span class="sd">        - *filename* [str]: Optional, ``None`` by default. If passed,</span>
+<span class="sd">          indicates the file name or path where to store the figure.</span>
+<span class="sd">          Format must be specified (e.g.: .png, .pdf, etc)</span>
+<span class="sd">        - *figsize* [tuple]: Optional, ``None`` by default (default</span>
+<span class="sd">          matplotlib size). Any iterable containing two values denoting</span>
+<span class="sd">          the figure size (in inches) as [width, height].</span>
+
+<span class="sd">    .. _`Matplotlib&#39;s reference manual`:</span>
+<span class="sd">        https://matplotlib.org/examples/color/colormaps_reference.html</span>
+
+<span class="sd">    * Returns:</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing the</span>
+<span class="sd">          scatter plot of the PC&#39;s unless *filename* is provided.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># Preparing the figure and axes</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">(([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span> <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                        <span class="k">else</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),</span>
+                       <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span> <span class="k">if</span> <span class="n">n_comp</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+          <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span> <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+          <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Removing NaN&#39;s from data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data contains </span><span class="si">%d</span><span class="s1"> rows and </span><span class="si">%d</span><span class="s1"> columns&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After removing NaNs </span><span class="si">%d</span><span class="s1"> rows and </span><span class="si">%d</span><span class="s1"> columns remain&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Generating color palette</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">),</span>\
+               <span class="s1">&#39;Please, provide a dict or pandas.Series for groups&#39;</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+        <span class="c1"># Colormap instance</span>
+        <span class="n">icmp</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+        <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+        <span class="n">palette</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique_groups</span><span class="p">,</span>
+                           <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">icmp</span><span class="p">,</span>
+                                    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_groups</span><span class="p">))))))</span>
+
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">dtp</span><span class="p">]]</span> <span class="k">for</span> <span class="n">dtp</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+
+    <span class="c1"># Reducing dimensions</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_comp</span><span class="p">)</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Variance explained per component</span>
+    <span class="n">exp_var</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;PC1 (</span><span class="si">%.1f%%</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exp_var</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;PC2 (</span><span class="si">%.1f%%</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exp_var</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+
+    <span class="c1"># In case of 3D</span>
+    <span class="k">if</span> <span class="n">n_comp</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;PC3 (</span><span class="si">%.1f%%</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exp_var</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+
+    <span class="c1"># If groups are provided, add legend</span>
+    <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                                           <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+                   <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">palette</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+                  <span class="n">palette</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="c1">#fig.tight_layout()</span>
 
     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -510,7 +620,7 @@
 <span class="sd">          the figure size (in inches) as [width, height].</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing a</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing a</span>
 <span class="sd">          combination of box and scatter plots of the gene-set scores,</span>
 <span class="sd">          unless *filename* is provided.</span>
 
@@ -601,7 +711,7 @@
 <span class="sd">        https://matplotlib.org/examples/color/colormaps_reference.html</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing a</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing a</span>
 <span class="sd">          combination of box and scatter plots of the gene-set scores,</span>
 <span class="sd">          unless *filename* is provided.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -672,7 +782,7 @@
 <span class="sd">          the figure size (in inches) as [width, height].</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing a</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing a</span>
 <span class="sd">          combination of box and scatter plots of the gene-set scores,</span>
 <span class="sd">          unless *filename* is provided.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -765,7 +875,7 @@
 <span class="sd">          the figure size (in inches) as [width, height].</span>
 
 <span class="sd">    * Returns:</span>
-<span class="sd">        - [matplotlib.figure.Figure]: the figure object containing a</span>
+<span class="sd">        - [matplotlib.figure.Figure]: The figure object containing a</span>
 <span class="sd">          combination of box and scatter plots of the gene-set scores,</span>
 <span class="sd">          unless *filename* is provided.</span>
 
