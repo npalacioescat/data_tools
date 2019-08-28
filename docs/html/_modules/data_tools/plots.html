@@ -367,6 +367,10 @@
 <span class="sd">          density plot, unless *filename* is provided.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
+
+    <span class="c1"># TODO: matrix must be complete cases, find major axis and remove NaNs</span>
+    <span class="c1"># TODO: fix title (overlaps with dendogram)</span>
+
     <span class="n">xlinked</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">link_kwargs</span><span class="p">)</span>
     <span class="n">ylinked</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="o">**</span><span class="n">link_kwargs</span><span class="p">)</span>
 
@@ -396,13 +400,14 @@
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
 
-    <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xlabels</span> <span class="ow">or</span> <span class="p">[]))</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xlabels</span> <span class="k">if</span> <span class="n">xlabels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]))</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xlabels</span> <span class="ow">or</span> <span class="p">[],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xlabels</span> <span class="k">if</span> <span class="n">xlabels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[],</span>
+                             <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
-    <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ylabels</span> <span class="ow">or</span> <span class="p">[]))</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ylabels</span> <span class="k">if</span> <span class="n">ylabels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]))</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ylabels</span> <span class="ow">or</span> <span class="p">[])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ylabels</span> <span class="k">if</span> <span class="n">ylabels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[])</span>
 
     <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
@@ -532,7 +537,7 @@
     <span class="c1"># Removing NaN&#39;s from data</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data contains </span><span class="si">%d</span><span class="s1"> rows and </span><span class="si">%d</span><span class="s1"> columns&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1">#data.dropna(axis=0, inplace=True)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After removing NaNs </span><span class="si">%d</span><span class="s1"> rows and </span><span class="si">%d</span><span class="s1"> columns remain&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

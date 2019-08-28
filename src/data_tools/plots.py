@@ -327,6 +327,10 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
           density plot, unless *filename* is provided.
     '''
 
+
+    # TODO: matrix must be complete cases, find major axis and remove NaNs
+    # TODO: fix title (overlaps with dendogram)
+
     xlinked = linkage(matrix.T, **link_kwargs)
     ylinked = linkage(matrix, **link_kwargs)
 
@@ -356,13 +360,14 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     ax[0, 0].set_axis_off()
     ax[1, 1].set_axis_off()
 
-    rng = range(len(xlabels or []))
+    rng = range(len(xlabels if xlabels is not None else []))
     ax[1, 0].set_xticks(rng)
-    ax[1, 0].set_xticklabels(xlabels or [], rotation=90)
+    ax[1, 0].set_xticklabels(xlabels if xlabels is not None else [],
+                             rotation=90)
 
-    rng = range(len(ylabels or []))
+    rng = range(len(ylabels if ylabels is not None else []))
     ax[1, 0].set_yticks(rng)
-    ax[1, 0].set_yticklabels(ylabels or [])
+    ax[1, 0].set_yticklabels(ylabels if ylabels is not None else [])
 
     fig.suptitle(title)
 
@@ -492,7 +497,7 @@ def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
     # Removing NaN's from data
     print('Data contains %d rows and %d columns' % data.shape)
     data.dropna(axis=1, inplace=True)
-    data.dropna(axis=0, inplace=True)
+    #data.dropna(axis=0, inplace=True)
     print('After removing NaNs %d rows and %d columns remain' % data.shape)
 
     if groups is not None:
