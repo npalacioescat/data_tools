@@ -546,7 +546,7 @@ class PowerLaw(object):
         return Linear(np.log10(self.x), np.log10(self.y))
 
     @lm.setter
-    def lm(self, value):
+    def lm(self, val):
         self.lm = val
 
     @property

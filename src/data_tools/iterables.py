@@ -202,7 +202,6 @@ def similarity(a, b, mode='j'):
     return num / den
 
 
-
 def subsets(N):
     '''
     Function that computes all possible logical relations between all

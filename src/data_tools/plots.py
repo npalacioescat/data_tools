@@ -327,7 +327,6 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
           density plot, unless *filename* is provided.
     '''
 
-
     # TODO: matrix must be complete cases, find major axis and remove NaNs
     # TODO: fix title (overlaps with dendogram)
 

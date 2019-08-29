@@ -91,4 +91,4 @@ def gauss_noise(x, sd=1):
           noise applied.
     '''
 
-    return np.random.normal(np.real(u), sd)
+    return np.random.normal(np.real(x), sd)
