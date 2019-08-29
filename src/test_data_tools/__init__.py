@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 
 import test_data_tools.test_databases as test_databases
 import test_data_tools.test_diffusion as test_diffusion

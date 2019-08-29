@@ -105,8 +105,8 @@ class SubsetsTestCase(unittest.TestCase):
 
     def test_three_sets_int(self):
         self.assertDictEqual(iterables.subsets([{0, 1},
-                                               {2, 3},
-                                               {1, 3, 4}]),
+                                                {2, 3},
+                                                {1, 3, 4}]),
                              {'010': set([2]),
                               '011': set([3]),
                               '001': set([4]),
@@ -128,4 +128,4 @@ class UnzipDictsTestCase(unittest.TestCase):
         expect_d = dict(zip(*expect))
         result_d = dict(zip(*result))
 
-        self.assertDictEqual(expect_d,result_d)
+        self.assertDictEqual(expect_d, result_d)

@@ -13,7 +13,6 @@ Contents
 __all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',
            'up_map']
 
-import sys
 import urllib
 
 try:
@@ -112,12 +111,12 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     if df.shape[1] == 2:
         df['fgcolor'] = ['black'] * len(df)
 
-    query = '%0d%0a'.join(['%s+%s,%s' %(dbentry,
-                                        bgc.replace('#', '%23'),
-                                        fgc.replace('#', '%23'))
+    query = '%0d%0a'.join(['%s+%s,%s' % (dbentry,
+                                         bgc.replace('#', '%23'),
+                                         fgc.replace('#', '%23'))
                            for i, (dbentry, bgc, fgc) in df.iterrows()])
 
-    params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' %(mapid, query)
+    params = '/kegg-bin/show_pathway?map=%s&multi_query=%s' % (mapid, query)
     full_url = url + params
 
     if mapid.endswith('01100'):
@@ -138,7 +137,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
     params = page[start:end]
 
     if not filename:
-        filename = '%s.png' %mapid
+        filename = '%s.png' % mapid
 
     urllib.urlretrieve(url + params, filename)
 

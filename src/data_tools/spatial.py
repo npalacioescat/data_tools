@@ -95,6 +95,7 @@ def get_boundaries(x, counts=False):
 
         return bounds.astype(bool)
 
+
 def neighbour_count(x):
     '''
     Given an array (up to three dimensions), returns another array with

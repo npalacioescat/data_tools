@@ -221,7 +221,7 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
 
         except (ValueError, TypeError) as e:
             raise(e.__class__('Invalid dimension %d with value %s of type %s'
-                  % (i, n, type(n))))
+                              % (i, n, type(n))))
 
         if i == 0:
             mat = (np.eye(n) * cent

@@ -12,9 +12,10 @@ Contents
 
 from __future__ import absolute_import
 
-__all__ = ['cmap_bkgr', 'cmap_bkrd','cmap_rdbkgr', 'chordplot', 'cluster_hmap',
-           'density', 'pca', 'piano_consensus', 'similarity_heatmap',
-           'similarity_histogram', 'upset_wrap', 'venn', 'volcano']
+__all__ = ['cmap_bkgr', 'cmap_bkrd', 'cmap_rdbkgr', 'chordplot',
+           'cluster_hmap', 'density', 'pca', 'piano_consensus',
+           'similarity_heatmap', 'similarity_histogram', 'upset_wrap', 'venn',
+           'volcano']
 
 import sys
 import itertools
@@ -139,7 +140,7 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
                % (len(labels), len(nodes)))
         assert len(labels) == len(nodes), msg
 
-    elif labels == True:
+    elif labels is True:
         labels = nodes.index.to_list()
 
     else:
@@ -153,7 +154,7 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
     nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
     # Edge sizes for each node (involved in them) - list
     nodes['e_sizes'] = [edges.loc[(edges.source == n) | (edges.target == n),
-                                'size'].values for n in nodes.index]
+                                  'size'].values for n in nodes.index]
     # Total edge sizes involving a node - int/float
     nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
     # Relative edge sizes (wrt. total edges involving that node) - list
@@ -338,7 +339,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
                                         'width_ratios': [7, 1]})
     # Upper dendrogram + store info from clustering
     xdendo = dendrogram(xlinked, ax=ax[0, 0], link_color_func=lambda k: 'k',
-                       **dendo_kwargs)
+                        **dendo_kwargs)
     # Right-hand dendrogram
     ydendo = dendrogram(ylinked, ax=ax[1, 1], link_color_func=lambda k: 'k',
                         orientation='right', **dendo_kwargs)
@@ -425,7 +426,7 @@ def density(df, cvf=0.25, sample_col=False, title=None, filename=None,
         xs = np.linspace(min(ys), max(ys), 1000)
 
         dsty = stats.kde.gaussian_kde(ys)
-        dsty.covariance_factor = lambda : cvf
+        dsty.covariance_factor = lambda: cvf
         dsty._compute_covariance()
 
         y = dsty(xs)
@@ -496,7 +497,6 @@ def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
     # Removing NaN's from data
     print('Data contains %d rows and %d columns' % data.shape)
     data.dropna(axis=1, inplace=True)
-    #data.dropna(axis=0, inplace=True)
     print('After removing NaNs %d rows and %d columns remain' % data.shape)
 
     if groups is not None:
@@ -539,13 +539,12 @@ def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
     # If groups are provided, add legend
     if groups is not None:
         ax[1].legend([matplotlib.lines.Line2D([0], [0], marker='o', color='w',
-                                           markerfacecolor=c)
-                   for c in palette.values()],
-                  palette.keys(), loc='center left')
+                                              markerfacecolor=c)
+                      for c in palette.values()],
+                     palette.keys(), loc='center left')
         ax[1].set_axis_off()
 
     ax[0].set_title(title)
-    #fig.tight_layout()
 
     if filename:
         fig.savefig(filename)
@@ -611,8 +610,8 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     # Box plot of the gene-sets
     if boxes:
         ax.boxplot(df.iloc[:, 2:], positions=y, widths=.75, vert=False,
-                   zorder=1, medianprops={'linewidth':0},
-                   flierprops={'markersize':7})
+                   zorder=1, medianprops={'linewidth': 0},
+                   flierprops={'markersize': 7})
 
     # Consensus score across methods (substitutes the median of the
     # boxplot for visibility)
@@ -803,7 +802,7 @@ def upset_wrap(N, labels=None, drop_empty=False, **kwargs):
     series = pd.Series(counts, index=idx)
 
     if drop_empty:
-        series[series==0] = np.nan
+        series[series == 0] = np.nan
         series.dropna(inplace=True)
 
     return usp.plot(series, **kwargs)
@@ -930,18 +929,18 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
     if pct:
         total = float(sum(text.values()))
         text = dict(zip(text.keys(),
-                          np.round(100 * np.array(text.values()) / total,
-                                   decimals=2)))
+                        np.round(100 * np.array(text.values()) / total,
+                                 decimals=2)))
 
     fig, ax = plt.subplots(figsize=figsize)
 
     for i in range(len(N)):
         ellipse(ax, x[i], y[i], w[i], h[i], a[i], alpha=.25, color=c[i],
-                label='%s (%d)' %(labels[i], len(N[i])) if sizes
+                label='%s (%d)' % (labels[i], len(N[i])) if sizes
                 else labels[i])
 
     for i in range(len(text)):
-        ax.text(xt[i], yt[i], text[keys[i]], fontdict={'ha':'center'})
+        ax.text(xt[i], yt[i], text[keys[i]], fontdict={'ha': 'center'})
 
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
@@ -1030,11 +1029,11 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
 
     # Dashed lines denoting thresholds
     ax.plot([min_x - 1, max_x + 1], [thr_logpval, thr_logpval],
-            'k--', alpha=0.3) # -log(p-val) threshold line
+            'k--', alpha=0.3)  # -log(p-val) threshold line
     ax.plot([-thr_logfc, -thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.3) # log(fc) threshold line (left)
+            'k--', alpha=0.3)  # log(fc) threshold line (left)
     ax.plot([thr_logfc, thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.3) # log(fc) threshold line (right)
+            'k--', alpha=0.3)  # log(fc) threshold line (right)
 
     ax.set_xlim(1.2 * min_x, 1.2 * max_x)
     ax.set_ylim(-0.25, 1.1 * max_y)
@@ -1055,13 +1054,15 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     else:
         return fig
 
+
 ###############################################################################
 #+---------------------------------------------------------------------------+#
 #|                           SUPLEMENTARY FUNCTIONS                          |#
 #+---------------------------------------------------------------------------+#
 ###############################################################################
 
-def get_rel_pos_circ(pt, r=1): # NOTE: Move to spatial module?
+
+def get_rel_pos_circ(pt, r=1):  # NOTE: Move to spatial module?
     '''
     Returns the x, y coordinates on a circle of radius r (centered at
     (0, 0)) given a percentage of the circumference (range [0, 1]).
@@ -1088,7 +1089,7 @@ def get_rel_pos_circ(pt, r=1): # NOTE: Move to spatial module?
     return r * np.cos(a), r * np.sin(a)
 
 
-def bezier_quad(pa, pb, pc=[0, 0], res=1e2): # NOTE: Move to top level?
+def bezier_quad(pa, pb, pc=[0, 0], res=1e2):  # NOTE: Move to top level?
     '''
     Creates a Bézier quadratic curve between two points.
 

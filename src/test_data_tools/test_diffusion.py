@@ -16,7 +16,7 @@ class BuildMatTestCase(unittest.TestCase):
                                       [1, 2, 1],
                                       [0, 1, 2]])
 
-        self.dirichlet_2d = np.array([[2, 1, 0, 1, 0 ,0, 0, 0, 0],
+        self.dirichlet_2d = np.array([[2, 1, 0, 1, 0, 0, 0, 0, 0],
                                       [1, 2, 1, 0, 1, 0, 0, 0, 0],
                                       [0, 1, 2, 0, 0, 1, 0, 0, 0],
                                       [1, 0, 0, 2, 1, 0, 1, 0, 0],
@@ -113,7 +113,7 @@ class BuildMatTestCase(unittest.TestCase):
                                      [1, 2, 1],
                                      [1, 1, 2]])
 
-        self.periodic_2d = np.array([[2, 1, 1, 1, 0 ,0, 1, 0, 0],
+        self.periodic_2d = np.array([[2, 1, 1, 1, 0, 0, 1, 0, 0],
                                      [1, 2, 1, 0, 1, 0, 0, 1, 0],
                                      [1, 1, 2, 0, 0, 1, 0, 0, 1],
                                      [1, 0, 0, 2, 1, 1, 1, 0, 0],
@@ -210,7 +210,7 @@ class BuildMatTestCase(unittest.TestCase):
                                     [1, 2, 1],
                                     [0, 1, 3]])
 
-        self.neumann_2d = np.array([[4, 1, 0, 1, 0 ,0, 0, 0, 0],
+        self.neumann_2d = np.array([[4, 1, 0, 1, 0, 0, 0, 0, 0],
                                     [1, 3, 1, 0, 1, 0, 0, 0, 0],
                                     [0, 1, 4, 0, 0, 1, 0, 0, 0],
                                     [1, 0, 0, 3, 1, 0, 1, 0, 0],
@@ -304,42 +304,42 @@ class BuildMatTestCase(unittest.TestCase):
 
     def test_dirichlet_1d(self):
         np.testing.assert_array_equal(self.dirichlet_1d,
-                                       diffusion.build_mat(2, 1, 3))
+                                      diffusion.build_mat(2, 1, 3))
 
     def test_dirichlet_2d(self):
         np.testing.assert_array_equal(self.dirichlet_2d,
-                                       diffusion.build_mat(2, 1, [3, 3]))
+                                      diffusion.build_mat(2, 1, [3, 3]))
 
     def test_dirichlet_3d(self):
         np.testing.assert_array_equal(self.dirichlet_3d,
-                                       diffusion.build_mat(2, 1, [3, 3, 3]))
+                                      diffusion.build_mat(2, 1, [3, 3, 3]))
 
     def test_periodic_1d(self):
         np.testing.assert_array_equal(self.periodic_1d,
-                                       diffusion.build_mat(2, 1, 3,
-                                       bcs='periodic'))
+                                      diffusion.build_mat(2, 1, 3,
+                                                          bcs='periodic'))
 
     def test_periodic_2d(self):
         np.testing.assert_array_equal(self.periodic_2d,
-                                       diffusion.build_mat(2, 1, [3, 3],
-                                       bcs='periodic'))
+                                      diffusion.build_mat(2, 1, [3, 3],
+                                                          bcs='periodic'))
 
     def test_periodic_3d(self):
         np.testing.assert_array_equal(self.periodic_3d,
-                                       diffusion.build_mat(2, 1, [3, 3, 3],
-                                       bcs='periodic'))
+                                      diffusion.build_mat(2, 1, [3, 3, 3],
+                                                          bcs='periodic'))
 
     def test_neumann_1d(self):
         np.testing.assert_array_equal(self.neumann_1d,
-                                       diffusion.build_mat(2, 1, 3,
-                                       bcs='neumann'))
+                                      diffusion.build_mat(2, 1, 3,
+                                                          bcs='neumann'))
 
     def test_neumann_2d(self):
         np.testing.assert_array_equal(self.neumann_2d,
-                                       diffusion.build_mat(2, 1, [3, 3],
-                                       bcs='neumann'))
+                                      diffusion.build_mat(2, 1, [3, 3],
+                                                          bcs='neumann'))
 
     def test_neumann_3d(self):
         np.testing.assert_array_equal(self.neumann_3d,
-                                       diffusion.build_mat(2, 1, [3, 3, 3],
-                                       bcs='neumann'))
+                                      diffusion.build_mat(2, 1, [3, 3, 3],
+                                                          bcs='neumann'))

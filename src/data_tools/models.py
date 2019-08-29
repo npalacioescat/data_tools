@@ -278,11 +278,11 @@ class Lasso(LogisticRegressionCV):
         self.predictors.sort_values(ascending=False, inplace=True)
 
         if not silent:
-            print('Model trained, elapsed time %.3f s.' %(time.time() -
-                                                          start))
-            print('Number of predictors: %d.' %len(self.predictors))
-            print('Accuracy = %.4f.' %self.accuracy)
-            print('Optimum C = %.6f.\n' %self.C_[0])
+            print('Model trained, elapsed time %.3f s.' % (time.time() -
+                                                           start))
+            print('Number of predictors: %d.' % len(self.predictors))
+            print('Accuracy = %.4f.' % self.accuracy)
+            print('Optimum C = %.6f.\n' % self.C_[0])
 
     # TODO: add example figure
     def plot_score(self, filename=None, figsize=None):
@@ -313,10 +313,11 @@ class Lasso(LogisticRegressionCV):
         arg = mean.argmax()
         x_, y_ = self.Cs_[arg], mean[arg]
         ax.scatter(x_, y_, c='r', s=75)
-        ax.text(x_ * 1.01, y_ * -1.01, '(%.4f, %.4f)' %(x_, y_))
+        ax.text(x_ * 1.01, y_ * -1.01, '(%.4f, %.4f)' % (x_, y_))
 
-        ax.set_ylabel('Score'); ax.set_xlabel(r'$C$')
-        ax.set_title(r'$C$ score (Mean over %dx CV)' %self.cv_folds)
+        ax.set_ylabel('Score')
+        ax.set_xlabel(r'$C$')
+        ax.set_title(r'$C$ score (Mean over %dx CV)' % self.cv_folds)
         ax.set_xlim(self.Cs_[0], self.Cs_[-1])
         ax.set_xscale('log')
 

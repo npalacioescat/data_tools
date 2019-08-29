@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
 
 from __future__ import print_function
 
 import sys
-import os
 import time
 import unittest
 
