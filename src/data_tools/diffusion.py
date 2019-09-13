@@ -174,7 +174,7 @@ Contents
 __all__ = ['build_mat']
 
 import numpy as np
-from scipy.sparse import block_diag
+from scipy.sparse import block_diag, diags
 
 from data_tools.spatial import get_boundaries
 
@@ -241,10 +241,48 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
 
             if bcs == 'periodic':
                 mat += (np.eye(curr, k=curr - prev) * neigh
-                        + np.eye(curr, k=prev - curr * neigh))
+                        + np.eye(curr, k=prev - curr) * neigh)
 
     if bcs == 'neumann':
         factor = get_boundaries(np.ndarray(dims), counts=True).flatten()
         mat += np.diag(factor) * neigh
 
     return mat
+
+
+def coef_mat_hetero(K, dt, dx, Nx, Ny, bcs='dirichlet'):
+    '''
+    '''
+
+    mu = dt / dx ** 2
+
+    Kpad = np.pad(K, 1, mode='edge')
+    central = 1 - mu / 2 * (4 * K.flatten()
+                            + Kpad[1:-1, 2:].flatten()
+                            + Kpad[1:-1, :-2].flatten()
+                            + Kpad[2:, 1:-1].flatten()
+                            + Kpad[:-2, 1:-1].flatten())
+
+    # i + 1, j
+    ip1 = mu / 2 * (K.flatten() + Kpad[1:-1, 2:].flatten())
+    # i - 1, j
+    im1 = mu / 2 * (K.flatten() + Kpad[1:-1, :-2].flatten())
+    # i, j + 1
+    jp1 = mu / 2 * (K.flatten() + Kpad[2:, 1:-1].flatten())
+    # i, j - 1
+    jm1 = mu / 2 * (K.flatten() + Kpad[:-2, 1:-1].flatten())
+
+    aux = central + ip1 + im1 + jp1 + jm1
+
+    for i in range(Nx, Nx * Ny, Nx):
+        ip1[i-1] = 0
+        im1[i-1] = 0
+
+    A = diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
+              offsets=[-Nx, -1, 0, 1, Nx]).toarray()
+
+    if bcs == 'neumann':
+        bc = aux - A.sum(axis=0)
+        A += np.diag(bc)
+
+    return A
