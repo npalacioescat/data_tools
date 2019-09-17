@@ -174,9 +174,11 @@ Contents
 __all__ = ['build_mat']
 
 import numpy as np
-from scipy.sparse import block_diag, diags
+#from scipy.sparse import block_diag, diags
+from scipy import linalg, sparse
 
 from data_tools.spatial import get_boundaries
+from data_tools.iterables import chunk_this
 
 # XXX: implement wrappers for the different numerical methods?
 # XXX: implement solver wrapper?
@@ -236,7 +238,7 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
             prev = mat.shape[0]
             curr = prev * n
 
-            mat = block_diag([mat] * n).toarray()
+            mat = sparse.block_diag([mat] * n).toarray()
             mat += np.eye(curr, k=prev) * neigh + np.eye(curr, k=-prev) * neigh
 
             if bcs == 'periodic':
@@ -250,12 +252,39 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
     return mat
 
 
-def coef_mat_hetero(K, dt, dx, Nx, Ny, bcs='dirichlet'):
+def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
     '''
     '''
 
     mu = dt / dx ** 2
 
+    Kpad = np.pad(K, 1, mode='edge')
+
+    dims = K.shape[::-1]
+    ndim = K.ndim
+
+    f = np.ones(K.flatten().shape)
+    g = dict([(i, dict()) for i in range(ndim)])
+
+    for i in range(ndim):
+        d = ndim - 1 - i
+
+        #print('d', d, 'i', i)
+        # Generating array slices:
+        slice_p = [slice(1, -1), ] * ndim
+        slice_p[d] = slice(2, None)
+        slice_m = [slice(1, -1), ] * ndim
+        slice_m[d] = slice(None, -2)
+        #print(slice_p, slice_m)
+        #print(Kpad[tuple(slice_p)])
+        #print(Kpad[tuple(slice_m)])
+        g[i]['+'] = (mu/2) * (K + Kpad[tuple(slice_p)]).flatten()
+        g[i]['-'] = (mu/2) * (K + Kpad[tuple(slice_m)]).flatten()
+        #print(g[i]['+'], g[i]['-'])
+        f -= g[i]['+'] + g[i]['-']#mu/2 * (2 * K.flatten()
+            #         + Kpad[tdef coef_mat_hetero2(K, dt, dx, bcs='dirichlet'):
+    mu = dt / dx ** 2
+    Ny, Nx = K.shape
     Kpad = np.pad(K, 1, mode='edge')
     central = 1 - mu / 2 * (4 * K.flatten()
                             + Kpad[1:-1, 2:].flatten()
@@ -278,11 +307,139 @@ def coef_mat_hetero(K, dt, dx, Nx, Ny, bcs='dirichlet'):
         ip1[i-1] = 0
         im1[i-1] = 0
 
-    A = diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
-              offsets=[-Nx, -1, 0, 1, Nx]).toarray()
+    A = sparse.diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
+                     offsets=[-Nx, -1, 0, 1, Nx]).toarray()
+
+    if bcs == 'neumann':
+        bc = aux - A.sum(axis=0)
+        A += np.diag(bc)
+
+
+
+    #print(g)
+
+    #for i, n in enumerate(dims):
+    for i in range(ndim):
+        n = dims[i]
+
+        if i == 0:
+            #print(g[i]['+'], g[i]['-'])
+            c_blocks = [np.diag(x) for x in chunk_this(f, n)]
+            c_plus = [np.diag(x[:-1], 1) for x in chunk_this(g[i]['+'], n)]
+            c_mins = [np.diag(x[:-1], -1) for x in chunk_this(g[i]['-'], n)]
+
+            blocks = np.array([c_blocks, c_plus, c_mins]).sum(axis=0)
+
+            if bcs == 'periodic':
+                upper = [np.diag(x[-1:], n - 1) for x
+                         in chunk_this(g[i]['-'], n)]
+                lower = [np.diag(x[-1:], 1 - n) for x
+                         in chunk_this(g[i]['+'], n)]
+
+                for j, b in enumerate(blocks):
+                    b += upper[j] + lower[j]
+
+            #print(blocks)
+
+        else:
+            #print(g[i]['+'], g[i]['-'])
+            n_prev = np.prod(dims[:i])
+            n_curr = n * n_prev
+            blocks = [linalg.block_diag(*x) for x in chunk_this(blocks, n)]
+            upper = [np.diag(x[:-n_prev], n_prev) for x
+                     in chunk_this(g[i]['+'], n_curr)]
+            lower = [np.diag(x[:-n_prev], -n_prev) for x
+                     in chunk_this(g[i]['-'], n_curr)]
+
+            blocks = np.array([blocks, upper, lower]).sum(axis=0)
+
+            if bcs == 'periodic':
+                upper = [np.diag(x[-n_prev:], n_curr - n_prev) for x
+                         in chunk_this(g[i]['-'], n_curr)]
+                lower = [np.diag(x[-n_prev:], n_prev - n_curr) for x
+                         in chunk_this(g[i]['+'], n_curr)]
+
+                for j, b in enumerate(blocks):
+                    #print(b.shape, upper[j].shape)
+                    b += upper[j] + lower[j]
+
+    mat = blocks[0]
+
+    if bcs == 'neumann':
+        aux = f + sum([sum(g[i].values()) for i in range(ndim)])
+        #print(aux)
+        #print(blocks.sum(axis=0))
+        bc = aux - mat.sum(axis=0)
+        mat += np.diag(bc)
+
+    #mat = mu / 2 * mat + np.identity(len(K.flatten()))
+
+    return mat
+
+
+
+
+def coef_mat_hetero2(K, dt, dx, bcs='dirichlet'):
+    mu = dt / dx ** 2
+    Ny, Nx = K.shape
+    Kpad = np.pad(K, 1, mode='edge')
+    central = 1 - mu / 2 * (4 * K.flatten()
+                            + Kpad[1:-1, 2:].flatten()
+                            + Kpad[1:-1, :-2].flatten()
+                            + Kpad[2:, 1:-1].flatten()
+                            + Kpad[:-2, 1:-1].flatten())
+
+    # i + 1, j
+    ip1 = mu / 2 * (K.flatten() + Kpad[1:-1, 2:].flatten())
+    # i - 1, j
+    im1 = mu / 2 * (K.flatten() + Kpad[1:-1, :-2].flatten())
+    # i, j + 1
+    jp1 = mu / 2 * (K.flatten() + Kpad[2:, 1:-1].flatten())
+    # i, j - 1
+    jm1 = mu / 2 * (K.flatten() + Kpad[:-2, 1:-1].flatten())
+
+    aux = central + ip1 + im1 + jp1 + jm1
+
+    for i in range(Nx, Nx * Ny, Nx):
+        ip1[i-1] = 0
+        im1[i-1] = 0
+
+    A = sparse.diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
+                     offsets=[-Nx, -1, 0, 1, Nx]).toarray()
 
     if bcs == 'neumann':
         bc = aux - A.sum(axis=0)
         A += np.diag(bc)
 
     return A
+
+
+
+#dx = 1
+#dt = 1
+
+
+#K = np.arange(9).reshape(3, 3)
+#K
+
+#coef_mat_hetero2(K, dt, dx)
+coef_mat_hetero(K, dt, dx, bcs='periodic')
+
+
+###############################################################################
+#+---------------------------------------------------------------------------+#
+#|                           SUPLEMENTARY FUNCTIONS                          |#
+#+---------------------------------------------------------------------------+#
+###############################################################################
+
+
+
+
+def offset_bdiag(blocks, offset):
+    aux = np.empty((0, offset), int)
+
+    if offset > 0:
+        return linalg.block_diag(aux, *blocks, aux.T)
+
+    else:
+        return linalg.block_diag(aux.T, *blocks, aux)
