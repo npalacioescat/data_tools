@@ -423,7 +423,7 @@ def coef_mat_hetero2(K, dt, dx, bcs='dirichlet'):
 #K
 
 #coef_mat_hetero2(K, dt, dx)
-coef_mat_hetero(K, dt, dx, bcs='periodic')
+#coef_mat_hetero(K, dt, dx, bcs='periodic')
 
 
 ###############################################################################
