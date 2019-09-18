@@ -254,11 +254,33 @@ def build_mat(cent, neigh, dims, bcs='dirichlet'):
 
 def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
     '''
+    Builds a block tri-diagonal coefficient matrix for a n-dimensional
+    diffusion problem with heterogeneous diffusion coefficients.
+
+    * Arguments:
+        - *K* [numpy.ndarray]: The diffusion coefficients matrix.
+        - *dt* [float]: The discrete time step.
+        - *dx* [float]: The discrete spatial step. It is assumed that
+          the different dimension are equally discretized (e.g.:
+          :math:`\Delta x = \Delta y`).
+        - *bcs* [str]: Optional, ``'dirichlet'`` by default. Determines
+          the boundary conditions. Available options are ``'periodic'``,
+          ``'dirichlet'`` or ``'neumann'``. Note that Dirichlet BCs do
+          not hold mass conservation. Periodic BCs are not perfect.
+
+    * Returns:
+        - [numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
+          Matrix will be square with size equal to the product of all
+          dimension sizes.
     '''
 
     mu = dt / dx ** 2
 
-    Kpad = np.pad(K, 1, mode='edge')
+    if bcs == 'periodic':
+        Kpad = np.pad(K, 1, mode='wrap')
+
+    else:
+        Kpad = np.pad(K, 1, mode='edge')
 
     dims = K.shape[::-1]
     ndim = K.ndim
@@ -269,61 +291,20 @@ def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
     for i in range(ndim):
         d = ndim - 1 - i
 
-        #print('d', d, 'i', i)
         # Generating array slices:
         slice_p = [slice(1, -1), ] * ndim
         slice_p[d] = slice(2, None)
         slice_m = [slice(1, -1), ] * ndim
         slice_m[d] = slice(None, -2)
-        #print(slice_p, slice_m)
-        #print(Kpad[tuple(slice_p)])
-        #print(Kpad[tuple(slice_m)])
+
         g[i]['+'] = (mu/2) * (K + Kpad[tuple(slice_p)]).flatten()
         g[i]['-'] = (mu/2) * (K + Kpad[tuple(slice_m)]).flatten()
-        #print(g[i]['+'], g[i]['-'])
-        f -= g[i]['+'] + g[i]['-']#mu/2 * (2 * K.flatten()
-            #         + Kpad[tdef coef_mat_hetero2(K, dt, dx, bcs='dirichlet'):
-    mu = dt / dx ** 2
-    Ny, Nx = K.shape
-    Kpad = np.pad(K, 1, mode='edge')
-    central = 1 - mu / 2 * (4 * K.flatten()
-                            + Kpad[1:-1, 2:].flatten()
-                            + Kpad[1:-1, :-2].flatten()
-                            + Kpad[2:, 1:-1].flatten()
-                            + Kpad[:-2, 1:-1].flatten())
+        f -= g[i]['+'] + g[i]['-']
 
-    # i + 1, j
-    ip1 = mu / 2 * (K.flatten() + Kpad[1:-1, 2:].flatten())
-    # i - 1, j
-    im1 = mu / 2 * (K.flatten() + Kpad[1:-1, :-2].flatten())
-    # i, j + 1
-    jp1 = mu / 2 * (K.flatten() + Kpad[2:, 1:-1].flatten())
-    # i, j - 1
-    jm1 = mu / 2 * (K.flatten() + Kpad[:-2, 1:-1].flatten())
-
-    aux = central + ip1 + im1 + jp1 + jm1
-
-    for i in range(Nx, Nx * Ny, Nx):
-        ip1[i-1] = 0
-        im1[i-1] = 0
-
-    A = sparse.diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
-                     offsets=[-Nx, -1, 0, 1, Nx]).toarray()
-
-    if bcs == 'neumann':
-        bc = aux - A.sum(axis=0)
-        A += np.diag(bc)
-
-
-
-    #print(g)
-
-    #for i, n in enumerate(dims):
     for i in range(ndim):
         n = dims[i]
 
         if i == 0:
-            #print(g[i]['+'], g[i]['-'])
             c_blocks = [np.diag(x) for x in chunk_this(f, n)]
             c_plus = [np.diag(x[:-1], 1) for x in chunk_this(g[i]['+'], n)]
             c_mins = [np.diag(x[:-1], -1) for x in chunk_this(g[i]['-'], n)]
@@ -332,17 +313,14 @@ def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
 
             if bcs == 'periodic':
                 upper = [np.diag(x[-1:], n - 1) for x
-                         in chunk_this(g[i]['-'], n)]
-                lower = [np.diag(x[-1:], 1 - n) for x
                          in chunk_this(g[i]['+'], n)]
+                lower = [np.diag(x[-1:], 1 - n) for x
+                         in chunk_this(g[i]['-'], n)]
 
                 for j, b in enumerate(blocks):
                     b += upper[j] + lower[j]
 
-            #print(blocks)
-
         else:
-            #print(g[i]['+'], g[i]['-'])
             n_prev = np.prod(dims[:i])
             n_curr = n * n_prev
             blocks = [linalg.block_diag(*x) for x in chunk_this(blocks, n)]
@@ -355,75 +333,21 @@ def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
 
             if bcs == 'periodic':
                 upper = [np.diag(x[-n_prev:], n_curr - n_prev) for x
-                         in chunk_this(g[i]['-'], n_curr)]
-                lower = [np.diag(x[-n_prev:], n_prev - n_curr) for x
                          in chunk_this(g[i]['+'], n_curr)]
+                lower = [np.diag(x[-n_prev:], n_prev - n_curr) for x
+                         in chunk_this(g[i]['-'], n_curr)]
 
                 for j, b in enumerate(blocks):
-                    #print(b.shape, upper[j].shape)
                     b += upper[j] + lower[j]
 
     mat = blocks[0]
 
     if bcs == 'neumann':
         aux = f + sum([sum(g[i].values()) for i in range(ndim)])
-        #print(aux)
-        #print(blocks.sum(axis=0))
         bc = aux - mat.sum(axis=0)
         mat += np.diag(bc)
 
-    #mat = mu / 2 * mat + np.identity(len(K.flatten()))
-
     return mat
-
-
-
-
-def coef_mat_hetero2(K, dt, dx, bcs='dirichlet'):
-    mu = dt / dx ** 2
-    Ny, Nx = K.shape
-    Kpad = np.pad(K, 1, mode='edge')
-    central = 1 - mu / 2 * (4 * K.flatten()
-                            + Kpad[1:-1, 2:].flatten()
-                            + Kpad[1:-1, :-2].flatten()
-                            + Kpad[2:, 1:-1].flatten()
-                            + Kpad[:-2, 1:-1].flatten())
-
-    # i + 1, j
-    ip1 = mu / 2 * (K.flatten() + Kpad[1:-1, 2:].flatten())
-    # i - 1, j
-    im1 = mu / 2 * (K.flatten() + Kpad[1:-1, :-2].flatten())
-    # i, j + 1
-    jp1 = mu / 2 * (K.flatten() + Kpad[2:, 1:-1].flatten())
-    # i, j - 1
-    jm1 = mu / 2 * (K.flatten() + Kpad[:-2, 1:-1].flatten())
-
-    aux = central + ip1 + im1 + jp1 + jm1
-
-    for i in range(Nx, Nx * Ny, Nx):
-        ip1[i-1] = 0
-        im1[i-1] = 0
-
-    A = sparse.diags([jm1[:-Nx], im1[:-1], central, ip1[:-1], jp1[:-Nx]],
-                     offsets=[-Nx, -1, 0, 1, Nx]).toarray()
-
-    if bcs == 'neumann':
-        bc = aux - A.sum(axis=0)
-        A += np.diag(bc)
-
-    return A
-
-
-
-#dx = 1
-#dt = 1
-
-
-#K = np.arange(9).reshape(3, 3)
-#K
-
-#coef_mat_hetero2(K, dt, dx)
-#coef_mat_hetero(K, dt, dx, bcs='periodic')
 
 
 ###############################################################################
