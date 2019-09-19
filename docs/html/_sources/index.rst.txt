@@ -74,6 +74,7 @@ If not, see http://www.gnu.org/licenses/.
 
    - :py:mod:`diffusion <data_tools.diffusion>`
       - :py:func:`build_mat <data_tools.diffusion.build_mat>`
+      - :py:func:`coef_mat_hetero <data_tools.diffusion.coef_mat_hetero>`
 
    - :py:mod:`iterables <data_tools.iterables>`
       - :py:func:`bit_or <data_tools.iterables.bit_or>`

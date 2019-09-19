@@ -1,6 +1,10 @@
 # data_tools version history
 
 ## v0.0.9 (WIP):
+- In `diffusion` module:
+    - Function `coef_mat_hetero`: Builds a block tri-diagonal
+      coefficient matrix for a n-dimensional diffusion problem with
+      heterogeneous diffusion coefficients.
 - In `models` module:
     - Class `Linear`: Linear regression model using least squares.
     - Class `PowerLaw`: Fits a power law model to the provided data.

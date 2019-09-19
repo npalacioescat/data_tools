@@ -207,6 +207,39 @@ dimension sizes.</p></li>
 </ul>
 </dd></dl>
 
+<dl class="function">
+<dt id="data_tools.diffusion.coef_mat_hetero">
+<code class="descclassname">data_tools.diffusion.</code><code class="descname">coef_mat_hetero</code><span class="sig-paren">(</span><em>K</em>, <em>dt</em>, <em>dx</em>, <em>bcs='dirichlet'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#coef_mat_hetero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.coef_mat_hetero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a block tri-diagonal coefficient matrix for a n-dimensional
+diffusion problem with heterogeneous diffusion coefficients.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>K</em> [numpy.ndarray]: The diffusion coefficients matrix.</p></li>
+<li><p><em>dt</em> [float]: The discrete time step.</p></li>
+<li><p><em>dx</em> [float]: The discrete spatial step. It is assumed that
+the different dimension are equally discretized (e.g.:
+<span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span>).</p></li>
+<li><p><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
+the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
+not hold mass conservation. Periodic BCs are not perfect.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
+Matrix will be square with size equal to the product of all
+dimension sizes.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
 </div>
 </div>
 

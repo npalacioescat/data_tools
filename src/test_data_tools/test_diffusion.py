@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['BuildMatTestCase']
+__all__ = ['BuildMatTestCase', 'CoefMatHeteroTestCase']
 
 import unittest
 
@@ -343,3 +343,8 @@ class BuildMatTestCase(unittest.TestCase):
         np.testing.assert_array_equal(self.neumann_3d,
                                       diffusion.build_mat(2, 1, [3, 3, 3],
                                                           bcs='neumann'))
+class CoefMatHeteroTestCase(unittest.TestCase):
+    @unittest.skip('** NOTE **: data_tools.diffusion.coef_mat_hetero test unit
+                   + 'is not implemented.')
+    def test_null(self):
+        pass

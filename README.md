@@ -45,6 +45,7 @@ A full copy of the GNU General Public License can be found on file
     - [up_map](https://nic-nic.github.io/data_tools/html/databases.html#data_tools.databases.up_map)
 - [diffusion](https://nic-nic.github.io/data_tools/html/diffusion.html)
     - [build_mat](https://nic-nic.github.io/data_tools/html/diffusion.html#data_tools.diffusion.build_mat)
+    - [coef_mat_hetero](https://nic-nic.github.io/data_tools/html/diffusion.html#data_tools.diffusion.coef_mat_hetero)
 - [iterables](https://nic-nic.github.io/data_tools/html/iterables.html)
     - [bit_or](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.bit_or)
     - [chunk_this](https://nic-nic.github.io/data_tools/html/iterables.html#data_tools.iterables.chunk_this)

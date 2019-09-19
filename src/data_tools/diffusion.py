@@ -171,7 +171,9 @@ Contents
 --------
 '''
 
-__all__ = ['build_mat']
+# TODO: Add description of heterogeneous coefficient mode above.
+
+__all__ = ['build_mat', 'coef_mat_hetero']
 
 import numpy as np
 #from scipy.sparse import block_diag, diags

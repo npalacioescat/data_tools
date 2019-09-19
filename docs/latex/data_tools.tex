@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Sep 18, 2019}
+\date{Sep 19, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -573,6 +573,51 @@ numpy’s indexing order (last dimension first, e.g.:
 the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
 \sphinxcode{\sphinxupquote{'dirichlet'}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
 not hold mass conservation.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}numpy.ndarray{]}: The (block) tri-diagonal coefficient matrix.
+Matrix will be square with size equal to the product of all
+dimension sizes.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{coef\_mat\_hetero() (in module data\_tools.diffusion)@\spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.coef_mat_hetero}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{coef\_mat\_hetero}}}{\emph{K}, \emph{dt}, \emph{dx}, \emph{bcs='dirichlet'}}{}
+Builds a block tri-diagonal coefficient matrix for a n-dimensional
+diffusion problem with heterogeneous diffusion coefficients.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{K} {[}numpy.ndarray{]}: The diffusion coefficients matrix.
+
+\item {} 
+\sphinxstyleemphasis{dt} {[}float{]}: The discrete time step.
+
+\item {} 
+\sphinxstyleemphasis{dx} {[}float{]}: The discrete spatial step. It is assumed that
+the different dimension are equally discretized (e.g.:
+\(\Delta x = \Delta y\)).
+
+\item {} 
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'dirichlet'}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
+\sphinxcode{\sphinxupquote{'dirichlet'}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+not hold mass conservation. Periodic BCs are not perfect.
 
 \end{itemize}
 
