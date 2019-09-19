@@ -361,11 +361,11 @@ def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
 
 
 
-def offset_bdiag(blocks, offset):
-    aux = np.empty((0, offset), int)
-
-    if offset > 0:
-        return linalg.block_diag(aux, *blocks, aux.T)
-
-    else:
-        return linalg.block_diag(aux.T, *blocks, aux)
+#def offset_bdiag(blocks, offset):
+#    aux = np.empty((0, offset), int)
+#
+#    if offset > 0:
+#        return linalg.block_diag(aux, *blocks, aux.T)
+#
+#    else:
+#        return linalg.block_diag(aux.T, *blocks, aux)
