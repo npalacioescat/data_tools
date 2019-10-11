@@ -401,14 +401,14 @@
 
 
 
-<span class="k">def</span> <span class="nf">offset_bdiag</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
-    <span class="n">aux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="nb">int</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">offset</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="o">*</span><span class="n">blocks</span><span class="p">,</span> <span class="n">aux</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="o">*</span><span class="n">blocks</span><span class="p">,</span> <span class="n">aux</span><span class="p">)</span>
+<span class="c1">#def offset_bdiag(blocks, offset):</span>
+<span class="c1">#    aux = np.empty((0, offset), int)</span>
+<span class="c1">#</span>
+<span class="c1">#    if offset &gt; 0:</span>
+<span class="c1">#        return linalg.block_diag(aux, *blocks, aux.T)</span>
+<span class="c1">#</span>
+<span class="c1">#    else:</span>
+<span class="c1">#        return linalg.block_diag(aux.T, *blocks, aux)</span>
 </pre></div>
 
           </div>

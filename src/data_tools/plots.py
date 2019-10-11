@@ -599,7 +599,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     cmap = matplotlib.cm.get_cmap('rainbow')
     colors = map(cmap, np.linspace(1, 0, len(df.columns[2:])))
 
-    y = range(len(df))[::-1]
+    y = list(range(len(df)))[::-1]
 
     fig, ax = plt.subplots(figsize=figsize)
 
