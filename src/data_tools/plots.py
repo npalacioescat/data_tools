@@ -13,9 +13,9 @@ Contents
 from __future__ import absolute_import
 
 __all__ = ['cmap_bkgr', 'cmap_bkrd', 'cmap_rdbkgr', 'chordplot',
-           'cluster_hmap', 'density', 'pca', 'piano_consensus',
-           'similarity_heatmap', 'similarity_histogram', 'upset_wrap', 'venn',
-           'volcano']
+           'cluster_hmap', 'density', 'pca', 'phase_portrait',
+           'piano_consensus', 'similarity_heatmap', 'similarity_histogram',
+           'upset_wrap', 'venn', 'volcano']
 
 import sys
 import itertools
@@ -108,7 +108,7 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
         ...          ['C', 'D', 20]]
         >>> chordplot(nodes, edges, plot_lines=True)
 
-        .. image:: ../figures/chordplot.png
+        .. image:: ../figures/chordplot_example.png
            :align: center
            :scale: 80
     '''
@@ -545,6 +545,114 @@ def pca(data, n_comp=2, groups=None, cmap='rainbow', title=None,
         ax[1].set_axis_off()
 
     ax[0].set_title(title)
+
+    if filename:
+        fig.savefig(filename)
+
+    else:
+        return fig
+
+
+def phase_portrait(f, x=(0, 1), y=(0, 1), ics=None, dt=0.1, title=None,
+                   filename=None, figsize=None):
+    '''
+    Generates a phase portrait of a ODE system given the nullclines.
+    This is, for a system of the form:
+
+    .. math::
+        \\left\\{\\begin{array}{l}
+        \\frac{\\text{d}u}{\\text{d}t}=f(u,v)\\\\
+        \\frac{\\text{d}v}{\\text{d}t}=g(u,v)
+        \\end{array}\\right.
+
+    The nullclines are obtained by equalizing the derivatives to zero
+    and isolating :math:`v` on each equation. The argument *f* is
+    therefore expected to return the pair of values :math:`v` in terms
+    of :math:`u` for each nullcline. See below for an example.
+
+    * Arguments:
+        - *f* [function]: Defines the two nullclines of the system.
+        - *x* [tuple]: Optional, ``(0, 1)`` by default. The range of
+          values to span the x-axis.
+        - *y* [tuple]: Optional, ``(0, 1)`` by default. The range of
+          values to span the y-axis.
+        - *ics* [tuple]: Optional, ``None`` by default. Set of initial
+          conditions to plot a trajectory. Must have three elements: the
+          initial values of each component and the amount of time the
+          trajectory is simulated.
+        - *dt* [float]: Optional ``0.1`` by default. The time-step to
+          simulate the trajectory (given *ics* is provided).
+        - *title* [str]: Optional, ``None`` by default. Defines the plot
+          title.
+        - *filename* [str]: Optional, ``None`` by default. If passed,
+          indicates the file name or path where to store the figure.
+          Format must be specified (e.g.: .png, .pdf, etc)
+        - *figsize* [tuple]: Optional, ``None`` by default (default
+          matplotlib size). Any iterable containing two values denoting
+          the figure size (in inches) as [width, height].
+
+    * Returns:
+        - [matplotlib.figure.Figure]: The figure object containing the
+          phase portrait of the system, unless *filename* is provided.
+
+    * Example:
+        Let's assume we want the phase portait of the following system:
+
+        .. math::
+            \\left\\{\\begin{array}{l}
+            \\frac{\\text{d}u}{\\text{d}t}=u-5(u-2)^3+4-v\\\\
+            \\frac{\\text{d}v}{\\text{d}t}=3u-v
+            \\end{array}\\right.
+
+        Then:
+        >>> def f(u):
+        ...     return [u - 5 * (u - 2) ** 3 + 4,
+        ...             3 * u]
+        >>> phase_portrait(f, x=(1, 3), y=(4, 8), ics=[1.25, 5.5, 100])
+
+        .. image:: ../figures/phase_portrait_example.png
+           :align: center
+           :scale: 80
+    '''
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # Plotting nullclines
+    xs = np.linspace(x[0], x[1], 101)
+    ys = np.linspace(y[0], y[1], 101)
+    y1, y2 = f(xs)
+
+    ax.plot(xs, y1)
+    ax.plot(xs, y2)
+
+    # Plotting quiver
+    mshx, mshy = np.meshgrid(xs[::5], ys[::5])
+    u, v = f(mshx)
+
+    plt.quiver(mshx, mshy, u - mshy, v - mshy, alpha=0.5)
+
+    # Plotting trajectory
+    if ics:
+        x0, y0, t = ics
+
+        xi = [x0]
+        yi = [y0]
+
+        for _ in np.arange(0, t, dt):
+            auxx, auxy = f(xi[-1])
+            xn = xi[-1] + dt * (auxx - yi[-1])
+            yn = yi[-1] + dt * (auxy - yi[-1])
+
+            xi.append(xn)
+            yi.append(yn)
+
+        ax.plot(xi, yi)
+        ax.scatter(x0, y0, c='C2')
+
+    ax.set_ylim(*y)
+    ax.set_xlim(*x)
+
+    ax.set_title(title)
 
     if filename:
         fig.savefig(filename)
