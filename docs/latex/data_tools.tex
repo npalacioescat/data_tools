@@ -1874,10 +1874,13 @@ Let’s assume we want the phase portait of the following system:
 \end{array}\right.\end{split}
 \end{equation*}
 Then:
-\textgreater{}\textgreater{}\textgreater{} def f(u):
-…     return {[}u - 5 * (u - 2) ** 3 + 4,
-…             3 * u{]}
-\textgreater{}\textgreater{}\textgreater{} phase\_portrait(f, x=(1, 3), y=(4, 8), ics={[}1.25, 5.5, 100{]})
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k}{def} \PYG{n+nf}{f}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)}\PYG{p}{:}
+\PYG{g+gp}{... }    \PYG{k}{return} \PYG{p}{[}\PYG{n}{u} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{5} \PYG{o}{*} \PYG{p}{(}\PYG{n}{u} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{*}\PYG{o}{*} \PYG{l+m+mi}{3} \PYG{o}{+} \PYG{l+m+mi}{4}\PYG{p}{,}
+\PYG{g+gp}{... }            \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{n}{u}\PYG{p}{]}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{phase\PYGZus{}portrait}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{x}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{y}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{ics}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{1.25}\PYG{p}{,} \PYG{l+m+mf}{5.5}\PYG{p}{,} \PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.8]{{phase_portrait_example}.png}\hspace*{\fill}}
 

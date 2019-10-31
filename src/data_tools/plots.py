@@ -605,6 +605,7 @@ def phase_portrait(f, x=(0, 1), y=(0, 1), ics=None, dt=0.1, title=None,
             \\end{array}\\right.
 
         Then:
+
         >>> def f(u):
         ...     return [u - 5 * (u - 2) ** 3 + 4,
         ...             3 * u]
