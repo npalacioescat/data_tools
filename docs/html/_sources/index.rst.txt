@@ -71,11 +71,9 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`kegg_pathway_mapping <data_tools.databases.kegg_pathway_mapping>`
       - :py:func:`op_kinase_substrate <data_tools.databases.op_kinase_substrate>`
       - :py:func:`up_map <data_tools.databases.up_map>`
-
    - :py:mod:`diffusion <data_tools.diffusion>`
       - :py:func:`build_mat <data_tools.diffusion.build_mat>`
       - :py:func:`coef_mat_hetero <data_tools.diffusion.coef_mat_hetero>`
-
    - :py:mod:`iterables <data_tools.iterables>`
       - :py:func:`bit_or <data_tools.iterables.bit_or>`
       - :py:func:`chunk_this <data_tools.iterables.chunk_this>`
@@ -84,24 +82,18 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`similarity <data_tools.iterables.similarity>`
       - :py:func:`subsets <data_tools.iterables.subsets>`
       - :py:func:`unzip_dicts <data_tools.iterables.unzip_dicts>`
-
    - :py:mod:`models <data_tools.models>`
       - :py:class:`DoseResponse <data_tools.models.DoseResponse>`
-
-        - :py:meth:`ec <data_tools.models.DoseResponse.ec>`
-        - :py:meth:`plot <data_tools.models.DoseResponse.plot>`
-
+         - :py:meth:`ec <data_tools.models.DoseResponse.ec>`
+         - :py:meth:`plot <data_tools.models.DoseResponse.plot>`
       - :py:class:`Lasso <data_tools.models.Lasso>`
-
-        - :py:meth:`fit_data <data_tools.models.Lasso.fit_data>`
-        - :py:meth:`plot_score <data_tools.models.Lasso.plot_score>`
-        - :py:meth:`plot_coef <data_tools.models.Lasso.plot_coef>`
-
+         - :py:meth:`fit_data <data_tools.models.Lasso.fit_data>`
+         - :py:meth:`plot_score <data_tools.models.Lasso.plot_score>`
+         - :py:meth:`plot_coef <data_tools.models.Lasso.plot_coef>`
       - :py:class:`Linear <data_tools.models.Linear>`
+         - :py:meth:`plot <data_tools.models.Linear.plot>`
       - :py:class:`PowerLaw <data_tools.models.PowerLaw>`
-
-        - :py:meth:`plot <data_tools.models.PowerLaw.plot>`
-
+         - :py:meth:`plot <data_tools.models.PowerLaw.plot>`
    - :py:mod:`plots <data_tools.plots>`
       - :py:data:`cmap_bkgr <data_tools.plots.cmap_bkgr>`
       - :py:data:`cmap_bkrd <data_tools.plots.cmap_bkrd>`
@@ -117,17 +109,14 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`upset_wrap <data_tools.plots.upset_wrap>`
       - :py:func:`venn <data_tools.plots.venn>`
       - :py:func:`volcano <data_tools.plots.volcano>`
-
-    - :py:mod:`signal <data_tools.signal>`
+   - :py:mod:`signal <data_tools.signal>`
       - :py:func:`fconvolve <data_tools.signal.fconvolve>`
       - :py:func:`gauss_kernel <data_tools.signal.gauss_kernel>`
       - :py:func:`gauss_noise <data_tools.signal.gauss_noise>`
-
    - :py:mod:`spatial <data_tools.spatial>`
       - :py:func:`equidist_polar <data_tools.spatial.equidist_polar>`
       - :py:func:`get_boundaries <data_tools.spatial.get_boundaries>`
       - :py:func:`neighbour_count <data_tools.spatial.neighbour_count>`
-
    - :py:mod:`strings <data_tools.strings>`
       - :py:func:`is_numeric <data_tools.strings.is_numeric>`
       - :py:func:`join_str_lists <data_tools.strings.join_str_lists>`
