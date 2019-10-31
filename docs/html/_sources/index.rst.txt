@@ -110,6 +110,7 @@ If not, see http://www.gnu.org/licenses/.
       - :py:func:`cluster_hmap <data_tools.plots.cluster_hmap>`
       - :py:func:`density <data_tools.plots.density>`
       - :py:func:`pca <data_tools.plots.pca>`
+      - :py:func:`phase_portrait <data_tools.plots.phase_portrait>`
       - :py:func:`piano_consensus <data_tools.plots.piano_consensus>`
       - :py:func:`similarity_heatmap <data_tools.plots.similarity_heatmap>`
       - :py:func:`similarity_histogram <data_tools.plots.similarity_histogram>`

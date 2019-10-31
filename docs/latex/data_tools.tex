@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Oct 11, 2019}
+\date{Oct 31, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1591,7 +1591,7 @@ chord plot, unless \sphinxstyleemphasis{filename} is provided.
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{chordplot}\PYG{p}{(}\PYG{n}{nodes}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{,} \PYG{n}{plot\PYGZus{}lines}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.8]{{chordplot}.png}\hspace*{\fill}}
+\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.8]{{chordplot_example}.png}\hspace*{\fill}}
 
 \end{description}
 
@@ -1789,6 +1789,97 @@ the figure size (in inches) as {[}width, height{]}.
 scatter plot of the PC’s unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+\end{fulllineitems}
+
+\index{phase\_portrait() (in module data\_tools.plots)@\spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.phase_portrait}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{phase\_portrait}}}{\emph{f}, \emph{x=(0}, \emph{1)}, \emph{y=(0}, \emph{1)}, \emph{ics=None}, \emph{dt=0.1}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+Generates a phase portrait of a ODE system given the nullclines.
+This is, for a system of the form:
+\begin{equation*}
+\begin{split}\left\{\begin{array}{l}
+\frac{\text{d}u}{\text{d}t}=f(u,v)\\
+\frac{\text{d}v}{\text{d}t}=g(u,v)
+\end{array}\right.\end{split}
+\end{equation*}
+The nullclines are obtained by equalizing the derivatives to zero
+and isolating \(v\) on each equation. The argument \sphinxstyleemphasis{f} is
+therefore expected to return the pair of values \(v\) in terms
+of \(u\) for each nullcline. See below for an example.
+\begin{itemize}
+\item {} \begin{description}
+\item[{Arguments:}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleemphasis{f} {[}function{]}: Defines the two nullclines of the system.
+
+\item {} 
+\sphinxstyleemphasis{x} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{(0, 1)}} by default. The range of
+values to span the x-axis.
+
+\item {} 
+\sphinxstyleemphasis{y} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{(0, 1)}} by default. The range of
+values to span the y-axis.
+
+\item {} 
+\sphinxstyleemphasis{ics} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Set of initial
+conditions to plot a trajectory. Must have three elements: the
+initial values of each component and the amount of time the
+trajectory is simulated.
+
+\item {} 
+\sphinxstyleemphasis{dt} {[}float{]}: Optional \sphinxcode{\sphinxupquote{0.1}} by default. The time-step to
+simulate the trajectory (given \sphinxstyleemphasis{ics} is provided).
+
+\item {} 
+\sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
+title.
+
+\item {} 
+\sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)
+
+\item {} 
+\sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as {[}width, height{]}.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Returns:}] \leavevmode\begin{itemize}
+\item {} 
+{[}matplotlib.figure.Figure{]}: The figure object containing the
+phase portrait of the system, unless \sphinxstyleemphasis{filename} is provided.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Example:}] \leavevmode
+Let’s assume we want the phase portait of the following system:
+\begin{equation*}
+\begin{split}\left\{\begin{array}{l}
+\frac{\text{d}u}{\text{d}t}=u-5(u-2)^3+4-v\\
+\frac{\text{d}v}{\text{d}t}=3u-v
+\end{array}\right.\end{split}
+\end{equation*}
+Then:
+\textgreater{}\textgreater{}\textgreater{} def f(u):
+…     return {[}u - 5 * (u - 2) ** 3 + 4,
+…             3 * u{]}
+\textgreater{}\textgreater{}\textgreater{} phase\_portrait(f, x=(1, 3), y=(4, 8), ics={[}1.25, 5.5, 100{]})
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[scale=0.8]{{phase_portrait_example}.png}\hspace*{\fill}}
 
 \end{description}
 

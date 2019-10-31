@@ -131,7 +131,7 @@ chord plot, unless <em>filename</em> is provided.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chordplot</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">plot_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/chordplot.png"><img alt="_images/chordplot.png" class="align-center" src="_images/chordplot.png" style="width: 345.6px; height: 230.4px;" /></a>
+<a class="reference internal image-reference" href="_images/chordplot_example.png"><img alt="_images/chordplot_example.png" class="align-center" src="_images/chordplot_example.png" style="width: 345.6px; height: 230.4px;" /></a>
 </dd>
 </dl>
 </li>
@@ -273,6 +273,73 @@ the figure size (in inches) as [width, height].</p></li>
 <li><p>[matplotlib.figure.Figure]: The figure object containing the
 scatter plot of the PC’s unless <em>filename</em> is provided.</p></li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_tools.plots.phase_portrait">
+<code class="descclassname">data_tools.plots.</code><code class="descname">phase_portrait</code><span class="sig-paren">(</span><em>f</em>, <em>x=(0</em>, <em>1)</em>, <em>y=(0</em>, <em>1)</em>, <em>ics=None</em>, <em>dt=0.1</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#phase_portrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.phase_portrait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a phase portrait of a ODE system given the nullclines.
+This is, for a system of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{l}
+\frac{\text{d}u}{\text{d}t}=f(u,v)\\
+\frac{\text{d}v}{\text{d}t}=g(u,v)
+\end{array}\right.\end{split}\]</div>
+<p>The nullclines are obtained by equalizing the derivatives to zero
+and isolating <span class="math notranslate nohighlight">\(v\)</span> on each equation. The argument <em>f</em> is
+therefore expected to return the pair of values <span class="math notranslate nohighlight">\(v\)</span> in terms
+of <span class="math notranslate nohighlight">\(u\)</span> for each nullcline. See below for an example.</p>
+<ul>
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>f</em> [function]: Defines the two nullclines of the system.</p></li>
+<li><p><em>x</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
+values to span the x-axis.</p></li>
+<li><p><em>y</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
+values to span the y-axis.</p></li>
+<li><p><em>ics</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Set of initial
+conditions to plot a trajectory. Must have three elements: the
+initial values of each component and the amount of time the
+trajectory is simulated.</p></li>
+<li><p><em>dt</em> [float]: Optional <code class="docutils literal notranslate"><span class="pre">0.1</span></code> by default. The time-step to
+simulate the trajectory (given <em>ics</em> is provided).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+indicates the file name or path where to store the figure.
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+matplotlib size). Any iterable containing two values denoting
+the figure size (in inches) as [width, height].</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+phase portrait of the system, unless <em>filename</em> is provided.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Example:</dt><dd><p>Let’s assume we want the phase portait of the following system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{l}
+\frac{\text{d}u}{\text{d}t}=u-5(u-2)^3+4-v\\
+\frac{\text{d}v}{\text{d}t}=3u-v
+\end{array}\right.\end{split}\]</div>
+<p>Then:
+&gt;&gt;&gt; def f(u):
+…     return [u - 5 * (u - 2) ** 3 + 4,
+…             3 * u]
+&gt;&gt;&gt; phase_portrait(f, x=(1, 3), y=(4, 8), ics=[1.25, 5.5, 100])</p>
+<a class="reference internal image-reference" href="_images/phase_portrait_example.png"><img alt="_images/phase_portrait_example.png" class="align-center" src="_images/phase_portrait_example.png" style="width: 306.40000000000003px; height: 201.60000000000002px;" /></a>
 </dd>
 </dl>
 </li>

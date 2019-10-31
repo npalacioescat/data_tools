@@ -34,20 +34,21 @@
 \indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
 \indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{pca() (in module data\_tools.plots)@\spxentry{pca()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
-\indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
-\indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{25}
-\indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{26}
-\indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{26}
-\indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{26}
-\indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
-\indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{28}
-\indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{29}
-\indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{29}
-\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{29}
-\indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{29}
-\indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{29}
-\indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{30}
-\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{30}
-\indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{31}
-\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{31}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{31}
+\indexentry{phase\_portrait() (in module data\_tools.plots)@\spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
+\indexentry{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
+\indexentry{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}|hyperpage}{26}
+\indexentry{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
+\indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
+\indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
+\indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{28}
+\indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{29}
+\indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
+\indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
+\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
+\indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{30}
+\indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{30}
+\indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{31}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{31}
+\indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{32}
+\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{32}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{32}

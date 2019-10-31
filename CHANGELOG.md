@@ -9,6 +9,8 @@
     - Class `Linear`: Linear regression model using least squares.
     - Class `PowerLaw`: Fits a power law model to the provided data.
 - In `plots` module:
+    - Function `phase_portrait`: Generates a phase portrait of a ODE
+      system given the nullclines.
     - Function `chordplot`: Generates a chord plot from a collection of
       nodes and edges (and their sizes).
     - Function `PCA`: Computes the principal component analysis (PCA)
