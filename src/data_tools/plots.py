@@ -706,7 +706,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
     # List of equidistant colors according to a colormap
     cmap = matplotlib.cm.get_cmap('rainbow')
-    colors = map(cmap, np.linspace(1, 0, len(df.columns[2:])))
+    colors = list(map(cmap, np.linspace(1, 0, len(df.columns[2:]))))
 
     y = list(range(len(df)))[::-1]
 
