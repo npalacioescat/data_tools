@@ -1,6 +1,9 @@
 # data_tools version history
 
 ## v0.0.9 (WIP):
+- In `databases` module:
+    - Added option to retrieve gene symbols instead of UniProt AC in
+      `op_kinase_substrate` function.
 - In `diffusion` module:
     - Function `coef_mat_hetero`: Builds a block tri-diagonal
       coefficient matrix for a n-dimensional diffusion problem with
