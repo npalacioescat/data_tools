@@ -13,17 +13,17 @@
   \item \spxentry{chordplot()}\spxextra{in module data\_tools.plots}, \hyperpage{21}
   \item \spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}, \hyperpage{14}
   \item \spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}, \hyperpage{22}
-  \item \spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}, \hyperpage{20}
-  \item \spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}, \hyperpage{20}
+  \item \spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}, \hyperpage{21}
+  \item \spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}, \hyperpage{21}
   \item \spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}, \hyperpage{21}
-  \item \spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}, \hyperpage{13}
+  \item \spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}, \hyperpage{14}
 
   \indexspace
   \bigletter D
   \item \spxentry{data\_tools.databases}\spxextra{module}, \hyperpage{9}
   \item \spxentry{data\_tools.diffusion}\spxextra{module}, \hyperpage{11}
   \item \spxentry{data\_tools.iterables}\spxextra{module}, \hyperpage{14}
-  \item \spxentry{data\_tools.models}\spxextra{module}, \hyperpage{16}
+  \item \spxentry{data\_tools.models}\spxextra{module}, \hyperpage{17}
   \item \spxentry{data\_tools.plots}\spxextra{module}, \hyperpage{20}
   \item \spxentry{data\_tools.signal}\spxextra{module}, \hyperpage{29}
   \item \spxentry{data\_tools.spatial}\spxextra{module}, \hyperpage{30}
@@ -33,7 +33,7 @@
 
   \indexspace
   \bigletter E
-  \item \spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{17}
+  \item \spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{18}
   \item \spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}, \hyperpage{30}
 
   \indexspace
@@ -82,10 +82,10 @@
   \item \spxentry{pca()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
   \item \spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
   \item \spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}, \hyperpage{25}
-  \item \spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{17}
-  \item \spxentry{plot()}\spxextra{data\_tools.models.Linear method}, \hyperpage{19}
+  \item \spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{18}
+  \item \spxentry{plot()}\spxextra{data\_tools.models.Linear method}, \hyperpage{20}
   \item \spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}, \hyperpage{20}
-  \item \spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{18}
+  \item \spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{19}
   \item \spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}, \hyperpage{19}
   \item \spxentry{PowerLaw}\spxextra{class in data\_tools.models}, \hyperpage{20}
 
@@ -99,7 +99,7 @@
   \indexspace
   \bigletter U
   \item \spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}, \hyperpage{16}
-  \item \spxentry{up\_map()}\spxextra{in module data\_tools.databases}, \hyperpage{10}
+  \item \spxentry{up\_map()}\spxextra{in module data\_tools.databases}, \hyperpage{11}
   \item \spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}, \hyperpage{27}
 
   \indexspace

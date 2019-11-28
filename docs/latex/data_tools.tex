@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Nov 18, 2019}
+\date{Nov 28, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -290,7 +290,7 @@ within the specified path/file name.
 \index{op\_kinase\_substrate() (in module data\_tools.databases)@\spxentry{op\_kinase\_substrate()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{incl\_phosphatases=False}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{gsymbols=False}, \emph{incl\_phosphatases=False}}{}
 Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.
 \begin{itemize}
@@ -300,6 +300,11 @@ given organism.
 \sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'9606'}} by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
 interest.
+
+\item {} 
+\sphinxstyleemphasis{gsymbols} {[}bool{]}: Optional, \sphinxtitleref{False} by default. Whether to
+show the identifiers as gene symbols or not (UniProt AC
+otherwise).
 
 \item {} 
 \sphinxstyleemphasis{incl\_phosphatases} {[}bool{]}: Optional \sphinxcode{\sphinxupquote{False}} by default.

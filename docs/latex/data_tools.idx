@@ -2,10 +2,10 @@
 \indexentry{kegg\_link() (in module data\_tools.databases)@\spxentry{kegg\_link()}\spxextra{in module data\_tools.databases}|hyperpage}{9}
 \indexentry{kegg\_pathway\_mapping() (in module data\_tools.databases)@\spxentry{kegg\_pathway\_mapping()}\spxextra{in module data\_tools.databases}|hyperpage}{9}
 \indexentry{op\_kinase\_substrate() (in module data\_tools.databases)@\spxentry{op\_kinase\_substrate()}\spxextra{in module data\_tools.databases}|hyperpage}{10}
-\indexentry{up\_map() (in module data\_tools.databases)@\spxentry{up\_map()}\spxextra{in module data\_tools.databases}|hyperpage}{10}
+\indexentry{up\_map() (in module data\_tools.databases)@\spxentry{up\_map()}\spxextra{in module data\_tools.databases}|hyperpage}{11}
 \indexentry{data\_tools.diffusion (module)@\spxentry{data\_tools.diffusion}\spxextra{module}|hyperpage}{11}
 \indexentry{build\_mat() (in module data\_tools.diffusion)@\spxentry{build\_mat()}\spxextra{in module data\_tools.diffusion}|hyperpage}{13}
-\indexentry{coef\_mat\_hetero() (in module data\_tools.diffusion)@\spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}|hyperpage}{13}
+\indexentry{coef\_mat\_hetero() (in module data\_tools.diffusion)@\spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}|hyperpage}{14}
 \indexentry{data\_tools.iterables (module)@\spxentry{data\_tools.iterables}\spxextra{module}|hyperpage}{14}
 \indexentry{bit\_or() (in module data\_tools.iterables)@\spxentry{bit\_or()}\spxextra{in module data\_tools.iterables}|hyperpage}{14}
 \indexentry{chunk\_this() (in module data\_tools.iterables)@\spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}|hyperpage}{14}
@@ -14,21 +14,21 @@
 \indexentry{similarity() (in module data\_tools.iterables)@\spxentry{similarity()}\spxextra{in module data\_tools.iterables}|hyperpage}{15}
 \indexentry{subsets() (in module data\_tools.iterables)@\spxentry{subsets()}\spxextra{in module data\_tools.iterables}|hyperpage}{16}
 \indexentry{unzip\_dicts() (in module data\_tools.iterables)@\spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}|hyperpage}{16}
-\indexentry{data\_tools.models (module)@\spxentry{data\_tools.models}\spxextra{module}|hyperpage}{16}
+\indexentry{data\_tools.models (module)@\spxentry{data\_tools.models}\spxextra{module}|hyperpage}{17}
 \indexentry{DoseResponse (class in data\_tools.models)@\spxentry{DoseResponse}\spxextra{class in data\_tools.models}|hyperpage}{17}
-\indexentry{ec() (data\_tools.models.DoseResponse method)@\spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{17}
-\indexentry{plot() (data\_tools.models.DoseResponse method)@\spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{17}
+\indexentry{ec() (data\_tools.models.DoseResponse method)@\spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{18}
+\indexentry{plot() (data\_tools.models.DoseResponse method)@\spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{18}
 \indexentry{Lasso (class in data\_tools.models)@\spxentry{Lasso}\spxextra{class in data\_tools.models}|hyperpage}{18}
 \indexentry{fit\_data() (data\_tools.models.Lasso method)@\spxentry{fit\_data()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
-\indexentry{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{18}
+\indexentry{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{19}
 \indexentry{plot\_score() (data\_tools.models.Lasso method)@\spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}|hyperpage}{19}
 \indexentry{Linear (class in data\_tools.models)@\spxentry{Linear}\spxextra{class in data\_tools.models}|hyperpage}{19}
-\indexentry{plot() (data\_tools.models.Linear method)@\spxentry{plot()}\spxextra{data\_tools.models.Linear method}|hyperpage}{19}
+\indexentry{plot() (data\_tools.models.Linear method)@\spxentry{plot()}\spxextra{data\_tools.models.Linear method}|hyperpage}{20}
 \indexentry{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}|hyperpage}{20}
 \indexentry{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}|hyperpage}{20}
 \indexentry{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}|hyperpage}{20}
-\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{20}
-\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{20}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{21}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{21}
 \indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{21}
 \indexentry{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
 \indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{22}

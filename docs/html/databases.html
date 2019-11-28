@@ -136,7 +136,7 @@ within the specified path/file name.</p></li>
 
 <dl class="function">
 <dt id="data_tools.databases.op_kinase_substrate">
-<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em>, <em>incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.databases.</code><code class="descname">op_kinase_substrate</code><span class="sig-paren">(</span><em>organism='9606'</em>, <em>gsymbols=False</em>, <em>incl_phosphatases=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/databases.html#op_kinase_substrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.databases.op_kinase_substrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queries OmniPath to retrieve the kinase-substrate interactions for a
 given organism.</p>
 <ul class="simple">
@@ -145,6 +145,9 @@ given organism.</p>
 <li><p><em>organism</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'9606'</span></code> by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
 interest.</p></li>
+<li><p><em>gsymbols</em> [bool]: Optional, <cite>False</cite> by default. Whether to
+show the identifiers as gene symbols or not (UniProt AC
+otherwise).</p></li>
 <li><p><em>incl_phosphatases</em> [bool]: Optional <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.
 Determines wether to include dephosphorylation interactions or
 not.</p></li>
