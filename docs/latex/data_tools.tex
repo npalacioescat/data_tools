@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Nov 28, 2019}
+\date{Dec 06, 2019}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -302,7 +302,7 @@ sapiens). NCBI taxonomic identifier for the organism of
 interest.
 
 \item {} 
-\sphinxstyleemphasis{gsymbols} {[}bool{]}: Optional, \sphinxtitleref{False} by default. Whether to
+\sphinxstyleemphasis{gsymbols} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether to
 show the identifiers as gene symbols or not (UniProt AC
 otherwise).
 
@@ -1311,7 +1311,7 @@ S_{xy}=\sum xy-\frac{(\sum x)(\sum y)}{n}\end{split}
 Where \(n\) is the number of \((x,y)\) data points. The
 intercept is then obtained from:
 \begin{equation*}
-\begin{split}b=\frac{\sum y+a\sum x}{n}\end{split}
+\begin{split}b=\frac{\sum y+m\sum x}{n}\end{split}
 \end{equation*}\begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}

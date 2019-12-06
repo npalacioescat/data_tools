@@ -386,7 +386,7 @@ class Linear(object):
     intercept is then obtained from:
 
     .. math::
-       b=\\frac{\\sum y+a\\sum x}{n}
+       b=\\frac{\\sum y+m\\sum x}{n}
 
     * Arguments:
         - *x* [np.ndarray]: The independent variable to fit the linear

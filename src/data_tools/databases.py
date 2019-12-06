@@ -152,7 +152,7 @@ def op_kinase_substrate(organism='9606', gsymbols=False,
         - *organism* [str]: Optional, ``'9606'`` by default (Homo
           sapiens). NCBI taxonomic identifier for the organism of
           interest.
-        - *gsymbols* [bool]: Optional, `False` by default. Whether to
+        - *gsymbols* [bool]: Optional, ``False`` by default. Whether to
           show the identifiers as gene symbols or not (UniProt AC
           otherwise).
         - *incl_phosphatases* [bool]: Optional ``False`` by default.
