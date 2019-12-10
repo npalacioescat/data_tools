@@ -402,6 +402,10 @@ class Linear(object):
         - *slope* [float]: The slope of the linear model fitted to the
           provided data.
         - *intercept* [float]: The intercept of the fitted model.
+        - *pred* [np.array]: The dependent variable (y) predicted by the
+          model.
+        - *sse* [float]: Sum of Squares of Errors of the model.
+        - *sd* [float]: The standard variance of the model.
     '''
 
     def __init__(self, x, y):
@@ -467,6 +471,30 @@ class Linear(object):
     def intercept(self, val):
         self.intercept = val
 
+    @property
+    def pred(self):
+        return self.x * self.slope + self.intercept
+
+    @pred.setter
+    def pred(self, val):
+        self.pred = val
+
+    @property
+    def sse(self):
+        return sum((self.y - self.pred) ** 2)
+
+    @sse.setter
+    def sse(self, val):
+        self.var = val
+
+    @property
+    def sd(self):
+        return np.sqrt(self.sse / (self.n - 2))
+
+    @sd.setter
+    def sd(self, val):
+        self.var = val
+
     def plot(self, filename=None, figsize=None):
         '''
         Plots the data and the fitted model.
@@ -487,7 +515,7 @@ class Linear(object):
         fig, ax = plt.subplots(figsize=figsize)
 
         ax.scatter(self.x, self.y)
-        ax.plot(self.x, self.slope * self.x + self.intercept, 'k--')
+        ax.plot(self.x, self.pred, 'k--')
 
         fig.tight_layout()
 

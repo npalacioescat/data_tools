@@ -80,7 +80,7 @@
   \indexspace
   \bigletter P
   \item \spxentry{pca()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
-  \item \spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}, \hyperpage{24}
   \item \spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}, \hyperpage{25}
   \item \spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{18}
   \item \spxentry{plot()}\spxextra{data\_tools.models.Linear method}, \hyperpage{20}
