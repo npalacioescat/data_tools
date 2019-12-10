@@ -446,7 +446,7 @@ class Linear(object):
 
     @property
     def n(self):
-        return len(self.x) if ~np.isnan(self.x).any() else np.nan
+        return len(self.x) if ~np.isnan(self.x).any() else 0
 
     @n.setter
     def n(self, val):
