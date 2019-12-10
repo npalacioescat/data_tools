@@ -389,9 +389,9 @@ class Linear(object):
        b=\\frac{\\sum y+m\\sum x}{n}
 
     * Arguments:
-        - *x* [np.ndarray]: The independent variable to fit the linear
-          model.
-        - *y* [np.ndarray]: The dependent variable to fit the linear
+        - *x* [numpy.ndarray]: The independent variable to fit the
+          linear model.
+        - *y* [numpy.ndarray]: The dependent variable to fit the linear
           model.
 
     * Attributes:
@@ -402,8 +402,8 @@ class Linear(object):
         - *slope* [float]: The slope of the linear model fitted to the
           provided data.
         - *intercept* [float]: The intercept of the fitted model.
-        - *pred* [np.array]: The dependent variable (y) predicted by the
-          model.
+        - *pred* [numpy.array]: The dependent variable (y) predicted by
+          the model.
         - *sse* [float]: Sum of Squares of Errors of the model.
         - *sd* [float]: The standard variance of the model.
     '''
@@ -411,8 +411,22 @@ class Linear(object):
     def __init__(self, x, y):
         assert len(x) == len(y), 'x and y must have the same length!'
 
-        self.x = x
-        self.y = y
+        # Removing those data points whose x and/or y are NaN
+        filtered = np.array([p for p in np.array([x, y]).T
+                             if sum(~np.isnan(p)) == 2]).T
+
+        if filtered.shape[0] == 0  or filtered.shape[1] < 2:
+            x_ = np.nan
+            y_ = np.nan
+
+            print('After filtering out NaNs, not enough data points')
+
+        else:
+            x_, y_ = filtered
+
+        #assert len(x_) > 1, 'After removing NaNs, not enough data points'
+        self.x = x_
+        self.y = y_
 
     @property
     def x(self):
@@ -432,7 +446,7 @@ class Linear(object):
 
     @property
     def n(self):
-        return len(self.x)
+        return len(self.x) if ~np.isnan(self.x).any() else np.nan
 
     @n.setter
     def n(self, val):
@@ -481,7 +495,11 @@ class Linear(object):
 
     @property
     def sse(self):
-        return sum((self.y - self.pred) ** 2)
+        if not np.isnan(self.y).any():
+            return ((self.y - self.pred) ** 2).sum()
+
+        else:
+            return np.nan
 
     @sse.setter
     def sse(self, val):

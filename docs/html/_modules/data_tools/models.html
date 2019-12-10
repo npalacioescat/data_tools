@@ -429,9 +429,9 @@
 <span class="sd">       b=\\frac{\\sum y+m\\sum x}{n}</span>
 
 <span class="sd">    * Arguments:</span>
-<span class="sd">        - *x* [np.ndarray]: The independent variable to fit the linear</span>
-<span class="sd">          model.</span>
-<span class="sd">        - *y* [np.ndarray]: The dependent variable to fit the linear</span>
+<span class="sd">        - *x* [numpy.ndarray]: The independent variable to fit the</span>
+<span class="sd">          linear model.</span>
+<span class="sd">        - *y* [numpy.ndarray]: The dependent variable to fit the linear</span>
 <span class="sd">          model.</span>
 
 <span class="sd">    * Attributes:</span>
@@ -442,8 +442,8 @@
 <span class="sd">        - *slope* [float]: The slope of the linear model fitted to the</span>
 <span class="sd">          provided data.</span>
 <span class="sd">        - *intercept* [float]: The intercept of the fitted model.</span>
-<span class="sd">        - *pred* [np.array]: The dependent variable (y) predicted by the</span>
-<span class="sd">          model.</span>
+<span class="sd">        - *pred* [numpy.array]: The dependent variable (y) predicted by</span>
+<span class="sd">          the model.</span>
 <span class="sd">        - *sse* [float]: Sum of Squares of Errors of the model.</span>
 <span class="sd">        - *sd* [float]: The standard variance of the model.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -451,8 +451,22 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;x and y must have the same length!&#39;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="c1"># Removing those data points whose x and/or y are NaN</span>
+        <span class="n">filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+                             <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="k">if</span> <span class="n">filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>  <span class="ow">or</span> <span class="n">filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">y_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After filtering out NaNs, not enough data points&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="n">filtered</span>
+
+        <span class="c1">#assert len(x_) &gt; 1, &#39;After removing NaNs, not enough data points&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -472,7 +486,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
     <span class="nd">@n</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
@@ -521,7 +535,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
     <span class="nd">@sse</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
