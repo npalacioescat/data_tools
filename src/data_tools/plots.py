@@ -1218,7 +1218,7 @@ def bezier_quad(pa, pb, pc=[0, 0], res=1e2):  # NOTE: Move to top level?
           (x, y) coordinates of the curve points (defined by *res*).
     '''
 
-    t = np.linspace(0, 1, res + 1)
+    t = np.linspace(0, 1, int(res) + 1)
 
     pa = np.array(pa).reshape(2, 1)
     pb = np.array(pb).reshape(2, 1)
