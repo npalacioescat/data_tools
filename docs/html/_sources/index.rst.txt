@@ -34,7 +34,7 @@ data_tools' manual
 Data tools: a collection of Python functions and classes designed to
 make data scientists' life easier.
 
-Copyright (C) 2019 Nicolàs Palacio-Escat
+Copyright (C) 2020 Nicolàs Palacio-Escat
 
 Contact: `nicolas.palacio@bioquant.uni-heidelberg.de <mailto:nicolas.palacio@bioquant.uni-heidelberg.de>`_
 
