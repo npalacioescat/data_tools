@@ -436,7 +436,8 @@
 
 <span class="sd">    * Attributes:</span>
 <span class="sd">        - *n* [int]: Number of data points provided.</span>
-<span class="sd">        - *var* [float]: Variance of the independent variable.</span>
+<span class="sd">        - *varx* [float]: Variance of the independent variable.</span>
+<span class="sd">        - *vary* [float]: Variance of the dependent variable.</span>
 <span class="sd">        - *covar* [float]: Covariance between dependent and independent</span>
 <span class="sd">          variables.</span>
 <span class="sd">        - *slope* [float]: The slope of the linear model fitted to the</span>
@@ -445,7 +446,12 @@
 <span class="sd">        - *pred* [numpy.array]: The dependent variable (y) predicted by</span>
 <span class="sd">          the model.</span>
 <span class="sd">        - *sse* [float]: Sum of Squares of Errors of the model.</span>
-<span class="sd">        - *sd* [float]: The standard variance of the model.</span>
+<span class="sd">        - *rmse* [float]: Root mean squared error, also known as the</span>
+<span class="sd">          standard deviation of the model.</span>
+<span class="sd">        - *corr_coef* [float]: Pearson&#39;s correlation coefficient of the</span>
+<span class="sd">          model.</span>
+<span class="sd">        - *coef_det* [float]: Coefficient of determination of the model.</span>
+<span class="sd">          This is, the squared correlation coefficient value.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -493,12 +499,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">val</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">varx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
 
-    <span class="nd">@var</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="nd">@varx</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">varx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varx</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+
+    <span class="nd">@vary</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">vary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vary</span> <span class="o">=</span> <span class="n">val</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">covar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -511,7 +525,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">covar</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">covar</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">varx</span>
 
     <span class="nd">@slope</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
@@ -543,15 +557,31 @@
 
     <span class="nd">@sse</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sse</span> <span class="o">=</span> <span class="n">val</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">sd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rmse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sse</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span>
 
-    <span class="nd">@sd</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">sd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="nd">@rmse</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">rmse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rmse</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">corr_coef</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">covar</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">varx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">vary</span><span class="p">)</span>
+
+    <span class="nd">@corr_coef</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">corr_coef</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">corr_coef</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">coef_det</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_coef</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="nd">@coef_det</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">coef_det</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coef_det</span> <span class="o">=</span> <span class="n">val</span>
 
 <div class="viewcode-block" id="Linear.plot"><a class="viewcode-back" href="../../models.html#data_tools.models.Linear.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>

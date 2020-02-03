@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Jan 20, 2020}
+\date{Feb 03, 2020}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1333,7 +1333,10 @@ model.
 \sphinxstyleemphasis{n} {[}int{]}: Number of data points provided.
 
 \item {} 
-\sphinxstyleemphasis{var} {[}float{]}: Variance of the independent variable.
+\sphinxstyleemphasis{varx} {[}float{]}: Variance of the independent variable.
+
+\item {} 
+\sphinxstyleemphasis{vary} {[}float{]}: Variance of the dependent variable.
 
 \item {} 
 \sphinxstyleemphasis{covar} {[}float{]}: Covariance between dependent and independent
@@ -1354,7 +1357,16 @@ the model.
 \sphinxstyleemphasis{sse} {[}float{]}: Sum of Squares of Errors of the model.
 
 \item {} 
-\sphinxstyleemphasis{sd} {[}float{]}: The standard variance of the model.
+\sphinxstyleemphasis{rmse} {[}float{]}: Root mean squared error, also known as the
+standard deviation of the model.
+
+\item {} 
+\sphinxstyleemphasis{corr\_coef} {[}float{]}: Pearson’s correlation coefficient of the
+model.
+
+\item {} 
+\sphinxstyleemphasis{coef\_det} {[}float{]}: Coefficient of determination of the model.
+This is, the squared correlation coefficient value.
 
 \end{itemize}
 

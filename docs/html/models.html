@@ -314,7 +314,8 @@ model.</p></li>
 <li><dl class="simple">
 <dt>Attributes:</dt><dd><ul>
 <li><p><em>n</em> [int]: Number of data points provided.</p></li>
-<li><p><em>var</em> [float]: Variance of the independent variable.</p></li>
+<li><p><em>varx</em> [float]: Variance of the independent variable.</p></li>
+<li><p><em>vary</em> [float]: Variance of the dependent variable.</p></li>
 <li><p><em>covar</em> [float]: Covariance between dependent and independent
 variables.</p></li>
 <li><p><em>slope</em> [float]: The slope of the linear model fitted to the
@@ -323,7 +324,12 @@ provided data.</p></li>
 <li><p><em>pred</em> [numpy.array]: The dependent variable (y) predicted by
 the model.</p></li>
 <li><p><em>sse</em> [float]: Sum of Squares of Errors of the model.</p></li>
-<li><p><em>sd</em> [float]: The standard variance of the model.</p></li>
+<li><p><em>rmse</em> [float]: Root mean squared error, also known as the
+standard deviation of the model.</p></li>
+<li><p><em>corr_coef</em> [float]: Pearson’s correlation coefficient of the
+model.</p></li>
+<li><p><em>coef_det</em> [float]: Coefficient of determination of the model.
+This is, the squared correlation coefficient value.</p></li>
 </ul>
 </dd>
 </dl>

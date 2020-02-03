@@ -24,7 +24,7 @@
   \item \spxentry{data\_tools.diffusion}\spxextra{module}, \hyperpage{11}
   \item \spxentry{data\_tools.iterables}\spxextra{module}, \hyperpage{14}
   \item \spxentry{data\_tools.models}\spxextra{module}, \hyperpage{17}
-  \item \spxentry{data\_tools.plots}\spxextra{module}, \hyperpage{20}
+  \item \spxentry{data\_tools.plots}\spxextra{module}, \hyperpage{21}
   \item \spxentry{data\_tools.signal}\spxextra{module}, \hyperpage{29}
   \item \spxentry{data\_tools.spatial}\spxextra{module}, \hyperpage{30}
   \item \spxentry{data\_tools.strings}\spxextra{module}, \hyperpage{32}
