@@ -397,6 +397,7 @@ class Linear(object):
     * Attributes:
         - *n* [int]: Number of data points provided.
         - *varx* [float]: Variance of the independent variable.
+        - *vary* [float]: Variance of the dependent variable.
         - *covar* [float]: Covariance between dependent and independent
           variables.
         - *slope* [float]: The slope of the linear model fitted to the
@@ -405,7 +406,12 @@ class Linear(object):
         - *pred* [numpy.array]: The dependent variable (y) predicted by
           the model.
         - *sse* [float]: Sum of Squares of Errors of the model.
-        - *sd* [float]: The standard variance of the model.
+        - *rmse* [float]: Root mean squared error, also known as the
+          standard deviation of the model.
+        - *corr_coef* [float]: Pearson's correlation coefficient of the
+          model.
+        - *coef_det* [float]: Coefficient of determination of the model.
+          This is, the squared correlation coefficient value.
     '''
 
     def __init__(self, x, y):
@@ -461,6 +467,14 @@ class Linear(object):
         self.varx = val
 
     @property
+    def vary(self):
+        return np.square(self.y).sum() - np.square(self.y.sum()) / self.n
+
+    @vary.setter
+    def vary(self, val):
+        self.vary = val
+
+    @property
     def covar(self):
         return (np.multiply(self.x, self.y).sum()
                 - np.multiply(self.x.sum(), self.y.sum()) / self.n)
@@ -506,12 +520,28 @@ class Linear(object):
         self.sse = val
 
     @property
-    def sd(self):
+    def rmse(self):
         return np.sqrt(self.sse / (self.n - 2))
 
-    @sd.setter
-    def sd(self, val):
-        self.sd = val
+    @rmse.setter
+    def rmse(self, val):
+        self.rmse = val
+
+    @property
+    def corr_coef(self):
+        return self.covar / np.sqrt(self.varx * self.vary)
+
+    @corr_coef.setter
+    def corr_coef(self, val):
+        self.corr_coef = val
+
+    @property
+    def coef_det(self):
+        return self.corr_coef ** 2
+
+    @coef_det.setter
+    def coef_det(self, val):
+        self.coef_det = val
 
     def plot(self, filename=None, figsize=None):
         '''

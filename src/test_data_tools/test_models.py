@@ -62,8 +62,8 @@ class LinearTestCase(unittest.TestCase):
     def test_sse(self):
         self.assertEqual(self.model.sse, 0.0)
 
-    def test_sd(self):
-        self.assertEqual(self.model.sd, 0.0)
+    def test_rmse(self):
+        self.assertEqual(self.model.rmse, 0.0)
 
 
 class PowerLawTestCase(unittest.TestCase):
