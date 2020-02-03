@@ -396,7 +396,7 @@ class Linear(object):
 
     * Attributes:
         - *n* [int]: Number of data points provided.
-        - *var* [float]: Variance of the independent variable.
+        - *varx* [float]: Variance of the independent variable.
         - *covar* [float]: Covariance between dependent and independent
           variables.
         - *slope* [float]: The slope of the linear model fitted to the
@@ -453,12 +453,12 @@ class Linear(object):
         self.n = val
 
     @property
-    def var(self):
+    def varx(self):
         return np.square(self.x).sum() - np.square(self.x.sum()) / self.n
 
-    @var.setter
-    def var(self, val):
-        self.var = val
+    @varx.setter
+    def varx(self, val):
+        self.varx = val
 
     @property
     def covar(self):
@@ -471,7 +471,7 @@ class Linear(object):
 
     @property
     def slope(self):
-        return self.covar / self.var
+        return self.covar / self.varx
 
     @slope.setter
     def slope(self, val):
@@ -503,7 +503,7 @@ class Linear(object):
 
     @sse.setter
     def sse(self, val):
-        self.var = val
+        self.sse = val
 
     @property
     def sd(self):
@@ -511,7 +511,7 @@ class Linear(object):
 
     @sd.setter
     def sd(self, val):
-        self.var = val
+        self.sd = val
 
     def plot(self, filename=None, figsize=None):
         '''
