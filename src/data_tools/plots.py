@@ -360,14 +360,16 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     ax[0, 0].set_axis_off()
     ax[1, 1].set_axis_off()
 
-    rng = range(len(xlabels if xlabels is not None else []))
-    ax[1, 0].set_xticks(rng)
-    ax[1, 0].set_xticklabels(xlabels if xlabels is not None else [],
-                             rotation=90)
-
-    rng = range(len(ylabels if ylabels is not None else []))
-    ax[1, 0].set_yticks(rng)
-    ax[1, 0].set_yticklabels(ylabels if ylabels is not None else [])
+    if xlabels is not None:
+        ord_xlab = [xlabels[i] for i in xdendo['leaves']]
+        rng = range(len(ord_xlab))
+        ax[1, 0].set_xticks(rng)
+        ax[1, 0].set_xticklabels(ord_xlab, rotation=90)
+    if ylabels is not None:
+        ord_ylab = [ylabels[i] for i in ydendo['leaves']]
+        rng = range(len(ord_ylab))
+        ax[1, 0].set_yticks(rng)
+        ax[1, 0].set_yticklabels(ord_ylab)
 
     fig.suptitle(title)
 
@@ -1056,7 +1058,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
     ax.set_title(title)
 
-    ax.legend()
+    ax.legend(loc=0)
 
     ax.axis('off')
     fig.tight_layout()
