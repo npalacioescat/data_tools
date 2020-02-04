@@ -25,6 +25,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+from mpl_toolkits.mplot3d import Axes3D
 from scipy import stats
 from scipy.cluster.hierarchy import dendrogram, linkage
 import upsetplot as usp
