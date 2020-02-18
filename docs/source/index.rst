@@ -129,7 +129,8 @@ Dependencies
 - `Pandas <https://pandas.pydata.org/>`_
 - `SciPy <https://www.scipy.org/>`_
 - `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
-- `UpSetPlot <https://upsetplot.readthedocs.io/en/stable/>`_
+- `UpSetPlot <https://github.com/jnothman/UpSetPlot>`_
+- `adjustText <https://github.com/Phlya/adjustText)`_
 
 Installation
 ============

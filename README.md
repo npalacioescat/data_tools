@@ -93,7 +93,8 @@ A full copy of the GNU General Public License can be found on file
 - [Pandas](https://pandas.pydata.org/)
 - [SciPy](https://www.scipy.org/)
 - [Scikit-learn](http://scikit-learn.org/stable/index.html)
-- [UpSetPlot](https://upsetplot.readthedocs.io/en/stable/)
+- [UpSetPlot](https://github.com/jnothman/UpSetPlot)
+- [adjustText](https://github.com/Phlya/adjustText)
 
 ## Installation
 
