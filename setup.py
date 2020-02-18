@@ -25,5 +25,6 @@ setup(name='data_tools',
                         'pandas',
                         'scipy',
                         'sklearn',
-                        'UpSetPlot'],
+                        'UpSetPlot',
+                        'adjustText'],
       zip_safe=False)
