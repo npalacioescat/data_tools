@@ -12,6 +12,7 @@
     - Class `Linear`: Linear regression model using least squares.
     - Class `PowerLaw`: Fits a power law model to the provided data.
 - In `plots` module:
+    - Added option to show labels on significant points of `volcano`.
     - Function `phase_portrait`: Generates a phase portrait of a ODE
       system given the nullclines.
     - Function `chordplot`: Generates a chord plot from a collection of
