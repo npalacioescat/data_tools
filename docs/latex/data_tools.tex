@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Feb 04, 2020}
+\date{Feb 18, 2020}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -135,7 +135,10 @@ If not, see \sphinxurl{http://www.gnu.org/licenses/}.
 \sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
 
 \item {} 
-\sphinxhref{https://upsetplot.readthedocs.io/en/stable/}{UpSetPlot}
+\sphinxhref{https://github.com/jnothman/UpSetPlot}{UpSetPlot}
+
+\item {} 
+\sphinxhref{https://github.com/Phlya/adjustText}{adjustText}
 
 \end{itemize}
 
@@ -2230,7 +2233,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{labels=None}, \emph{maxlabels=25}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{adj\_txt\_kwargs=\{\}}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
@@ -2264,6 +2267,18 @@ blue). First one is used for non-significant points, second
 for the significant ones.
 
 \item {} 
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. List of labels
+of the points, only the significant ones will be labeled. Must
+be in the same order as \sphinxstyleemphasis{logfc} and \sphinxstyleemphasis{logpval}.
+
+\item {} 
+\sphinxstyleemphasis{maxlabels} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{25}} by default. Maximum number
+of labels to show to avoid overcrowding. If the number of
+labels to show is above, there will be only shown the top data
+points up to the threshold. This ranking is computed as the
+product of the \sphinxstyleemphasis{logpval} and absolute \sphinxstyleemphasis{logfc}.
+
+\item {} 
 \sphinxstyleemphasis{legend} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Indicates
 whether to show the plot legend or not.
 
@@ -2281,10 +2296,18 @@ Format must be specified (e.g.: .png, .pdf, etc)
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
+\item {} 
+\sphinxstyleemphasis{adj\_txt\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. The key,
+value pairs of keyword arguments to pass to adjust\_text
+function (see \sphinxhref{https://adjusttext.readthedocs.io/en/latest/}{adjustText reference manual} for more
+information).
+
 \end{itemize}
 
 \end{description}
 
+\end{itemize}
+\begin{itemize}
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 

@@ -575,12 +575,12 @@ unless <em>filename</em> is provided.</p></li>
 
 <dl class="function">
 <dt id="data_tools.plots.volcano">
-<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>labels=None</em>, <em>maxlabels=25</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>adj_txt_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a volcano plot from the differential expression data
 provided.</p>
-<ul>
+<ul class="simple">
 <li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
+<dt>Arguments:</dt><dd><ul>
 <li><p><em>logfc</em> [list]: Or any iterable type. Contains the log
 (usually base 2) fold-change values. Must have the same length
 as <em>logpval</em>.</p></li>
@@ -598,6 +598,14 @@ default colors). Any iterable containing two color arguments
 tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
 blue). First one is used for non-significant points, second
 for the significant ones.</p></li>
+<li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. List of labels
+of the points, only the significant ones will be labeled. Must
+be in the same order as <em>logfc</em> and <em>logpval</em>.</p></li>
+<li><p><em>maxlabels</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">25</span></code> by default. Maximum number
+of labels to show to avoid overcrowding. If the number of
+labels to show is above, there will be only shown the top data
+points up to the threshold. This ranking is computed as the
+product of the <em>logpval</em> and absolute <em>logfc</em>.</p></li>
 <li><p><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
 whether to show the plot legend or not.</p></li>
 <li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
@@ -608,10 +616,16 @@ Format must be specified (e.g.: .png, .pdf, etc)</p></li>
 <li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</p></li>
+<li><p><em>adj_txt_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. The key,
+value pairs of keyword arguments to pass to adjust_text
+function (see <a class="reference external" href="https://adjusttext.readthedocs.io/en/latest/">adjustText reference manual</a> for more
+information).</p></li>
 </ul>
 </dd>
 </dl>
 </li>
+</ul>
+<ul>
 <li><dl class="simple">
 <dt>Returns:</dt><dd><ul class="simple">
 <li><p>[matplotlib.figure.Figure]: Figure object containing the

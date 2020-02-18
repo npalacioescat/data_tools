@@ -70,6 +70,7 @@
 <span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">import</span> <span class="n">dendrogram</span><span class="p">,</span> <span class="n">linkage</span>
 <span class="kn">import</span> <span class="nn">upsetplot</span> <span class="k">as</span> <span class="nn">usp</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">adjustText</span> <span class="k">import</span> <span class="n">adjust_text</span>
 
 <span class="kn">from</span> <span class="nn">data_tools.iterables</span> <span class="k">import</span> <span class="n">subsets</span><span class="p">,</span> <span class="n">similarity</span>
 
@@ -1112,7 +1113,8 @@
 
 
 <div class="viewcode-block" id="volcano"><a class="viewcode-back" href="../../plots.html#data_tools.plots.volcano">[docs]</a><span class="k">def</span> <span class="nf">volcano</span><span class="p">(</span><span class="n">logfc</span><span class="p">,</span> <span class="n">logpval</span><span class="p">,</span> <span class="n">thr_pval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">thr_fc</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">),</span>
-            <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxlabels</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adj_txt_kwargs</span><span class="o">=</span><span class="p">{}):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a volcano plot from the differential expression data</span>
 <span class="sd">    provided.</span>
@@ -1135,6 +1137,14 @@
 <span class="sd">          tolerated by matplotlib (e.g.: ``[&#39;r&#39;, &#39;b&#39;]`` for red and</span>
 <span class="sd">          blue). First one is used for non-significant points, second</span>
 <span class="sd">          for the significant ones.</span>
+<span class="sd">        - *labels* [list]: Optional, ``None`` by default. List of labels</span>
+<span class="sd">          of the points, only the significant ones will be labeled. Must</span>
+<span class="sd">          be in the same order as *logfc* and *logpval*.</span>
+<span class="sd">        - *maxlabels* [int]: Optional, ``25`` by default. Maximum number</span>
+<span class="sd">          of labels to show to avoid overcrowding. If the number of</span>
+<span class="sd">          labels to show is above, there will be only shown the top data</span>
+<span class="sd">          points up to the threshold. This ranking is computed as the</span>
+<span class="sd">          product of the *logpval* and absolute *logfc*.</span>
 <span class="sd">        - *legend* [bool]: Optional, ``True`` by default. Indicates</span>
 <span class="sd">          whether to show the plot legend or not.</span>
 <span class="sd">        - *title* [str]: Optional, ``None`` by default. Defines the plot</span>
@@ -1145,6 +1155,13 @@
 <span class="sd">        - *figsize* [tuple]: Optional, ``None`` by default (default</span>
 <span class="sd">          matplotlib size). Any iterable containing two values denoting</span>
 <span class="sd">          the figure size (in inches) as [width, height].</span>
+<span class="sd">        - *adj_txt_kwargs* [dict]: Optional, ``{}`` by default. The key,</span>
+<span class="sd">          value pairs of keyword arguments to pass to adjust_text</span>
+<span class="sd">          function (see `adjustText reference manual`_ for more</span>
+<span class="sd">          information).</span>
+
+<span class="sd">    .. _`adjustText reference manual`:</span>
+<span class="sd">        https://adjusttext.readthedocs.io/en/latest/</span>
 
 <span class="sd">    * Returns:</span>
 <span class="sd">        - [matplotlib.figure.Figure]: Figure object containing the</span>
@@ -1161,6 +1178,10 @@
     <span class="n">thr_logpval</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">thr_pval</span><span class="p">)</span>
     <span class="n">thr_logfc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">thr_fc</span><span class="p">)</span>
 
+    <span class="c1"># Converting data into numpy arrays</span>
+    <span class="n">logfc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">logfc</span><span class="p">)</span>
+    <span class="n">logpval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">logpval</span><span class="p">)</span>
+
     <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">max</span><span class="p">,</span> <span class="p">[</span><span class="n">logfc</span><span class="p">,</span> <span class="n">logpval</span><span class="p">])</span>
     <span class="n">min_x</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">logfc</span><span class="p">)</span>
 
@@ -1170,22 +1191,39 @@
     <span class="n">sig</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="o">&gt;=</span> <span class="n">thr_logpval</span> <span class="ow">and</span> <span class="n">f</span> <span class="o">&gt;=</span> <span class="n">thr_logfc</span>
            <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">logpval</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">logfc</span><span class="p">))]</span>
 
-    <span class="c1"># Plotting non-significant points</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">logfc</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
-               <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">logpval</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
-               <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-significant&#39;</span><span class="p">)</span>
+    <span class="n">sig_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">logpval</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">logfc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                           <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span><span class="p">],</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;logpval&#39;</span><span class="p">,</span> <span class="s1">&#39;logfc&#39;</span><span class="p">])</span>
+    <span class="n">non_sig_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">logpval</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">logfc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                               <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">],</span>
+                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;logpval&#39;</span><span class="p">,</span> <span class="s1">&#39;logfc&#39;</span><span class="p">])</span>
+
     <span class="c1"># Plotting significant points</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">logfc</span><span class="p">)</span> <span class="k">if</span> <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
-               <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">logpval</span><span class="p">)</span> <span class="k">if</span> <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
-               <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Significant&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sig_df</span><span class="p">[</span><span class="s1">&#39;logfc&#39;</span><span class="p">],</span> <span class="n">sig_df</span><span class="p">[</span><span class="s1">&#39;logpval&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+               <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Significant&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+    <span class="c1"># Plotting non-significant points</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">non_sig_df</span><span class="p">[</span><span class="s1">&#39;logfc&#39;</span><span class="p">],</span> <span class="n">non_sig_df</span><span class="p">[</span><span class="s1">&#39;logpval&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-significant&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxlabels</span><span class="p">:</span>
+            <span class="n">sig_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sig_df</span><span class="p">[</span><span class="s1">&#39;logpval&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sig_df</span><span class="p">[</span><span class="s1">&#39;logfc&#39;</span><span class="p">])</span>
+            <span class="n">sig_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">sig_df</span> <span class="o">=</span> <span class="n">sig_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">maxlabels</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="n">txts</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;logfc&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;logpval&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                         <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">5.5</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sig_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+        <span class="n">adjust_text</span><span class="p">(</span><span class="n">txts</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">adj_txt_kwargs</span><span class="p">)</span>
 
     <span class="c1"># Dashed lines denoting thresholds</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">min_x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">thr_logpval</span><span class="p">,</span> <span class="n">thr_logpval</span><span class="p">],</span>
-            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># -log(p-val) threshold line</span>
+            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>  <span class="c1"># -log(p-val) threshold line</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="n">thr_logfc</span><span class="p">,</span> <span class="o">-</span><span class="n">thr_logfc</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># log(fc) threshold line (left)</span>
+            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>  <span class="c1"># log(fc) threshold line (left)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">thr_logfc</span><span class="p">,</span> <span class="n">thr_logfc</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># log(fc) threshold line (right)</span>
+            <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>  <span class="c1"># log(fc) threshold line (right)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">min_x</span><span class="p">,</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">max_x</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">max_y</span><span class="p">)</span>
@@ -1196,7 +1234,7 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 

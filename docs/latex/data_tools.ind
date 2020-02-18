@@ -34,7 +34,7 @@
   \indexspace
   \bigletter E
   \item \spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}, \hyperpage{18}
-  \item \spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}, \hyperpage{30}
+  \item \spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}, \hyperpage{31}
 
   \indexspace
   \bigletter F
