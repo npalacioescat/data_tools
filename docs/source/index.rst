@@ -130,7 +130,7 @@ Dependencies
 - `SciPy <https://www.scipy.org/>`_
 - `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
 - `UpSetPlot <https://github.com/jnothman/UpSetPlot>`_
-- `adjustText <https://github.com/Phlya/adjustText)`_
+- `adjustText <https://github.com/Phlya/adjustText>`_
 
 Installation
 ============
