@@ -30,6 +30,7 @@ from scipy import stats
 from scipy.cluster.hierarchy import dendrogram, linkage
 import upsetplot as usp
 from sklearn.decomposition import PCA
+from adjustText import adjust_text
 
 from data_tools.iterables import subsets, similarity
 
@@ -1072,7 +1073,8 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
 
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
-            legend=True, title=None, filename=None, figsize=None):
+            labels=None, maxlabels=25, legend=True, title=None, filename=None,
+            figsize=None, adj_txt_kwargs={}):
     '''
     Generates a volcano plot from the differential expression data
     provided.
@@ -1095,6 +1097,14 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
           tolerated by matplotlib (e.g.: ``['r', 'b']`` for red and
           blue). First one is used for non-significant points, second
           for the significant ones.
+        - *labels* [list]: Optional, ``None`` by default. List of labels
+          of the points, only the significant ones will be labeled. Must
+          be in the same order as *logfc* and *logpval*.
+        - *maxlabels* [int]: Optional, ``25`` by default. Maximum number
+          of labels to show to avoid overcrowding. If the number of
+          labels to show is above, there will be only shown the top data
+          points up to the threshold. This ranking is computed as the
+          product of the *logpval* and absolute *logfc*.
         - *legend* [bool]: Optional, ``True`` by default. Indicates
           whether to show the plot legend or not.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
@@ -1105,6 +1115,13 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         - *figsize* [tuple]: Optional, ``None`` by default (default
           matplotlib size). Any iterable containing two values denoting
           the figure size (in inches) as [width, height].
+        - *adj_txt_kwargs* [dict]: Optional, ``{}`` by default. The key,
+          value pairs of keyword arguments to pass to adjust_text
+          function (see `adjustText reference manual`_ for more
+          information).
+
+    .. _`adjustText reference manual`:
+        https://adjusttext.readthedocs.io/en/latest/
 
     * Returns:
         - [matplotlib.figure.Figure]: Figure object containing the
@@ -1121,6 +1138,10 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     thr_logpval = - np.log10(thr_pval)
     thr_logfc = np.log2(thr_fc)
 
+    # Converting data into numpy arrays
+    logfc = np.array(logfc)
+    logpval = np.array(logpval)
+
     max_x, max_y = map(max, [logfc, logpval])
     min_x = min(logfc)
 
@@ -1130,22 +1151,39 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     sig = [p >= thr_logpval and f >= thr_logfc
            for (p, f) in zip(logpval, abs(logfc))]
 
-    # Plotting non-significant points
-    ax.scatter([v for (i, v) in enumerate(logfc) if not sig[i]],
-               [v for (i, v) in enumerate(logpval) if not sig[i]],
-               color=c[0], marker='.', alpha=0.2, label='Non-significant')
+    sig_df = pd.DataFrame([(labels[i], logpval[i], logfc[i])
+                           for i, v in enumerate(sig) if v],
+                          columns=['label', 'logpval', 'logfc'])
+    non_sig_df = pd.DataFrame([(labels[i], logpval[i], logfc[i])
+                               for i, v in enumerate(sig) if not v],
+                              columns=['label', 'logpval', 'logfc'])
+
     # Plotting significant points
-    ax.scatter([v for (i, v) in enumerate(logfc) if sig[i]],
-               [v for (i, v) in enumerate(logpval) if sig[i]],
-               color=c[1], marker='.', alpha=0.3, label='Significant')
+    ax.scatter(sig_df['logfc'], sig_df['logpval'], color=c[1], marker='.',
+               alpha=0.3, label='Significant', zorder=2.5)
+
+    # Plotting non-significant points
+    ax.scatter(non_sig_df['logfc'], non_sig_df['logpval'], color=c[0],
+               marker='.', alpha=0.3, label='Non-significant', zorder=2.5)
+
+    if labels is not None:
+        if sum(sig) > maxlabels:
+            sig_df['rank'] = sig_df['logpval'] * abs(sig_df['logfc'])
+            sig_df.sort_values('rank', ascending=False, inplace=True)
+            sig_df = sig_df.iloc[:maxlabels, :]
+
+        txts = [ax.text(r['logfc'], r['logpval'], r['label'], ha='center',
+                         va='center', size=5, zorder=5.5)
+                for i, r in sig_df.iterrows()]
+        adjust_text(txts, ax=ax, **adj_txt_kwargs)
 
     # Dashed lines denoting thresholds
     ax.plot([min_x - 1, max_x + 1], [thr_logpval, thr_logpval],
-            'k--', alpha=0.3)  # -log(p-val) threshold line
+            'k--', alpha=0.3, zorder=3.5)  # -log(p-val) threshold line
     ax.plot([-thr_logfc, -thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.3)  # log(fc) threshold line (left)
+            'k--', alpha=0.3, zorder=3.5)  # log(fc) threshold line (left)
     ax.plot([thr_logfc, thr_logfc], [-1, max_y + 1],
-            'k--', alpha=0.3)  # log(fc) threshold line (right)
+            'k--', alpha=0.3, zorder=3.5)  # log(fc) threshold line (right)
 
     ax.set_xlim(1.2 * min_x, 1.2 * max_x)
     ax.set_ylim(-0.25, 1.1 * max_y)
@@ -1156,7 +1194,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     ax.set_title(title)
 
     if legend:
-        ax.legend()
+        ax.legend(loc=0)
 
     fig.tight_layout()
 
