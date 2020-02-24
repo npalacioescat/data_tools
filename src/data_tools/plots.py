@@ -1239,7 +1239,7 @@ def get_rel_pos_circ(pt, r=1):  # NOTE: Move to spatial module?
     return r * np.cos(a), r * np.sin(a)
 
 
-def bezier_quad(pa, pb, pc=[0, 0], res=1e2):  # NOTE: Move to top level?
+def bezier_quad(pa, pb, pc=[0, 0], res=100):  # NOTE: Move to top level?
     '''
     Creates a Bézier quadratic curve between two points.
 
