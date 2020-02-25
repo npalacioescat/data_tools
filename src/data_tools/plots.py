@@ -60,7 +60,8 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
               figsize=None):
     '''
     Generates a chord plot from a collection of nodes and edges (and
-    their sizes).
+    their sizes). **NOTE**: Make sure that all nodes are involved in at
+    least one edge (with size > 0).
 
     * Arguments:
         - *nodes* [dict]: Can also be [pandas.DataFrame] or
@@ -156,11 +157,11 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
     nodes['rel_size'] = [s / nodes['size'].sum() for s in nodes['size']]
     # Edge sizes for each node (involved in them) - list
     nodes['e_sizes'] = [edges.loc[(edges.source == n) | (edges.target == n),
-                                  'size'].values for n in nodes.index]
+                                  'size'].values for n in nodes.index.values]
     # Total edge sizes involving a node - int/float
     nodes['tot_e_size'] = [sum(x) for x in nodes['e_sizes']]
     # Relative edge sizes (wrt. total edges involving that node) - list
-    nodes['rel_e_sizes'] = nodes['e_sizes'] / nodes['tot_e_size']
+    nodes['rel_e_sizes'] = nodes['e_sizes'].values / nodes['tot_e_size'].values
     # Global relative edge sizes (relative edge * relative node size) - list
     nodes['glob_e_sizes'] = nodes['rel_e_sizes'] * nodes['rel_size']
 
