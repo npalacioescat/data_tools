@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Feb 24, 2020}
+\date{Feb 25, 2020}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1538,7 +1538,8 @@ green (highest).
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{alpha=0.2}, \emph{plot\_lines=False}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a chord plot from a collection of nodes and edges (and
-their sizes).
+their sizes). \sphinxstylestrong{NOTE}: Make sure that all nodes are involved in at
+least one edge (with size \textgreater{} 0).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}

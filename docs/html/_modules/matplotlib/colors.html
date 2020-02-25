@@ -192,7 +192,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    c : Matplotlib color</span>
+<span class="sd">    c : Matplotlib color or ``np.ma.masked``</span>
 
 <span class="sd">    alpha : scalar, optional</span>
 <span class="sd">        If *alpha* is not ``None``, it forces the alpha value, except if *c* is</span>
@@ -229,6 +229,8 @@
 <span class="sd">    ``&quot;none&quot;`` (case-insensitive), which always maps to ``(0, 0, 0, 0)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">orig_c</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
@@ -294,12 +296,16 @@
 
 <span class="sd">    If *alpha* is not ``None``, it forces the alpha value.  If *c* is</span>
 <span class="sd">    ``&quot;none&quot;`` (case-insensitive) or an empty list, an empty array is returned.</span>
+<span class="sd">    If *c* is a masked array, an ndarray is returned with a (0, 0, 0, 0)</span>
+<span class="sd">    row for each masked value or row in *c*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Special-case inputs that are already arrays, for performance.  (If the</span>
     <span class="c1"># array has the wrong kind or shape, raise the error during one-at-a-time</span>
     <span class="c1"># conversion.)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="ow">in</span> <span class="s2">&quot;if&quot;</span>
             <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">is_masked</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">))])</span>
             <span class="n">result</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span> <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mf">1.</span>
@@ -307,6 +313,8 @@
             <span class="n">result</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">alpha</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">result</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;RGBA values should be within 0-1 range&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span>
@@ -374,24 +382,60 @@
 
 
 <span class="k">def</span> <span class="nf">makeMappingArray</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create an *N* -element 1-d lookup table</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create an *N* -element 1-d lookup table.</span>
 
-<span class="sd">    *data* represented by a list of x,y0,y1 mapping correspondences.</span>
-<span class="sd">    Each element in this list represents how a value between 0 and 1</span>
-<span class="sd">    (inclusive) represented by x is mapped to a corresponding value</span>
-<span class="sd">    between 0 and 1 (inclusive). The two values of y are to allow</span>
-<span class="sd">    for discontinuous mapping functions (say as might be found in a</span>
-<span class="sd">    sawtooth) where y0 represents the value of y for values of x</span>
-<span class="sd">    &lt;= to that given, and y1 is the value to be used for x &gt; than</span>
-<span class="sd">    that given). The list must start with x=0, end with x=1, and</span>
-<span class="sd">    all values of x must be in increasing order. Values between</span>
-<span class="sd">    the given mapping points are determined by simple linear interpolation.</span>
+<span class="sd">    This assumes a mapping :math:`f : [0, 1] \rightarrow [0, 1]`. The returned</span>
+<span class="sd">    data is an array of N values :math:`y = f(x)` where x is sampled from</span>
+<span class="sd">    [0, 1].</span>
 
-<span class="sd">    Alternatively, data can be a function mapping values between 0 - 1</span>
-<span class="sd">    to 0 - 1.</span>
+<span class="sd">    By default (*gamma* = 1) x is equidistantly sampled from [0, 1]. The</span>
+<span class="sd">    *gamma* correction factor :math:`\gamma` distorts this equidistant</span>
+<span class="sd">    sampling by :math:`x \rightarrow x^\gamma`.</span>
 
-<span class="sd">    The function returns an array &quot;result&quot; where ``result[x*(N-1)]``</span>
-<span class="sd">    gives the closest value for values of x between 0 and 1.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : int</span>
+<span class="sd">        The number of elements of the created lookup table.</span>
+<span class="sd">        This must be N &gt;= 1.</span>
+<span class="sd">    data : Mx3 array-like or callable</span>
+<span class="sd">        Defines the mapping :math:`f`.</span>
+
+<span class="sd">        If a Mx3 array-like, the rows define values (x, y0, y1). The x values</span>
+<span class="sd">        must start with x=0, end with x=1, and all x values be in increasing</span>
+<span class="sd">        order.</span>
+
+<span class="sd">        A value between :math:`x_i` and :math:`x_{i+1}` is mapped to the range</span>
+<span class="sd">        :math:`y^1_{i-1} \ldots y^0_i` by linear interpolation.</span>
+
+<span class="sd">        For the simple case of a y-continuous mapping, y0 and y1 are identical.</span>
+
+<span class="sd">        The two values of y are to allow for discontinuous mapping functions.</span>
+<span class="sd">        E.g. a sawtooth with a period of 0.2 and an amplitude of 1 would be::</span>
+
+<span class="sd">            [(0, 1, 0), (0.2, 1, 0), (0.4, 1, 0), ..., [(1, 1, 0)]</span>
+
+<span class="sd">        In the special case of ``N == 1``, by convention the returned value</span>
+<span class="sd">        is y0 for x == 1.</span>
+
+<span class="sd">        If *data* is a callable, it must accept and return numpy arrays::</span>
+
+<span class="sd">           data(x : ndarray) -&gt; ndarray</span>
+
+<span class="sd">        and map values between 0 - 1 to 0 - 1.</span>
+<span class="sd">    gamma : float</span>
+<span class="sd">        Gamma correction factor for input distribution x of the mapping.</span>
+
+<span class="sd">        See also https://en.wikipedia.org/wiki/Gamma_correction.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    lut : array</span>
+<span class="sd">        The lookup table where ``lut[x * (N-1)]`` gives the closest value</span>
+<span class="sd">        for values of x between 0 and 1.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function is internally used for `.LinearSegmentedColormaps`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -417,16 +461,20 @@
     <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data mapping points must have x in increasing order&quot;</span><span class="p">)</span>
     <span class="c1"># begin generation of lookup table</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">xind</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">**</span> <span class="n">gamma</span>
-    <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xind</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># convention: use the y = f(x=1) value for a 1-element lookup table</span>
+        <span class="n">lut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">xind</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">**</span> <span class="n">gamma</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xind</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">xind</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="n">lut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
-        <span class="p">[</span><span class="n">y1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
-        <span class="n">distance</span> <span class="o">*</span> <span class="p">(</span><span class="n">y0</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">y1</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">y1</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="p">[</span><span class="n">y0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
-    <span class="p">])</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">xind</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">lut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">y1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="n">distance</span> <span class="o">*</span> <span class="p">(</span><span class="n">y0</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">-</span> <span class="n">y1</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">y1</span><span class="p">[</span><span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">y0</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+        <span class="p">])</span>
     <span class="c1"># ensure that the lut is confined to values between 0 and 1 by clipping it</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lut</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
@@ -1611,6 +1659,7 @@
 <span class="sd">            full illumination or shadow (and clipping any values that move</span>
 <span class="sd">            beyond 0 or 1). Note that this is not visually or mathematically</span>
 <span class="sd">            the same as vertical exaggeration.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        intensity : ndarray</span>
@@ -1677,7 +1726,7 @@
             <span class="c1"># visually appears better than a &quot;hard&quot; clip.</span>
             <span class="n">intensity</span> <span class="o">-=</span> <span class="n">imin</span>
             <span class="n">intensity</span> <span class="o">/=</span> <span class="p">(</span><span class="n">imax</span> <span class="o">-</span> <span class="n">imin</span><span class="p">)</span>
-        <span class="n">intensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">intensity</span><span class="p">)</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">intensity</span>
 

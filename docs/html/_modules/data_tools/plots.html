@@ -100,7 +100,8 @@
               <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a chord plot from a collection of nodes and edges (and</span>
-<span class="sd">    their sizes).</span>
+<span class="sd">    their sizes). **NOTE**: Make sure that all nodes are involved in at</span>
+<span class="sd">    least one edge (with size &gt; 0).</span>
 
 <span class="sd">    * Arguments:</span>
 <span class="sd">        - *nodes* [dict]: Can also be [pandas.DataFrame] or</span>
@@ -196,11 +197,11 @@
     <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;rel_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]]</span>
     <span class="c1"># Edge sizes for each node (involved in them) - list</span>
     <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;e_sizes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">edges</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">n</span><span class="p">),</span>
-                                  <span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+                                  <span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
     <span class="c1"># Total edge sizes involving a node - int/float</span>
     <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;tot_e_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;e_sizes&#39;</span><span class="p">]]</span>
     <span class="c1"># Relative edge sizes (wrt. total edges involving that node) - list</span>
-    <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;rel_e_sizes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;e_sizes&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;tot_e_size&#39;</span><span class="p">]</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;rel_e_sizes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;e_sizes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;tot_e_size&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
     <span class="c1"># Global relative edge sizes (relative edge * relative node size) - list</span>
     <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;glob_e_sizes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;rel_e_sizes&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">nodes</span><span class="p">[</span><span class="s1">&#39;rel_size&#39;</span><span class="p">]</span>
 
