@@ -359,8 +359,6 @@ def coef_mat_hetero(K, dt, dx, bcs='dirichlet'):
 ###############################################################################
 
 
-
-
 #def offset_bdiag(blocks, offset):
 #    aux = np.empty((0, offset), int)
 #

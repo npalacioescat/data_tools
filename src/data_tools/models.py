@@ -421,7 +421,7 @@ class Linear(object):
         filtered = np.array([p for p in np.array([x, y]).T
                              if sum(~np.isnan(p)) == 2]).T
 
-        if filtered.shape[0] == 0  or filtered.shape[1] < 2:
+        if filtered.shape[0] == 0 or filtered.shape[1] < 2:
             x_ = np.nan
             y_ = np.nan
 
@@ -430,7 +430,6 @@ class Linear(object):
         else:
             x_, y_ = filtered
 
-        #assert len(x_) > 1, 'After removing NaNs, not enough data points'
         self.x = x_
         self.y = y_
 
