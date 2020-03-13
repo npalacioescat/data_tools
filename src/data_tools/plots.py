@@ -719,7 +719,7 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
 
     # Gene-set scores for each individual method
     for i, col in enumerate(df.columns[2:]):
-        ax.scatter(df[col], y, c=colors[i], alpha=.5, label=col)
+        ax.scatter(df[col], y, c=[colors[i]] * len(df), alpha=.5, label=col)
 
     # Box plot of the gene-sets
     if boxes:
@@ -1075,7 +1075,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             labels=None, maxlabels=25, legend=True, title=None, filename=None,
-            figsize=None, adj_txt_kwargs={}):
+            figsize=None, txt_size=7, adj_txt_kwargs={}):
     '''
     Generates a volcano plot from the differential expression data
     provided.
@@ -1116,6 +1116,8 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
         - *figsize* [tuple]: Optional, ``None`` by default (default
           matplotlib size). Any iterable containing two values denoting
           the figure size (in inches) as [width, height].
+        - *txt_size* [int]; Optional, ``7`` by default. The size of the
+          labels (if applicable).
         - *adj_txt_kwargs* [dict]: Optional, ``{}`` by default. The key,
           value pairs of keyword arguments to pass to adjust_text
           function (see `adjustText reference manual`_ for more
@@ -1174,7 +1176,7 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             sig_df = sig_df.iloc[:maxlabels, :]
 
         txts = [ax.text(r['logfc'], r['logpval'], r['label'], ha='center',
-                        va='center', size=5, zorder=5.5)
+                        va='center', size=txt_size, zorder=5.5)
                 for i, r in sig_df.iterrows()]
         adjust_text(txts, ax=ax, **adj_txt_kwargs)
 
