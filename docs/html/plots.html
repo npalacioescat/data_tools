@@ -351,7 +351,7 @@ phase portrait of the system, unless <em>filename</em> is provided.</p></li>
 
 <dl class="function">
 <dt id="data_tools.plots.piano_consensus">
-<code class="descclassname">data_tools.plots.</code><code class="descname">piano_consensus</code><span class="sig-paren">(</span><em>df</em>, <em>nchar=40</em>, <em>boxes=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#piano_consensus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.piano_consensus" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">piano_consensus</code><span class="sig-paren">(</span><em>df</em>, <em>nchar=40</em>, <em>boxes=True</em>, <em>top=None</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#piano_consensus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.piano_consensus" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a GSEA consensus score plot like R package <code class="docutils literal notranslate"><span class="pre">piano</span></code>’s
 <code class="docutils literal notranslate"><span class="pre">consensusScores</span></code> function, but prettier.
 The main input is assumed to be a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> whose data
@@ -370,6 +370,9 @@ by the individual methods (e.g.: <code class="docutils literal notranslate"><spa
 characters of the gene-set labels of the plot.</p></li>
 <li><p><em>boxes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Determines
 whether to show the boxplots of the gene-sets or not.</p></li>
+<li><p><em>top</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Sets the number of
+maximum enriched gene sets to plot (starting from the top
+ranked).</p></li>
 <li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
 title.</p></li>
 <li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
@@ -576,7 +579,7 @@ unless <em>filename</em> is provided.</p></li>
 
 <dl class="function">
 <dt id="data_tools.plots.volcano">
-<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>labels=None</em>, <em>maxlabels=25</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>adj_txt_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>labels=None</em>, <em>maxlabels=25</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>txt_size=7</em>, <em>adj_txt_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a volcano plot from the differential expression data
 provided.</p>
 <ul class="simple">
@@ -617,6 +620,8 @@ Format must be specified (e.g.: .png, .pdf, etc)</p></li>
 <li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as [width, height].</p></li>
+<li><p><em>txt_size</em> [int]; Optional, <code class="docutils literal notranslate"><span class="pre">7</span></code> by default. The size of the
+labels (if applicable).</p></li>
 <li><p><em>adj_txt_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. The key,
 value pairs of keyword arguments to pass to adjust_text
 function (see <a class="reference external" href="https://adjusttext.readthedocs.io/en/latest/">adjustText reference manual</a> for more

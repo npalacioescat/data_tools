@@ -71,7 +71,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Mar 13, 2020}
+\date{Apr 16, 2020}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1924,7 +1924,7 @@ Then:
 \index{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{top=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
 Generates a GSEA consensus score plot like R package \sphinxcode{\sphinxupquote{piano}}’s
 \sphinxcode{\sphinxupquote{consensusScores}} function, but prettier.
 The main input is assumed to be a \sphinxcode{\sphinxupquote{pandas.DataFrame}} whose data
@@ -1948,6 +1948,11 @@ characters of the gene-set labels of the plot.
 \item {} 
 \sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Determines
 whether to show the boxplots of the gene-sets or not.
+
+\item {} 
+\sphinxstyleemphasis{top} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Sets the number of
+maximum enriched gene sets to plot (starting from the top
+ranked).
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -2234,7 +2239,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{labels=None}, \emph{maxlabels=25}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{adj\_txt\_kwargs=\{\}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{labels=None}, \emph{maxlabels=25}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{txt\_size=7}, \emph{adj\_txt\_kwargs=\{\}}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
@@ -2296,6 +2301,10 @@ Format must be specified (e.g.: .png, .pdf, etc)
 \sphinxstyleemphasis{figsize} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (default
 matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
+
+\item {} 
+\sphinxstyleemphasis{txt\_size} {[}int{]}; Optional, \sphinxcode{\sphinxupquote{7}} by default. The size of the
+labels (if applicable).
 
 \item {} 
 \sphinxstyleemphasis{adj\_txt\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. The key,
