@@ -667,8 +667,8 @@ def phase_portrait(f, x=(0, 1), y=(0, 1), ics=None, dt=0.1, title=None,
         return fig
 
 
-def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
-                    figsize=None):
+def piano_consensus(df, nchar=40, boxes=True, top=None, title=None,
+                    filename=None, figsize=None):
     '''
     Generates a GSEA consensus score plot like R package ``piano``'s
     ``consensusScores`` function, but prettier.
@@ -687,6 +687,9 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
           characters of the gene-set labels of the plot.
         - *boxes* [bool]: Optional, ``True`` by default. Determines
           whether to show the boxplots of the gene-sets or not.
+        - *top* [int]: Optional, ``None`` by default. Sets the number of
+          maximum enriched gene sets to plot (starting from the top
+          ranked).
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -712,6 +715,9 @@ def piano_consensus(df, nchar=40, boxes=True, title=None, filename=None,
     # List of equidistant colors according to a colormap
     cmap = matplotlib.cm.get_cmap('rainbow')
     colors = list(map(cmap, np.linspace(1, 0, len(df.columns[2:]))))
+
+    if top:
+        df = df.iloc[:top, :]
 
     y = list(range(len(df)))[::-1]
 
