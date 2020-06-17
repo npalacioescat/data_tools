@@ -1,9 +1,11 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>data_tools.iterables &#8212; data_tools 0.0.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -55,23 +57,26 @@
 <dd><p>Returns the bit operation OR between two bit-strings <em>a</em> and <em>b</em>.
 <strong>NOTE:</strong> <em>a</em> and <em>b</em> must have the same size.</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>a</em> [tuple]: Or any iterable type.</p></li>
-<li><p><em>b</em> [tuple]: Or any iterable type.</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>a</em> [tuple]: Or any iterable type.</li>
+<li><em>b</em> [tuple]: Or any iterable type.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[tuple]: OR operation between <em>a</em> and <em>b</em> element-wise.</p></li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[tuple]: OR operation between <em>a</em> and <em>b</em> element-wise.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bit_or</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="go">(1, 0, 1)</span>
 </pre></div>
@@ -88,26 +93,29 @@
 <dd><p>For a given list <em>L</em>, returns another list of <em>n</em>-sized chunks from
 it (in the same order).</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>L</em> [list]: The list to be sliced into sublists of the
-definded size.</p></li>
-<li><p><em>n</em> [int]: The size of the chunks.</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>L</em> [list]: The list to be sliced into sublists of the
+definded size.</li>
+<li><em>n</em> [int]: The size of the chunks.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[list]: List of <em>n</em>-sized chunks from <em>L</em>. <strong>NOTE:</strong> If the
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[list]: List of <em>n</em>-sized chunks from <em>L</em>. <strong>NOTE:</strong> If the
 number of items in <em>L</em> is not divisible by <em>n</em>, the last
-element returned will have an inferior size.</p></li>
+element returned will have an inferior size.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chunk_this</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">[[0, 1], [2, 3], [4, 5]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chunk_this</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -126,22 +134,25 @@ element returned will have an inferior size.</p></li>
 <dd><p>Finds and returns the subset of vectors whose sum is minimum from a
 given set <em>A</em>.</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>A</em> [set]: Set of vectors ([tuple] or any iterable).</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>A</em> [set]: Set of vectors ([tuple] or any iterable).</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[set]: Subset of vectors in <em>A</em> whose sum is minimum.</p></li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[set]: Subset of vectors in <em>A</em> whose sum is minimum.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">find_min</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="go">set([(0, 1, 0), (1, 0, 0)])</span>
 </pre></div>
@@ -158,26 +169,29 @@ given set <em>A</em>.</p>
 <dd><p>Checks if a element <em>x</em> is present in all collections contained in a
 list <em>N</em>.</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>x</em> [object]: Any type of object, it is assumed to be the same
-type as the objects contained in the elements of <em>N</em>.</p></li>
-<li><p><em>N</em> [list]: Or any iterable type containing a collection of
-other iterables containing the objects.</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>x</em> [object]: Any type of object, it is assumed to be the same
+type as the objects contained in the elements of <em>N</em>.</li>
+<li><em>N</em> [list]: Or any iterable type containing a collection of
+other iterables containing the objects.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all elements of <em>N</em>,
-<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p></li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[bool]: <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>x</em> is found in all elements of <em>N</em>,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)},</span> <span class="c1"># &lt;- set A</span>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)},</span> <span class="c1"># &lt;- set A</span>
 <span class="gp">... </span>     <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}]</span> <span class="c1"># &lt;- set B</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">in_all</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
@@ -213,23 +227,25 @@ options available:</p>
 <div class="math notranslate nohighlight">
 \[s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\]</div>
 <ul class="simple">
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul>
-<li><p><em>a</em> [set]: One of the two sets to compute the similarity
-index.</p></li>
-<li><p><em>b</em> [set]: The other set to compute the similarity index.</p></li>
-<li><p><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><em>a</em> [set]: One of the two sets to compute the similarity
+index.</li>
+<li><em>b</em> [set]: The other set to compute the similarity index.</li>
+<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
 computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
-for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson.</p></li>
+for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul>
-<li><p>[float]: The corresponding similarity index/coefficient
-according to the specified <em>mode</em>.</p></li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last">
+<li>[float]: The corresponding similarity index/coefficient
+according to the specified <em>mode</em>.</li>
 </ul>
 </dd>
 </dl>
@@ -244,24 +260,27 @@ according to the specified <em>mode</em>.</p></li>
 sets on a list <em>N</em> and returns all subsets. This is, the subsets
 that would represent each intersecting area on a Venn diagram.</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>N</em> [list]: Or any iterable type containing [set] objects.</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[dict]: Collection of subsets according to the logical
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[dict]: Collection of subsets according to the logical
 relations between the sets in <em>N</em>. The keys are binary codes
-that denote the logical relation (see examples below).</p></li>
+that denote the logical relation (see examples below).</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Examples:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">subsets</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="go">{&#39;11&#39;: set([2]), &#39;10&#39;: set([0, 1]), &#39;01&#39;: set([3, 4])}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span>
@@ -282,24 +301,27 @@ that denote the logical relation (see examples below).</p></li>
 <dd><p>Unzips the keys and values for any number of dictionaries passed as
 arguments (see below for examples).</p>
 <ul>
-<li><dl class="simple">
-<dt>Arguments:</dt><dd><ul class="simple">
-<li><p><em>*dicts</em> [dict]: Dictionaries from which key/value pairs are
-to be unzipped.</p></li>
+<li><dl class="first docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li><em>*dicts</em> [dict]: Dictionaries from which key/value pairs are
+to be unzipped.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><ul class="simple">
-<li><p>[list]: Two-element list contianing all keys and all values
-respectively from the dictionaries in <em>*dicts</em>.</p></li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>[list]: Two-element list contianing all keys and all values
+respectively from the dictionaries in <em>*dicts</em>.</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl>
-<dt>Example:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;x_a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y_a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+<li><dl class="first docutils">
+<dt>Example:</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;x_a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y_a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s1">&#39;x_b&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y_b&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">unzip_dicts</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="go">[(&#39;y_a&#39;, &#39;x_a&#39;, &#39;x_b&#39;, &#39;y_b&#39;), (3, 2, 1, -1)]</span>
@@ -347,6 +369,8 @@ respectively from the dictionaries in <em>*dicts</em>.</p></li>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -375,7 +399,7 @@ respectively from the dictionaries in <em>*dicts</em>.</p></li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>
