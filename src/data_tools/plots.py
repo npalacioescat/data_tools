@@ -1160,10 +1160,10 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     sig = [p >= thr_logpval and f >= thr_logfc
            for (p, f) in zip(logpval, abs(logfc))]
 
-    sig_df = pd.DataFrame([(labels[i], logpval[i], logfc[i])
+    sig_df = pd.DataFrame([(labels[i] if labels else None, logpval[i], logfc[i])
                            for i, v in enumerate(sig) if v],
                           columns=['label', 'logpval', 'logfc'])
-    non_sig_df = pd.DataFrame([(labels[i], logpval[i], logfc[i])
+    non_sig_df = pd.DataFrame([(labels[i] if labels else None, logpval[i], logfc[i])
                                for i, v in enumerate(sig) if not v],
                               columns=['label', 'logpval', 'logfc'])
 
