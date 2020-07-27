@@ -325,6 +325,9 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     .. _`scipy.cluster.hierarchy.linkage`:
         https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
         py.cluster.hierarchy.linkage.html
+    .. _`matplotlib.axes.Axes.imshow`:
+        https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.i\
+        mshow.html
     .. _`scipy.cluster.hierarchy.dendrogram`:
         https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/sci\
         py.cluster.hierarchy.dendrogram.html

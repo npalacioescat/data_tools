@@ -1610,7 +1610,7 @@ chord plot, unless \sphinxstyleemphasis{filename} is provided.
 \index{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.cluster_hmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cluster\_hmap}}}{\emph{\DUrole{n}{matrix}}, \emph{\DUrole{n}{xlabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{ylabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}viridis\textquotesingle{}}}, \emph{\DUrole{n}{link\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{dendo\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cluster_hmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cluster\_hmap}}}{\emph{\DUrole{n}{matrix}}, \emph{\DUrole{n}{xlabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{ylabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}viridis\textquotesingle{}}}, \emph{\DUrole{n}{link\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{hmap\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{dendo\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
 Generates a heatmap with hierarchical clustering dendrograms
 attached. The linkage matrix and dendrogram are computed using the
 module \sphinxcode{\sphinxupquote{scipy.cluster.hierarchy}}, you may check the
@@ -1656,6 +1656,11 @@ reference manual}.
 \sphinxstyleemphasis{link\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
 containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
 \sphinxhref{https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html}{scipy.cluster.hierarchy.linkage}.
+
+\item {} 
+\sphinxstyleemphasis{hmap\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
+containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
+{\color{red}\bfseries{}\textasciigrave{}matplotlib.axes.Axes.imshow\textasciigrave{}\_}.
 
 \item {} 
 \sphinxstyleemphasis{dendo\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
