@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>data_tools.diffusion &#8212; data_tools 0.0.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +36,8 @@
         <li class="right" >
           <a href="databases.html" title="data_tools.databases"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">data_tools.diffusion</a></li> 
       </ul>
     </div>  
 
@@ -155,55 +155,53 @@ algebra solvers by providing the current diffusing field state
 (flattened) and the coefficient matrix on each time-step (or simple
 matrix multiplication for time explicit methods).</p>
 <ul class="simple">
-<li>Simplest options are either <code class="docutils literal notranslate"><span class="pre">numpy.linalg.solve()</span></code> or
-<code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code> (both not very fast).</li>
-<li>If the coefficient matrix is positive-definite (it is most of the
+<li><p>Simplest options are either <code class="docutils literal notranslate"><span class="pre">numpy.linalg.solve()</span></code> or
+<code class="docutils literal notranslate"><span class="pre">scipy.linalg.solve()</span></code> (both not very fast).</p></li>
+<li><p>If the coefficient matrix is positive-definite (it is most of the
 times, but can be double-checked, specially if errors arise) and
 symmetric, a good option is Choleski’s factorization. This is already
 implemented in <code class="docutils literal notranslate"><span class="pre">scipy.linalg.cholesky()</span></code> which factorizes the
 coefficient matrix and that can be passed to the
-<code class="docutils literal notranslate"><span class="pre">scipy.linalg.cho_solve()</span></code> which is way faster than the option above.</li>
-<li>Another option (but don’t tell anyone) is to invert the coefficient
+<code class="docutils literal notranslate"><span class="pre">scipy.linalg.cho_solve()</span></code> which is way faster than the option above.</p></li>
+<li><p>Another option (but don’t tell anyone) is to invert the coefficient
 matrix and just solve the equation with a matrix multiplication. This
 is way faster but your coefficient matrix has to be invertible. If
-the determinant is close to zero, may cause numerical instability.</li>
+the determinant is close to zero, may cause numerical instability.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.diffusion.build_mat">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">build_mat</code><span class="sig-paren">(</span><em>cent</em>, <em>neigh</em>, <em>dims</em>, <em>bcs='dirichlet'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#build_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.build_mat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.diffusion.</code><code class="sig-name descname">build_mat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cent</span></em>, <em class="sig-param"><span class="n">neigh</span></em>, <em class="sig-param"><span class="n">dims</span></em>, <em class="sig-param"><span class="n">bcs</span><span class="o">=</span><span class="default_value">'dirichlet'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#build_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.build_mat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a (block) tri-diagonal coefficient matrix to solve a
 n-dimensional diffusion problem as a linear algebraic system.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>cent</em> [float]: The coefficient corresponding to the central
-element of the stencil.</li>
-<li><em>neigh</em> [float]: The coefficient corresponding to the direct
-neighbors of the central element in the stencil.</li>
-<li><em>dims</em> [list]: Or [tuple], contains the size of finite
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>cent</em> [float]: The coefficient corresponding to the central
+element of the stencil.</p></li>
+<li><p><em>neigh</em> [float]: The coefficient corresponding to the direct
+neighbors of the central element in the stencil.</p></li>
+<li><p><em>dims</em> [list]: Or [tuple], contains the size of finite
 elements [int] for each dimension. Note that the order is
 first dimension first (e.g.: <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>) as opposed to
 numpy’s indexing order (last dimension first, e.g.:
-<code class="docutils literal notranslate"><span class="pre">[z,</span> <span class="pre">y,</span> <span class="pre">x]</span></code>).</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
+<code class="docutils literal notranslate"><span class="pre">[z,</span> <span class="pre">y,</span> <span class="pre">x]</span></code>).</p></li>
+<li><p><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
 the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation.</li>
+not hold mass conservation.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
 Matrix will be square with size equal to the product of all
-dimension sizes.</li>
+dimension sizes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -211,34 +209,32 @@ dimension sizes.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.diffusion.coef_mat_hetero">
-<code class="descclassname">data_tools.diffusion.</code><code class="descname">coef_mat_hetero</code><span class="sig-paren">(</span><em>K</em>, <em>dt</em>, <em>dx</em>, <em>bcs='dirichlet'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#coef_mat_hetero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.coef_mat_hetero" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.diffusion.</code><code class="sig-name descname">coef_mat_hetero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">dx</span></em>, <em class="sig-param"><span class="n">bcs</span><span class="o">=</span><span class="default_value">'dirichlet'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/diffusion.html#coef_mat_hetero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.diffusion.coef_mat_hetero" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a block tri-diagonal coefficient matrix for a n-dimensional
 diffusion problem with heterogeneous diffusion coefficients.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>K</em> [numpy.ndarray]: The diffusion coefficients matrix.</li>
-<li><em>dt</em> [float]: The discrete time step.</li>
-<li><em>dx</em> [float]: The discrete spatial step. It is assumed that
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>K</em> [numpy.ndarray]: The diffusion coefficients matrix.</p></li>
+<li><p><em>dt</em> [float]: The discrete time step.</p></li>
+<li><p><em>dx</em> [float]: The discrete spatial step. It is assumed that
 the different dimension are equally discretized (e.g.:
-<span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span>).</li>
-<li><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
+<span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span>).</p></li>
+<li><p><em>bcs</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> by default. Determines
 the boundary conditions. Available options are <code class="docutils literal notranslate"><span class="pre">'periodic'</span></code>,
 <code class="docutils literal notranslate"><span class="pre">'dirichlet'</span></code> or <code class="docutils literal notranslate"><span class="pre">'neumann'</span></code>. Note that Dirichlet BCs do
-not hold mass conservation. Periodic BCs are not perfect.</li>
+not hold mass conservation. Periodic BCs are not perfect.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[numpy.ndarray]: The (block) tri-diagonal coefficient matrix.
 Matrix will be square with size equal to the product of all
-dimension sizes.</li>
+dimension sizes.</p></li>
 </ul>
 </dd>
 </dl>
@@ -250,6 +246,7 @@ dimension sizes.</li>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -283,17 +280,15 @@ dimension sizes.</li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -313,12 +308,13 @@ dimension sizes.</li>
         <li class="right" >
           <a href="databases.html" title="data_tools.databases"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">data_tools.diffusion</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
     </div>
   </body>
 </html>

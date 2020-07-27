@@ -1,7 +1,7 @@
 This is makeindex, version 2.15 [TeX Live 2019] (kpathsea + Thai support).
 Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file data_tools.idx....done (54 entries accepted, 0 rejected).
-Sorting entries....done (322 comparisons).
-Generating output file data_tools.ind....done (110 lines written, 0 warnings).
+Scanning input file data_tools.idx....done (62 entries accepted, 0 rejected).
+Sorting entries....done (382 comparisons).
+Generating output file data_tools.ind....done (130 lines written, 0 warnings).
 Output written in data_tools.ind.
 Transcript written in data_tools.ilg.

@@ -9,24 +9,55 @@
 \usepackage[utf8]{inputenc}
 \ifdefined\DeclareUnicodeCharacter
 % support both utf8 and utf8x syntaxes
-\edef\sphinxdqmaybe{\ifdefined\DeclareUnicodeCharacterAsOptional\string"\fi}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe00A0}{\nobreakspace}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe2500}{\sphinxunichar{2500}}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe2502}{\sphinxunichar{2502}}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe2514}{\sphinxunichar{2514}}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe251C}{\sphinxunichar{251C}}
-  \DeclareUnicodeCharacter{\sphinxdqmaybe2572}{\textbackslash}
+  \ifdefined\DeclareUnicodeCharacterAsOptional
+    \def\sphinxDUC#1{\DeclareUnicodeCharacter{"#1}}
+  \else
+    \let\sphinxDUC\DeclareUnicodeCharacter
+  \fi
+  \sphinxDUC{00A0}{\nobreakspace}
+  \sphinxDUC{2500}{\sphinxunichar{2500}}
+  \sphinxDUC{2502}{\sphinxunichar{2502}}
+  \sphinxDUC{2514}{\sphinxunichar{2514}}
+  \sphinxDUC{251C}{\sphinxunichar{251C}}
+  \sphinxDUC{2572}{\textbackslash}
 \fi
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{babel}
+
+
+
 \usepackage{times}
+\expandafter\ifx\csname T@LGR\endcsname\relax
+\else
+% LGR was declared as font encoding
+  \substitutefont{LGR}{\rmdefault}{cmr}
+  \substitutefont{LGR}{\sfdefault}{cmss}
+  \substitutefont{LGR}{\ttdefault}{cmtt}
+\fi
+\expandafter\ifx\csname T@X2\endcsname\relax
+  \expandafter\ifx\csname T@T2A\endcsname\relax
+  \else
+  % T2A was declared as font encoding
+    \substitutefont{T2A}{\rmdefault}{cmr}
+    \substitutefont{T2A}{\sfdefault}{cmss}
+    \substitutefont{T2A}{\ttdefault}{cmtt}
+  \fi
+\else
+% X2 was declared as font encoding
+  \substitutefont{X2}{\rmdefault}{cmr}
+  \substitutefont{X2}{\sfdefault}{cmss}
+  \substitutefont{X2}{\ttdefault}{cmtt}
+\fi
+
+
 \usepackage[Bjarne]{fncychap}
 \usepackage{sphinx}
 
 \fvset{fontsize=\small}
 \usepackage{geometry}
+
 
 % Include hyperref last.
 \usepackage{hyperref}
@@ -35,30 +66,14 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\figurename}{Fig.\@ }}
-\makeatletter
-\def\fnum@figure{\figurename\thefigure{}}
-\makeatother
-\addto\captionsenglish{\renewcommand{\tablename}{Table }}
-\makeatletter
-\def\fnum@table{\tablename\thetable{}}
-\makeatother
-\addto\captionsenglish{\renewcommand{\literalblockname}{Listing}}
 
-\addto\captionsenglish{\renewcommand{\literalblockcontinuedname}{continued from previous page}}
-\addto\captionsenglish{\renewcommand{\literalblockcontinuesname}{continues on next page}}
-\addto\captionsenglish{\renewcommand{\sphinxnonalphabeticalgroupname}{Non-alphabetical}}
-\addto\captionsenglish{\renewcommand{\sphinxsymbolsname}{Symbols}}
-\addto\captionsenglish{\renewcommand{\sphinxnumbersname}{Numbers}}
-
-\addto\extrasenglish{\def\pageautorefname{page}}
-
+\usepackage{sphinxmessages}
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
 
 \title{data\_tools Documentation}
-\date{Jun 17, 2020}
+\date{Jul 27, 2020}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -77,9 +92,9 @@
 Data tools: a collection of Python functions and classes designed to
 make data scientists’ life easier.
 
-Copyright (C) 2020 Nicolàs Palacio-Escat
+Copyright (C) 2020 Nicolàs Palacio\sphinxhyphen{}Escat
 
-Contact: \sphinxhref{mailto:nicolas.palacio@bioquant.uni-heidelberg.de}{nicolas.palacio@bioquant.uni-heidelberg.de}
+Contact: \sphinxhref{mailto:nicolas.palacio@bioquant.uni-heidelberg.de}{nicolas.palacio@bioquant.uni\sphinxhyphen{}heidelberg.de}
 
 
 \chapter{Disclaimer}
@@ -89,7 +104,7 @@ with new features. Contributions are very welcome (fork + pull request).
 If you find any bug or suggestion for upgrades, please use the
 \sphinxhref{https://github.com/Nic-Nic/data\_tools/issues}{issue system}.
 
-GNU-GLPv3:
+GNU\sphinxhyphen{}GLPv3:
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation.
@@ -119,7 +134,7 @@ If not, see \sphinxurl{http://www.gnu.org/licenses/}.
 \sphinxhref{https://www.scipy.org/}{SciPy}
 
 \item {} 
-\sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit-learn}
+\sphinxhref{http://scikit-learn.org/stable/index.html}{Scikit\sphinxhyphen{}learn}
 
 \item {} 
 \sphinxhref{https://github.com/jnothman/UpSetPlot}{UpSetPlot}
@@ -165,7 +180,7 @@ implemented.
 
 
 \chapter{Module reference}
-\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{data\_tools.databases (module)@\spxentry{data\_tools.databases}\spxextra{module}}
+\label{\detokenize{index:module-reference}}\phantomsection\label{\detokenize{databases:module-data_tools.databases}}\index{module@\spxentry{module}!data\_tools.databases@\spxentry{data\_tools.databases}}\index{data\_tools.databases@\spxentry{data\_tools.databases}!module@\spxentry{module}}
 
 \section{data\_tools.databases}
 \label{\detokenize{databases:data-tools-databases}}\label{\detokenize{databases::doc}}
@@ -176,9 +191,9 @@ Databases functions module.
 \label{\detokenize{databases:contents}}\index{kegg\_link() (in module data\_tools.databases)@\spxentry{kegg\_link()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{query}, \emph{target='pathway'}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_link}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_link}}}{\emph{\DUrole{n}{query}}, \emph{\DUrole{n}{target}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}pathway\textquotesingle{}}}}{}
 Queries a request to the KEGG database to find related entries using
-cross-references. A list of available database(s) and query examples
+cross\sphinxhyphen{}references. A list of available database(s) and query examples
 can be found in \sphinxurl{https://www.kegg.jp/kegg/rest/keggapi.html\#link}.
 \begin{itemize}
 \item {} \begin{description}
@@ -190,7 +205,7 @@ valid database identifiers or databases \sphinxstyleemphasis{per se} (see the li
 above).
 
 \item {} 
-\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'pathway'}} by default. Targeted
+\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}pathway\textquotesingle{}}} by default. Targeted
 database to which the query should be linked to. You can check
 other options available in the URL above.
 
@@ -201,7 +216,7 @@ other options available in the URL above.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}pandas.DataFrame{]}: Two-column table containing both the
+{[}pandas.DataFrame{]}: Two\sphinxhyphen{}column table containing both the
 input query identifiers and their linked ones.
 
 \end{itemize}
@@ -228,13 +243,13 @@ input query identifiers and their linked ones.
 \index{kegg\_pathway\_mapping() (in module data\_tools.databases)@\spxentry{kegg\_pathway\_mapping()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_pathway_mapping}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_pathway\_mapping}}}{\emph{df}, \emph{mapid}, \emph{filename=None}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.kegg_pathway_mapping}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{kegg\_pathway\_mapping}}}{\emph{\DUrole{n}{df}}, \emph{\DUrole{n}{mapid}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Makes a request to KEGG pathway mapping tool according to a given
 pathway ID (see \sphinxurl{https://www.kegg.jp/kegg/tool/map\_pathway2.html} for
 more information). The user must provide a query of IDs to be mapped
 with their corresponding background colors (and optionally also
 foreground colors). The result is downloaded in the current
-directory or a user-specified path.
+directory or a user\sphinxhyphen{}specified path.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -248,7 +263,7 @@ supported. Index and column names of dataframe are ignored.
 
 \item {} 
 \sphinxstyleemphasis{mapid} {[}str{]}: A valid KEGG pathway ID. It can be a general
-(e.g.: “mapXXXXX”) or organism-specific ID (e.g.: “hsaXXXXX”).
+(e.g.: “mapXXXXX”) or organism\sphinxhyphen{}specific ID (e.g.: “hsaXXXXX”).
 
 \item {} 
 \sphinxstyleemphasis{filename} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. This is, the
@@ -280,14 +295,14 @@ within the specified path/file name.
 \index{op\_kinase\_substrate() (in module data\_tools.databases)@\spxentry{op\_kinase\_substrate()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{organism='9606'}, \emph{gsymbols=False}, \emph{incl\_phosphatases=False}}{}
-Queries OmniPath to retrieve the kinase-substrate interactions for a
+\phantomsection\label{\detokenize{databases:data_tools.databases.op_kinase_substrate}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{op\_kinase\_substrate}}}{\emph{\DUrole{n}{organism}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}9606\textquotesingle{}}}, \emph{\DUrole{n}{gsymbols}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{incl\_phosphatases}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+Queries OmniPath to retrieve the kinase\sphinxhyphen{}substrate interactions for a
 given organism.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'9606'}} by default (Homo
+\sphinxstyleemphasis{organism} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}9606\textquotesingle{}}} by default (Homo
 sapiens). NCBI taxonomic identifier for the organism of
 interest.
 
@@ -308,8 +323,8 @@ not.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}pandas.DataFrame{]}: Table containing the enzyme-substrate
-(kinase/phosphatase-target) network of each phospho-site.
+{[}pandas.DataFrame{]}: Table containing the enzyme\sphinxhyphen{}substrate
+(kinase/phosphatase\sphinxhyphen{}target) network of each phospho\sphinxhyphen{}site.
 
 \end{itemize}
 
@@ -322,7 +337,7 @@ not.
 \index{up\_map() (in module data\_tools.databases)@\spxentry{up\_map()}\spxextra{in module data\_tools.databases}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{query}, \emph{source='ACC'}, \emph{target='GENENAME'}}{}
+\phantomsection\label{\detokenize{databases:data_tools.databases.up_map}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.databases.}}\sphinxbfcode{\sphinxupquote{up\_map}}}{\emph{\DUrole{n}{query}}, \emph{\DUrole{n}{source}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}ACC\textquotesingle{}}}, \emph{\DUrole{n}{target}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}GENENAME\textquotesingle{}}}}{}
 Queries a request to UniProt.org in order to map a given list of
 identifiers. You can check the options available of input/output
 identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
@@ -334,12 +349,12 @@ identifiers at \sphinxurl{https://www.uniprot.org/help/api\_idmapping}.
 identifiers to be queried as {[}str{]}.
 
 \item {} 
-\sphinxstyleemphasis{source} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'ACC'}} by default. This is,
+\sphinxstyleemphasis{source} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}ACC\textquotesingle{}}} by default. This is,
 UniProt accesion number. You can check other options available
 in the URL above.
 
 \item {} 
-\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'GENENAME'}} by default. You can
+\sphinxstyleemphasis{target} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}GENENAME\textquotesingle{}}} by default. You can
 check other options available in the URL above.
 
 \end{itemize}
@@ -349,7 +364,7 @@ check other options available in the URL above.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}pandas.DataFrame{]}: Two-column table containing both the
+{[}pandas.DataFrame{]}: Two\sphinxhyphen{}column table containing both the
 inputed identifiers and the mapping result of these. \sphinxstylestrong{NOTE:}
 The returned table may not have the same order as in
 \sphinxcode{\sphinxupquote{query}}. Also, if some ID could not be mapped, the size of
@@ -381,7 +396,7 @@ the returned table will differ from the length of \sphinxcode{\sphinxupquote{que
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{diffusion:module-data_tools.diffusion}}\index{data\_tools.diffusion (module)@\spxentry{data\_tools.diffusion}\spxextra{module}}
+\phantomsection\label{\detokenize{diffusion:module-data_tools.diffusion}}\index{module@\spxentry{module}!data\_tools.diffusion@\spxentry{data\_tools.diffusion}}\index{data\_tools.diffusion@\spxentry{data\_tools.diffusion}!module@\spxentry{module}}
 
 \section{data\_tools.diffusion}
 \label{\detokenize{diffusion:data-tools-diffusion}}\label{\detokenize{diffusion::doc}}
@@ -402,13 +417,13 @@ coefficient and \(\nabla^2\) is the Laplace operator
 
 Some numerical methods to solve this probelm will be explained in
 the following subsections. These are based in approximation of the
-derivatives by finite-differences. Therefore we define the
+derivatives by finite\sphinxhyphen{}differences. Therefore we define the
 discretization step sizes as \(\Delta t\) for the time derivative
 and \(\Delta x\), \(\Delta y\) and so on for first, second and
 subsequent spatial dimensions respectively.
 
 From here on we will assume that space is homogeneously discretized
-(e.g.: \(\Delta x=\Delta y\)). All second-order partial
+(e.g.: \(\Delta x=\Delta y\)). All second\sphinxhyphen{}order partial
 derivatives in the spatial dimension are discretized using central
 finite differences. For instance, in one dimension:
 \begin{equation*}
@@ -417,43 +432,43 @@ finite differences. For instance, in one dimension:
 
 \subsubsection{Euler explicit method}
 \label{\detokenize{diffusion:euler-explicit-method}}
-“Classic” method, first-order accurate, uses forward difference over
+“Classic” method, first\sphinxhyphen{}order accurate, uses forward difference over
 time:
 \begin{equation*}
 \begin{split}\frac{\partial u}{\partial t}\approx\frac{u^{k+1}-u^k}{\Delta t}\end{split}
 \end{equation*}
-Where \(k\) is the current time-step. Applied to the diffusion
+Where \(k\) is the current time\sphinxhyphen{}step. Applied to the diffusion
 problem for one dimension and rearranging terms:
 \begin{equation*}
 \begin{split}u_i^{k+1}=\frac{D\Delta t}{\Delta x^2}\left(u_{i+1}^k+u_{i-1}^k  \right)+\left(1-2\frac{D\Delta t}{\Delta x^2}\right)u_i^k\end{split}
 \end{equation*}
 Let us define from here on \(\lambda\equiv\frac{D\Delta t}{\Delta x^2}\) for simplicity. Rewriting the equation above in terms of
-linear algebra, each time-step the next state of \(u\) is:
+linear algebra, each time\sphinxhyphen{}step the next state of \(u\) is:
 \begin{equation*}
 \begin{split}u^{k+1}=\mathbf{A}u^{k}\end{split}
 \end{equation*}
-Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+Where \(\mathbf{A}\) is the tri\sphinxhyphen{}diagonal coefficient matrix whose
 central element is \((1-2\lambda)\) and its adjacent diagonals are
-\(\lambda\). Note that for \(n\)-dimensional case, central
+\(\lambda\). Note that for \(n\)\sphinxhyphen{}dimensional case, central
 element will then be \((1-2n\lambda)\) and \(u\) must be
 flattened (coerced into one dimension) and \(\mathbf{A}\) becomes
-a block tri-diagonal matrix.
+a block tri\sphinxhyphen{}diagonal matrix.
 
 \sphinxstylestrong{NOTE:} Explicit methods are conditionally stable. This means that in
 order to keep numerical stability of the solution (and obtain an
 accurate result), these methods need to fulfill the
-Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For any \(n\)-dimensional
+Courant\textendash{}Friedrichs\textendash{}Lewy (CFL) condition. For any \(n\)\sphinxhyphen{}dimensional
 case:
 \begin{equation*}
 \begin{split}D\frac{\Delta t}{\Delta x^2}\leq\frac{1}{2n}\end{split}
 \end{equation*}
 The implicit methods are (theoretically) unconditionally stable, hence
-are more permissive in terms of discretization step-size.
+are more permissive in terms of discretization step\sphinxhyphen{}size.
 
 
 \subsubsection{Euler implicit method}
 \label{\detokenize{diffusion:euler-implicit-method}}
-Similar to Euler explicit (first-order accurate) but uses backward
+Similar to Euler explicit (first\sphinxhyphen{}order accurate) but uses backward
 difference over time (theoretically, unconditionally stable):
 \begin{equation*}
 \begin{split}\frac{\partial u}{\partial t}\approx\frac{u^k-u^{k-1}}{\Delta t}\end{split}
@@ -467,17 +482,17 @@ Posed as a linear algebra problem:
 \begin{equation*}
 \begin{split}u^{k}=\mathbf{A}u^{k+1}\end{split}
 \end{equation*}
-Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix whose
+Where \(\mathbf{A}\) is the tri\sphinxhyphen{}diagonal coefficient matrix whose
 central element is \((1+2\lambda)\) and its adjacent diagonals are
-\(-\lambda\). For \(n\)-dimensional case, central element will
+\(-\lambda\). For \(n\)\sphinxhyphen{}dimensional case, central element will
 then be \((1+2n\lambda)\) and \(u\) must be flattened (coerced
-into one dimension) and \(\mathbf{A}\) becomes a block tri-diagonal
+into one dimension) and \(\mathbf{A}\) becomes a block tri\sphinxhyphen{}diagonal
 matrix.
 
 
-\subsubsection{Crank-Nicolson method}
+\subsubsection{Crank\sphinxhyphen{}Nicolson method}
 \label{\detokenize{diffusion:crank-nicolson-method}}
-Implicit method, second-order accurate that uses trapezoidal rule for
+Implicit method, second\sphinxhyphen{}order accurate that uses trapezoidal rule for
 integration time between forward and backward differences. Therefore,
 assuming \(u_t=f(u,t)\) then:
 \begin{equation*}
@@ -491,16 +506,16 @@ Posed as a linear algebra problem:
 \begin{equation*}
 \begin{split}\mathbf{A}u^{k+1}=\mathbf{B}u^k\end{split}
 \end{equation*}
-Where \(\mathbf{A}\) is the tri-diagonal coefficient matrix for
+Where \(\mathbf{A}\) is the tri\sphinxhyphen{}diagonal coefficient matrix for
 \(k+1\) whose central element is \((1+\lambda)\) and its
 adjacent diagonals are \(-\frac{\lambda}{2}\). Similarly,
-\(\mathbf{B}\) is the tri-diagonal matrix for \(k\) whose
+\(\mathbf{B}\) is the tri\sphinxhyphen{}diagonal matrix for \(k\) whose
 central element is \((1-\lambda)\) and its adjacent diagonals are
-\(\frac{\lambda}{2}\). For \(n\)-dimensional case, central
+\(\frac{\lambda}{2}\). For \(n\)\sphinxhyphen{}dimensional case, central
 elements will then be \((1+n\lambda)\) and \((1-n\lambda)\)
 for \(\mathbf{A}\) and \(\mathbf{B}\) respectively and
 \(u\) must be flattened (coerced into one dimension) as well as that
-coefficient matrices become block tri-diagonal matrices.
+coefficient matrices become block tri\sphinxhyphen{}diagonal matrices.
 
 
 \bigskip\hrule\bigskip
@@ -514,7 +529,7 @@ multiplication(s) as shown above.
 Currently only the coefficient matrix construction is available. To
 solve the diffusion problem user can use any of the available linear
 algebra solvers by providing the current diffusing field state
-(flattened) and the coefficient matrix on each time-step (or simple
+(flattened) and the coefficient matrix on each time\sphinxhyphen{}step (or simple
 matrix multiplication for time explicit methods).
 \begin{itemize}
 \item {} 
@@ -522,8 +537,8 @@ Simplest options are either \sphinxcode{\sphinxupquote{numpy.linalg.solve()}} or
 \sphinxcode{\sphinxupquote{scipy.linalg.solve()}} (both not very fast).
 
 \item {} 
-If the coefficient matrix is positive-definite (it is most of the
-times, but can be double-checked, specially if errors arise) and
+If the coefficient matrix is positive\sphinxhyphen{}definite (it is most of the
+times, but can be double\sphinxhyphen{}checked, specially if errors arise) and
 symmetric, a good option is Choleski’s factorization. This is already
 implemented in \sphinxcode{\sphinxupquote{scipy.linalg.cholesky()}} which factorizes the
 coefficient matrix and that can be passed to the
@@ -542,9 +557,9 @@ the determinant is close to zero, may cause numerical instability.
 \label{\detokenize{diffusion:contents}}\index{build\_mat() (in module data\_tools.diffusion)@\spxentry{build\_mat()}\spxextra{in module data\_tools.diffusion}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{cent}, \emph{neigh}, \emph{dims}, \emph{bcs='dirichlet'}}{}
-Builds a (block) tri-diagonal coefficient matrix to solve a
-n-dimensional diffusion problem as a linear algebraic system.
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.build_mat}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{build\_mat}}}{\emph{\DUrole{n}{cent}}, \emph{\DUrole{n}{neigh}}, \emph{\DUrole{n}{dims}}, \emph{\DUrole{n}{bcs}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}dirichlet\textquotesingle{}}}}{}
+Builds a (block) tri\sphinxhyphen{}diagonal coefficient matrix to solve a
+n\sphinxhyphen{}dimensional diffusion problem as a linear algebraic system.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -564,9 +579,9 @@ numpy’s indexing order (last dimension first, e.g.:
 \sphinxcode{\sphinxupquote{{[}z, y, x{]}}}).
 
 \item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'dirichlet'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}dirichlet\textquotesingle{}}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{\textquotesingle{}periodic\textquotesingle{}}},
+\sphinxcode{\sphinxupquote{\textquotesingle{}dirichlet\textquotesingle{}}} or \sphinxcode{\sphinxupquote{\textquotesingle{}neumann\textquotesingle{}}}. Note that Dirichlet BCs do
 not hold mass conservation.
 
 \end{itemize}
@@ -576,7 +591,7 @@ not hold mass conservation.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}numpy.ndarray{]}: The (block) tri-diagonal coefficient matrix.
+{[}numpy.ndarray{]}: The (block) tri\sphinxhyphen{}diagonal coefficient matrix.
 Matrix will be square with size equal to the product of all
 dimension sizes.
 
@@ -591,8 +606,8 @@ dimension sizes.
 \index{coef\_mat\_hetero() (in module data\_tools.diffusion)@\spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.coef_mat_hetero}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{coef\_mat\_hetero}}}{\emph{K}, \emph{dt}, \emph{dx}, \emph{bcs='dirichlet'}}{}
-Builds a block tri-diagonal coefficient matrix for a n-dimensional
+\phantomsection\label{\detokenize{diffusion:data_tools.diffusion.coef_mat_hetero}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.diffusion.}}\sphinxbfcode{\sphinxupquote{coef\_mat\_hetero}}}{\emph{\DUrole{n}{K}}, \emph{\DUrole{n}{dt}}, \emph{\DUrole{n}{dx}}, \emph{\DUrole{n}{bcs}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}dirichlet\textquotesingle{}}}}{}
+Builds a block tri\sphinxhyphen{}diagonal coefficient matrix for a n\sphinxhyphen{}dimensional
 diffusion problem with heterogeneous diffusion coefficients.
 \begin{itemize}
 \item {} \begin{description}
@@ -609,9 +624,9 @@ the different dimension are equally discretized (e.g.:
 \(\Delta x = \Delta y\)).
 
 \item {} 
-\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'dirichlet'}} by default. Determines
-the boundary conditions. Available options are \sphinxcode{\sphinxupquote{'periodic'}},
-\sphinxcode{\sphinxupquote{'dirichlet'}} or \sphinxcode{\sphinxupquote{'neumann'}}. Note that Dirichlet BCs do
+\sphinxstyleemphasis{bcs} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}dirichlet\textquotesingle{}}} by default. Determines
+the boundary conditions. Available options are \sphinxcode{\sphinxupquote{\textquotesingle{}periodic\textquotesingle{}}},
+\sphinxcode{\sphinxupquote{\textquotesingle{}dirichlet\textquotesingle{}}} or \sphinxcode{\sphinxupquote{\textquotesingle{}neumann\textquotesingle{}}}. Note that Dirichlet BCs do
 not hold mass conservation. Periodic BCs are not perfect.
 
 \end{itemize}
@@ -621,7 +636,7 @@ not hold mass conservation. Periodic BCs are not perfect.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}numpy.ndarray{]}: The (block) tri-diagonal coefficient matrix.
+{[}numpy.ndarray{]}: The (block) tri\sphinxhyphen{}diagonal coefficient matrix.
 Matrix will be square with size equal to the product of all
 dimension sizes.
 
@@ -633,19 +648,19 @@ dimension sizes.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{data\_tools.iterables (module)@\spxentry{data\_tools.iterables}\spxextra{module}}
+\phantomsection\label{\detokenize{iterables:module-data_tools.iterables}}\index{module@\spxentry{module}!data\_tools.iterables@\spxentry{data\_tools.iterables}}\index{data\_tools.iterables@\spxentry{data\_tools.iterables}!module@\spxentry{module}}
 
 \section{data\_tools.iterables}
 \label{\detokenize{iterables:data-tools-iterables}}\label{\detokenize{iterables::doc}}
-Iterable-type operations module.
+Iterable\sphinxhyphen{}type operations module.
 
 
 \subsection{Contents}
 \label{\detokenize{iterables:contents}}\index{bit\_or() (in module data\_tools.iterables)@\spxentry{bit\_or()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{a}, \emph{b}}{}
-Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.bit_or}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{bit\_or}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{b}}}{}
+Returns the bit operation OR between two bit\sphinxhyphen{}strings \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b}.
 \sphinxstylestrong{NOTE:} \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} must have the same size.
 \begin{itemize}
 \item {} \begin{description}
@@ -663,7 +678,7 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element-wise.
+{[}tuple{]}: OR operation between \sphinxstyleemphasis{a} and \sphinxstyleemphasis{b} element\sphinxhyphen{}wise.
 
 \end{itemize}
 
@@ -686,8 +701,8 @@ Returns the bit operation OR between two bit-strings \sphinxstyleemphasis{a} and
 \index{chunk\_this() (in module data\_tools.iterables)@\spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{L}, \emph{n}}{}
-For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}-sized chunks from
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.chunk_this}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{chunk\_this}}}{\emph{\DUrole{n}{L}}, \emph{\DUrole{n}{n}}}{}
+For a given list \sphinxstyleemphasis{L}, returns another list of \sphinxstyleemphasis{n}\sphinxhyphen{}sized chunks from
 it (in the same order).
 \begin{itemize}
 \item {} \begin{description}
@@ -706,7 +721,7 @@ definded size.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}list{]}: List of \sphinxstyleemphasis{n}-sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
+{[}list{]}: List of \sphinxstyleemphasis{n}\sphinxhyphen{}sized chunks from \sphinxstyleemphasis{L}. \sphinxstylestrong{NOTE:} If the
 number of items in \sphinxstyleemphasis{L} is not divisible by \sphinxstyleemphasis{n}, the last
 element returned will have an inferior size.
 
@@ -733,7 +748,7 @@ element returned will have an inferior size.
 \index{find\_min() (in module data\_tools.iterables)@\spxentry{find\_min()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{A}}{}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.find_min}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{find\_min}}}{\emph{\DUrole{n}{A}}}{}
 Finds and returns the subset of vectors whose sum is minimum from a
 given set \sphinxstyleemphasis{A}.
 \begin{itemize}
@@ -772,7 +787,7 @@ given set \sphinxstyleemphasis{A}.
 \index{in\_all() (in module data\_tools.iterables)@\spxentry{in\_all()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{x}, \emph{N}}{}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.in_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{in\_all}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{N}}}{}
 Checks if a element \sphinxstyleemphasis{x} is present in all collections contained in a
 list \sphinxstyleemphasis{N}.
 \begin{itemize}
@@ -827,19 +842,19 @@ other iterables containing the objects.
 \index{similarity() (in module data\_tools.iterables)@\spxentry{similarity()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{a}, \emph{b}, \emph{mode='j'}}{}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.similarity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{similarity}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{b}}, \emph{\DUrole{n}{mode}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}j\textquotesingle{}}}}{}
 Computes the similarity index between two sets. There are three
 options available:
 
-Jaccard (\sphinxcode{\sphinxupquote{mode='j'}}):
+Jaccard (\sphinxcode{\sphinxupquote{mode=\textquotesingle{}j\textquotesingle{}}}):
 \begin{equation*}
 \begin{split}s_J(A,B) = \frac{|A\cap B|}{|A\cup B|}\end{split}
 \end{equation*}
-Sorensen-Dice (\sphinxcode{\sphinxupquote{mode='sd'}}):
+Sorensen\sphinxhyphen{}Dice (\sphinxcode{\sphinxupquote{mode=\textquotesingle{}sd\textquotesingle{}}}):
 \begin{equation*}
 \begin{split}s_{SD}(A,B) = \frac{2|A\cap B|}{|A|+|B|}\end{split}
 \end{equation*}
-Szymkiewicz\textendash{}Simpson (\sphinxcode{\sphinxupquote{mode='ss'}}):
+Szymkiewicz\textendash{}Simpson (\sphinxcode{\sphinxupquote{mode=\textquotesingle{}ss\textquotesingle{}}}):
 \begin{equation*}
 \begin{split}s_{SS}(A,B) = \frac{|A\cap B|}{\min(|A|,|B|)}\end{split}
 \end{equation*}\begin{itemize}
@@ -853,10 +868,10 @@ index.
 \sphinxstyleemphasis{b} {[}set{]}: The other set to compute the similarity index.
 
 \item {} 
-\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
-computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
-for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson.
+computed. Available options are: \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} for Jaccard, \sphinxcode{\sphinxupquote{\textquotesingle{}sd\textquotesingle{}}}
+for Sorensen\sphinxhyphen{}Dice and \sphinxcode{\sphinxupquote{\textquotesingle{}ss\textquotesingle{}}} for Szymkiewicz\textendash{}Simpson.
 
 \end{itemize}
 
@@ -879,7 +894,7 @@ according to the specified \sphinxstyleemphasis{mode}.
 \index{subsets() (in module data\_tools.iterables)@\spxentry{subsets()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{N}}{}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.subsets}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{subsets}}}{\emph{\DUrole{n}{N}}}{}
 Function that computes all possible logical relations between all
 sets on a list \sphinxstyleemphasis{N} and returns all subsets. This is, the subsets
 that would represent each intersecting area on a Venn diagram.
@@ -925,7 +940,7 @@ that denote the logical relation (see examples below).
 \index{unzip\_dicts() (in module data\_tools.iterables)@\spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{iterables:data_tools.iterables.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{*dicts}}{}
+\phantomsection\label{\detokenize{iterables:data_tools.iterables.unzip_dicts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.iterables.}}\sphinxbfcode{\sphinxupquote{unzip\_dicts}}}{\emph{\DUrole{o}{*}\DUrole{n}{dicts}}}{}
 Unzips the keys and values for any number of dictionaries passed as
 arguments (see below for examples).
 \begin{itemize}
@@ -942,7 +957,7 @@ to be unzipped.
 \item {} \begin{description}
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
-{[}list{]}: Two-element list contianing all keys and all values
+{[}list{]}: Two\sphinxhyphen{}element list contianing all keys and all values
 respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
 
 \end{itemize}
@@ -964,7 +979,7 @@ respectively from the dictionaries in \sphinxstyleemphasis{*dicts}.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{data\_tools.models (module)@\spxentry{data\_tools.models}\spxextra{module}}
+\phantomsection\label{\detokenize{models:module-data_tools.models}}\index{module@\spxentry{module}!data\_tools.models@\spxentry{data\_tools.models}}\index{data\_tools.models@\spxentry{data\_tools.models}!module@\spxentry{module}}
 
 \section{data\_tools.models}
 \label{\detokenize{models:data-tools-models}}\label{\detokenize{models::doc}}
@@ -975,9 +990,9 @@ Model classes module.
 \label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)@\spxentry{DoseResponse}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{d\_data, r\_data, x0=None, x\_scale=None, bounds=({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{\DUrole{n}{d\_data}}, \emph{\DUrole{n}{r\_data}}, \emph{\DUrole{n}{x0}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{x\_scale}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{bounds}\DUrole{o}{=}\DUrole{default_value}{{[}0, 0, \sphinxhyphen{} inf{]}, {[}inf, inf, inf{]}}}}{}
 Wrapper class for \sphinxcode{\sphinxupquote{scipy.optimize.least\_squares}} to fit
-dose-response curves on a pre-defined Hill function with the
+dose\sphinxhyphen{}response curves on a pre\sphinxhyphen{}defined Hill function with the
 following form:
 \begin{equation*}
 \begin{split}R=\frac{mD^n}{k^n+D^n}\end{split}
@@ -1011,8 +1026,8 @@ effect on the cost function. If \sphinxcode{\sphinxupquote{None}} (default), the
 is inferred from \sphinxstyleemphasis{x0}.
 
 \item {} 
-\sphinxstyleemphasis{bounds} {[}tuple{]}: Optional \sphinxcode{\sphinxupquote{({[}0, 0, -inf{]}, {[}inf, inf, inf{]})}}
-by default. Two-element tuple containing the lower and upper
+\sphinxstyleemphasis{bounds} {[}tuple{]}: Optional \sphinxcode{\sphinxupquote{({[}0, 0, \sphinxhyphen{}inf{]}, {[}inf, inf, inf{]})}}
+by default. Two\sphinxhyphen{}element tuple containing the lower and upper
 boundaries for the parameters (elements of the tuple are
 iterables of three elements each).
 
@@ -1039,7 +1054,7 @@ of the optimized model. See \sphinxhref{https://docs.scipy.org/doc/scipy/referen
 information.
 
 \item {} 
-\sphinxstyleemphasis{params} {[}numpy.ndarray{]}: Three-element array containing the
+\sphinxstyleemphasis{params} {[}numpy.ndarray{]}: Three\sphinxhyphen{}element array containing the
 fitted parameters \(k\), \(m\) and \(n\).
 
 \end{itemize}
@@ -1050,7 +1065,7 @@ fitted parameters \(k\), \(m\) and \(n\).
 \index{ec() (data\_tools.models.DoseResponse method)@\spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.ec}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{ec}}}{\emph{p=50}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.ec}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{ec}}}{\emph{\DUrole{n}{p}\DUrole{o}{=}\DUrole{default_value}{50}}}{}
 Computes the effective concentration for the specified
 percentage of maximal concentration (\(EC_{p}\)).
 \begin{itemize}
@@ -1082,7 +1097,7 @@ to the model parameters.
 \index{plot() (data\_tools.models.DoseResponse method)@\spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{legend=True}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
 Plots the data points and the fitted function together.
 \begin{itemize}
 \item {} \begin{description}
@@ -1129,7 +1144,7 @@ points and the fitted model function.
 \index{Lasso (class in data\_tools.models)@\spxentry{Lasso}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Lasso}}}{\emph{Cs=500}, \emph{cv=10}, \emph{sampler='skf'}, \emph{solver='liblinear'}, \emph{**kwargs}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Lasso}}}{\emph{\DUrole{n}{Cs}\DUrole{o}{=}\DUrole{default_value}{500}}, \emph{\DUrole{n}{cv}\DUrole{o}{=}\DUrole{default_value}{10}}, \emph{\DUrole{n}{sampler}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}skf\textquotesingle{}}}, \emph{\DUrole{n}{solver}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}liblinear\textquotesingle{}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
 Wrapper class inheriting from
 \sphinxcode{\sphinxupquote{sklearn.linear\_model.LogisticRegressionCV}} with L1
 regularization.
@@ -1140,7 +1155,7 @@ regularization.
 \sphinxstyleemphasis{Cs} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{500}} by default. Integer or list of
 float values of regularization parameters to test. If an
 integer is passed, it will determine the number of values
-taken from a logarithmic scale between \sphinxcode{\sphinxupquote{1e-4}} and \sphinxcode{\sphinxupquote{1e4}}.
+taken from a logarithmic scale between \sphinxcode{\sphinxupquote{1e\sphinxhyphen{}4}} and \sphinxcode{\sphinxupquote{1e4}}.
 Note that the value of the parameter is defined as the inverse
 of the regularization strength.
 
@@ -1149,17 +1164,17 @@ of the regularization strength.
 cross validation (CV) folds.
 
 \item {} 
-\sphinxstyleemphasis{sampler} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'skf'}} by default. Determines
+\sphinxstyleemphasis{sampler} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}skf\textquotesingle{}}} by default. Determines
 which sampling method is used to generate the test and
-training sets for CV. Methods available are K-Fold (\sphinxcode{\sphinxupquote{'kf'}}),
-Shuffle Split (\sphinxcode{\sphinxupquote{'ss'}}) and their stratified variants
-(\sphinxcode{\sphinxupquote{'skf'}} and \sphinxcode{\sphinxupquote{'sss'}} respectively).
+training sets for CV. Methods available are K\sphinxhyphen{}Fold (\sphinxcode{\sphinxupquote{\textquotesingle{}kf\textquotesingle{}}}),
+Shuffle Split (\sphinxcode{\sphinxupquote{\textquotesingle{}ss\textquotesingle{}}}) and their stratified variants
+(\sphinxcode{\sphinxupquote{\textquotesingle{}skf\textquotesingle{}}} and \sphinxcode{\sphinxupquote{\textquotesingle{}sss\textquotesingle{}}} respectively).
 
 \item {} 
-\sphinxstyleemphasis{solver} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'liblinear'}} by default.
+\sphinxstyleemphasis{solver} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}liblinear\textquotesingle{}}} by default.
 Determines which solver algorithm to use. Note that L1
-regularization can only be handled by \sphinxcode{\sphinxupquote{'liblinear'}} and
-\sphinxcode{\sphinxupquote{'saga'}}. Additionally if the classification is multinomial,
+regularization can only be handled by \sphinxcode{\sphinxupquote{\textquotesingle{}liblinear\textquotesingle{}}} and
+\sphinxcode{\sphinxupquote{\textquotesingle{}saga\textquotesingle{}}}. Additionally if the classification is multinomial,
 only the latter option is available.
 
 \item {} 
@@ -1169,7 +1184,7 @@ the \sphinxcode{\sphinxupquote{sklearn.linear\_model.LogisticRegressionCV}} clas
 \end{itemize}
 
 Other keyword arguments and functions available from the parent
-class \sphinxcode{\sphinxupquote{LogisticRegressionCV}} can be fount in \sphinxhref{http://scikit-learn.org/stable/modules/generated/sklearn.linear\_model.LogisticRegressionCV.html}{Scikit-Learn’s
+class \sphinxcode{\sphinxupquote{LogisticRegressionCV}} can be fount in \sphinxhref{http://scikit-learn.org/stable/modules/generated/sklearn.linear\_model.LogisticRegressionCV.html}{Scikit\sphinxhyphen{}Learn’s
 reference}.
 
 \end{description}
@@ -1178,7 +1193,7 @@ reference}.
 \index{fit\_data() (data\_tools.models.Lasso method)@\spxentry{fit\_data()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit\_data}}}{\emph{x}, \emph{y}, \emph{silent=False}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.fit_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit\_data}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{n}{silent}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 Fits the data to the logistic model.
 \begin{itemize}
 \item {} \begin{description}
@@ -1208,8 +1223,8 @@ Determines whether messages are printed or not.
 \index{plot\_coef() (data\_tools.models.Lasso method)@\spxentry{plot\_coef()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_coef}}}{\emph{filename=None}, \emph{figsize=None}}{}
-Plots the non-zero coefficients for the fitted predictor
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_coef}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_coef}}}{\emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+Plots the non\sphinxhyphen{}zero coefficients for the fitted predictor
 features.
 \begin{itemize}
 \item {} \begin{description}
@@ -1232,7 +1247,7 @@ denoting the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: Figure object containing the
-bar plot of the non-zero coefficients.
+bar plot of the non\sphinxhyphen{}zero coefficients.
 
 \end{itemize}
 
@@ -1245,7 +1260,7 @@ bar plot of the non-zero coefficients.
 \index{plot\_score() (data\_tools.models.Lasso method)@\spxentry{plot\_score()}\spxextra{data\_tools.models.Lasso method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_score}}}{\emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Lasso.plot_score}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_score}}}{\emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Plots the mean score across all folds obtained during CV.
 The optimum C parameter chosen and its score are highlighted.
 \begin{itemize}
@@ -1285,7 +1300,7 @@ score plot.
 \index{Linear (class in data\_tools.models)@\spxentry{Linear}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Linear}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Linear}}}{\emph{x}, \emph{y}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Linear}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{Linear}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{y}}}{}
 Linear regression model using least squares. We define the model as
 \(y=mx+b\). The slope \(m\) is computed by dividing the
 covariance of \(x\) and \(y\) over the variance of
@@ -1366,7 +1381,7 @@ This is, the squared correlation coefficient value.
 \index{plot() (data\_tools.models.Linear method)@\spxentry{plot()}\spxextra{data\_tools.models.Linear method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.Linear.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.Linear.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Plots the data and the fitted model.
 \begin{itemize}
 \item {} \begin{description}
@@ -1405,9 +1420,9 @@ score plot.
 \index{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{PowerLaw}}}{\emph{x}, \emph{y}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{PowerLaw}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{y}}}{}
 Fits a power law model to the provided data. Given \(y=ax^k\),
-the data is log-transformed and fitted to a linear model using
+the data is log\sphinxhyphen{}transformed and fitted to a linear model using
 least squares, since applaying log to both sides of the model:
 \begin{equation*}
 \begin{split}\log(y)=k\log(x)+\log(a)\end{split}
@@ -1447,8 +1462,8 @@ in log space.
 \index{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{filename=None}, \emph{figsize=None}, \emph{grid=False}}{}
-Plots the data and the fitted model in a log-log scale.
+\phantomsection\label{\detokenize{models:data_tools.models.PowerLaw.plot}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot}}}{\emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{grid}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+Plots the data and the fitted model in a log\sphinxhyphen{}log scale.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -1487,7 +1502,7 @@ score plot.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}}
+\phantomsection\label{\detokenize{plots:module-data_tools.plots}}\index{module@\spxentry{module}!data\_tools.plots@\spxentry{data\_tools.plots}}\index{data\_tools.plots@\spxentry{data\_tools.plots}!module@\spxentry{module}}
 
 \section{data\_tools.plots}
 \label{\detokenize{plots:data-tools-plots}}\label{\detokenize{plots::doc}}
@@ -1495,35 +1510,10 @@ Plotting functions module.
 
 
 \subsection{Contents}
-\label{\detokenize{plots:contents}}\index{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}}
+\label{\detokenize{plots:contents}}\index{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
-Custom colormap, gradient from black (lowest) to lime green (highest).
-
-\end{fulllineitems}
-
-\index{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkrd}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkrd}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
-Custom colormap, gradient from black (lowest) to red (highest).
-
-\end{fulllineitems}
-
-\index{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_rdbkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_rdbkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
-Custom colormap, gradient from red (lowest) to black (middle) to lime
-green (highest).
-
-\end{fulllineitems}
-
-\index{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{nodes}, \emph{edges}, \emph{alpha=0.2}, \emph{plot\_lines=False}, \emph{labels=False}, \emph{label\_sizes=False}, \emph{colors=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.chordplot}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{chordplot}}}{\emph{\DUrole{n}{nodes}}, \emph{\DUrole{n}{edges}}, \emph{\DUrole{n}{alpha}\DUrole{o}{=}\DUrole{default_value}{0.2}}, \emph{\DUrole{n}{plot\_lines}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{label\_sizes}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{colors}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a chord plot from a collection of nodes and edges (and
 their sizes). \sphinxstylestrong{NOTE}: Make sure that all nodes are involved in at
 least one edge (with size \textgreater{} 0).
@@ -1563,7 +1553,7 @@ whether to append the node sizes when labelling the plot.
 \item {} 
 \sphinxstyleemphasis{colors} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default (matplotlib
 default color sequence). Any iterable containing color
-arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for
+arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}\textquotesingle{}r\textquotesingle{}, \textquotesingle{}b\textquotesingle{}{]}}} for
 red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{nodes} (if more are provided, they will be
 ignored).
@@ -1620,7 +1610,7 @@ chord plot, unless \sphinxstyleemphasis{filename} is provided.
 \index{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.cluster_hmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cluster\_hmap}}}{\emph{matrix}, \emph{xlabels=None}, \emph{ylabels=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{cmap='viridis'}, \emph{link\_kwargs=\{\}}, \emph{dendo\_kwargs=\{\}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cluster_hmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cluster\_hmap}}}{\emph{\DUrole{n}{matrix}}, \emph{\DUrole{n}{xlabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{ylabels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}viridis\textquotesingle{}}}, \emph{\DUrole{n}{link\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{dendo\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
 Generates a heatmap with hierarchical clustering dendrograms
 attached. The linkage matrix and dendrogram are computed using the
 module \sphinxcode{\sphinxupquote{scipy.cluster.hierarchy}}, you may check the
@@ -1630,16 +1620,16 @@ corresponding documentation for available and default methods.
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
 \sphinxstyleemphasis{matrix} {[}numpy.ndarray{]}: Contains the values to generate the
-plot. It is assumed to be a 2-dimensional matrix.
+plot. It is assumed to be a 2\sphinxhyphen{}dimensional matrix.
 
 \item {} 
 \sphinxstyleemphasis{xlabels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for
-the x-axis of the matrix following the same order as provided
+the x\sphinxhyphen{}axis of the matrix following the same order as provided
 (e.g. sample names).
 
 \item {} 
 \sphinxstyleemphasis{ylabels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for
-the y-axis of the matrix following the same order as provided
+the y\sphinxhyphen{}axis of the matrix following the same order as provided
 (e.g. measurements).
 
 \item {} 
@@ -1657,19 +1647,19 @@ matplotlib size). Any iterable containing two values denoting
 the figure size (in inches) as {[}width, height{]}.
 
 \item {} 
-\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'viridis'}} by default. The colormap
+\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}viridis\textquotesingle{}}} by default. The colormap
 used for the plot (can also be a {[}matplotlib.colors.Colormap{]}
 object). See other {[}str{]} options available in \sphinxhref{https://matplotlib.org/examples/color/colormaps\_reference.html}{Matplotlib’s
 reference manual}.
 
 \item {} 
 \sphinxstyleemphasis{link\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
-containing the key-value pairs for keyword arguments passed to
+containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
 \sphinxhref{https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html}{scipy.cluster.hierarchy.linkage}.
 
 \item {} 
 \sphinxstyleemphasis{dendo\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
-containing the key-value pairs for keyword arguments passed to
+containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
 \sphinxhref{https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.dendrogram.html}{scipy.cluster.hierarchy.dendrogram}.
 
 \end{itemize}
@@ -1692,11 +1682,36 @@ density plot, unless \sphinxstyleemphasis{filename} is provided.
 
 \end{fulllineitems}
 
+\index{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from black (lowest) to lime green (highest).
+
+\end{fulllineitems}
+
+\index{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_bkrd}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_bkrd}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from black (lowest) to red (highest).
+
+\end{fulllineitems}
+
+\index{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{plots:data_tools.plots.cmap_rdbkgr}}\pysigline{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{cmap\_rdbkgr}}\sphinxbfcode{\sphinxupquote{ = \textless{}matplotlib.colors.LinearSegmentedColormap object\textgreater{}}}}
+Custom colormap, gradient from red (lowest) to black (middle) to lime
+green (highest).
+
+\end{fulllineitems}
+
 \index{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{df}, \emph{cvf=0.25}, \emph{sample\_col=False}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
-Generates a density plot of the values on a data frame (row-wise).
+\phantomsection\label{\detokenize{plots:data_tools.plots.density}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{density}}}{\emph{\DUrole{n}{df}}, \emph{\DUrole{n}{cvf}\DUrole{o}{=}\DUrole{default_value}{0.25}}, \emph{\DUrole{n}{sample\_col}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+Generates a density plot of the values on a data frame (row\sphinxhyphen{}wise).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -1707,13 +1722,13 @@ each column contains a measured value unless otherwise stated
 by keyword argument \sphinxstyleemphasis{sample\_col}.
 
 \item {} 
-\sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.25}} by default. Co-variance
+\sphinxstyleemphasis{cvf} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.25}} by default. Co\sphinxhyphen{}variance
 factor used in the gaussian kernel estimation. A higher value
 increases the smoothness.
 
 \item {} 
 \sphinxstyleemphasis{sample\_col} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Specifies
-whether the samples are column-wise or not.
+whether the samples are column\sphinxhyphen{}wise or not.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -1750,14 +1765,14 @@ density plot, unless \sphinxstyleemphasis{filename} is provided.
 \index{pca() (in module data\_tools.plots)@\spxentry{pca()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.pca}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{pca}}}{\emph{data}, \emph{n\_comp=2}, \emph{groups=None}, \emph{cmap='rainbow'}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.pca}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{pca}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{n\_comp}\DUrole{o}{=}\DUrole{default_value}{2}}, \emph{\DUrole{n}{groups}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}rainbow\textquotesingle{}}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Computes the principal component analysis (PCA) and plots the
 results.
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleemphasis{data} {[}pandas.DataFrame{]}: Contains the high-dimensional data
+\sphinxstyleemphasis{data} {[}pandas.DataFrame{]}: Contains the high\sphinxhyphen{}dimensional data
 to compute the PCA. The samples (data points) are assumed to
 be rows and the measurements (features) in the columns.
 
@@ -1774,8 +1789,8 @@ condition, treatment, …) to color the data points. If none
 is provided, all points are colored in black.
 
 \item {} 
-\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'rainbow'}} by default. The colormap
-used to draw the groups’ colors (can also be a user-defined
+\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}rainbow\textquotesingle{}}} by default. The colormap
+used to draw the groups’ colors (can also be a user\sphinxhyphen{}defined
 {[}matplotlib.colors.Colormap{]} object). See other {[}str{]} options
 available in \sphinxhref{https://matplotlib.org/examples/color/colormaps\_reference.html}{Matplotlib’s reference manual}. If no \sphinxstyleemphasis{groups}
 are provided, the argument is ignored.
@@ -1817,7 +1832,7 @@ scatter plot of the PC’s unless \sphinxstyleemphasis{filename} is provided.
 \index{phase\_portrait() (in module data\_tools.plots)@\spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.phase_portrait}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{phase\_portrait}}}{\emph{f}, \emph{x=(0}, \emph{1)}, \emph{y=(0}, \emph{1)}, \emph{ics=None}, \emph{dt=0.1}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.phase_portrait}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{phase\_portrait}}}{\emph{\DUrole{n}{f}}, \emph{\DUrole{n}{x}\DUrole{o}{=}\DUrole{default_value}{0, 1}}, \emph{\DUrole{n}{y}\DUrole{o}{=}\DUrole{default_value}{0, 1}}, \emph{\DUrole{n}{ics}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dt}\DUrole{o}{=}\DUrole{default_value}{0.1}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a phase portrait of a ODE system given the nullclines.
 This is, for a system of the form:
 \begin{equation*}
@@ -1838,11 +1853,11 @@ of \(u\) for each nullcline. See below for an example.
 
 \item {} 
 \sphinxstyleemphasis{x} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{(0, 1)}} by default. The range of
-values to span the x-axis.
+values to span the x\sphinxhyphen{}axis.
 
 \item {} 
 \sphinxstyleemphasis{y} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{(0, 1)}} by default. The range of
-values to span the y-axis.
+values to span the y\sphinxhyphen{}axis.
 
 \item {} 
 \sphinxstyleemphasis{ics} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Set of initial
@@ -1851,7 +1866,7 @@ initial values of each component and the amount of time the
 trajectory is simulated.
 
 \item {} 
-\sphinxstyleemphasis{dt} {[}float{]}: Optional \sphinxcode{\sphinxupquote{0.1}} by default. The time-step to
+\sphinxstyleemphasis{dt} {[}float{]}: Optional \sphinxcode{\sphinxupquote{0.1}} by default. The time\sphinxhyphen{}step to
 simulate the trajectory (given \sphinxstyleemphasis{ics} is provided).
 
 \item {} 
@@ -1911,7 +1926,7 @@ Then:
 \index{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{df}, \emph{nchar=40}, \emph{boxes=True}, \emph{top=None}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{\DUrole{n}{df}}, \emph{\DUrole{n}{nchar}\DUrole{o}{=}\DUrole{default_value}{40}}, \emph{\DUrole{n}{boxes}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{top}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a GSEA consensus score plot like R package \sphinxcode{\sphinxupquote{piano}}’s
 \sphinxcode{\sphinxupquote{consensusScores}} function, but prettier.
 The main input is assumed to be a \sphinxcode{\sphinxupquote{pandas.DataFrame}} whose data
@@ -1922,19 +1937,19 @@ is the same as the \sphinxcode{\sphinxupquote{rankMat}} from the result of
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
 \sphinxstyleemphasis{df} {[}pandas.DataFrame{]}: Values contained correspond to the
-scores of the gene-sets (consensus and each individual
-methods). Index must contain the gene-set labels. Columns are
+scores of the gene\sphinxhyphen{}sets (consensus and each individual
+methods). Index must contain the gene\sphinxhyphen{}set labels. Columns are
 assumed to be \sphinxcode{\sphinxupquote{ConsRank}} (ignored), \sphinxcode{\sphinxupquote{ConsScore}} followed
 by the individual methods (e.g.: \sphinxcode{\sphinxupquote{mean}}, \sphinxcode{\sphinxupquote{median}},
 \sphinxcode{\sphinxupquote{sum}}, etc).
 
 \item {} 
 \sphinxstyleemphasis{nchar} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{40}} by default. Number of string
-characters of the gene-set labels of the plot.
+characters of the gene\sphinxhyphen{}set labels of the plot.
 
 \item {} 
 \sphinxstyleemphasis{boxes} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{True}} by default. Determines
-whether to show the boxplots of the gene-sets or not.
+whether to show the boxplots of the gene\sphinxhyphen{}sets or not.
 
 \item {} 
 \sphinxstyleemphasis{top} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Sets the number of
@@ -1963,7 +1978,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: The figure object containing a
-combination of box and scatter plots of the gene-set scores,
+combination of box and scatter plots of the gene\sphinxhyphen{}set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
@@ -1987,7 +2002,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{similarity\_heatmap() (in module data\_tools.plots)@\spxentry{similarity\_heatmap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_heatmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_heatmap}}}{\emph{groups}, \emph{labels=None}, \emph{mode='j'}, \emph{cmap='nipy\_spectral'}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_heatmap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_heatmap}}}{\emph{\DUrole{n}{groups}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{mode}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}j\textquotesingle{}}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}nipy\_spectral\textquotesingle{}}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Given a group of sets, generates a heatmap with the similarity
 indices across each possible pair.
 \begin{itemize}
@@ -2001,15 +2016,15 @@ indices across each possible pair.
 sets following the same order as provided in \sphinxstyleemphasis{groups}.
 
 \item {} 
-\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
-computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
-for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson. See
+computed. Available options are: \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} for Jaccard, \sphinxcode{\sphinxupquote{\textquotesingle{}sd\textquotesingle{}}}
+for Sorensen\sphinxhyphen{}Dice and \sphinxcode{\sphinxupquote{\textquotesingle{}ss\textquotesingle{}}} for Szymkiewicz\textendash{}Simpson. See
 {\hyperref[\detokenize{iterables:data_tools.iterables.similarity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{data\_tools.iterables.similarity()}}}}} for more
 information.
 
 \item {} 
-\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'nipy\_spectral'}} by default. The
+\sphinxstyleemphasis{cmap} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}nipy\_spectral\textquotesingle{}}} by default. The
 colormap used for the plot (can also be a
 {[}matplotlib.colors.Colormap{]} object). See other {[}str{]} options
 available in \sphinxhref{https://matplotlib.org/examples/color/colormaps\_reference.html}{Matplotlib’s reference manual}.
@@ -2038,7 +2053,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: The figure object containing a
-combination of box and scatter plots of the gene-set scores,
+combination of box and scatter plots of the gene\sphinxhyphen{}set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
@@ -2052,9 +2067,9 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{similarity\_histogram() (in module data\_tools.plots)@\spxentry{similarity\_histogram()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_histogram}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_histogram}}}{\emph{groups}, \emph{mode='j'}, \emph{bins=10}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.similarity_histogram}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{similarity\_histogram}}}{\emph{\DUrole{n}{groups}}, \emph{\DUrole{n}{mode}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}j\textquotesingle{}}}, \emph{\DUrole{n}{bins}\DUrole{o}{=}\DUrole{default_value}{10}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Given a group of sets, generates a histogram of the similarity
-indices across each possible pair (same-element pairs excluded).
+indices across each possible pair (same\sphinxhyphen{}element pairs excluded).
 \begin{itemize}
 \item {} \begin{description}
 \item[{Arguments:}] \leavevmode\begin{itemize}
@@ -2062,10 +2077,10 @@ indices across each possible pair (same-element pairs excluded).
 \sphinxstyleemphasis{groups} {[}list{]}: Or any iterable of {[}set{]} objects.
 
 \item {} 
-\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{'j'}} (Jaccard) by default.
+\sphinxstyleemphasis{mode} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
-computed. Available options are: \sphinxcode{\sphinxupquote{'j'}} for Jaccard, \sphinxcode{\sphinxupquote{'sd'}}
-for Sorensen-Dice and \sphinxcode{\sphinxupquote{'ss'}} for Szymkiewicz\textendash{}Simpson. See
+computed. Available options are: \sphinxcode{\sphinxupquote{\textquotesingle{}j\textquotesingle{}}} for Jaccard, \sphinxcode{\sphinxupquote{\textquotesingle{}sd\textquotesingle{}}}
+for Sorensen\sphinxhyphen{}Dice and \sphinxcode{\sphinxupquote{\textquotesingle{}ss\textquotesingle{}}} for Szymkiewicz\textendash{}Simpson. See
 {\hyperref[\detokenize{iterables:data_tools.iterables.similarity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{data\_tools.iterables.similarity()}}}}} for more
 information.
 
@@ -2095,7 +2110,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: The figure object containing a
-combination of box and scatter plots of the gene-set scores,
+combination of box and scatter plots of the gene\sphinxhyphen{}set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
@@ -2109,9 +2124,9 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.upset_wrap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{upset\_wrap}}}{\emph{N}, \emph{labels=None}, \emph{drop\_empty=False}, \emph{**kwargs}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.upset_wrap}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{upset\_wrap}}}{\emph{\DUrole{n}{N}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{drop\_empty}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
 Wrapper for UpSetPlot package. Mostly just generates the Boolean
-multi-indexed \sphinxcode{\sphinxupquote{pandas.Series}} the \sphinxcode{\sphinxupquote{upsetplot.plot}} function
+multi\sphinxhyphen{}indexed \sphinxcode{\sphinxupquote{pandas.Series}} the \sphinxcode{\sphinxupquote{upsetplot.plot}} function
 needs as input.
 \begin{itemize}
 \item {} \begin{description}
@@ -2122,7 +2137,7 @@ needs as input.
 \item {} 
 \sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Labels for the
 sets following the same order as provided in \sphinxstyleemphasis{N}. If none is
-passed they will be labelled \sphinxcode{\sphinxupquote{'set0'}}, \sphinxcode{\sphinxupquote{'set1'}} and so on.
+passed they will be labelled \sphinxcode{\sphinxupquote{\textquotesingle{}set0\textquotesingle{}}}, \sphinxcode{\sphinxupquote{\textquotesingle{}set1\textquotesingle{}}} and so on.
 
 \item {} 
 \sphinxstyleemphasis{drop\_empty} {[}bool{]}: Optional, \sphinxcode{\sphinxupquote{False}} by default. Whether
@@ -2150,7 +2165,7 @@ UpSetPlot figure.
 \index{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{N, labels={[}'A', 'B', 'C', 'D', 'E'{]}, c={[}'C0', 'C1', 'C2', 'C3', 'C4'{]}, pct=False, sizes=False, title=None, filename=None, figsize=None}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.venn}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{venn}}}{\emph{\DUrole{n}{N}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{{[}\textquotesingle{}A\textquotesingle{}, \textquotesingle{}B\textquotesingle{}, \textquotesingle{}C\textquotesingle{}, \textquotesingle{}D\textquotesingle{}, \textquotesingle{}E\textquotesingle{}{]}}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{{[}\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{}, \textquotesingle{}C2\textquotesingle{}, \textquotesingle{}C3\textquotesingle{}, \textquotesingle{}C4\textquotesingle{}{]}}}, \emph{\DUrole{n}{pct}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{sizes}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Plots a Venn diagram from a list of sets \sphinxstyleemphasis{N}. Number of sets must be
 between 2 and 5 (inclusive).
 \begin{itemize}
@@ -2160,14 +2175,14 @@ between 2 and 5 (inclusive).
 \sphinxstyleemphasis{N} {[}list{]}: Or any iterable type containing {[}set{]} objects.
 
 \item {} 
-\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'A', 'B', 'C', 'D', 'E'{]}}} by
+\sphinxstyleemphasis{labels} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}\textquotesingle{}A\textquotesingle{}, \textquotesingle{}B\textquotesingle{}, \textquotesingle{}C\textquotesingle{}, \textquotesingle{}D\textquotesingle{}, \textquotesingle{}E\textquotesingle{}{]}}} by
 default. Labels for the sets following the same order as
 provided in \sphinxstyleemphasis{N}.
 
 \item {} 
-\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}'C0', 'C1' 'C2', 'C3', 'C4'{]}}} by
+\sphinxstyleemphasis{c} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{{[}\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{} \textquotesingle{}C2\textquotesingle{}, \textquotesingle{}C3\textquotesingle{}, \textquotesingle{}C4\textquotesingle{}{]}}} by
 default (matplotlib default colors). Any iterable containing
-color arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}}
+color arguments tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}\textquotesingle{}r\textquotesingle{}, \textquotesingle{}b\textquotesingle{}{]}}}
 for red and blue). Must contain at least the same number of
 elements as \sphinxstyleemphasis{N} (if more are provided, they will be ignored).
 
@@ -2201,7 +2216,7 @@ the figure size (in inches) as {[}width, height{]}.
 \item[{Returns:}] \leavevmode\begin{itemize}
 \item {} 
 {[}matplotlib.figure.Figure{]}: The figure object containing a
-combination of box and scatter plots of the gene-set scores,
+combination of box and scatter plots of the gene\sphinxhyphen{}set scores,
 unless \sphinxstyleemphasis{filename} is provided.
 
 \end{itemize}
@@ -2226,7 +2241,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{logfc}, \emph{logpval}, \emph{thr\_pval=0.05}, \emph{thr\_fc=2.0}, \emph{c=('C0'}, \emph{'C1')}, \emph{labels=None}, \emph{maxlabels=25}, \emph{legend=True}, \emph{title=None}, \emph{filename=None}, \emph{figsize=None}, \emph{txt\_size=7}, \emph{adj\_txt\_kwargs=\{\}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{\DUrole{n}{logfc}}, \emph{\DUrole{n}{logpval}}, \emph{\DUrole{n}{thr\_pval}\DUrole{o}{=}\DUrole{default_value}{0.05}}, \emph{\DUrole{n}{thr\_fc}\DUrole{o}{=}\DUrole{default_value}{2.0}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{}}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxlabels}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{txt\_size}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{adj\_txt\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
@@ -2234,29 +2249,29 @@ provided.
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
 \sphinxstyleemphasis{logfc} {[}list{]}: Or any iterable type. Contains the log
-(usually base 2) fold-change values. Must have the same length
+(usually base 2) fold\sphinxhyphen{}change values. Must have the same length
 as \sphinxstyleemphasis{logpval}.
 
 \item {} 
-\sphinxstyleemphasis{logpval} {[}list{]}: Or any iterable type. Contains the -log
-p-values (usually base 10). Must have the same length as
+\sphinxstyleemphasis{logpval} {[}list{]}: Or any iterable type. Contains the \sphinxhyphen{}log
+p\sphinxhyphen{}values (usually base 10). Must have the same length as
 \sphinxstyleemphasis{logfc}.
 
 \item {} 
 \sphinxstyleemphasis{thr\_pval} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{0.05}} by default. Specifies
-the p-value (non log-transformed) threshold to consider a
+the p\sphinxhyphen{}value (non log\sphinxhyphen{}transformed) threshold to consider a
 measurement as significantly differentially expressed.
 
 \item {} 
 \sphinxstyleemphasis{thr\_fc} {[}float{]}: Optional, \sphinxcode{\sphinxupquote{2}}. by default. Specifies the
-FC (non log-transformed) threshold to consider a measurement
+FC (non log\sphinxhyphen{}transformed) threshold to consider a measurement
 as significantly differentially expressed.
 
 \item {} 
-\sphinxstyleemphasis{c} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{('C0', 'C1')}} by default (matplotlib
+\sphinxstyleemphasis{c} {[}tuple{]}: Optional, \sphinxcode{\sphinxupquote{(\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{})}} by default (matplotlib
 default colors). Any iterable containing two color arguments
-tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}'r', 'b'{]}}} for red and
-blue). First one is used for non-significant points, second
+tolerated by matplotlib (e.g.: \sphinxcode{\sphinxupquote{{[}\textquotesingle{}r\textquotesingle{}, \textquotesingle{}b\textquotesingle{}{]}}} for red and
+blue). First one is used for non\sphinxhyphen{}significant points, second
 for the significant ones.
 
 \item {} 
@@ -2329,7 +2344,7 @@ volcano plot, unless \sphinxstyleemphasis{filename} is provided.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{signal:module-data_tools.signal}}\index{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}}
+\phantomsection\label{\detokenize{signal:module-data_tools.signal}}\index{module@\spxentry{module}!data\_tools.signal@\spxentry{data\_tools.signal}}\index{data\_tools.signal@\spxentry{data\_tools.signal}!module@\spxentry{module}}
 
 \section{data\_tools.signal}
 \label{\detokenize{signal:data-tools-signal}}\label{\detokenize{signal::doc}}
@@ -2340,7 +2355,7 @@ Signal processing module.
 \label{\detokenize{signal:contents}}\index{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{signal:data_tools.signal.fconvolve}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{fconvolve}}}{\emph{u}, \emph{v}}{}
+\phantomsection\label{\detokenize{signal:data_tools.signal.fconvolve}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{fconvolve}}}{\emph{\DUrole{n}{u}}, \emph{\DUrole{n}{v}}}{}
 Convolves two vectors or arrays using Fast Fourier Transform (FFT).
 According to Fourier theory, the convolution theorem states that:
 \begin{equation*}
@@ -2375,14 +2390,14 @@ According to Fourier theory, the convolution theorem states that:
 \index{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{signal:data_tools.signal.gauss_kernel}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_kernel}}}{\emph{size}, \emph{sd=1}, \emph{ndim=2}}{}
-Returns a N-dimensional Gaussian kernel. The kernel is defined as
+\phantomsection\label{\detokenize{signal:data_tools.signal.gauss_kernel}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_kernel}}}{\emph{\DUrole{n}{size}}, \emph{\DUrole{n}{sd}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{ndim}\DUrole{o}{=}\DUrole{default_value}{2}}}{}
+Returns a N\sphinxhyphen{}dimensional Gaussian kernel. The kernel is defined as
 follows:
 \begin{equation*}
 \begin{split}k(\vec{x})=\frac{1}{(\sqrt{2\pi}\sigma)^N}\mathrm{e}^{-
 \frac{||\vec{x}||_2^2}{2\sigma^2}}\end{split}
 \end{equation*}
-Where :math{}`N{}` is the number of dimensions and \(\sigma\) is
+Where :math\textasciigrave{}N\textasciigrave{} is the number of dimensions and \(\sigma\) is
 the standard deviation of the kernel.
 \begin{itemize}
 \item {} \begin{description}
@@ -2419,7 +2434,7 @@ for the desired kernel.
 \index{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{signal:data_tools.signal.gauss_noise}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_noise}}}{\emph{x}, \emph{sd=1}}{}
+\phantomsection\label{\detokenize{signal:data_tools.signal.gauss_noise}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.signal.}}\sphinxbfcode{\sphinxupquote{gauss\_noise}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{sd}\DUrole{o}{=}\DUrole{default_value}{1}}}{}
 Applies additive Gaussian (white) noise to a given signal.
 \begin{itemize}
 \item {} \begin{description}
@@ -2450,7 +2465,7 @@ noise applied.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}}
+\phantomsection\label{\detokenize{spatial:module-data_tools.spatial}}\index{module@\spxentry{module}!data\_tools.spatial@\spxentry{data\_tools.spatial}}\index{data\_tools.spatial@\spxentry{data\_tools.spatial}!module@\spxentry{module}}
 
 \section{data\_tools.spatial}
 \label{\detokenize{spatial:data-tools-spatial}}\label{\detokenize{spatial::doc}}
@@ -2461,7 +2476,7 @@ Spatial tools module.
 \label{\detokenize{spatial:contents}}\index{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{spatial:data_tools.spatial.equidist_polar}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{equidist\_polar}}}{\emph{n}, \emph{r=1}}{}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.equidist_polar}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{equidist\_polar}}}{\emph{\DUrole{n}{n}}, \emph{\DUrole{n}{r}\DUrole{o}{=}\DUrole{default_value}{1}}}{}
 For a given number of points (and optionally radius), returns the
 Cartesian coordinates of such number of equidistant points (in polar
 coordinates). This is, the (x, y) coordinates of \sphinxstyleemphasis{n} points equally
@@ -2497,7 +2512,7 @@ Cartesian coordinates.
 \index{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{x}, \emph{counts=False}}{}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.get_boundaries}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{get\_boundaries}}}{\emph{\DUrole{n}{x}}, \emph{\DUrole{n}{counts}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 Given an array, returns either the mask where the boundary edges are
 or their counts if specified.
 \begin{itemize}
@@ -2564,7 +2579,7 @@ denoting the number of boundary edges of the cells.
 \index{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{spatial:data_tools.spatial.neighbour_count}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{neighbour\_count}}}{\emph{x}}{}
+\phantomsection\label{\detokenize{spatial:data_tools.spatial.neighbour_count}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.spatial.}}\sphinxbfcode{\sphinxupquote{neighbour\_count}}}{\emph{\DUrole{n}{x}}}{}
 Given an array (up to three dimensions), returns another array with
 the same shape containing the counts of cells’ neighbours whose
 value is zero.
@@ -2573,7 +2588,7 @@ value is zero.
 \item[{Arguments:}] \leavevmode\begin{itemize}
 \item {} 
 \sphinxstyleemphasis{x} {[}numpy.ndarray{]}: The array where to count the neighbours
-(zero-valued cells). Note that the cells can have any value
+(zero\sphinxhyphen{}valued cells). Note that the cells can have any value
 or data type. As long as they be converted to {[}bool{]}, the
 function will count all \sphinxcode{\sphinxupquote{False}} around all \sphinxcode{\sphinxupquote{True}} cells.
 
@@ -2615,7 +2630,7 @@ neighbour count.
 
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}}
+\phantomsection\label{\detokenize{strings:module-data_tools.strings}}\index{module@\spxentry{module}!data\_tools.strings@\spxentry{data\_tools.strings}}\index{data\_tools.strings@\spxentry{data\_tools.strings}!module@\spxentry{module}}
 
 \section{data\_tools.strings}
 \label{\detokenize{strings:data-tools-strings}}\label{\detokenize{strings::doc}}
@@ -2626,7 +2641,7 @@ String operations module.
 \label{\detokenize{strings:contents}}\index{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{s}}{}
+\phantomsection\label{\detokenize{strings:data_tools.strings.is_numeric}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{is\_numeric}}}{\emph{\DUrole{n}{s}}}{}
 Determines if a string can be considered a numeric value. NaN is
 also considered, since it is float type.
 \begin{itemize}
@@ -2671,8 +2686,8 @@ satisfied.
 \index{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{strings:data_tools.strings.join_str_lists}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{join\_str\_lists}}}{\emph{a}, \emph{b}, \emph{sep=''}}{}
-Joins element-wise two lists (or any 1D iterable) of strings with a
+\phantomsection\label{\detokenize{strings:data_tools.strings.join_str_lists}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.strings.}}\sphinxbfcode{\sphinxupquote{join\_str\_lists}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{b}}, \emph{\DUrole{n}{sep}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}\textquotesingle{}}}}{}
+Joins element\sphinxhyphen{}wise two lists (or any 1D iterable) of strings with a
 given separator (if provided). Length of the input lists must be
 equal.
 \begin{itemize}
@@ -2687,7 +2702,7 @@ strings.
 strings.
 
 \item {} 
-\sphinxstyleemphasis{sep} {[}str{]}: Optional \sphinxcode{\sphinxupquote{'{'}}} (non separated) by default.
+\sphinxstyleemphasis{sep} {[}str{]}: Optional \sphinxcode{\sphinxupquote{\textquotesingle{}\textquotesingle{}}} (non separated) by default.
 Determines the separator between the joint strings.
 
 \end{itemize}

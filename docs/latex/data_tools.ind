@@ -13,21 +13,29 @@
   \item \spxentry{chordplot()}\spxextra{in module data\_tools.plots}, \hyperpage{21}
   \item \spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}, \hyperpage{14}
   \item \spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}, \hyperpage{22}
-  \item \spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}, \hyperpage{21}
-  \item \spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}, \hyperpage{21}
-  \item \spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}, \hyperpage{21}
+  \item \spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}, \hyperpage{23}
+  \item \spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}, \hyperpage{23}
   \item \spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}, \hyperpage{14}
 
   \indexspace
   \bigletter D
-  \item \spxentry{data\_tools.databases}\spxextra{module}, \hyperpage{9}
-  \item \spxentry{data\_tools.diffusion}\spxextra{module}, \hyperpage{11}
-  \item \spxentry{data\_tools.iterables}\spxextra{module}, \hyperpage{14}
-  \item \spxentry{data\_tools.models}\spxextra{module}, \hyperpage{17}
-  \item \spxentry{data\_tools.plots}\spxextra{module}, \hyperpage{21}
-  \item \spxentry{data\_tools.signal}\spxextra{module}, \hyperpage{29}
-  \item \spxentry{data\_tools.spatial}\spxextra{module}, \hyperpage{30}
-  \item \spxentry{data\_tools.strings}\spxextra{module}, \hyperpage{32}
+  \item \spxentry{data\_tools.databases}
+    \subitem \spxentry{module}, \hyperpage{9}
+  \item \spxentry{data\_tools.diffusion}
+    \subitem \spxentry{module}, \hyperpage{11}
+  \item \spxentry{data\_tools.iterables}
+    \subitem \spxentry{module}, \hyperpage{14}
+  \item \spxentry{data\_tools.models}
+    \subitem \spxentry{module}, \hyperpage{17}
+  \item \spxentry{data\_tools.plots}
+    \subitem \spxentry{module}, \hyperpage{21}
+  \item \spxentry{data\_tools.signal}
+    \subitem \spxentry{module}, \hyperpage{30}
+  \item \spxentry{data\_tools.spatial}
+    \subitem \spxentry{module}, \hyperpage{31}
+  \item \spxentry{data\_tools.strings}
+    \subitem \spxentry{module}, \hyperpage{32}
   \item \spxentry{density()}\spxextra{in module data\_tools.plots}, \hyperpage{23}
   \item \spxentry{DoseResponse}\spxextra{class in data\_tools.models}, \hyperpage{17}
 
@@ -45,17 +53,17 @@
   \indexspace
   \bigletter G
   \item \spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}, \hyperpage{30}
-  \item \spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}, \hyperpage{30}
+  \item \spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}, \hyperpage{31}
   \item \spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}, \hyperpage{31}
 
   \indexspace
   \bigletter I
   \item \spxentry{in\_all()}\spxextra{in module data\_tools.iterables}, \hyperpage{15}
-  \item \spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}, \hyperpage{32}
+  \item \spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}, \hyperpage{33}
 
   \indexspace
   \bigletter J
-  \item \spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}, \hyperpage{32}
+  \item \spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}, \hyperpage{33}
 
   \indexspace
   \bigletter K
@@ -69,8 +77,20 @@
   \item \spxentry{Linear}\spxextra{class in data\_tools.models}, \hyperpage{19}
 
   \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{data\_tools.databases}, \hyperpage{9}
+    \subitem \spxentry{data\_tools.diffusion}, \hyperpage{11}
+    \subitem \spxentry{data\_tools.iterables}, \hyperpage{14}
+    \subitem \spxentry{data\_tools.models}, \hyperpage{17}
+    \subitem \spxentry{data\_tools.plots}, \hyperpage{21}
+    \subitem \spxentry{data\_tools.signal}, \hyperpage{30}
+    \subitem \spxentry{data\_tools.spatial}, \hyperpage{31}
+    \subitem \spxentry{data\_tools.strings}, \hyperpage{32}
+
+  \indexspace
   \bigletter N
-  \item \spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}, \hyperpage{31}
+  \item \spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}, \hyperpage{32}
 
   \indexspace
   \bigletter O

@@ -1,12 +1,15 @@
-\indexentry{data\_tools.databases (module)@\spxentry{data\_tools.databases}\spxextra{module}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!data\_tools.databases@\spxentry{data\_tools.databases}|hyperpage}{9}
+\indexentry{data\_tools.databases@\spxentry{data\_tools.databases}!module@\spxentry{module}|hyperpage}{9}
 \indexentry{kegg\_link() (in module data\_tools.databases)@\spxentry{kegg\_link()}\spxextra{in module data\_tools.databases}|hyperpage}{9}
 \indexentry{kegg\_pathway\_mapping() (in module data\_tools.databases)@\spxentry{kegg\_pathway\_mapping()}\spxextra{in module data\_tools.databases}|hyperpage}{9}
 \indexentry{op\_kinase\_substrate() (in module data\_tools.databases)@\spxentry{op\_kinase\_substrate()}\spxextra{in module data\_tools.databases}|hyperpage}{10}
 \indexentry{up\_map() (in module data\_tools.databases)@\spxentry{up\_map()}\spxextra{in module data\_tools.databases}|hyperpage}{11}
-\indexentry{data\_tools.diffusion (module)@\spxentry{data\_tools.diffusion}\spxextra{module}|hyperpage}{11}
+\indexentry{module@\spxentry{module}!data\_tools.diffusion@\spxentry{data\_tools.diffusion}|hyperpage}{11}
+\indexentry{data\_tools.diffusion@\spxentry{data\_tools.diffusion}!module@\spxentry{module}|hyperpage}{11}
 \indexentry{build\_mat() (in module data\_tools.diffusion)@\spxentry{build\_mat()}\spxextra{in module data\_tools.diffusion}|hyperpage}{13}
 \indexentry{coef\_mat\_hetero() (in module data\_tools.diffusion)@\spxentry{coef\_mat\_hetero()}\spxextra{in module data\_tools.diffusion}|hyperpage}{14}
-\indexentry{data\_tools.iterables (module)@\spxentry{data\_tools.iterables}\spxextra{module}|hyperpage}{14}
+\indexentry{module@\spxentry{module}!data\_tools.iterables@\spxentry{data\_tools.iterables}|hyperpage}{14}
+\indexentry{data\_tools.iterables@\spxentry{data\_tools.iterables}!module@\spxentry{module}|hyperpage}{14}
 \indexentry{bit\_or() (in module data\_tools.iterables)@\spxentry{bit\_or()}\spxextra{in module data\_tools.iterables}|hyperpage}{14}
 \indexentry{chunk\_this() (in module data\_tools.iterables)@\spxentry{chunk\_this()}\spxextra{in module data\_tools.iterables}|hyperpage}{14}
 \indexentry{find\_min() (in module data\_tools.iterables)@\spxentry{find\_min()}\spxextra{in module data\_tools.iterables}|hyperpage}{15}
@@ -14,7 +17,8 @@
 \indexentry{similarity() (in module data\_tools.iterables)@\spxentry{similarity()}\spxextra{in module data\_tools.iterables}|hyperpage}{15}
 \indexentry{subsets() (in module data\_tools.iterables)@\spxentry{subsets()}\spxextra{in module data\_tools.iterables}|hyperpage}{16}
 \indexentry{unzip\_dicts() (in module data\_tools.iterables)@\spxentry{unzip\_dicts()}\spxextra{in module data\_tools.iterables}|hyperpage}{16}
-\indexentry{data\_tools.models (module)@\spxentry{data\_tools.models}\spxextra{module}|hyperpage}{17}
+\indexentry{module@\spxentry{module}!data\_tools.models@\spxentry{data\_tools.models}|hyperpage}{17}
+\indexentry{data\_tools.models@\spxentry{data\_tools.models}!module@\spxentry{module}|hyperpage}{17}
 \indexentry{DoseResponse (class in data\_tools.models)@\spxentry{DoseResponse}\spxextra{class in data\_tools.models}|hyperpage}{17}
 \indexentry{ec() (data\_tools.models.DoseResponse method)@\spxentry{ec()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{18}
 \indexentry{plot() (data\_tools.models.DoseResponse method)@\spxentry{plot()}\spxextra{data\_tools.models.DoseResponse method}|hyperpage}{18}
@@ -26,12 +30,13 @@
 \indexentry{plot() (data\_tools.models.Linear method)@\spxentry{plot()}\spxextra{data\_tools.models.Linear method}|hyperpage}{20}
 \indexentry{PowerLaw (class in data\_tools.models)@\spxentry{PowerLaw}\spxextra{class in data\_tools.models}|hyperpage}{20}
 \indexentry{plot() (data\_tools.models.PowerLaw method)@\spxentry{plot()}\spxextra{data\_tools.models.PowerLaw method}|hyperpage}{20}
-\indexentry{data\_tools.plots (module)@\spxentry{data\_tools.plots}\spxextra{module}|hyperpage}{21}
-\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{21}
-\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{21}
-\indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{21}
+\indexentry{module@\spxentry{module}!data\_tools.plots@\spxentry{data\_tools.plots}|hyperpage}{21}
+\indexentry{data\_tools.plots@\spxentry{data\_tools.plots}!module@\spxentry{module}|hyperpage}{21}
 \indexentry{chordplot() (in module data\_tools.plots)@\spxentry{chordplot()}\spxextra{in module data\_tools.plots}|hyperpage}{21}
 \indexentry{cluster\_hmap() (in module data\_tools.plots)@\spxentry{cluster\_hmap()}\spxextra{in module data\_tools.plots}|hyperpage}{22}
+\indexentry{cmap\_bkgr (in module data\_tools.plots)@\spxentry{cmap\_bkgr}\spxextra{in module data\_tools.plots}|hyperpage}{23}
+\indexentry{cmap\_bkrd (in module data\_tools.plots)@\spxentry{cmap\_bkrd}\spxextra{in module data\_tools.plots}|hyperpage}{23}
+\indexentry{cmap\_rdbkgr (in module data\_tools.plots)@\spxentry{cmap\_rdbkgr}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{density() (in module data\_tools.plots)@\spxentry{density()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{pca() (in module data\_tools.plots)@\spxentry{pca()}\spxextra{in module data\_tools.plots}|hyperpage}{23}
 \indexentry{phase\_portrait() (in module data\_tools.plots)@\spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}|hyperpage}{24}
@@ -41,14 +46,17 @@
 \indexentry{upset\_wrap() (in module data\_tools.plots)@\spxentry{upset\_wrap()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
 \indexentry{venn() (in module data\_tools.plots)@\spxentry{venn()}\spxextra{in module data\_tools.plots}|hyperpage}{27}
 \indexentry{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}|hyperpage}{28}
-\indexentry{data\_tools.signal (module)@\spxentry{data\_tools.signal}\spxextra{module}|hyperpage}{29}
+\indexentry{module@\spxentry{module}!data\_tools.signal@\spxentry{data\_tools.signal}|hyperpage}{30}
+\indexentry{data\_tools.signal@\spxentry{data\_tools.signal}!module@\spxentry{module}|hyperpage}{30}
 \indexentry{fconvolve() (in module data\_tools.signal)@\spxentry{fconvolve()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
 \indexentry{gauss\_kernel() (in module data\_tools.signal)@\spxentry{gauss\_kernel()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
-\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{30}
-\indexentry{data\_tools.spatial (module)@\spxentry{data\_tools.spatial}\spxextra{module}|hyperpage}{30}
+\indexentry{gauss\_noise() (in module data\_tools.signal)@\spxentry{gauss\_noise()}\spxextra{in module data\_tools.signal}|hyperpage}{31}
+\indexentry{module@\spxentry{module}!data\_tools.spatial@\spxentry{data\_tools.spatial}|hyperpage}{31}
+\indexentry{data\_tools.spatial@\spxentry{data\_tools.spatial}!module@\spxentry{module}|hyperpage}{31}
 \indexentry{equidist\_polar() (in module data\_tools.spatial)@\spxentry{equidist\_polar()}\spxextra{in module data\_tools.spatial}|hyperpage}{31}
 \indexentry{get\_boundaries() (in module data\_tools.spatial)@\spxentry{get\_boundaries()}\spxextra{in module data\_tools.spatial}|hyperpage}{31}
-\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{31}
-\indexentry{data\_tools.strings (module)@\spxentry{data\_tools.strings}\spxextra{module}|hyperpage}{32}
-\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{32}
-\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{32}
+\indexentry{neighbour\_count() (in module data\_tools.spatial)@\spxentry{neighbour\_count()}\spxextra{in module data\_tools.spatial}|hyperpage}{32}
+\indexentry{module@\spxentry{module}!data\_tools.strings@\spxentry{data\_tools.strings}|hyperpage}{32}
+\indexentry{data\_tools.strings@\spxentry{data\_tools.strings}!module@\spxentry{module}|hyperpage}{32}
+\indexentry{is\_numeric() (in module data\_tools.strings)@\spxentry{is\_numeric()}\spxextra{in module data\_tools.strings}|hyperpage}{33}
+\indexentry{join\_str\_lists() (in module data\_tools.strings)@\spxentry{join\_str\_lists()}\spxextra{in module data\_tools.strings}|hyperpage}{33}

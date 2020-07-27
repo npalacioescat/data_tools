@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.25)  17 JUN 2020 11:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.4)  27 JUL 2020 14:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,7 +6,7 @@ entering extended mode
 (./data_tools.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (./sphinxmanual.cls
-Document Class: sphinxmanual 2018/12/22 v1.8.3 Document class (Sphinx manual)
+Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -24,7 +24,9 @@ File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-))
+)
+LaTeX Info: Redefining \and on input line 35.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks14
@@ -130,16 +132,12 @@ File: babel.def 2020/02/14 3.40 Babel common definitions
 \bbl@readstream=\read2
 \bbl@dirlevel=\count189
 )
-Package babel Info: \l@british = using hyphenrules for english
-(babel)             (\language0) on input line 82.
-Package babel Info: \l@UKenglish = using hyphenrules for english
-(babel)             (\language0) on input line 83.
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
-Package babel Info: \l@australian = using hyphenrules for english
-(babel)             (\language0) on input line 105.
-Package babel Info: \l@newzealand = using hyphenrules for english
-(babel)             (\language0) on input line 108.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language35) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language35) on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
@@ -156,7 +154,7 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \c@AlphaCnt=\count190
 \c@AlphaDecCnt=\count191
 ) (./sphinx.sty
-Package: sphinx 2019/01/12 v1.8.4 LaTeX package (Sphinx markup)
+Package: sphinx 2019/09/02 v2.3.0 LaTeX package (Sphinx markup)
 
 (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
@@ -356,12 +354,13 @@ Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 \sphinxshadowsize=\dimen172
 \sphinxshadowrule=\dimen173
 \spx@notice@border=\dimen174
-\spx@image@box=\box60
 \spx@image@maxheight=\dimen175
+\spx@image@box=\dimen176
 \c@literalblock=\count270
-\sphinxcontinuationbox=\box61
-\sphinxvisiblespacebox=\box62
-\sphinxVerbatim@TitleBox=\box63
+\sphinxcontinuationbox=\box60
+\sphinxvisiblespacebox=\box61
+\sphinxVerbatim@TitleBox=\box62
+\sphinxVerbatim@ContentsBox=\box63
 \py@argswidth=\skip77
 \lineblockindentation=\skip78
 \DUlineblockindent=\skip79
@@ -378,14 +377,14 @@ Package: iftex 2019/11/07 v1.0c TeX engine tests
 \Gm@cnth=\count271
 \Gm@cntv=\count272
 \c@Gm@tempcnt=\count273
-\Gm@bindingoffset=\dimen176
-\Gm@wd@mp=\dimen177
-\Gm@odd@mp=\dimen178
-\Gm@even@mp=\dimen179
-\Gm@layoutwidth=\dimen180
-\Gm@layoutheight=\dimen181
-\Gm@layouthoffset=\dimen182
-\Gm@layoutvoffset=\dimen183
+\Gm@bindingoffset=\dimen177
+\Gm@wd@mp=\dimen178
+\Gm@odd@mp=\dimen179
+\Gm@even@mp=\dimen180
+\Gm@layoutwidth=\dimen181
+\Gm@layoutheight=\dimen182
+\Gm@layouthoffset=\dimen183
+\Gm@layoutvoffset=\dimen184
 \Gm@dimlist=\toks28
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -417,7 +416,7 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen184
+\@linkdim=\dimen185
 \Hy@linkcounter=\count274
 \Hy@pagecounter=\count275
 
@@ -457,7 +456,7 @@ Package hyperref Info: Bookmarks ON on input line 4800.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
-\XeTeXLinkMargin=\dimen185
+\XeTeXLinkMargin=\dimen186
 
 (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -467,8 +466,8 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count279
-\Field@Width=\dimen186
-\Fld@charsize=\dimen187
+\Field@Width=\dimen187
+\Fld@charsize=\dimen188
 Package hyperref Info: Hyper figures OFF on input line 6430.
 Package hyperref Info: Link nesting OFF on input line 6435.
 Package hyperref Info: Hyper index ON on input line 6438.
@@ -512,6 +511,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 )
+(./sphinxmessages.sty
+Package: sphinxmessages 2019/01/04 v2.0 Localized LaTeX macros (Sphinx team)
+)
 \@indexfile=\write4
 \openout4 = `data_tools.idx'.
 
@@ -525,25 +527,25 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./data_tools.aux)
 \openout1 = `data_tools.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 67
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 82
 .
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -551,13 +553,13 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count286
-\scratchdimen=\dimen188
+\scratchdimen=\dimen189
 \scratchbox=\box65
 \nofMPsegments=\count287
 \nofMParguments=\count288
 \everyMPshowfont=\toks29
 \MPscratchCnt=\count289
-\MPscratchDim=\dimen189
+\MPscratchDim=\dimen190
 \MPnumerator=\count290
 \makeMPintoPDFobject=\count291
 \everyMPtoPDFconversion=\toks30
@@ -605,7 +607,7 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring ON on input line 67.
+Package hyperref Info: Link coloring ON on input line 82.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -617,33 +619,33 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 67.
-LaTeX Info: Redefining \pageref on input line 67.
-LaTeX Info: Redefining \nameref on input line 67.
+LaTeX Info: Redefining \ref on input line 82.
+LaTeX Info: Redefining \pageref on input line 82.
+LaTeX Info: Redefining \nameref on input line 82.
 
 (./data_tools.out) (./data_tools.out)
 \@outlinefile=\write5
 \openout5 = `data_tools.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 70.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 70
+Package hyperref Info: Option `pageanchor' set `false' on input line 85.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 85
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 70.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 85.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 70.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 85.
 <<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -670,15 +672,15 @@ Chapter 1.
 ]
 Chapter 2.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-09.
+24.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [5] [6
 
 ]
 Chapter 3.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-5.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 15
+0.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [7] [8
@@ -693,87 +695,101 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 <hsa04010.png, id=221, 1347.0325pt x 1045.9075pt>
 File: hsa04010.png Graphic file (type png)
 <use hsa04010.png>
-Package pdftex.def Info: hsa04010.png  used on input line 272.
-(pdftex.def)             Requested size: 404.05502pt x 313.72679pt.
+Package pdftex.def Info: hsa04010.png  used on input line 287.
+(pdftex.def)             Requested size: 404.05121pt x 313.72679pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--283
-[]\T1/ptm/m/it/10 organism='9606'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 gsym-bols=Fal
-se\T1/ptm/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+[]\T1/ptm/m/it/10 organism=\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 9606\TS1/ptm/m/it/
+10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 gsym-bols=False\T1/ptm/m/n/10 ,
  []
 
 [10 <./hsa04010.png (PNG copy)>] [11] [12] [13] [14]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 806.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 821.
  [15] [16] [17]
-Underfull \hbox (badness 5741) in paragraph at lines 1166--1168
+Underfull \hbox (badness 5741) in paragraph at lines 1181--1183
 []\T1/ptm/m/it/10 **kwargs\T1/ptm/m/n/10 : Op-tional. Any other key-word ar-gu-
 ment ac-cepted by the \T1/pcr/m/n/10 sklearn.
  []
 
 [18] [19] [20]
-Underfull \hbox (badness 7099) in paragraph at lines 1526--1526
+Underfull \hbox (badness 7099) in paragraph at lines 1516--1516
 []\T1/ptm/m/it/10 nodes\T1/ptm/m/n/10 , \T1/ptm/m/it/10 edges\T1/ptm/m/n/10 , \
 T1/ptm/m/it/10 al-pha=0.2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 plot_lines=False\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 la-bels=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 la-
  []
 
 [21]
-<chordplot_example.png, id=318, 433.62pt x 289.08pt>
+<chordplot_example.png, id=315, 433.62pt x 289.08pt>
 File: chordplot_example.png Graphic file (type png)
 <use chordplot_example.png>
-Package pdftex.def Info: chordplot_example.png  used on input line 1612.
+Package pdftex.def Info: chordplot_example.png  used on input line 1602.
 (pdftex.def)             Requested size: 346.89647pt x 231.2643pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1623--1623
+Underfull \hbox (badness 10000) in paragraph at lines 1613--1613
 []\T1/ptm/m/it/10 matrix\T1/ptm/m/n/10 , \T1/ptm/m/it/10 xla-bels=None\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 yla-bels=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=No
 ne\T1/ptm/m/n/10 , \T1/ptm/m/it/10 file-
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 1623--1623
+Underfull \hbox (badness 7151) in paragraph at lines 1613--1613
 \T1/ptm/m/it/10 name=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 fig-size=None\T1/ptm/
-m/n/10 , \T1/ptm/m/it/10 cmap='viridis'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 link_kw
-args={}\T1/ptm/m/n/10 ,
+m/n/10 , \T1/ptm/m/it/10 cmap=\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 viridis\TS1/ptm
+/m/it/10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 link_kwargs={}\T1/ptm/m/n/10 ,
  []
 
-[22 <./chordplot_example.png>] [23]
-<phase_portrait_example.png, id=337, 384.43625pt x 252.945pt>
+[22 <./chordplot_example.png>] [23] [24]
+<phase_portrait_example.png, id=342, 384.43625pt x 252.945pt>
 File: phase_portrait_example.png Graphic file (type png)
 <use phase_portrait_example.png>
-Package pdftex.def Info: phase_portrait_example.png  used on input line 1903.
+Package pdftex.def Info: phase_portrait_example.png  used on input line 1918.
 (pdftex.def)             Requested size: 307.54941pt x 202.35626pt.
- [24]
-<piano_consensus_example.png, id=343, 505.89pt x 578.16pt>
+ [25 <./phase_portrait_example.png>]
+<piano_consensus_example.png, id=349, 505.89pt x 578.16pt>
 File: piano_consensus_example.png Graphic file (type png)
 <use piano_consensus_example.png>
-Package pdftex.def Info: piano_consensus_example.png  used on input line 1979.
+Package pdftex.def Info: piano_consensus_example.png  used on input line 1994.
 (pdftex.def)             Requested size: 303.53633pt x 346.89867pt.
- [25 <./phase_portrait_example.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2008.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2023.
 
 [26 <./piano_consensus_example.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2055--2055
-[]\T1/ptm/m/it/10 groups\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mode='j'\T1/ptm/m/n/10
- , \T1/ptm/m/it/10 bins=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=None\T1/ptm/m
-/n/10 , \T1/ptm/m/it/10 file-
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2070
+[]\T1/ptm/m/it/10 groups\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mode=\TS1/ptm/m/it/10 
+'\T1/ptm/m/it/10 j\TS1/ptm/m/it/10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 bins=10\T1
+/ptm/m/n/10 , \T1/ptm/m/it/10 ti-tle=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 file-
+
  []
 
 [27]
 <venn_example.png, id=370, 433.62pt x 289.08pt>
 File: venn_example.png Graphic file (type png)
 <use venn_example.png>
-Package pdftex.def Info: venn_example.png  used on input line 2218.
-(pdftex.def)             Requested size: 433.61894pt x 289.07928pt.
+Package pdftex.def Info: venn_example.png  used on input line 2233.
+(pdftex.def)             Requested size: 404.07626pt x 269.38416pt.
  [28 <./venn_example.png>]
 <volcano_example.png, id=378, 462.528pt x 346.896pt>
 File: volcano_example.png Graphic file (type png)
 <use volcano_example.png>
-Package pdftex.def Info: volcano_example.png  used on input line 2324.
+Package pdftex.def Info: volcano_example.png  used on input line 2339.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
- [29 <./volcano_example.png>] [30] [31] [32]
-[33] [34
+ [29]
+
+Package textcomp Warning: Symbol \textasciigrave not provided by
+(textcomp)                font family ptm in TS1 encoding.
+(textcomp)                Default family used instead on input line 2400.
+
+
+Package textcomp Warning: Symbol \textasciigrave not provided by
+(textcomp)                font family ptm in TS1 encoding.
+(textcomp)                Default family used instead on input line 2400.
+
+[30 <./volcano_example.png>]
+Overfull \vbox (0.9409pt too high) detected at line 2571
+ []
+
+[31] [32] [33] [34
 
 ] [35
 
@@ -787,75 +803,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
 []\T1/pcr/m/n/10 kegg_pathway_mapping() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-
 ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--79
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
 []\T1/pcr/m/n/10 op_kinase_substrate() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-u
 le
  []
 
+[37
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
+]
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 []\T1/pcr/m/n/10 similarity_heatmap() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-ul
 e
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--97
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 []\T1/pcr/m/n/10 similarity_histogram() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 in mod-
 ule
  []
 
-[37
-
-] [38
+[38
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2739.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2739.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2754.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2754.
  (./data_tools.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2739.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2739.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2754.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2754.
 
 Package rerunfilecheck Info: File `data_tools.out' has not changed.
 (rerunfilecheck)             Checksum: 46F2464812B268F09507C88E3D1467B7;3316.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2739.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2754.
  ) 
 Here is how much of TeX's memory you used:
- 13704 strings out of 483183
- 194592 string characters out of 5966292
- 506014 words of memory out of 5000000
- 28246 multiletter control sequences out of 15000+600000
- 586233 words of font info for 93 fonts, out of 8000000 for 9000
- 15 hyphenation exceptions out of 8191
- 38i,24n,49p,617b,661s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
-tic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on data_tools.pdf (42 pages, 593278 bytes).
+ 13732 strings out of 481239
+ 195090 string characters out of 5920378
+ 511162 words of memory out of 5000000
+ 28518 multiletter control sequences out of 15000+600000
+ 589623 words of font info for 97 fonts, out of 8000000 for 9000
+ 1142 hyphenation exceptions out of 8191
+ 38i,24n,49p,1118b,673s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courie
+r/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on data_tools.pdf (42 pages, 601159 bytes).
 PDF statistics:
- 593 PDF objects out of 1000 (max. 8388607)
- 507 compressed objects within 6 object streams
+ 606 PDF objects out of 1000 (max. 8388607)
+ 519 compressed objects within 6 object streams
  123 named destinations out of 1000 (max. 500000)
  259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

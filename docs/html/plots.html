@@ -1,21 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>data_tools.plots &#8212; data_tools 0.0.8 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,7 +36,8 @@
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">data_tools.plots</a></li> 
       </ul>
     </div>  
 
@@ -51,83 +51,61 @@
 <p>Plotting functions module.</p>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<dl class="data">
-<dt id="data_tools.plots.cmap_bkgr">
-<code class="descclassname">data_tools.plots.</code><code class="descname">cmap_bkgr</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_bkgr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom colormap, gradient from black (lowest) to lime green (highest).</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="data_tools.plots.cmap_bkrd">
-<code class="descclassname">data_tools.plots.</code><code class="descname">cmap_bkrd</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_bkrd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom colormap, gradient from black (lowest) to red (highest).</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="data_tools.plots.cmap_rdbkgr">
-<code class="descclassname">data_tools.plots.</code><code class="descname">cmap_rdbkgr</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_rdbkgr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom colormap, gradient from red (lowest) to black (middle) to lime
-green (highest).</p>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.chordplot">
-<code class="descclassname">data_tools.plots.</code><code class="descname">chordplot</code><span class="sig-paren">(</span><em>nodes</em>, <em>edges</em>, <em>alpha=0.2</em>, <em>plot_lines=False</em>, <em>labels=False</em>, <em>label_sizes=False</em>, <em>colors=None</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#chordplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.chordplot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">chordplot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nodes</span></em>, <em class="sig-param"><span class="n">edges</span></em>, <em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">plot_lines</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label_sizes</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">colors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#chordplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.chordplot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a chord plot from a collection of nodes and edges (and
 their sizes). <strong>NOTE</strong>: Make sure that all nodes are involved in at
 least one edge (with size &gt; 0).</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>nodes</em> [dict]: Can also be [pandas.DataFrame] or
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>nodes</em> [dict]: Can also be [pandas.DataFrame] or
 [pandas.Series]. Values contain the nodes sizes and the keys/
 indices the node names (must correspond to the ones in
-<em>edges</em>).</li>
-<li><em>edges</em> [pd.DataFrame]: Can also be [numpy.ndarray] or [list]
+<em>edges</em>).</p></li>
+<li><p><em>edges</em> [pd.DataFrame]: Can also be [numpy.ndarray] or [list]
 of [list] as long as contains <em>n</em> by 3 elements where <em>n</em> is
 the number of edges and their elements describe the source and
-target nodes and the size of that edge.</li>
-<li><em>alpha</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.2</span></code> by default. Sets the
-transparency of the edges.</li>
-<li><em>plot_lines</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
-to plot the edge borders or not.</li>
-<li><em>labels</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. If <code class="docutils literal notranslate"><span class="pre">True</span></code>
+target nodes and the size of that edge.</p></li>
+<li><p><em>alpha</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.2</span></code> by default. Sets the
+transparency of the edges.</p></li>
+<li><p><em>plot_lines</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
+to plot the edge borders or not.</p></li>
+<li><p><em>labels</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. If <code class="docutils literal notranslate"><span class="pre">True</span></code>
 will label de nodes according to their index/key inputed in
 the first argument. Otherwise can be [list] or other iterable
-containing other labels (same order as provided in <em>nodes</em>).</li>
-<li><em>label_sizes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Sets
-whether to append the node sizes when labelling the plot.</li>
-<li><em>colors</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (matplotlib
+containing other labels (same order as provided in <em>nodes</em>).</p></li>
+<li><p><em>label_sizes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Sets
+whether to append the node sizes when labelling the plot.</p></li>
+<li><p><em>colors</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (matplotlib
 default color sequence). Any iterable containing color
 arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for
 red and blue). Must contain at least the same number of
 elements as <em>nodes</em> (if more are provided, they will be
-ignored).</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+ignored).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: The figure object containing the
-chord plot, unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+chord plot, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">}</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
 <span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
 <span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
@@ -137,61 +115,59 @@ chord plot, unless <em>filename</em> is provided.</li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chordplot</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">plot_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="_images/chordplot_example.png"><img alt="_images/chordplot_example.png" class="align-center" src="_images/chordplot_example.png" style="width: 345.6px; height: 230.4px;" /></a>
+<a class="reference internal image-reference" href="_images/chordplot_example.png"><img alt="_images/chordplot_example.png" class="align-center" src="_images/chordplot_example.png" style="width: 345.6px; height: 230.4px;" /></a>
 </dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.cluster_hmap">
-<code class="descclassname">data_tools.plots.</code><code class="descname">cluster_hmap</code><span class="sig-paren">(</span><em>matrix</em>, <em>xlabels=None</em>, <em>ylabels=None</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>cmap='viridis'</em>, <em>link_kwargs={}</em>, <em>dendo_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#cluster_hmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.cluster_hmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">cluster_hmap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">matrix</span></em>, <em class="sig-param"><span class="n">xlabels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ylabels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">'viridis'</span></em>, <em class="sig-param"><span class="n">link_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">dendo_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#cluster_hmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.cluster_hmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a heatmap with hierarchical clustering dendrograms
 attached. The linkage matrix and dendrogram are computed using the
 module <code class="xref py py-mod docutils literal notranslate"><span class="pre">scipy.cluster.hierarchy</span></code>, you may check the
 corresponding documentation for available and default methods.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>matrix</em> [numpy.ndarray]: Contains the values to generate the
-plot. It is assumed to be a 2-dimensional matrix.</li>
-<li><em>xlabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>matrix</em> [numpy.ndarray]: Contains the values to generate the
+plot. It is assumed to be a 2-dimensional matrix.</p></li>
+<li><p><em>xlabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
 the x-axis of the matrix following the same order as provided
-(e.g. sample names).</li>
-<li><em>ylabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
+(e.g. sample names).</p></li>
+<li><p><em>ylabels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for
 the y-axis of the matrix following the same order as provided
-(e.g. measurements).</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+(e.g. measurements).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
-<li><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'viridis'</span></code> by default. The colormap
+the figure size (in inches) as [width, height].</p></li>
+<li><p><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'viridis'</span></code> by default. The colormap
 used for the plot (can also be a [matplotlib.colors.Colormap]
 object). See other [str] options available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s
-reference manual</a>.</li>
-<li><em>link_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
+reference manual</a>.</p></li>
+<li><p><em>link_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
 containing the key-value pairs for keyword arguments passed to
-<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html">scipy.cluster.hierarchy.linkage</a>.</li>
-<li><em>dendo_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
+<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html">scipy.cluster.hierarchy.linkage</a>.</p></li>
+<li><p><em>dendo_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
 containing the key-value pairs for keyword arguments passed to
-<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.dendrogram.html">scipy.cluster.hierarchy.dendrogram</a>.</li>
+<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.dendrogram.html">scipy.cluster.hierarchy.dendrogram</a>.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: The figure object containing the
-density plot, unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+density plot, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -199,40 +175,57 @@ density plot, unless <em>filename</em> is provided.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py data">
+<dt id="data_tools.plots.cmap_bkgr">
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">cmap_bkgr</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_bkgr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom colormap, gradient from black (lowest) to lime green (highest).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="data_tools.plots.cmap_bkrd">
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">cmap_bkrd</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_bkrd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom colormap, gradient from black (lowest) to red (highest).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="data_tools.plots.cmap_rdbkgr">
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">cmap_rdbkgr</code><em class="property"> = &lt;matplotlib.colors.LinearSegmentedColormap object&gt;</em><a class="headerlink" href="#data_tools.plots.cmap_rdbkgr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom colormap, gradient from red (lowest) to black (middle) to lime
+green (highest).</p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="data_tools.plots.density">
-<code class="descclassname">data_tools.plots.</code><code class="descname">density</code><span class="sig-paren">(</span><em>df</em>, <em>cvf=0.25</em>, <em>sample_col=False</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">density</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">cvf</span><span class="o">=</span><span class="default_value">0.25</span></em>, <em class="sig-param"><span class="n">sample_col</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.density" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a density plot of the values on a data frame (row-wise).</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>df</em> [pandas.DataFrame]: Contains the values to generate the
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>df</em> [pandas.DataFrame]: Contains the values to generate the
 plot. Each row is considered as an individual sample while
 each column contains a measured value unless otherwise stated
-by keyword argument <em>sample_col</em>.</li>
-<li><em>cvf</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.25</span></code> by default. Co-variance
+by keyword argument <em>sample_col</em>.</p></li>
+<li><p><em>cvf</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.25</span></code> by default. Co-variance
 factor used in the gaussian kernel estimation. A higher value
-increases the smoothness.</li>
-<li><em>sample_col</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Specifies
-whether the samples are column-wise or not.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+increases the smoothness.</p></li>
+<li><p><em>sample_col</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Specifies
+whether the samples are column-wise or not.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: The figure object containing the
-density plot, unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+density plot, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -240,50 +233,48 @@ density plot, unless <em>filename</em> is provided.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.pca">
-<code class="descclassname">data_tools.plots.</code><code class="descname">pca</code><span class="sig-paren">(</span><em>data</em>, <em>n_comp=2</em>, <em>groups=None</em>, <em>cmap='rainbow'</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#pca"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.pca" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">pca</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">n_comp</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">groups</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">'rainbow'</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#pca"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.pca" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the principal component analysis (PCA) and plots the
 results.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>data</em> [pandas.DataFrame]: Contains the high-dimensional data
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>data</em> [pandas.DataFrame]: Contains the high-dimensional data
 to compute the PCA. The samples (data points) are assumed to
-be rows and the measurements (features) in the columns.</li>
-<li><em>n_comp</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. The number of
+be rows and the measurements (features) in the columns.</p></li>
+<li><p><em>n_comp</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code> by default. The number of
 first components to plot. Maximum is three (otherwise defaults
-to two).</li>
-<li><em>groups</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Can also be a
+to two).</p></li>
+<li><p><em>groups</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Can also be a
 [pandas.Series]. Defines which samples (keys/index
 corresponding to row names in <em>data</em>) belong to a group (e.g.
 condition, treatment, …) to color the data points. If none
-is provided, all points are colored in black.</li>
-<li><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'rainbow'</span></code> by default. The colormap
+is provided, all points are colored in black.</p></li>
+<li><p><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'rainbow'</span></code> by default. The colormap
 used to draw the groups’ colors (can also be a user-defined
 [matplotlib.colors.Colormap] object). See other [str] options
 available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s reference manual</a>. If no <em>groups</em>
-are provided, the argument is ignored.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+are provided, the argument is ignored.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: The figure object containing the
-scatter plot of the PC’s unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+scatter plot of the PC’s unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -291,9 +282,9 @@ scatter plot of the PC’s unless <em>filename</em> is provided.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.phase_portrait">
-<code class="descclassname">data_tools.plots.</code><code class="descname">phase_portrait</code><span class="sig-paren">(</span><em>f</em>, <em>x=(0</em>, <em>1)</em>, <em>y=(0</em>, <em>1)</em>, <em>ics=None</em>, <em>dt=0.1</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#phase_portrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.phase_portrait" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">phase_portrait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0, 1</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0, 1</span></em>, <em class="sig-param"><span class="n">ics</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#phase_portrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.phase_portrait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a phase portrait of a ODE system given the nullclines.
 This is, for a system of the form:</p>
 <div class="math notranslate nohighlight">
@@ -306,164 +297,156 @@ and isolating <span class="math notranslate nohighlight">\(v\)</span> on each eq
 therefore expected to return the pair of values <span class="math notranslate nohighlight">\(v\)</span> in terms
 of <span class="math notranslate nohighlight">\(u\)</span> for each nullcline. See below for an example.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>f</em> [function]: Defines the two nullclines of the system.</li>
-<li><em>x</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
-values to span the x-axis.</li>
-<li><em>y</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
-values to span the y-axis.</li>
-<li><em>ics</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Set of initial
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>f</em> [function]: Defines the two nullclines of the system.</p></li>
+<li><p><em>x</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
+values to span the x-axis.</p></li>
+<li><p><em>y</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code> by default. The range of
+values to span the y-axis.</p></li>
+<li><p><em>ics</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Set of initial
 conditions to plot a trajectory. Must have three elements: the
 initial values of each component and the amount of time the
-trajectory is simulated.</li>
-<li><em>dt</em> [float]: Optional <code class="docutils literal notranslate"><span class="pre">0.1</span></code> by default. The time-step to
-simulate the trajectory (given <em>ics</em> is provided).</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+trajectory is simulated.</p></li>
+<li><p><em>dt</em> [float]: Optional <code class="docutils literal notranslate"><span class="pre">0.1</span></code> by default. The time-step to
+simulate the trajectory (given <em>ics</em> is provided).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: The figure object containing the
-phase portrait of the system, unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: The figure object containing the
+phase portrait of the system, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><p class="first">Let’s assume we want the phase portait of the following system:</p>
+<li><dl>
+<dt>Example:</dt><dd><p>Let’s assume we want the phase portait of the following system:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{\begin{array}{l}
 \frac{\text{d}u}{\text{d}t}=u-5(u-2)^3+4-v\\
 \frac{\text{d}v}{\text{d}t}=3u-v
 \end{array}\right.\end{split}\]</div>
 <p>Then:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="n">u</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span>
 <span class="gp">... </span>            <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">phase_portrait</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">ics</span><span class="o">=</span><span class="p">[</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="_images/phase_portrait_example.png"><img alt="_images/phase_portrait_example.png" class="align-center" src="_images/phase_portrait_example.png" style="width: 306.40000000000003px; height: 201.60000000000002px;" /></a>
+<a class="reference internal image-reference" href="_images/phase_portrait_example.png"><img alt="_images/phase_portrait_example.png" class="align-center" src="_images/phase_portrait_example.png" style="width: 306.40000000000003px; height: 201.60000000000002px;" /></a>
 </dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.piano_consensus">
-<code class="descclassname">data_tools.plots.</code><code class="descname">piano_consensus</code><span class="sig-paren">(</span><em>df</em>, <em>nchar=40</em>, <em>boxes=True</em>, <em>top=None</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#piano_consensus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.piano_consensus" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">piano_consensus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">nchar</span><span class="o">=</span><span class="default_value">40</span></em>, <em class="sig-param"><span class="n">boxes</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">top</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#piano_consensus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.piano_consensus" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a GSEA consensus score plot like R package <code class="docutils literal notranslate"><span class="pre">piano</span></code>’s
 <code class="docutils literal notranslate"><span class="pre">consensusScores</span></code> function, but prettier.
 The main input is assumed to be a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> whose data
 is the same as the <code class="docutils literal notranslate"><span class="pre">rankMat</span></code> from the result of
 <code class="docutils literal notranslate"><span class="pre">consensusScores</span></code>.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>df</em> [pandas.DataFrame]: Values contained correspond to the
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>df</em> [pandas.DataFrame]: Values contained correspond to the
 scores of the gene-sets (consensus and each individual
 methods). Index must contain the gene-set labels. Columns are
 assumed to be <code class="docutils literal notranslate"><span class="pre">ConsRank</span></code> (ignored), <code class="docutils literal notranslate"><span class="pre">ConsScore</span></code> followed
 by the individual methods (e.g.: <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>,
-<code class="docutils literal notranslate"><span class="pre">sum</span></code>, etc).</li>
-<li><em>nchar</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">40</span></code> by default. Number of string
-characters of the gene-set labels of the plot.</li>
-<li><em>boxes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Determines
-whether to show the boxplots of the gene-sets or not.</li>
-<li><em>top</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Sets the number of
+<code class="docutils literal notranslate"><span class="pre">sum</span></code>, etc).</p></li>
+<li><p><em>nchar</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">40</span></code> by default. Number of string
+characters of the gene-set labels of the plot.</p></li>
+<li><p><em>boxes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Determines
+whether to show the boxplots of the gene-sets or not.</p></li>
+<li><p><em>top</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Sets the number of
 maximum enriched gene sets to plot (starting from the top
-ranked).</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+ranked).</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: The figure object containing a
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless <em>filename</em> is provided.</li>
+unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piano_consensus</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="_images/piano_consensus_example.png"><img alt="_images/piano_consensus_example.png" class="align-center" src="_images/piano_consensus_example.png" style="width: 420.0px; height: 480.0px;" /></a>
+<a class="reference internal image-reference" href="_images/piano_consensus_example.png"><img alt="_images/piano_consensus_example.png" class="align-center" src="_images/piano_consensus_example.png" style="width: 420.0px; height: 480.0px;" /></a>
 </dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.similarity_heatmap">
-<code class="descclassname">data_tools.plots.</code><code class="descname">similarity_heatmap</code><span class="sig-paren">(</span><em>groups</em>, <em>labels=None</em>, <em>mode='j'</em>, <em>cmap='nipy_spectral'</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_heatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_heatmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">similarity_heatmap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">groups</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'j'</span></em>, <em class="sig-param"><span class="n">cmap</span><span class="o">=</span><span class="default_value">'nipy_spectral'</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_heatmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_heatmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a group of sets, generates a heatmap with the similarity
 indices across each possible pair.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>groups</em> [list]: Or any iterable of [set] objects.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
-sets following the same order as provided in <em>groups</em>.</li>
-<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>groups</em> [list]: Or any iterable of [set] objects.</p></li>
+<li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
+sets following the same order as provided in <em>groups</em>.</p></li>
+<li><p><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
 computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
 for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson. See
 <a class="reference internal" href="iterables.html#data_tools.iterables.similarity" title="data_tools.iterables.similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">data_tools.iterables.similarity()</span></code></a> for more
-information.</li>
-<li><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'nipy_spectral'</span></code> by default. The
+information.</p></li>
+<li><p><em>cmap</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'nipy_spectral'</span></code> by default. The
 colormap used for the plot (can also be a
 [matplotlib.colors.Colormap] object). See other [str] options
-available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s reference manual</a>.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+available in <a class="reference external" href="https://matplotlib.org/examples/color/colormaps_reference.html">Matplotlib’s reference manual</a>.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: The figure object containing a
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless <em>filename</em> is provided.</li>
+unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -471,42 +454,40 @@ unless <em>filename</em> is provided.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.similarity_histogram">
-<code class="descclassname">data_tools.plots.</code><code class="descname">similarity_histogram</code><span class="sig-paren">(</span><em>groups</em>, <em>mode='j'</em>, <em>bins=10</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_histogram" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">similarity_histogram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">groups</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'j'</span></em>, <em class="sig-param"><span class="n">bins</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#similarity_histogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.similarity_histogram" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a group of sets, generates a histogram of the similarity
 indices across each possible pair (same-element pairs excluded).</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>groups</em> [list]: Or any iterable of [set] objects.</li>
-<li><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>groups</em> [list]: Or any iterable of [set] objects.</p></li>
+<li><p><em>mode</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">'j'</span></code> (Jaccard) by default.
 Indicates which type of similarity index/coefficient is to be
 computed. Available options are: <code class="docutils literal notranslate"><span class="pre">'j'</span></code> for Jaccard, <code class="docutils literal notranslate"><span class="pre">'sd'</span></code>
 for Sorensen-Dice and <code class="docutils literal notranslate"><span class="pre">'ss'</span></code> for Szymkiewicz–Simpson. See
 <a class="reference internal" href="iterables.html#data_tools.iterables.similarity" title="data_tools.iterables.similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">data_tools.iterables.similarity()</span></code></a> for more
-information.</li>
-<li><em>bins</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">10</span></code> by default. Number of bins to
-show in the histogram.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+information.</p></li>
+<li><p><em>bins</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">10</span></code> by default. Number of bins to
+show in the histogram.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last">
-<li>[matplotlib.figure.Figure]: The figure object containing a
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul>
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless <em>filename</em> is provided.</li>
+unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -514,165 +495,158 @@ unless <em>filename</em> is provided.</li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.upset_wrap">
-<code class="descclassname">data_tools.plots.</code><code class="descname">upset_wrap</code><span class="sig-paren">(</span><em>N</em>, <em>labels=None</em>, <em>drop_empty=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#upset_wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.upset_wrap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">upset_wrap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">drop_empty</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#upset_wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.upset_wrap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper for UpSetPlot package. Mostly just generates the Boolean
 multi-indexed <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> the <code class="docutils literal notranslate"><span class="pre">upsetplot.plot</span></code> function
 needs as input.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>N</em> [list]: Or any iterable type containing [set] objects.</p></li>
+<li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Labels for the
 sets following the same order as provided in <em>N</em>. If none is
-passed they will be labelled <code class="docutils literal notranslate"><span class="pre">'set0'</span></code>, <code class="docutils literal notranslate"><span class="pre">'set1'</span></code> and so on.</li>
-<li><em>drop_empty</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
-to remove the empty set intersections from the plot or not.</li>
-<li><em>**kwargs</em>: Optional. Additional keyword arguments passed to
-<code class="docutils literal notranslate"><span class="pre">upsetplot.UpSet</span></code> class.</li>
+passed they will be labelled <code class="docutils literal notranslate"><span class="pre">'set0'</span></code>, <code class="docutils literal notranslate"><span class="pre">'set1'</span></code> and so on.</p></li>
+<li><p><em>drop_empty</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether
+to remove the empty set intersections from the plot or not.</p></li>
+<li><p><em>**kwargs</em>: Optional. Additional keyword arguments passed to
+<code class="docutils literal notranslate"><span class="pre">upsetplot.UpSet</span></code> class.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd>[dict]: Contains the <code class="docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code> instances for the
-UpSetPlot figure.</dd>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>[dict]: Contains the <code class="docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code> instances for the
+UpSetPlot figure.</p>
+</dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.venn">
-<code class="descclassname">data_tools.plots.</code><code class="descname">venn</code><span class="sig-paren">(</span><em>N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'], pct=False, sizes=False, title=None, filename=None, figsize=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">venn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">['A', 'B', 'C', 'D', 'E']</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">['C0', 'C1', 'C2', 'C3', 'C4']</span></em>, <em class="sig-param"><span class="n">pct</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sizes</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#venn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.venn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a Venn diagram from a list of sets <em>N</em>. Number of sets must be
 between 2 and 5 (inclusive).</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li><em>N</em> [list]: Or any iterable type containing [set] objects.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D',</span> <span class="pre">'E']</span></code> by
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p><em>N</em> [list]: Or any iterable type containing [set] objects.</p></li>
+<li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D',</span> <span class="pre">'E']</span></code> by
 default. Labels for the sets following the same order as
-provided in <em>N</em>.</li>
-<li><em>c</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3',</span> <span class="pre">'C4']</span></code> by
+provided in <em>N</em>.</p></li>
+<li><p><em>c</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">['C0',</span> <span class="pre">'C1'</span> <span class="pre">'C2',</span> <span class="pre">'C3',</span> <span class="pre">'C4']</span></code> by
 default (matplotlib default colors). Any iterable containing
 color arguments tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code>
 for red and blue). Must contain at least the same number of
-elements as <em>N</em> (if more are provided, they will be ignored).</li>
-<li><em>pct</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Indicates
-whether to show percentages instead of absolute counts.</li>
-<li><em>sizes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether to
-include the size of the sets in the legend or not.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+elements as <em>N</em> (if more are provided, they will be ignored).</p></li>
+<li><p><em>pct</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Indicates
+whether to show percentages instead of absolute counts.</p></li>
+<li><p><em>sizes</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. Whether to
+include the size of the sets in the legend or not.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
+the figure size (in inches) as [width, height].</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: The figure object containing a
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: The figure object containing a
 combination of box and scatter plots of the gene-set scores,
-unless <em>filename</em> is provided.</li>
+unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span> <span class="c1"># Sets A, B, C</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}]</span> <span class="c1"># Sets A, B, C</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">venn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="_images/venn_example.png"><img alt="_images/venn_example.png" class="align-center" src="_images/venn_example.png" style="width: 432.0px; height: 288.0px;" /></a>
+<a class="reference internal image-reference" href="_images/venn_example.png"><img alt="_images/venn_example.png" class="align-center" src="_images/venn_example.png" style="width: 432.0px; height: 288.0px;" /></a>
 </dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_tools.plots.volcano">
-<code class="descclassname">data_tools.plots.</code><code class="descname">volcano</code><span class="sig-paren">(</span><em>logfc</em>, <em>logpval</em>, <em>thr_pval=0.05</em>, <em>thr_fc=2.0</em>, <em>c=('C0'</em>, <em>'C1')</em>, <em>labels=None</em>, <em>maxlabels=25</em>, <em>legend=True</em>, <em>title=None</em>, <em>filename=None</em>, <em>figsize=None</em>, <em>txt_size=7</em>, <em>adj_txt_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">volcano</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logfc</span></em>, <em class="sig-param"><span class="n">logpval</span></em>, <em class="sig-param"><span class="n">thr_pval</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">thr_fc</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">'C0', 'C1'</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">maxlabels</span><span class="o">=</span><span class="default_value">25</span></em>, <em class="sig-param"><span class="n">legend</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">txt_size</span><span class="o">=</span><span class="default_value">7</span></em>, <em class="sig-param"><span class="n">adj_txt_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a volcano plot from the differential expression data
 provided.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><em>logfc</em> [list]: Or any iterable type. Contains the log
+<li><dl class="simple">
+<dt>Arguments:</dt><dd><ul>
+<li><p><em>logfc</em> [list]: Or any iterable type. Contains the log
 (usually base 2) fold-change values. Must have the same length
-as <em>logpval</em>.</li>
-<li><em>logpval</em> [list]: Or any iterable type. Contains the -log
+as <em>logpval</em>.</p></li>
+<li><p><em>logpval</em> [list]: Or any iterable type. Contains the -log
 p-values (usually base 10). Must have the same length as
-<em>logfc</em>.</li>
-<li><em>thr_pval</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.05</span></code> by default. Specifies
+<em>logfc</em>.</p></li>
+<li><p><em>thr_pval</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">0.05</span></code> by default. Specifies
 the p-value (non log-transformed) threshold to consider a
-measurement as significantly differentially expressed.</li>
-<li><em>thr_fc</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code>. by default. Specifies the
+measurement as significantly differentially expressed.</p></li>
+<li><p><em>thr_fc</em> [float]: Optional, <code class="docutils literal notranslate"><span class="pre">2</span></code>. by default. Specifies the
 FC (non log-transformed) threshold to consider a measurement
-as significantly differentially expressed.</li>
-<li><em>c</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
+as significantly differentially expressed.</p></li>
+<li><p><em>c</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">('C0',</span> <span class="pre">'C1')</span></code> by default (matplotlib
 default colors). Any iterable containing two color arguments
 tolerated by matplotlib (e.g.: <code class="docutils literal notranslate"><span class="pre">['r',</span> <span class="pre">'b']</span></code> for red and
 blue). First one is used for non-significant points, second
-for the significant ones.</li>
-<li><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. List of labels
+for the significant ones.</p></li>
+<li><p><em>labels</em> [list]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. List of labels
 of the points, only the significant ones will be labeled. Must
-be in the same order as <em>logfc</em> and <em>logpval</em>.</li>
-<li><em>maxlabels</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">25</span></code> by default. Maximum number
+be in the same order as <em>logfc</em> and <em>logpval</em>.</p></li>
+<li><p><em>maxlabels</em> [int]: Optional, <code class="docutils literal notranslate"><span class="pre">25</span></code> by default. Maximum number
 of labels to show to avoid overcrowding. If the number of
 labels to show is above, there will be only shown the top data
 points up to the threshold. This ranking is computed as the
-product of the <em>logpval</em> and absolute <em>logfc</em>.</li>
-<li><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
-whether to show the plot legend or not.</li>
-<li><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
-title.</li>
-<li><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
+product of the <em>logpval</em> and absolute <em>logfc</em>.</p></li>
+<li><p><em>legend</em> [bool]: Optional, <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Indicates
+whether to show the plot legend or not.</p></li>
+<li><p><em>title</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. Defines the plot
+title.</p></li>
+<li><p><em>filename</em> [str]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. If passed,
 indicates the file name or path where to store the figure.
-Format must be specified (e.g.: .png, .pdf, etc)</li>
-<li><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
+Format must be specified (e.g.: .png, .pdf, etc)</p></li>
+<li><p><em>figsize</em> [tuple]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default (default
 matplotlib size). Any iterable containing two values denoting
-the figure size (in inches) as [width, height].</li>
-<li><em>txt_size</em> [int]; Optional, <code class="docutils literal notranslate"><span class="pre">7</span></code> by default. The size of the
-labels (if applicable).</li>
-<li><em>adj_txt_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. The key,
+the figure size (in inches) as [width, height].</p></li>
+<li><p><em>txt_size</em> [int]; Optional, <code class="docutils literal notranslate"><span class="pre">7</span></code> by default. The size of the
+labels (if applicable).</p></li>
+<li><p><em>adj_txt_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. The key,
 value pairs of keyword arguments to pass to adjust_text
 function (see <a class="reference external" href="https://adjusttext.readthedocs.io/en/latest/">adjustText reference manual</a> for more
-information).</li>
+information).</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <ul>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>[matplotlib.figure.Figure]: Figure object containing the
-volcano plot, unless <em>filename</em> is provided.</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>[matplotlib.figure.Figure]: Figure object containing the
+volcano plot, unless <em>filename</em> is provided.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Example:</dt>
-<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
+<li><dl>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volcano</span><span class="p">(</span><span class="n">my_log_fc</span><span class="p">,</span> <span class="n">my_log_pval</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="last reference internal image-reference" href="_images/volcano_example.png"><img alt="_images/volcano_example.png" class="align-center" src="_images/volcano_example.png" style="width: 384.0px; height: 288.0px;" /></a>
+<a class="reference internal image-reference" href="_images/volcano_example.png"><img alt="_images/volcano_example.png" class="align-center" src="_images/volcano_example.png" style="width: 384.0px; height: 288.0px;" /></a>
 </dd>
 </dl>
 </li>
@@ -683,6 +657,7 @@ volcano plot, unless <em>filename</em> is provided.</li>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -710,17 +685,15 @@ volcano plot, unless <em>filename</em> is provided.</li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -740,12 +713,13 @@ volcano plot, unless <em>filename</em> is provided.</li>
         <li class="right" >
           <a href="models.html" title="data_tools.models"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">data_tools 0.0.8 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">data_tools.plots</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Nicolàs Palacio-Escat.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
     </div>
   </body>
 </html>
