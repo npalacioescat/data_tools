@@ -281,7 +281,7 @@ def chordplot(nodes, edges, alpha=0.2, plot_lines=False, labels=False,
 
 
 def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
-                 figsize=None, cmap='viridis', link_kwargs={},
+                 figsize=None, cmap='viridis', link_kwargs={}, hmap_kwargs={},
                  dendo_kwargs={}):
     '''
     Generates a heatmap with hierarchical clustering dendrograms
@@ -313,6 +313,9 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
         - *link_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
           containing the key-value pairs for keyword arguments passed to
           `scipy.cluster.hierarchy.linkage`_.
+        - *hmap_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
+          containing the key-value pairs for keyword arguments passed to
+          `matplotlib.axes.Axes.imshow`_.
         - *dendo_kwargs* [dict]: Optional, ``{}`` by default. Dictionary
           containing the key-value pairs for keyword arguments passed to
           `scipy.cluster.hierarchy.dendrogram`_.
@@ -353,7 +356,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
     ord_mat = matrix[:, xdendo['leaves']][ydendo['leaves'], :]
 
     im = ax[1, 0].imshow(ord_mat, interpolation='none', cmap=cmap,
-                         aspect='auto')
+                         aspect='auto', **hmap_kwargs)
 
     # Share x/y axes with dendrograms
     ax[1, 0].get_shared_x_axes().join(ax[0, 0], ax[1, 0])
@@ -368,6 +371,7 @@ def cluster_hmap(matrix, xlabels=None, ylabels=None, title=None, filename=None,
         rng = range(len(ord_xlab))
         ax[1, 0].set_xticks(rng)
         ax[1, 0].set_xticklabels(ord_xlab, rotation=90)
+
     if ylabels is not None:
         ord_ylab = [ylabels[i] for i in ydendo['leaves']]
         rng = range(len(ord_ylab))
