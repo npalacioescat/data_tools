@@ -1663,7 +1663,7 @@ containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
 \item {} 
 \sphinxstyleemphasis{hmap\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
 containing the key\sphinxhyphen{}value pairs for keyword arguments passed to
-{\color{red}\bfseries{}\textasciigrave{}matplotlib.axes.Axes.imshow\textasciigrave{}\_}.
+\sphinxhref{https://matplotlib.org/3.1.1/api/\_as\_gen/matplotlib.axes.Axes.imshow.html}{matplotlib.axes.Axes.imshow}.
 
 \item {} 
 \sphinxstyleemphasis{dendo\_kwargs} {[}dict{]}: Optional, \sphinxcode{\sphinxupquote{\{\}}} by default. Dictionary
@@ -2249,7 +2249,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{\DUrole{n}{logfc}}, \emph{\DUrole{n}{logpval}}, \emph{\DUrole{n}{thr\_pval}\DUrole{o}{=}\DUrole{default_value}{0.05}}, \emph{\DUrole{n}{thr\_fc}\DUrole{o}{=}\DUrole{default_value}{2.0}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{}}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxlabels}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{txt\_size}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{adj\_txt\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{\DUrole{n}{logfc}}, \emph{\DUrole{n}{logpval}}, \emph{\DUrole{n}{thr\_pval}\DUrole{o}{=}\DUrole{default_value}{0.05}}, \emph{\DUrole{n}{thr\_fc}\DUrole{o}{=}\DUrole{default_value}{2.0}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{}}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxlabels}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{txt\_size}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{adj\_txt\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{ax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
@@ -2321,6 +2321,12 @@ labels (if applicable).
 value pairs of keyword arguments to pass to adjust\_text
 function (see \sphinxhref{https://adjusttext.readthedocs.io/en/latest/}{adjustText reference manual} for more
 information).
+
+\item {} 
+\sphinxstyleemphasis{ax} {[}matplotlib.axes.Axes{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default.
+A matplotlib instance of axes where to place the generated
+plot (e.g. in case of plotting several volcanos in the same
+figure).
 
 \end{itemize}
 

@@ -157,7 +157,7 @@ containing the key-value pairs for keyword arguments passed to
 <a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.linkage.html">scipy.cluster.hierarchy.linkage</a>.</p></li>
 <li><p><em>hmap_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
 containing the key-value pairs for keyword arguments passed to
-<a href="#id3"><span class="problematic" id="id4">`matplotlib.axes.Axes.imshow`_</span></a>.</p></li>
+<a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.imshow.html">matplotlib.axes.Axes.imshow</a>.</p></li>
 <li><p><em>dendo_kwargs</em> [dict]: Optional, <code class="docutils literal notranslate"><span class="pre">{}</span></code> by default. Dictionary
 containing the key-value pairs for keyword arguments passed to
 <a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.cluster.hierarchy.dendrogram.html">scipy.cluster.hierarchy.dendrogram</a>.</p></li>
@@ -584,7 +584,7 @@ unless <em>filename</em> is provided.</p></li>
 
 <dl class="py function">
 <dt id="data_tools.plots.volcano">
-<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">volcano</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logfc</span></em>, <em class="sig-param"><span class="n">logpval</span></em>, <em class="sig-param"><span class="n">thr_pval</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">thr_fc</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">'C0', 'C1'</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">maxlabels</span><span class="o">=</span><span class="default_value">25</span></em>, <em class="sig-param"><span class="n">legend</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">txt_size</span><span class="o">=</span><span class="default_value">7</span></em>, <em class="sig-param"><span class="n">adj_txt_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">data_tools.plots.</code><code class="sig-name descname">volcano</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logfc</span></em>, <em class="sig-param"><span class="n">logpval</span></em>, <em class="sig-param"><span class="n">thr_pval</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">thr_fc</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">c</span><span class="o">=</span><span class="default_value">'C0', 'C1'</span></em>, <em class="sig-param"><span class="n">labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">maxlabels</span><span class="o">=</span><span class="default_value">25</span></em>, <em class="sig-param"><span class="n">legend</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">figsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">txt_size</span><span class="o">=</span><span class="default_value">7</span></em>, <em class="sig-param"><span class="n">adj_txt_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_tools/plots.html#volcano"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_tools.plots.volcano" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a volcano plot from the differential expression data
 provided.</p>
 <ul class="simple">
@@ -631,6 +631,10 @@ labels (if applicable).</p></li>
 value pairs of keyword arguments to pass to adjust_text
 function (see <a class="reference external" href="https://adjusttext.readthedocs.io/en/latest/">adjustText reference manual</a> for more
 information).</p></li>
+<li><p><em>ax</em> [matplotlib.axes.Axes]: Optional, <code class="docutils literal notranslate"><span class="pre">None</span></code> by default.
+A matplotlib instance of axes where to place the generated
+plot (e.g. in case of plotting several volcanos in the same
+figure).</p></li>
 </ul>
 </dd>
 </dl>
