@@ -13,6 +13,8 @@ Contents
 __all__ = ['kegg_link', 'kegg_pathway_mapping', 'op_kinase_substrate',
            'up_map']
 
+import ssl
+import certifi
 import urllib
 
 try:
@@ -24,6 +26,8 @@ except ImportError:
     from urllib2 import Request as Request
 
 import pandas as pd
+
+ctx = ssl.create_default_context(cafile=certifi.where())
 
 
 def kegg_link(query, target='pathway'):
@@ -60,7 +64,7 @@ def kegg_link(query, target='pathway'):
     url_full = '/'.join([url, target, data])
 
     req = Request(url_full)
-    response = urlopen(req)
+    response = urlopen(req, context=ctx)
 
     page = response.read(999999).decode('utf-8')
 
@@ -125,7 +129,7 @@ def kegg_pathway_mapping(df, mapid, filename=None):
                 + 'can explore your query here:\n' + full_url)
 
     req = Request(full_url)
-    response = urlopen(req)
+    response = urlopen(req, context=ctx)
 
     page = response.read(999999)
 
@@ -175,7 +179,7 @@ def op_kinase_substrate(organism='9606', gsymbols=False,
 
     req = Request('?&'.join([url, data]))
 
-    response = urlopen(req)
+    response = urlopen(req, context=ctx)
     page = response.read(999999).decode('utf-8')
 
     df = to_df(page, header=True)
@@ -231,7 +235,7 @@ def up_map(query, source='ACC', target='GENENAME'):
     data = '&'.join(params)
 
     req = Request('?'.join([url, data]))
-    response = urlopen(req)
+    response = urlopen(req, context=ctx)
 
     page = response.read(999999).decode('utf-8')
 
