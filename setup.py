@@ -26,5 +26,6 @@ setup(name='data_tools',
                         'scipy',
                         'sklearn',
                         'UpSetPlot',
-                        'adjustText'],
+                        'adjustText'
+                        'certifi'],
       zip_safe=False)

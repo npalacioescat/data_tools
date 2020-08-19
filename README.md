@@ -95,6 +95,7 @@ A full copy of the GNU General Public License can be found on file
 - [Scikit-learn](http://scikit-learn.org/stable/index.html)
 - [UpSetPlot](https://github.com/jnothman/UpSetPlot)
 - [adjustText](https://github.com/Phlya/adjustText)
+- [certifi](https://github.com/certifi/python-certifi)
 
 ## Installation
 
