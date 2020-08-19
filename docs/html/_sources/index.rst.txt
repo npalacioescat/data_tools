@@ -131,6 +131,7 @@ Dependencies
 - `Scikit-learn <http://scikit-learn.org/stable/index.html>`_
 - `UpSetPlot <https://github.com/jnothman/UpSetPlot>`_
 - `adjustText <https://github.com/Phlya/adjustText>`_
+- `certifi <https://github.com/certifi/python-certifi>`_
 
 Installation
 ============
