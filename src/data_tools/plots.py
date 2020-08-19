@@ -1088,7 +1088,7 @@ def venn(N, labels=['A', 'B', 'C', 'D', 'E'], c=['C0', 'C1', 'C2', 'C3', 'C4'],
 
 def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
             labels=None, maxlabels=25, legend=True, title=None, filename=None,
-            figsize=None, txt_size=7, adj_txt_kwargs={}):
+            figsize=None, txt_size=7, adj_txt_kwargs={}, ax=None):
     '''
     Generates a volcano plot from the differential expression data
     provided.
@@ -1135,6 +1135,10 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
           value pairs of keyword arguments to pass to adjust_text
           function (see `adjustText reference manual`_ for more
           information).
+        - *ax* [matplotlib.axes.Axes]: Optional, ``None`` by default.
+          A matplotlib instance of axes where to place the generated
+          plot (e.g. in case of plotting several volcanos in the same
+          figure).
 
     .. _`adjustText reference manual`:
         https://adjusttext.readthedocs.io/en/latest/
@@ -1161,7 +1165,11 @@ def volcano(logfc, logpval, thr_pval=0.05, thr_fc=2., c=('C0', 'C1'),
     max_x, max_y = map(max, [logfc, logpval])
     min_x = min(logfc)
 
-    fig, ax = plt.subplots(figsize=figsize)
+    if ax:
+        fig = ax.figure
+
+    else:
+        fig, ax = plt.subplots(figsize=figsize)
 
     # Boolean vector indicating which measurements are significant
     sig = [p >= thr_logpval and f >= thr_logfc
