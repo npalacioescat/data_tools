@@ -230,7 +230,7 @@ def up_map(query, source='ACC', target='GENENAME'):
 
     params = ['from=%s' % source,
               'to=%s' % target,
-              'query=%s' % '+'.join(query),
+              'query=%s' % ','.join(query),
               'format=tab']
     data = '&'.join(params)
 
