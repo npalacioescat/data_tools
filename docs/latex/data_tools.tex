@@ -73,7 +73,7 @@
 
 
 \title{data\_tools Documentation}
-\date{Nov 18, 2020}
+\date{Mar 10, 2021}
 \release{0.0.8}
 \author{Nicolàs Palacio-Escat}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -993,7 +993,7 @@ Model classes module.
 \label{\detokenize{models:contents}}\index{DoseResponse (class in data\_tools.models)@\spxentry{DoseResponse}\spxextra{class in data\_tools.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{\DUrole{n}{d\_data}}, \emph{\DUrole{n}{r\_data}}, \emph{\DUrole{n}{x0}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{x\_scale}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{bounds}\DUrole{o}{=}\DUrole{default_value}{{[}0, 0, \sphinxhyphen{} inf{]}, {[}inf, inf, inf{]}}}}{}
+\phantomsection\label{\detokenize{models:data_tools.models.DoseResponse}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{data\_tools.models.}}\sphinxbfcode{\sphinxupquote{DoseResponse}}}{\emph{\DUrole{n}{d\_data}}, \emph{\DUrole{n}{r\_data}}, \emph{\DUrole{n}{x0}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{x\_scale}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{bounds}\DUrole{o}{=}\DUrole{default_value}{({[}0, 0, \sphinxhyphen{} inf{]}, {[}inf, inf, inf{]})}}}{}
 Wrapper class for \sphinxcode{\sphinxupquote{scipy.optimize.least\_squares}} to fit
 dose\sphinxhyphen{}response curves on a pre\sphinxhyphen{}defined Hill function with the
 following form:
@@ -1840,7 +1840,7 @@ scatter plot of the PC’s unless \sphinxstyleemphasis{filename} is provided.
 \index{phase\_portrait() (in module data\_tools.plots)@\spxentry{phase\_portrait()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.phase_portrait}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{phase\_portrait}}}{\emph{\DUrole{n}{f}}, \emph{\DUrole{n}{x}\DUrole{o}{=}\DUrole{default_value}{0, 1}}, \emph{\DUrole{n}{y}\DUrole{o}{=}\DUrole{default_value}{0, 1}}, \emph{\DUrole{n}{ics}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dt}\DUrole{o}{=}\DUrole{default_value}{0.1}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.phase_portrait}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{phase\_portrait}}}{\emph{\DUrole{n}{f}}, \emph{\DUrole{n}{x}\DUrole{o}{=}\DUrole{default_value}{(0, 1)}}, \emph{\DUrole{n}{y}\DUrole{o}{=}\DUrole{default_value}{(0, 1)}}, \emph{\DUrole{n}{ics}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{dt}\DUrole{o}{=}\DUrole{default_value}{0.1}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a phase portrait of a ODE system given the nullclines.
 This is, for a system of the form:
 \begin{equation*}
@@ -1934,7 +1934,7 @@ Then:
 \index{piano\_consensus() (in module data\_tools.plots)@\spxentry{piano\_consensus()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{\DUrole{n}{df}}, \emph{\DUrole{n}{nchar}\DUrole{o}{=}\DUrole{default_value}{40}}, \emph{\DUrole{n}{boxes}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{top}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.piano_consensus}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{piano\_consensus}}}{\emph{\DUrole{n}{df}}, \emph{\DUrole{n}{nchar}\DUrole{o}{=}\DUrole{default_value}{40}}, \emph{\DUrole{n}{boxes}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{top}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{rng}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a GSEA consensus score plot like R package \sphinxcode{\sphinxupquote{piano}}’s
 \sphinxcode{\sphinxupquote{consensusScores}} function, but prettier.
 The main input is assumed to be a \sphinxcode{\sphinxupquote{pandas.DataFrame}} whose data
@@ -1963,6 +1963,10 @@ whether to show the boxplots of the gene\sphinxhyphen{}sets or not.
 \sphinxstyleemphasis{top} {[}int{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Sets the number of
 maximum enriched gene sets to plot (starting from the top
 ranked).
+
+\item {} 
+\sphinxstyleemphasis{rng} {[}list{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Any iterable of
+two values determining the limits of the x\sphinxhyphen{}axis.
 
 \item {} 
 \sphinxstyleemphasis{title} {[}str{]}: Optional, \sphinxcode{\sphinxupquote{None}} by default. Defines the plot
@@ -2249,7 +2253,7 @@ unless \sphinxstyleemphasis{filename} is provided.
 \index{volcano() (in module data\_tools.plots)@\spxentry{volcano()}\spxextra{in module data\_tools.plots}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{\DUrole{n}{logfc}}, \emph{\DUrole{n}{logpval}}, \emph{\DUrole{n}{thr\_pval}\DUrole{o}{=}\DUrole{default_value}{0.05}}, \emph{\DUrole{n}{thr\_fc}\DUrole{o}{=}\DUrole{default_value}{2.0}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{}}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxlabels}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{txt\_size}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{adj\_txt\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{ax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\phantomsection\label{\detokenize{plots:data_tools.plots.volcano}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{data\_tools.plots.}}\sphinxbfcode{\sphinxupquote{volcano}}}{\emph{\DUrole{n}{logfc}}, \emph{\DUrole{n}{logpval}}, \emph{\DUrole{n}{thr\_pval}\DUrole{o}{=}\DUrole{default_value}{0.05}}, \emph{\DUrole{n}{thr\_fc}\DUrole{o}{=}\DUrole{default_value}{2.0}}, \emph{\DUrole{n}{c}\DUrole{o}{=}\DUrole{default_value}{(\textquotesingle{}C0\textquotesingle{}, \textquotesingle{}C1\textquotesingle{})}}, \emph{\DUrole{n}{labels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{maxlabels}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{legend}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{title}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{figsize}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{txt\_size}\DUrole{o}{=}\DUrole{default_value}{7}}, \emph{\DUrole{n}{adj\_txt\_kwargs}\DUrole{o}{=}\DUrole{default_value}{\{\}}}, \emph{\DUrole{n}{ax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 Generates a volcano plot from the differential expression data
 provided.
 \begin{itemize}
