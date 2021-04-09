@@ -674,7 +674,7 @@ def phase_portrait(f, x=(0, 1), y=(0, 1), ics=None, dt=0.1, title=None,
         return fig
 
 
-def piano_consensus(df, nchar=40, boxes=True, top=None, title=None,
+def piano_consensus(df, nchar=40, boxes=True, top=None, rng=None, title=None,
                     filename=None, figsize=None):
     '''
     Generates a GSEA consensus score plot like R package ``piano``'s
@@ -697,6 +697,8 @@ def piano_consensus(df, nchar=40, boxes=True, top=None, title=None,
         - *top* [int]: Optional, ``None`` by default. Sets the number of
           maximum enriched gene sets to plot (starting from the top
           ranked).
+        - *rng* [list]: Optional, ``None`` by default. Any iterable of
+          two values determining the limits of the x-axis.
         - *title* [str]: Optional, ``None`` by default. Defines the plot
           title.
         - *filename* [str]: Optional, ``None`` by default. If passed,
@@ -736,7 +738,7 @@ def piano_consensus(df, nchar=40, boxes=True, top=None, title=None,
 
     # Box plot of the gene-sets
     if boxes:
-        ax.boxplot(df.iloc[:, 2:], positions=y, widths=.75, vert=False,
+        ax.boxplot(df.iloc[:, 2:].T, positions=y, widths=.75, vert=False,
                    zorder=1, medianprops={'linewidth': 0},
                    flierprops={'markersize': 7})
 
@@ -752,9 +754,11 @@ def piano_consensus(df, nchar=40, boxes=True, top=None, title=None,
     ax.set_yticklabels([s[:nchar] for s in df.index])
 
     # Axes properties
-    ax.set_xlabel('Score')
+    ax.set_xlabel('Rank')
     ax.set_ylabel('Gene-set', rotation=90, ha='center')
     ax.set_ylim(-1, len(df))
+    if rng:
+    	ax.set_xlim(rng[0], rng[-1])
 
     ax.set_title(title)
 
