@@ -901,7 +901,7 @@ def similarity_histogram(groups, mode='j', bins=10, title=None, filename=None,
         return fig
 
 
-def upset_wrap(N, labels=None, drop_empty=False, **kwargs):
+def upset_wrap(N, labels=None, drop_empty=False, drop_single=False, **kwargs):
     '''
     Wrapper for UpSetPlot package. Mostly just generates the Boolean
     multi-indexed ``pandas.Series`` the ``upsetplot.plot`` function
@@ -914,6 +914,8 @@ def upset_wrap(N, labels=None, drop_empty=False, **kwargs):
           passed they will be labelled ``'set0'``, ``'set1'`` and so on.
         - *drop_empty* [bool]: Optional, ``False`` by default. Whether
           to remove the empty set intersections from the plot or not.
+        - *drop_single* [bool]: Optional, ``False`` by default. Whether
+          to drop the non-intersecting sets from the plot.
         - *\*\*kwargs*: Optional. Additional keyword arguments passed to
           ``upsetplot.UpSet`` class.
 
@@ -935,6 +937,10 @@ def upset_wrap(N, labels=None, drop_empty=False, **kwargs):
     if drop_empty:
         series[series == 0] = np.nan
         series.dropna(inplace=True)
+
+    if drop_single:
+        series = series.iloc[[n for n, i in enumerate(series.index)
+                              if sum(i) > 1]]
 
     return usp.plot(series, **kwargs)
 
