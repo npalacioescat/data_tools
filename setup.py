@@ -2,11 +2,13 @@
 
 import sys
 import os
-import imp
+from importlib.machinery import SourceFileLoader
 from setuptools import setup, find_packages
 
-__info__ = imp.load_source('__info__', os.path.join('src', 'data_tools',
-                                                    '__info__.py'))
+__info__ = SourceFileLoader(
+        '__info__',
+        os.path.join('src', 'data_tools', '__info__.py')
+).load_module()
 
 mpl = 'matplotlib < 3' if sys.version_info < (3,) else 'matplotlib',
 
